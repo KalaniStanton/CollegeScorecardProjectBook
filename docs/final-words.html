@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Section 6 Final Words | A Minimal Book Example</title>
+  <meta name="description" content="An analysis of data from the College Scorecard API, which focuses on differences identified between institutions with R1 and R2 carnegie classifications. This project was completed to satisfy the requirements of a project assigned to students in the Fall 2020 Data Munging and Exploratory Data Analysis at New College of Florida." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Section 6 Final Words | A Minimal Book Example" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="An analysis of data from the College Scorecard API, which focuses on differences identified between institutions with R1 and R2 carnegie classifications. This project was completed to satisfy the requirements of a project assigned to students in the Fall 2020 Data Munging and Exploratory Data Analysis at New College of Florida." />
+  <meta name="github-repo" content="benjaminweisman/Data-Munging" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Section 6 Final Words | A Minimal Book Example" />
+  
+  <meta name="twitter:description" content="An analysis of data from the College Scorecard API, which focuses on differences identified between institutions with R1 and R2 carnegie classifications. This project was completed to satisfy the requirements of a project assigned to students in the Fall 2020 Data Munging and Exploratory Data Analysis at New College of Florida." />
+  
+
+<meta name="author" content="Sara Haman, Adam Lashley, Reilly Stanton, Benjamin Weisman" />
+
+
+<meta name="date" content="2020-10-16" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="wilcox-for-skewed-bois.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="data-acquisition.html"><a href="data-acquisition.html"><i class="fa fa-check"></i><b>2</b> Data Acquisition</a><ul>
+<li class="chapter" data-level="2.1" data-path="data-acquisition.html"><a href="data-acquisition.html#set-up-and-api-exploration"><i class="fa fa-check"></i><b>2.1</b> Set-up and API Exploration</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="data-acquisition.html"><a href="data-acquisition.html#project-directory-management"><i class="fa fa-check"></i><b>2.1.1</b> Project Directory Management</a></li>
+<li class="chapter" data-level="2.1.2" data-path="data-acquisition.html"><a href="data-acquisition.html#api-exploration"><i class="fa fa-check"></i><b>2.1.2</b> API Exploration</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="data-acquisition.html"><a href="data-acquisition.html#the-rscorecard-and-tidyverse-approach"><i class="fa fa-check"></i><b>2.2</b> The <code>rscorecard</code> and <code>tidyverse</code> approach</a></li>
+<li class="chapter" data-level="2.3" data-path="data-acquisition.html"><a href="data-acquisition.html#finances"><i class="fa fa-check"></i><b>2.3</b> Finances</a></li>
+<li class="chapter" data-level="2.4" data-path="data-acquisition.html"><a href="data-acquisition.html#demographics"><i class="fa fa-check"></i><b>2.4</b> Demographics</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-clean.html"><a href="data-clean.html"><i class="fa fa-check"></i><b>3</b> Data Clean</a></li>
+<li class="chapter" data-level="4" data-path="analysis.html"><a href="analysis.html"><i class="fa fa-check"></i><b>4</b> Analysis</a><ul>
+<li class="chapter" data-level="4.1" data-path="analysis.html"><a href="analysis.html#import"><i class="fa fa-check"></i><b>4.1</b> Import</a></li>
+<li class="chapter" data-level="4.2" data-path="analysis.html"><a href="analysis.html#transform-datasets"><i class="fa fa-check"></i><b>4.2</b> Transform Datasets</a></li>
+<li class="chapter" data-level="4.3" data-path="analysis.html"><a href="analysis.html#descriptive-time"><i class="fa fa-check"></i><b>4.3</b> Descriptive time!</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="wilcox-for-skewed-bois.html"><a href="wilcox-for-skewed-bois.html"><i class="fa fa-check"></i><b>5</b> Wilcox for skewed bois</a><ul>
+<li class="chapter" data-level="5.1" data-path="wilcox-for-skewed-bois.html"><a href="wilcox-for-skewed-bois.html#main-model"><i class="fa fa-check"></i><b>5.1</b> Main model</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="wilcox-for-skewed-bois.html"><a href="wilcox-for-skewed-bois.html#decomposition"><i class="fa fa-check"></i><b>5.1.1</b> Decomposition</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>6</b> Final Words</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Minimal Book Example</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="final-words" class="section level1">
+<h1><span class="header-section-number">Section 6</span> Final Words</h1>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="final-words.html#cb217-1"></a><span class="kw">library</span>(plotly)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;plotly&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:httr&#39;:
+## 
+##     config</code></pre>
+<pre><code>## The following object is masked from &#39;package:Hmisc&#39;:
+## 
+##     subplot</code></pre>
+<pre><code>## The following object is masked from &#39;package:ggplot2&#39;:
+## 
+##     last_plot</code></pre>
+<pre><code>## The following objects are masked from &#39;package:plyr&#39;:
+## 
+##     arrange, mutate, rename, summarise</code></pre>
+<pre><code>## The following object is masked from &#39;package:stats&#39;:
+## 
+##     filter</code></pre>
+<pre><code>## The following object is masked from &#39;package:graphics&#39;:
+## 
+##     layout</code></pre>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="final-words.html#cb225-1"></a>g &lt;-<span class="st"> </span><span class="kw">list</span>(</span>
+<span id="cb225-2"><a href="final-words.html#cb225-2"></a>  <span class="dt">scope =</span> <span class="st">&#39;usa&#39;</span>,</span>
+<span id="cb225-3"><a href="final-words.html#cb225-3"></a>  <span class="dt">projection =</span> <span class="kw">list</span>(<span class="dt">type =</span> <span class="st">&#39;albers usa&#39;</span>),</span>
+<span id="cb225-4"><a href="final-words.html#cb225-4"></a>  <span class="dt">lakecolor =</span> <span class="kw">toRGB</span>(<span class="st">&#39;white&#39;</span>)</span>
+<span id="cb225-5"><a href="final-words.html#cb225-5"></a>)</span>
+<span id="cb225-6"><a href="final-words.html#cb225-6"></a></span>
+<span id="cb225-7"><a href="final-words.html#cb225-7"></a>avgs &lt;-<span class="st"> </span><span class="kw">distinct</span>(FacSalary)</span>
+<span id="cb225-8"><a href="final-words.html#cb225-8"></a></span>
+<span id="cb225-9"><a href="final-words.html#cb225-9"></a><span class="kw">plot_geo</span>() <span class="op">%&gt;%</span></span>
+<span id="cb225-10"><a href="final-words.html#cb225-10"></a><span class="st">  </span><span class="kw">add_trace</span>(</span>
+<span id="cb225-11"><a href="final-words.html#cb225-11"></a>    <span class="dt">z =</span> <span class="op">~</span>avgs<span class="op">$</span>avgSal,</span>
+<span id="cb225-12"><a href="final-words.html#cb225-12"></a>    <span class="dt">span =</span> <span class="kw">I</span>(<span class="dv">0</span>),</span>
+<span id="cb225-13"><a href="final-words.html#cb225-13"></a>    <span class="dt">colorscale =</span> <span class="st">&#39;matter&#39;</span>,</span>
+<span id="cb225-14"><a href="final-words.html#cb225-14"></a>    <span class="dt">locations =</span> avgs<span class="op">$</span>stabbr, </span>
+<span id="cb225-15"><a href="final-words.html#cb225-15"></a>    <span class="dt">locationmode =</span> <span class="st">&#39;USA-states&#39;</span></span>
+<span id="cb225-16"><a href="final-words.html#cb225-16"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb225-17"><a href="final-words.html#cb225-17"></a><span class="st">  </span><span class="kw">colorbar</span>(<span class="dt">title =</span> <span class="ot">NULL</span>) <span class="op">%&gt;%</span></span>
+<span id="cb225-18"><a href="final-words.html#cb225-18"></a><span class="st">  </span><span class="kw">layout</span>(<span class="dt">geo =</span> g, <span class="dt">title =</span> <span class="st">&quot;Avg. Faculty Salary by State (in USD)&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning: `arrange_()` is deprecated as of dplyr 0.7.0.
+## Please use `arrange()` instead.
+## See vignette(&#39;programming&#39;) for more help
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_warnings()` to see where this warning was generated.</code></pre>
+<div id="htmlwidget-1f099fcba3abb2074c21" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1f099fcba3abb2074c21">{"x":{"visdat":{"5d0876992310":["function () ","plotlyVisDat"]},"cur_data":"5d0876992310","attrs":{"5d0876992310":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"z":{},"span":[0],"colorscale":"matter","locationmode":"USA-states","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"mapType":"geo","scene":{"zaxis":{"title":"avgs$avgSal"}},"geo":{"domain":{"x":[0,1],"y":[0,1]},"scope":"usa","projection":{"type":"albers usa"},"lakecolor":"rgba(255,255,255,1)"},"hovermode":"closest","showlegend":false,"legend":{"yanchor":"top","y":0.5},"title":"Avg. Faculty Salary by State (in USD)"},"source":"A","config":{"showSendToCloud":false},"data":[{"colorbar":{"ticklen":2,"len":0.5,"lenmode":"fraction","y":1,"yanchor":"top"},"colorscale":"matter","showscale":true,"z":[10653.2,9045,13563.3846153846,10363.5,8244.25,10554.1666666667,8346,9656.5,10485.5,10591,14542.5555555556,15483.5,10588,10338.4,12163,9640.875,9981.66666666667,9455.16666666667,10246.7222222222,11750.6,9236.8,10421.7142857143,11487,8887,9610.2,9584,8130.33333333333,10481,10305,10276,9187,12870.8,10645.8888888889,9816.66666666667,8742,13585.5,9784.2,12389.7777777778,9810,11648.2,9706,8882,8276,10638,10666.5,10205,9846,12533.5,8075,11927],"locationmode":"USA-states","type":"choropleth","marker":{"line":{"color":"rgba(31,119,180,1)","width":0}},"geo":"geo","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="final-words.html#cb227-1"></a>avgDM &lt;-<span class="st"> </span><span class="kw">distinct</span>(debtMedian)</span>
+<span id="cb227-2"><a href="final-words.html#cb227-2"></a></span>
+<span id="cb227-3"><a href="final-words.html#cb227-3"></a><span class="kw">plot_geo</span>() <span class="op">%&gt;%</span></span>
+<span id="cb227-4"><a href="final-words.html#cb227-4"></a><span class="st">  </span><span class="kw">add_trace</span>(</span>
+<span id="cb227-5"><a href="final-words.html#cb227-5"></a>    <span class="dt">z =</span> <span class="op">~</span>avgDM<span class="op">$</span>avgDebt,</span>
+<span id="cb227-6"><a href="final-words.html#cb227-6"></a>    <span class="dt">span =</span> <span class="kw">I</span>(<span class="dv">0</span>),</span>
+<span id="cb227-7"><a href="final-words.html#cb227-7"></a>    <span class="dt">colorscale =</span> <span class="st">&#39;viridis&#39;</span>,</span>
+<span id="cb227-8"><a href="final-words.html#cb227-8"></a>    <span class="dt">locations =</span> avgDM<span class="op">$</span>state, </span>
+<span id="cb227-9"><a href="final-words.html#cb227-9"></a>    <span class="dt">locationmode =</span> <span class="st">&#39;USA-states&#39;</span></span>
+<span id="cb227-10"><a href="final-words.html#cb227-10"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb227-11"><a href="final-words.html#cb227-11"></a><span class="st">  </span><span class="kw">colorbar</span>(<span class="dt">title =</span> <span class="ot">NULL</span>) <span class="op">%&gt;%</span></span>
+<span id="cb227-12"><a href="final-words.html#cb227-12"></a><span class="st">  </span><span class="kw">layout</span>(<span class="dt">geo =</span> g, <span class="dt">title =</span> <span class="st">&quot;Avg. Faculty Salary by State (in USD)&quot;</span>)</span></code></pre></div>
+<div id="htmlwidget-8553fd4de035c1ab092f" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8553fd4de035c1ab092f">{"x":{"visdat":{"5d0864433c6f":["function () ","plotlyVisDat"]},"cur_data":"5d0864433c6f","attrs":{"5d0864433c6f":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"z":{},"span":[0],"colorscale":"viridis","locations":["IN","KS","MA","MI","MS","MO","MT","NE","NV","CO","CA","CT","DE","FL","HI","GA","OR","TN","TX","IL","LA","VA","WA","WV","AL","AK","AR","SC","UT","WI","ME","NY","NC","OH","ND","NH","AZ","NJ","OK","PA","KY","NM","ID","MD","IA","VT","WY","RI","SD","MN"],"locationmode":"USA-states","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"mapType":"geo","scene":{"zaxis":{"title":"avgDM$avgDebt"}},"geo":{"domain":{"x":[0,1],"y":[0,1]},"scope":"usa","projection":{"type":"albers usa"},"lakecolor":"rgba(255,255,255,1)"},"hovermode":"closest","showlegend":false,"legend":{"yanchor":"top","y":0.5},"title":"Avg. Faculty Salary by State (in USD)"},"source":"A","config":{"showSendToCloud":false},"data":[{"colorbar":{"ticklen":2,"len":0.5,"lenmode":"fraction","y":1,"yanchor":"top"},"colorscale":"viridis","showscale":true,"z":[21724.875,21409.5,22178.8653846154,24442.671875,24065.625,21746.3541666667,23333.125,20544.0625,18816.25,21607.9583333333,17486.9558823529,17187.5,25987.625,20459.5625,19162.5,22893.234375,21795.7083333333,20866.25,19966.5277777778,21076.0125,20568.75,22003.9821428571,17596.9375,23468.25,22740.875,17391,20663,22181,13772.5416666667,23948.125,26122.25,20849.0208333333,20775.5138888889,23537.2604166667,23472.25,20143.25,19944.675,21463.9444444444,22016.8333333333,23592.775,21503.375,18288.75,23095.6666666667,22667.25,22494.5,21939.5,18328.5,19421.875,24812.5,19750],"locations":["IN","KS","MA","MI","MS","MO","MT","NE","NV","CO","CA","CT","DE","FL","HI","GA","OR","TN","TX","IL","LA","VA","WA","WV","AL","AK","AR","SC","UT","WI","ME","NY","NC","OH","ND","NH","AZ","NJ","OK","PA","KY","NM","ID","MD","IA","VT","WY","RI","SD","MN"],"locationmode":"USA-states","type":"choropleth","marker":{"line":{"color":"rgba(31,119,180,1)","width":0}},"geo":"geo","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="wilcox-for-skewed-bois.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/05-Visualizations.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
