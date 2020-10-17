@@ -1,9 +1,5 @@
 # Analysis {#analysis}
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 ## Import Packages
 ```{r, message=FALSE}
 library(moments)

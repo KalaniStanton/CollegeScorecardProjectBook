@@ -6,11 +6,6 @@ library(tidyverse)
 
 ```
 
-
-
-
-
-
 Accessibility
 : The data was easily retrievable, the only difficulty was using the API key to retrieve everything into R so we could clean, manipulate, and analyze the data.
 

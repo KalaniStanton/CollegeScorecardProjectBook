@@ -13,6 +13,12 @@ github-repo:  KalaniStanton/CollegeScorecardProjectBook
 description: "An analysis of data from the College Scorecard API, which focuses on differences identified between institutions with R1 and R2 carnegie classifications."
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      message = FALSE,
+                      warning = FALSE)
+```
+
 # Preface {-}
 
 This project was completed to satisfy the requirements of a project assigned to students in the Fall 2020 Data Munging and Exploratory Data Analysis at New College of Florida.
