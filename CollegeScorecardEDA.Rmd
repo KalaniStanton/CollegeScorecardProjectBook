@@ -1,0 +1,881 @@
+--- 
+title: "An Exploratory Analysis of Data in the U.S. College Scorecard"
+author: "Sara Haman, Adam Lashley, Reilly Stanton, Benjamin Weisman"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+output_dir: "docs"
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes~
+github-repo:  KalaniStanton/CollegeScorecardProjectBook 
+description: "An analysis of data from the College Scorecard API, which focuses on differences identified between institutions with R1 and R2 carnegie classifications."
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      message = FALSE,
+                      warning = FALSE)
+```
+
+# Preface {-}
+
+This project was completed to satisfy the requirements of a project assigned to students in the Fall 2020 Data Munging and Exploratory Data Analysis at New College of Florida.
+
+This document is broken down into sections pertaining to the discrete steps in the process of exploratory data analysis. 
+
+In section \@ref(intro) we give an overview of this project, followed by an explanation of our process for selecting variables.
+Next, we demonstrate our initial ~~failed~~ attempts at pulling the data directly from the API, and explain why we chose to pivot to using the `{rscorecard}` package for querying our data from the API in section \@ref(import). 
+Once the data is imported, we assess the quality of the data in section \@ref(clean) and rename some of the variables to make the data set, and our later analysis, easier to interpret. 
+Following this, section \@ref(analysis) contains the statistical analysis of the data, wherein we investigate the relationship between R1 and R2 Carnegie classification status and unemployment rates. This model is the modified by adding the proportion of white students as a moderator, which reveals interesting results. 
+Lastly, in section \@ref(discussion), we present visualizations made using the data from the College Scorecard API and elaborate on the statistical analyses performed in the previous section.
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```
+
+<!--chapter:end:index.Rmd-->
+
+# Introduction {#intro}
+
+You can label chapter and section titles using `{#label}` after them, e.g., we can reference Chapter \@ref(intro). If you do not manually label them, there will be automatic labels anyway, e.g., Chapter \@ref(methods).
+
+Figures and tables with captions will be placed in `figure` and `table` environments, respectively.
+
+```{r nice-fig, fig.cap='Here is a nice figure!', out.width='80%', fig.asp=.75, fig.align='center'}
+par(mar = c(4, 4, .1, .1))
+plot(pressure, type = 'b', pch = 19)
+```
+
+Reference a figure by its code chunk label with the `fig:` prefix, e.g., see Figure \@ref(fig:nice-fig). Similarly, you can reference tables generated from `knitr::kable()`, e.g., see Table \@ref(tab:nice-tab).
+
+```{r nice-tab, tidy=FALSE}
+knitr::kable(
+  head(iris, 20), caption = 'Here is a nice table!',
+  booktabs = TRUE
+)
+```
+
+You can write citations, too. For example, we are using the **bookdown** package [@R-bookdown] in this sample book, which was built on top of R Markdown and **knitr** [@xie2015].
+
+<!--chapter:end:01-intro.Rmd-->
+
+# Data Acquisition {#import}
+
+```{r, message = FALSE}
+library(plyr)
+library(tidyverse)
+library(Hmisc)
+library(httr)
+library(jsonlite)
+#install.packages("tmap")
+library(tmap)
+library(leaflet)
+library(treemap)
+library(kableExtra)
+
+`%notin%` <- Negate(`%in%`)
+
+MakePretty <- function(x) {
+  x %>% kbl(align = "c") %>% kable_material()
+}
+```
+
+## Set-up and API Exploration
+
+For our project, we wanted to practice using API to pass the data into our global environment and attempt to explore and extract our desired variables using base R.
+
+As you will see, our attempt failed, but was useful in helping us understand the relational structure of the College Scorecard Data and the limits of simple indexing when dealing with complicated data structures. 
+
+### Project Directory Management
+
+Prior to extracting any of the data, we want to ensure that our project is reproducible. Thus, we first create a sub-directory within the user's working directory, which will hold the .csv files we will write containing our variables of interest.
+
+```{r dir-setup}
+proj.dir <- getwd()
+#dir.create("Proj1Data")
+data.dir <- paste0(proj.dir, "/Proj1Data")
+```
+
+Next, we pass the API key into an object so that it can be called in the `GET()` function, which pulls the data from the API into out global environment.
+
+```{r api-setup}
+APIKey = "FELgrGb47PaevTWxqZTt6etFaQVnDbKpcJLaPL6a"
+res = GET(paste0("https://api.data.gov/ed/collegescorecard/v1/schools?api_key=", APIKey))
+```
+
+This data is initially in a `raw` format that is pulled from a JSON file stored on the API servers. To do this, we first convert the `raw` data to `char` and call the `fromJSON()` function to convert the data to a more "R friendly" data structure.
+
+```{r data-setup}
+data = fromJSON(rawToChar(res$content))
+is(data)
+```
+Now that this raw JSON file is converted to a list, we can begin our exploration of the data.
+
+### API Exploration
+
+We originally intended on using `list2env(yearsLi, envir = .GlobalEnv)` to split the list into multiple `data.frame` objects, but the fact that the names of the listed data frames are numeric values will be a problem. When calling these data frames, R will have to decide whether the user input `r 2012` is calling the `data$2012` data set, or the number `2012`. This is likely to cause problems in our later analysis, so we have to look at the `names()` of objects in our `data` list to see how we might adjust our approach to exploring the data. 
+
+```{r data-names}
+names(data$results)
+```
+
+Upon looking at the `names()` we noticed that not all of the listed data frames are named after years, and thus are likely contain different data than the others. 
+
+Therefore, we first extract the non-year data frames, prior to extracting the year data frames with a character alteration (to make them non-numeric), 
+
+```{r data-subset}
+id_data <- data$results[c("school", "id", "location", "ope6_id", "ope8_id")]
+
+yearsLi<- data$results[names(data$results) %notin% c("school", "id", "location", "ope6_id", "ope8_id")]
+
+names(yearsLi) <- paste0("yr", names(yearsLi))
+
+#list2env(yearsLi, envir = .GlobalEnv)
+```
+
+At this point, we then called `list2env(data$results, envir = .GlobalEnv)` to create individual dataframes of each object in the `yearsLi` list, which helped us understand what was happening at different levels of the data structure, but ultimately left us more confused about how we should approach querying this data. 
+
+This code, as well as the code we used to analyze these objects below, is commented it out because it creates an unnecessary number of objects in the global environment, but retained in this document to show the attempts we made at exploring the data structure.
+```{r}
+#
+#names(yr2012)
+#contents(id_data$school)
+#contents(yr2012$academics$program$bachelors)
+#yr2012$academics$program$bachelors
+#length(id_data$ope8_id)
+```
+
+At this point, the challenge of collecting data directly from the API seemed insurmountable, but we sought a solution and turned to the sage of all data science obstacles: Google.
+
+## The `rscorecard` and `tidyverse` approach
+
+As expected, we found out savior in the annals of algorithmic wisdom when we stumbled upon a package called {rscorecard}.
+
+The {rscorecard} package is a wrapper for the College Scorecard API that takes full advantage of the complexity in this relational data structure by employing useful tools from the tidyverse eco-system. Using {dplyr} functions, specified to this data set, and pipe operators `%>%` from {magrittr}, the {rscorecard} package provides an astonishingly simple solution for querying data directly from the API.
+
+```{r}
+#install.packages("rscorecard")
+library(rscorecard)
+```
+
+The package works by accessing the API directly using the users API key as an argument in the `sc_key()` function.
+
+```{r}
+sc_key(APIKey)
+```
+As the message above states, once the API key is accessed, the user can append querying functions like `sc_filter()`, to collect observations that satisfy booleans, `sc_select()`, to subset the data by columns, and `sc_year()`, to select the data from a specified year.
+
+These functions are mentioned and explained here because they what we use to extract data on **Finances**, **Demographics**, and **Death Rates** from schools that classify as **R1** and **R2** research institutions.
+
+### Finances
+
+
+
+```{r}
+F_latest <- sc_init() %>%
+    sc_filter(distanceonly == 0, ccbasic %in% c(15, 16)) %>%
+    sc_select(control, instnm, ccbasic, stabbr, npt4_pub, npt4_priv, costt4_a, grad_debt_mdn, avgfacsal, unemp_rate) %>% 
+    sc_year("latest") %>% 
+    sc_get()
+
+F_2018 <- sc_init() %>%
+    sc_filter(distanceonly == 0, ccbasic %in% c(15, 16)) %>%
+    sc_select(control, instnm, ccbasic, stabbr, npt4_pub, npt4_priv, costt4_a, grad_debt_mdn, avgfacsal, unemp_rate) %>% 
+    sc_year(2018) %>% 
+    sc_get()
+
+F_2017 <- sc_init() %>%
+    sc_filter(distanceonly == 0, ccbasic %in% c(15, 16)) %>%
+    sc_select(control, instnm, ccbasic, stabbr, npt4_pub, npt4_priv, costt4_a, grad_debt_mdn, avgfacsal, unemp_rate) %>%
+    sc_year(2017) %>% 
+    sc_get()
+
+F_2016 <- sc_init() %>%
+    sc_filter(distanceonly == 0, ccbasic %in% c(15, 16)) %>%
+    sc_select(control, instnm, ccbasic, stabbr, npt4_pub, npt4_priv, costt4_a, grad_debt_mdn, avgfacsal, unemp_rate) %>% 
+    sc_year(2016) %>% 
+    sc_get()
+
+F_2015 <- sc_init() %>%
+    sc_filter(distanceonly == 0, ccbasic %in% c(15, 16)) %>%
+    sc_select(control, instnm, ccbasic, stabbr, npt4_pub, npt4_priv, costt4_a, grad_debt_mdn, avgfacsal, unemp_rate) %>% 
+    sc_year(2015) %>% 
+    sc_get()
+```
+
+```{r}
+F_latest %>% mutate(year = "latest")
+F_2018 %>% mutate(year = 2018)
+F_2017 %>% mutate(year = 2017)
+F_2016 %>% mutate(year = 2016)
+F_2015 %>% mutate(year = 2015)
+
+Finance <- rbind(F_latest, F_2018, F_2017, F_2016, F_2015)
+```
+
+```{r}
+write.csv(Finance, "Proj1Data/Financials15to19.csv")
+```
+
+### Demographics
+
+```{r}
+D_latest <- sc_init() %>%
+    sc_filter(distanceonly == 0, ccbasic %in% c(15, 16)) %>%
+    sc_select(control, instnm, ccbasic, stabbr,female, first_gen, poverty_rate, veteran, unemp_rate, ugds_white, ugds_black, ugds_hisp, ugds_asian, ugds_aian, ugds_nhpi, ugds_2mor, ugds_nra, ugds_unkn, ugds_whitenh, ugds_blacknh, ugds_api, ugds_aianold, ugds_hispold) %>% 
+    sc_year("latest") %>% 
+    sc_get()
+
+D_2018 <- sc_init() %>%
+    sc_filter(distanceonly == 0, ccbasic %in% c(15, 16)) %>%
+    sc_select(control, instnm, ccbasic, stabbr, female, first_gen, poverty_rate, veteran, unemp_rate, ugds_white, ugds_black, ugds_hisp, ugds_asian, ugds_aian, ugds_nhpi, ugds_2mor, ugds_nra, ugds_unkn, ugds_whitenh, ugds_blacknh, ugds_api, ugds_aianold, ugds_hispold) %>% 
+    sc_year(2018) %>% 
+    sc_get()
+
+D_2017 <- sc_init() %>%
+    sc_filter(distanceonly == 0, ccbasic %in% c(15, 16)) %>%
+    sc_select(control, instnm, ccbasic, stabbr, female, first_gen, poverty_rate, veteran, unemp_rate, ugds_white, ugds_black, ugds_hisp, ugds_asian, ugds_aian, ugds_nhpi, ugds_2mor, ugds_nra, ugds_unkn, ugds_whitenh, ugds_blacknh, ugds_api, ugds_aianold, ugds_hispold) %>%
+    sc_year(2017) %>% 
+    sc_get()
+
+D_2016 <- sc_init() %>%
+    sc_filter(distanceonly == 0, ccbasic %in% c(15, 16)) %>%
+    sc_select(control, instnm, ccbasic, stabbr, female, first_gen, poverty_rate, veteran, unemp_rate, ugds_white, ugds_black, ugds_hisp, ugds_asian, ugds_aian, ugds_nhpi, ugds_2mor, ugds_nra, ugds_unkn, ugds_whitenh, ugds_blacknh, ugds_api, ugds_aianold, ugds_hispold) %>% 
+    sc_year(2016) %>% 
+    sc_get()
+
+D_2015 <- sc_init() %>%
+    sc_filter(distanceonly == 0, ccbasic %in% c(15, 16)) %>%
+    sc_select(control, instnm, ccbasic, stabbr, female, first_gen, poverty_rate, veteran, unemp_rate, ugds_white, ugds_black, ugds_hisp, ugds_asian, ugds_aian, ugds_nhpi, ugds_2mor, ugds_nra, ugds_unkn, ugds_whitenh, ugds_blacknh, ugds_api, ugds_aianold, ugds_hispold) %>% 
+    sc_year(2015) %>% 
+    sc_get()
+```
+
+```{r}
+D_latest %>% mutate(year = "latest")
+D_2018 %>% mutate(year = 2018)
+D_2017 %>% mutate(year = 2017)
+D_2016 %>% mutate(year = 2016)
+D_2015 %>% mutate(year = 2015)
+
+Demographics <- rbind(D_latest, D_2018, D_2017, D_2016, D_2015)
+```
+
+```{r}
+write.csv(Demographics, "Proj1Data/Demographics15to19.csv")
+```
+
+### Death
+
+```{r}
+Dth_latest <- sc_init() %>%
+    sc_filter(distanceonly == 0, ccbasic %in% c(15, 16)) %>%
+    sc_select(control, instnm, ccbasic, stabbr, death_yr2_rt, lo_inc_death_yr2_rt, md_inc_death_yr2_rt,  hi_inc_death_yr2_rt, death_yr3_rt, lo_inc_death_yr3_rt, md_inc_death_yr3_rt, hi_inc_death_yr3_rt, death_yr4_rt, lo_inc_death_yr4_rt, md_inc_death_yr4_rt, hi_inc_death_yr4_rt, death_yr6_rt, lo_inc_death_yr6_rt, md_inc_death_yr6_rt, hi_inc_death_yr6_rt, death_yr8_rt, lo_inc_death_yr8_rt, md_inc_death_yr8_rt, hi_inc_death_yr8_rt) %>% 
+    sc_year("latest") %>% 
+    sc_get()
+
+Dth_2018 <- sc_init() %>%
+    sc_filter(distanceonly == 0, ccbasic %in% c(15, 16)) %>%
+    sc_select(control, instnm, ccbasic, stabbr,death_yr2_rt, lo_inc_death_yr2_rt, md_inc_death_yr2_rt,  hi_inc_death_yr2_rt, death_yr3_rt, lo_inc_death_yr3_rt, md_inc_death_yr3_rt, hi_inc_death_yr3_rt, death_yr4_rt, lo_inc_death_yr4_rt, md_inc_death_yr4_rt, hi_inc_death_yr4_rt, death_yr6_rt, lo_inc_death_yr6_rt, md_inc_death_yr6_rt, hi_inc_death_yr6_rt, death_yr8_rt, lo_inc_death_yr8_rt, md_inc_death_yr8_rt, hi_inc_death_yr8_rt) %>% 
+    sc_year(2018) %>% 
+    sc_get()
+
+Dth_2017 <- sc_init() %>%
+    sc_filter(distanceonly == 0, ccbasic %in% c(15, 16)) %>%
+    sc_select(control, instnm, ccbasic, stabbr, death_yr2_rt, lo_inc_death_yr2_rt, md_inc_death_yr2_rt,  hi_inc_death_yr2_rt, death_yr3_rt, lo_inc_death_yr3_rt, md_inc_death_yr3_rt, hi_inc_death_yr3_rt, death_yr4_rt, lo_inc_death_yr4_rt, md_inc_death_yr4_rt, hi_inc_death_yr4_rt, death_yr6_rt, lo_inc_death_yr6_rt, md_inc_death_yr6_rt, hi_inc_death_yr6_rt, death_yr8_rt, lo_inc_death_yr8_rt, md_inc_death_yr8_rt, hi_inc_death_yr8_rt) %>%
+    sc_year(2017) %>% 
+    sc_get()
+
+Dth_2016 <- sc_init() %>%
+    sc_filter(distanceonly == 0, ccbasic %in% c(15, 16)) %>%
+    sc_select(control, instnm, ccbasic, stabbr, death_yr2_rt, lo_inc_death_yr2_rt, md_inc_death_yr2_rt,  hi_inc_death_yr2_rt, death_yr3_rt, lo_inc_death_yr3_rt, md_inc_death_yr3_rt, hi_inc_death_yr3_rt, death_yr4_rt, lo_inc_death_yr4_rt, md_inc_death_yr4_rt, hi_inc_death_yr4_rt, death_yr6_rt, lo_inc_death_yr6_rt, md_inc_death_yr6_rt, hi_inc_death_yr6_rt, death_yr8_rt, lo_inc_death_yr8_rt, md_inc_death_yr8_rt, hi_inc_death_yr8_rt) %>% 
+    sc_year(2016) %>% 
+    sc_get()
+
+Dth_2015 <- sc_init() %>%
+    sc_filter(distanceonly == 0, ccbasic %in% c(15, 16)) %>%
+    sc_select(control, instnm, ccbasic, stabbr, death_yr2_rt, lo_inc_death_yr2_rt, md_inc_death_yr2_rt,  hi_inc_death_yr2_rt, death_yr3_rt, lo_inc_death_yr3_rt, md_inc_death_yr3_rt, hi_inc_death_yr3_rt, death_yr4_rt, lo_inc_death_yr4_rt, md_inc_death_yr4_rt, hi_inc_death_yr4_rt, death_yr6_rt, lo_inc_death_yr6_rt, md_inc_death_yr6_rt, hi_inc_death_yr6_rt, death_yr8_rt, lo_inc_death_yr8_rt, md_inc_death_yr8_rt, hi_inc_death_yr8_rt) %>% 
+    sc_year(2015) %>% 
+    sc_get()
+```
+
+```{r}
+Dth_latest %>% mutate(year = "latest")
+Dth_2018 %>% mutate(year = 2018)
+Dth_2017 %>% mutate(year = 2017)
+Dth_2016 %>% mutate(year = 2016)
+Dth_2015 %>% mutate(year = 2015)
+
+Death <- rbind(Dth_latest, Dth_2018, Dth_2017, Dth_2016, Dth_2015)
+```
+
+```{r}
+write.csv(Death, "Proj1Data/Death15to19.csv")
+```
+
+
+```{r}
+R1Schools <- sc_init() %>%
+    sc_filter(ccbasic == 15) %>%
+    sc_select(control, instnm, stabbr) %>% 
+    sc_year("latest") %>% 
+    sc_get()
+```
+
+
+```{r}
+#install.packages("maps")
+library(maps)
+library(usmap)
+debtMedian <- Finance %>%
+  group_by(stabbr) %>%
+  mutate(avgDebt = mean(grad_debt_mdn, na.rm = TRUE)) %>%
+  select(stabbr, avgDebt)%>%
+  filter(stabbr %notin% c('PR','DC')) %>%
+  ungroup()
+
+debtMedian <- as.data.frame(debtMedian)
+
+colnames(debtMedian) <- c("state", "avgDebt")
+debtMedian[1]
+
+plot_usmap(data =debtMedian, values = "avgDebt", color = "black") + 
+  scale_fill_continuous(
+    low = "white", high = "red", name = "Average Debt Median", label = scales::comma
+  ) + theme(legend.position = "right")
+```
+
+```{r}
+FacSalary <- Finance %>%
+  group_by(stabbr) %>%
+  mutate(avgSal = mean(avgfacsal, na.rm = TRUE)) %>%
+  select(stabbr, avgSal) %>%
+  filter(stabbr %notin% c('PR','DC')) %>%
+  ungroup()
+
+FacSalary <- as.data.frame(FacSalary)
+
+colnames(FacSalary) <- c("state", "avgSal")
+
+plot_usmap(data =FacSalary, values = "avgSal", color = "black") + 
+  scale_fill_continuous(low = "white", high = "blue", name = "Average Faculty Salary", label = scales::comma) + theme(legend.position = "right")
+```
+
+```{r}
+Finance %>% filter(year == "lastest")
+```
+
+
+
+<!--chapter:end:02-DataAcquisition.Rmd-->
+
+# Data Quality {#quality}
+
+## A section
+a;ksjhf;asjhdflasdga
+
+<!--chapter:end:03-DataQuality.rmd-->
+
+# Analysis {#analysis}
+
+## Import Packages
+```{r, message=FALSE}
+library(moments)
+library(dplyr)
+library(tidyr)
+library(stats)
+library(sjstats)
+library(ggplot2)
+```
+
+```{r}
+
+fin <- read.csv('Proj1Data/cleanFinancials1519.csv')
+dem <- read.csv('Proj1Data/cleanDemographics1519.csv')
+
+fin$r_status <- factor(fin$r_status, levels = c("R1", "R2"), labels = c(1,2))
+dem$r_status <- factor(dem$r_status, levels = c("R1", "R2"), labels = c(1,2))
+
+```
+
+ Hello world
+## Transform Datasets
+```{r}
+
+finR <- fin[fin$year == "latest",]
+finR1 <- fin[fin$r_status == 1 & fin$year == "latest",]
+finR2 <- fin[fin$r_status == 2 & fin$year == "latest",]
+demR <- dem[dem$year == "latest",]
+demR1 <- dem[dem$r_status == 1 & dem$year == "latest",]
+demR2 <- dem[dem$r_status == 2 & dem$year == "latest",]
+
+finR <- subset(finR, university %in% demR$university)
+
+```
+
+## Descriptives
+
+```{r}
+# Demographics
+summary(demR1$white)
+skewness(demR1$white)
+kurtosis(demR1$white)
+
+summary(demR2$white)
+skewness(demR2$white)
+kurtosis(demR2$white)
+
+# Cost
+print('Tuition cost')
+
+summary(finR1$costt4_a)
+cost_hist1 <- ggplot(finR1, aes(x =costt4_a)) + 
+  geom_histogram(bins = 40, color = "black", fill = "red") +
+  labs(title = "Distribution of Tuition Costs at R1s", 
+       subtitle = "", 
+       x = "Cost (in American dollars)", 
+       y = "Frequency") 
+cost_hist1
+
+
+summary(finR2$costt4_a)
+cost_hist2 <- ggplot(finR2, aes(x =costt4_a)) + 
+  geom_histogram(bins = 40, color = "black", fill = "pink") +
+  labs(title = "Distribution of Tuition Costs at R2s", 
+       subtitle = "", 
+       x = "Cost (in American dollars)", 
+       y = "Frequency") 
+cost_hist2
+
+# Students debt
+print('Student debt')
+summary(finR1$grad_debt_mdn)
+debt_hist1 <- ggplot(finR1, aes(x = grad_debt_mdn)) + 
+  geom_histogram(bins = 40, color = "black", fill = "cadetblue4") +
+  labs(title = "Distribution of Median Student Debt at R1s", 
+       subtitle = "", 
+       x = "Median Debt (in American dollars)", 
+       y = "Frequency") 
+debt_hist1
+
+summary(finR2$grad_debt_mdn)
+debt_hist1 <- ggplot(finR2, aes(x = grad_debt_mdn)) + 
+  geom_histogram(bins = 40, color = "black", fill = "cadetblue3") +
+  labs(title = "Distribution of Median Student Debt at R2s", 
+       subtitle = "", 
+       x = "Median Debt (in American dollars)", 
+       y = "Frequency") 
+debt_hist1
+
+# Unemployment
+print('Unemployment Rate')
+summary(finR1$unemp_rate)
+unemp_hist1 <- ggplot(finR1, aes(x = unemp_rate)) + 
+  geom_histogram(bins = 40, color = "black", fill = "darkseagreen4") +
+  labs(title = "Distribution of Post-Graduation Unemployment rates at R1s", 
+       subtitle = "", 
+       x = "Unemployment Rate", 
+       y = "Frequency") 
+unemp_hist1
+
+summary(finR2$unemp_rate)
+unemp_hist2 <- ggplot(finR2, aes(x = unemp_rate)) + 
+  geom_histogram(bins = 40, color = "black", fill = "darkseagreen3") +
+  labs(title = "Distribution of Post-Graduation Unemployment rates at R2s", 
+       subtitle = "", 
+       x = "Unemployment Rate", 
+       y = "Frequency") 
+unemp_hist2
+```
+
+## Wilcox for skewed bois
+```{r}
+# R1 associated with student outcomes
+# debt, skewed to all hell so non parametric t-test.  
+wilcox.test(formula=finR$grad_debt_mdn~finR$r_status)
+# debt for R2 unis significantly differed from R1 students.
+
+# non-working
+t.test(finR$unemp_rate~finR$r_status)
+```
+
+```{r}
+# cost differences between R1, R2.
+
+# t.test(finR$costt4_a~finR$r_status)
+
+# Cant do a t-test cause of the bimodal abomination
+
+# Average annual R1 tuition cost: 41,571.97
+# Average annual R2 tuition cost: 33,958.16
+```
+
+```{r}
+# white people proportion and unemployment
+
+cor(demR$white, finR$unemp_rate, use = 'complete.obs')
+
+# results: White proportion is negatively associated with unemployment (r = -0.49)
+```
+
+## Main model
+```{r}
+ggplot(finR, aes(unemp_rate, demR$white,colour=r_status)) + geom_point() + geom_smooth(method = "lm")
+```
+
+## Main model
+```{r}
+# 3 White proportion moderates unemployment outcomes. 
+predictor <- as.integer(finR$r_status)
+moderator <- demR$white
+interaction <- predictor * moderator
+outcome <- finR$unemp_rate
+
+wlm <- lm(formula = outcome ~ predictor + moderator + interaction)
+summary(wlm)
+```
+
+### Decomposition
+
+#### Simple model
+```{r}
+predictor <- finR$r_status
+outcome <- finR$unemp_rate
+simplelm <- lm(formula = outcome ~ predictor)
+summary(simplelm)
+```
+
+#### Moderator direct effect
+```{r}
+predictor <- demR$white
+outcome <- finR$unemp_rate
+moderatorlm <- lm(formula = outcome ~ predictor)
+summary(moderatorlm)
+```
+
+#### Interaction Effect
+```{r}
+predictor <- as.integer(finR$r_status)
+moderator <- demR$white
+interaction <- predictor * moderator
+outcome <- finR$unemp_rate
+
+interactionlm <- lm(formula = outcome ~ interaction)
+summary(moderatorlm)
+```
+
+<!--chapter:end:04-Analysis.Rmd-->
+
+# Data Clean {#clean}
+
+```{r}
+
+library(tidyverse)
+
+```
+
+Accessibility
+: The data was easily retrievable, the only difficulty was using the API key to retrieve everything into R so we could clean, manipulate, and analyze the data.
+
+Appropriate Amount of Data
+: The data had mostly what we were looking for. However, it would have been nice if the data included records of type of school (State vs Liberal Arts vs Ivy League) or average class sizes. This would allow us to look for other correlations or lurking variables between the financial data. Overall, the data was appropriate for our analysis.
+
+Believability
+: There is no reason for us to assume the data would be intentionally falsified as it was collected by the U.S. Government to simply compare costs and values of higher education institutions. There have been claims from some colleges (such as Boston University) that there are inaccuracies in the data, however.
+
+Concise Representation
+: The data is difficult to navigate through without frequent cross-checking of the documentation. There are many columns that look quite similar but are entirely different measures and statistics.
+
+Consistent Representation
+:The data is presented in the same format consistently throughout the dataset.
+
+Ease of Manipulation 
+: The data had to be cleaned before any manipulation took place but once that was completed, the data was easy to manipulate.
+
+Free-of-Error 
+: The data is correct and reliable except for the N/A values that were present before cleaning.
+
+Interpretability 
+: The data is difficult to interpret without referencing to the documentation continuously. Without the documentation, this dataset would have been very difficult to interpret as a stand-alone.
+
+Objectivity 
+: The data could be biased as we are looking at institutions which are typically attended to by upper class people. Depending on how the data is interpreted, it could lead to incorrect inferences as there could be many lurking variables unaccounted for.
+
+Relevancy 
+: The data is well tailored to what we were looking for. Many of the questions we asked were answerable by the data.
+
+Reputation 
+: The data is well regarded as it has been used for other studies and was introduced by Obama in 2015. It highlighted the Pell grant problem and other financial issues being faced by college students across the country. 
+
+Security 
+: The data is highly secured as it was contained and dispersed by the United States Government. We have no doubts that the security of the data was ever compromised.
+
+Timeliness 
+: The data is mostly up to date, but it would have been nice to have more recent statistics being recorded as financial data can change quickly as a product of circumstances; like a pandemic.
+
+Understandability
+: The data set in-and-of itself was rather complicated, and the documentation did little to assist in approaching the analysis in R. That being said, the data may be more suited for analysts familiar with JSON
+
+
+```{r}
+dem <- read.csv("Proj1Data/Demographics15to19.csv")
+
+dem_clean <- dem[,-c(1, 17, 20:24)] %>%
+  rename("university" = instnm,
+  "r_status" = ccbasic, 
+  "state" = stabbr, 
+  "white" = ugds_white, 
+  "black" = ugds_black, 
+  "hispanic" = ugds_hisp, 
+  "asian" = ugds_asian, 
+  "indigenous" = ugds_aian, 
+  "nhpi" = ugds_nhpi, 
+  "nra" = ugds_nra, 
+  "unknown" = ugds_unkn) %>% 
+  drop_na(black)
+
+dem_clean$r_status <- recode(dem_clean$r_status, `15` = 'R1', `16` = "R2")
+
+dem_clean <- dem_clean %>%  
+  group_by(r_status) %>%
+  mutate_at(c("female", "first_gen", "poverty_rate", "veteran", "unemp_rate"), funs(ifelse(is.na(.), mean(., na.rm = TRUE),.)))
+
+
+write.csv(dem_clean, "Proj1Data/cleanDemographics1519.csv")
+```
+
+```{r}
+fin <- read.csv('Proj1Data/Financials15to19.csv')
+
+fin_clean <- fin[,-c(2)] %>%
+  rename("university" = instnm,
+  "r_status" = ccbasic, 
+  "state" = stabbr)
+
+fin_clean$r_status <- recode(fin_clean$r_status, `15` = 'R1', `16` = "R2")
+
+```
+
+```{r}
+head(fin_clean) %>% MakePretty()
+```
+
+```{r}
+write.csv(fin_clean, "Proj1Data/cleanFinancials1519.csv")
+```
+
+<!--chapter:end:05-cleanDemographics.Rmd-->
+
+# Discussion {#discussion}
+
+```{r}
+library(plotly)
+
+g <- list(
+  scope = 'usa',
+  projection = list(type = 'albers usa'),
+  lakecolor = toRGB('white')
+)
+
+avgs <- distinct(FacSalary)
+
+plot_geo() %>%
+  add_trace(
+    z = ~avgs$avgSal,
+    span = I(0),
+    colorscale = 'matter',
+    locations = avgs$stabbr, 
+    locationmode = 'USA-states'
+  ) %>%
+  colorbar(title = NULL) %>%
+  layout(geo = g, title = "Avg. Faculty Salary by State (in USD)")
+```
+
+```{r}
+avgDM <- distinct(debtMedian)
+
+plot_geo() %>%
+  add_trace(
+    z = ~avgDM$avgDebt,
+    span = I(0),
+    colorscale = 'viridis',
+    locations = avgDM$state, 
+    locationmode = 'USA-states'
+  ) %>%
+  colorbar(title = NULL) %>%
+  layout(geo = g, title = "Avg. Faculty Salary by State (in USD)")
+```
+
+
+
+```{r}
+
+library(tidyverse)
+library(purrr)
+library(RColorBrewer)
+library(tmap)
+```
+
+```{r}
+cdem <- read.csv("Proj1Data/cleanDemographics1519.csv") 
+cdem <- cdem[,-1]
+```
+
+
+```{r, fig.height = 10}
+
+dem_pal <- c("darkolivegreen", "darkolivegreen3", "dodgerblue4", "deepskyblue", "lavenderblush4", "lavenderblush2", "palevioletred1", "rosybrown1",  "tomato2",  "sienna 1", "slateblue3", "thistle1", "orange", "navajowhite2", "lightskyblue3", "lightsteelblue1")
+  
+race_demographics <- cdem %>%
+  select(university, r_status, white, black, hispanic, asian, indigenous, nhpi, nra, unknown) %>%
+  gather("race", "percentage", 3:10, -university)
+
+race_demographics %>%
+  ggplot(aes(x = factor(r_status), y = percentage, fill = interaction(r_status, race))) +
+  geom_violin() + 
+  stat_summary(fun=mean, geom="crossbar", linetype = 1, size=.2, color = "red") + 
+  stat_summary(fun=median, geom="crossbar", linetype = 1, size=.2, color = "black") +
+  labs(title = "Racial Demographics by Carnegie Classification", 
+       subtitle = "Red line = mean | Black line = median\n",
+       x = " ", 
+       y = "% of Student Body") + 
+  facet_wrap(~as.factor(race), nrow = 5) + 
+  scale_fill_manual(values = dem_pal) + 
+  theme_gray() + 
+  theme(axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)), 
+        plot.title = element_text(hjust = .5), 
+        legend.position = "none")
+
+```
+
+```{r, fig.height = 10, fig.width = 6}
+
+#Demographics for sparse columns 
+
+other_demographics <- cdem %>%
+  select(university, r_status, female, first_gen, veteran) %>%
+  gather("demographic", "percentage", 3:5, -university)
+
+other_demographics %>%
+  ggplot(aes(x = factor(r_status), y = percentage, fill = interaction(r_status, demographic))) +
+  geom_violin() + 
+  stat_summary(fun=mean, geom="crossbar", linetype = 2, size=.1, color = "red") + 
+  labs(title = "Other Demographic Factors by Carnegie Classification", 
+       subtitle = "",
+       x = " ", 
+       y = "% of Student Body") + 
+  facet_wrap(~as.factor(demographic), nrow = 5) + 
+  scale_fill_brewer("Paired") + 
+  theme_gray() + 
+  theme(axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)), 
+        plot.title = element_text(hjust = .5), 
+        legend.position = "none")
+
+```
+
+
+
+```{r}
+
+#FUN FACTS 
+
+#Universities with the highest female/male ratio, the top 10 are mostly R2's for both categories
+
+cdem %>%
+  arrange(desc(female)) %>%
+  filter(female > .50) %>%
+  distinct(university, .keep_all = TRUE) %>%
+  head(10)
+
+cdem %>%
+  arrange(female) %>%
+  filter(female < .50) %>%
+  distinct(university, .keep_all = TRUE) %>%
+  head(10)
+
+R1s <- cdem %>%
+  filter(r_status == "R1")
+
+ggplot(cdem, aes(x = female)) + 
+  geom_histogram(bins = 40, color = "black", fill = "pink") + 
+  labs(title = "Distribution of Female/Male Gender ratio at R1s")
+
+R2s <- cdem %>%
+  filter(r_status == "R2")
+
+ggplot(R2s, aes(x = female)) + 
+  geom_histogram(bins = 40, color = "black", fill = "skyblue") + 
+  labs(title = "Distribution of Female/Male Gender ratio at R2s")
+
+```
+
+
+
+```{r}
+
+r1_state <- cdem %>%
+  filter(r_status == "R1") %>%
+  group_by(state) %>%
+  distinct(university) %>%
+  count()
+
+r2_state <- cdem %>%
+  filter(r_status == "R2") %>%
+  group_by(state) %>%
+  distinct(university) %>%
+  count()
+
+```
+
+```{r}
+g <- list(
+  scope = 'usa',
+  projection = list(type = 'albers usa'),
+  lakecolor = toRGB('white')
+)
+
+r1_map <- plot_geo() %>%
+  add_trace(
+    z = ~r1_state$n,
+    span = I(1),
+    colorscale = 'Portland',
+    zauto = F,
+    zmax = 10,
+    zmin = 1,
+    locations = r1_state$state, 
+    locationmode = 'USA-states'
+  ) %>%
+  colorbar(title = "# of Schools") %>%
+  layout(geo = g, title = "Number of R1 Schools per State")
+
+r2_map <- plot_geo() %>%
+  add_trace(
+    z = ~r2_state$n,
+    span = I(1),
+    colorscale = 'Portland',
+    zauto = F,
+    zmax = 10,
+    zmin = 1,
+    locations = r2_state$state, 
+    locationmode = 'USA-states'
+  ) %>%
+  colorbar(title = "# of Schools") %>%
+  layout(geo = g, title = "Number of R2 Schools per State")
+
+r1_map
+r2_map
+```
+
+<!--chapter:end:06-Visualizations.Rmd-->
+
+`r if (knitr:::is_html_output()) '
+# References {-}
+'`
+
+<!--chapter:end:07-references.Rmd-->
+
