@@ -64,7 +64,7 @@ summary(finR2$unemp_rate)
 hist(finR2$unemp_rate)
 ```
 
-# Wilcox for skewed bois
+## Wilcox for skewed bois
 ```{r}
 # R1 associated with student outcomes
 # debt, skewed to all hell so non parametric t-test.  
