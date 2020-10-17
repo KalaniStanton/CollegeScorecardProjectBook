@@ -51,17 +51,6 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
-<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
-<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
-<script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -158,7 +147,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2.3" data-path="import.html"><a href="import.html#death"><i class="fa fa-check"></i><b>2.2.3</b> Death</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="clean.html"><a href="clean.html"><i class="fa fa-check"></i><b>3</b> Data Clean</a></li>
+<li class="chapter" data-level="3" data-path="quality.html"><a href="quality.html"><i class="fa fa-check"></i><b>3</b> Data Quality</a></li>
 <li class="chapter" data-level="4" data-path="analysis.html"><a href="analysis.html"><i class="fa fa-check"></i><b>4</b> Analysis</a><ul>
 <li class="chapter" data-level="4.1" data-path="analysis.html"><a href="analysis.html#import-packages"><i class="fa fa-check"></i><b>4.1</b> Import Packages</a></li>
 <li class="chapter" data-level="4.2" data-path="analysis.html"><a href="analysis.html#transform-datasets"><i class="fa fa-check"></i><b>4.2</b> Transform Datasets</a></li>
@@ -169,7 +158,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.6.1" data-path="analysis.html"><a href="analysis.html#decomposition"><i class="fa fa-check"></i><b>4.6.1</b> Decomposition</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>5</b> Discussion</a></li>
+<li class="chapter" data-level="5" data-path="clean.html"><a href="clean.html"><i class="fa fa-check"></i><b>5</b> Data Clean</a></li>
+<li class="chapter" data-level="6" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>6</b> Discussion</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -202,9 +192,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This document is broken down into sections pertaining to the discrete steps in the process of exploratory data analysis.</p>
 <p>In section <a href="intro.html#intro">1</a> we give an overview of this project, followed by an explanation of our process for selecting variables.
 Next, we demonstrate our initial <del>failed</del> attempts at pulling the data directly from the API, and explain why we chose to pivot to using the <code>{rscorecard}</code> package for querying our data from the API in section <a href="import.html#import">2</a>.
-Once the data is imported, we assess the quality of the data in section <a href="clean.html#clean">3</a> and rename some of the variables to make the data set, and our later analysis, easier to interpret.
+Once the data is imported, we assess the quality of the data in section <a href="clean.html#clean">5</a> and rename some of the variables to make the data set, and our later analysis, easier to interpret.
 Following this, section <a href="analysis.html#analysis">4</a> contains the statistical analysis of the data, wherein we investigate the relationship between R1 and R2 Carnegie classification status and unemployment rates. This model is the modified by adding the proportion of white students as a moderator, which reveals interesting results.
-Lastly, in section <a href="discussion.html#discussion">5</a>, we present visualizations made using the data from the College Scorecard API and elaborate on the statistical analyses performed in the previous section.</p>
+Lastly, in section <a href="discussion.html#discussion">6</a>, we present visualizations made using the data from the College Scorecard API and elaborate on the statistical analyses performed in the previous section.</p>
 
 </div>
             </section>
