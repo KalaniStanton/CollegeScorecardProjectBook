@@ -11,27 +11,21 @@ library(ggplot2)
 ```
 
 ```{r}
-
 fin <- read.csv('Proj1Data/cleanFinancials1519.csv')
 dem <- read.csv('Proj1Data/cleanDemographics1519.csv')
-
 fin$r_status <- factor(fin$r_status, levels = c("R1", "R2"), labels = c(1,2))
 dem$r_status <- factor(dem$r_status, levels = c("R1", "R2"), labels = c(1,2))
-
 ```
 
 ## Transform Datasets
 ```{r}
-
 finR <- fin[fin$year == "latest",]
 finR1 <- fin[fin$r_status == 1 & fin$year == "latest",]
 finR2 <- fin[fin$r_status == 2 & fin$year == "latest",]
 demR <- dem[dem$year == "latest",]
 demR1 <- dem[dem$r_status == 1 & dem$year == "latest",]
 demR2 <- dem[dem$r_status == 2 & dem$year == "latest",]
-
 finR <- subset(finR, university %in% demR$university)
-
 ```
 
 ## Descriptives
@@ -52,7 +46,6 @@ kurtosis(demR2$white)
 ```{r}
 # Cost
 print('Tuition cost')
-
 summary(finR1$costt4_a)
 cost_hist1 <- ggplot(finR1, aes(x =costt4_a)) + 
   geom_histogram(bins = 40, color = "black", fill = "red") +
@@ -61,11 +54,10 @@ cost_hist1 <- ggplot(finR1, aes(x =costt4_a)) +
        x = "Cost (in American dollars)", 
        y = "Frequency") 
 cost_hist1
-
 ```
 
 ```{r}
-summary(finR2$costt4_a) %>% 
+summary(finR2$costt4_a)
 cost_hist2 <- ggplot(finR2, aes(x =costt4_a)) + 
   geom_histogram(bins = 40, color = "black", fill = "pink") +
   labs(title = "Distribution of Tuition Costs at R2s", 
@@ -123,71 +115,39 @@ unemp_hist2 <- ggplot(finR2, aes(x = unemp_rate)) +
 unemp_hist2
 ```
 
-## Wilcox for skewed bois
+## Wilcox signed-rank test  
+Preliminary normality analysis of the median graduate debt distribution revealed levels of skewness that forbade the use of parametric comparison tests. A Wilcoxon signed-rank test was conducted in order to investigate the differences in median graduate debt between R1 and R2 institutions. Results indicate that median graduate debt significantly differed between R1 and R2 institutions (W = 982, p < 0.01). While a difference in student debt was expected due to the aforementioned price of R1 institution tuition, descriptive statistics revealed graduates of R1 institutions graduated with less average debt (M = 19,652, SD = 3,750) than students from R2 institutions (M = 22,719, SD = 3,785).  
 ```{r}
-# R1 associated with student outcomes
-# debt, skewed to all hell so non parametric t-test.  
 wilcox.test(formula=finR$grad_debt_mdn~finR$r_status)
-# debt for R2 unis significantly differed from R1 students.
+```
 
-# non-working
+## Welch's two-sample t-test  
+In order to further explore student outcomes, the investigators turned their attention to the graduate unemployment rate. The distribution for unemployment exhibited skewness and kurtosis values within acceptable bounds so a Welch’s two-sample t-test was conducted in order to find whether there were significant differences in unemployment rates between R1 and R2 graduates. The test revealed significant differences in rates of unemployment between R1 and R2 graduates t(118.36) = -2.6055, p = 0.01, 95%C.I. [-0.44, -0.06]. On average, the unemployment rate for R1 graduates (M = 3.293, SD = 0.51) was lower than that observed for R2 graduates (M = 3.545, SD = 0.83)  
+```{r}
 t.test(finR$unemp_rate~finR$r_status)
 ```
 
-```{r}
-# cost differences between R1, R2.
+## Regression model  
 
-# t.test(finR$costt4_a~finR$r_status)
+The racial diversity proportion of an institution was examined as a potential moderator of the relationship between institution type (R1 vs. R2) and unemployment rate. In the first step of the regression analysis institution type was entered into the model and accounted for  5% of the variance in unemployment rate, which was significant, R2= 0.52, F(1,122) = 6.82, p = 0.01.  In the second step of the regression analysis the interaction effect between institution type and racial diversity proportion were entered into the model and explained an additional 4% of the variance in unemployment rate, which was significant, R2= 0.04, F(1,121) = 8.57, p < 0.05. Racial diversity proportion was entered into the model last and accounted for 24% of the variance in unemployment rate, which was significant, R2= 0.24, F(1,122) = 38.8 , p < 0.01. Thus, racial diversity proportion was a significant moderator of the relationship between institution type and unemployment rate.  
 
-# Cant do a t-test cause of the bimodal abomination
-
-# Average annual R1 tuition cost: 41,571.97
-# Average annual R2 tuition cost: 33,958.16
-```
-
-```{r}
-# white people proportion and unemployment
-
-cor(demR$white, finR$unemp_rate, use = 'complete.obs')
-
-# results: White proportion is negatively associated with unemployment (r = -0.49)
-```
-
-## Main model
-```{r}
-ggplot(finR, aes(unemp_rate, demR$white,colour=r_status)) + geom_point() + geom_smooth(method = "lm")
-```
-
-```{r}
-# 3 White proportion moderates unemployment outcomes. 
-predictor <- as.integer(finR$r_status)
-moderator <- demR$white
-interaction <- predictor * moderator
-outcome <- finR$unemp_rate
-
-wlm <- lm(formula = outcome ~ predictor + moderator + interaction)
-summary(wlm)
-```
-
-### Decomposition
-
-#### Simple model
+## Model step 1  
 ```{r}
 predictor <- finR$r_status
 outcome <- finR$unemp_rate
+
 simplelm <- lm(formula = outcome ~ predictor)
-summary(simplelm)
 ```
 
-#### Moderator direct effect
+## Model step 2  
 ```{r}
 predictor <- demR$white
 outcome <- finR$unemp_rate
+
 moderatorlm <- lm(formula = outcome ~ predictor)
-summary(moderatorlm)
 ```
 
-#### Interaction Effect
+## Model step 3  
 ```{r}
 predictor <- as.integer(finR$r_status)
 moderator <- demR$white
@@ -195,5 +155,14 @@ interaction <- predictor * moderator
 outcome <- finR$unemp_rate
 
 interactionlm <- lm(formula = outcome ~ interaction)
-summary(moderatorlm)
+```
+
+## Complete model
+```{r}
+predictor <- as.integer(finR$r_status)
+moderator <- demR$white
+interaction <- predictor * moderator
+outcome <- finR$unemp_rate
+
+wlm <- lm(formula = outcome ~ predictor + moderator + interaction)
 ```
