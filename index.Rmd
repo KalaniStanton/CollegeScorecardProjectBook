@@ -1,5 +1,5 @@
 --- 
-title: "A Minimal Book Example"
+title: "An Exploratory Analysis of Data in the U.S. College Scorecard"
 author: "Sara Haman, Adam Lashley, Reilly Stanton, Benjamin Weisman"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site

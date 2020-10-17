@@ -1,10 +1,8 @@
-# Analysis {#analysis}
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Import
+## Import Packages
 ```{r, message=FALSE}
 library(moments)
 library(dplyr)
@@ -15,70 +13,119 @@ library(ggplot2)
 ```
 
 ```{r}
-fin <- read.csv('Proj1Data/Financials15to19.csv')
-temp <- read.csv("Proj1Data/Demographics15to19.csv")
-death <- read.csv("Proj1Data/Death15to19.csv")
+
+fin <- read.csv('Proj1Data/cleanFinancials1519.csv')
+dem <- read.csv('Proj1Data/cleanDemographics1519.csv')
+
+fin$r_status <- factor(fin$r_status, levels = c("R1", "R2"), labels = c(1,2))
+dem$r_status <- factor(dem$r_status, levels = c("R1", "R2"), labels = c(1,2))
+
 ```
 
 ## Transform Datasets
 ```{r}
-dem <- temp[,-(20:24)]
-finR <- fin[fin$ccbasic == c(15,16) & fin$X < 267,]
-finR1 <- fin[fin$ccbasic == 15 & fin$X < 267,]
-finR2 <- fin[fin$ccbasic == 16 & fin$X < 267,]
-demR <- dem[dem$ccbasic == c(15,16) & dem$X < 267,]
-demR1 <- dem[dem$ccbasic == 15 & dem$X < 267,]
-demR2 <- dem[dem$ccbasic == 16 & dem$X < 267,]
+
+finR <- fin[fin$year == "latest",]
+finR1 <- fin[fin$r_status == 1 & fin$year == "latest",]
+finR2 <- fin[fin$r_status == 2 & fin$year == "latest",]
+demR <- dem[dem$year == "latest",]
+demR1 <- dem[dem$r_status == 1 & dem$year == "latest",]
+demR2 <- dem[dem$r_status == 2 & dem$year == "latest",]
+
+finR <- subset(finR, university %in% demR$university)
+
 ```
 
-## Descriptive time!
+## Descriptives
+
 ```{r}
 # Demographics
-summary(demR1$ugds_white)
-skewness(demR1$ugds_white)
-kurtosis(demR1$ugds_white)
+summary(demR1$white)
+skewness(demR1$white)
+kurtosis(demR1$white)
 
-summary(demR2$ugds_white)
-skewness(demR2$ugds_white)
-kurtosis(demR2$ugds_white)
+summary(demR2$white)
+skewness(demR2$white)
+kurtosis(demR2$white)
 
 # Cost
 print('Tuition cost')
+
 summary(finR1$costt4_a)
-hist(finR1$costt4_a)
+cost_hist1 <- ggplot(finR1, aes(x =costt4_a)) + 
+  geom_histogram(bins = 40, color = "black", fill = "red") +
+  labs(title = "Distribution of Tuition Costs at R1s", 
+       subtitle = "", 
+       x = "Cost (in American dollars)", 
+       y = "Frequency") 
+cost_hist1
+
+
 summary(finR2$costt4_a)
-hist(finR2$costt4_a)
+cost_hist2 <- ggplot(finR2, aes(x =costt4_a)) + 
+  geom_histogram(bins = 40, color = "black", fill = "pink") +
+  labs(title = "Distribution of Tuition Costs at R2s", 
+       subtitle = "", 
+       x = "Cost (in American dollars)", 
+       y = "Frequency") 
+cost_hist2
 
 # Students debt
 print('Student debt')
 summary(finR1$grad_debt_mdn)
-hist(finR1$grad_debt_mdn)
+debt_hist1 <- ggplot(finR1, aes(x = grad_debt_mdn)) + 
+  geom_histogram(bins = 40, color = "black", fill = "cadetblue4") +
+  labs(title = "Distribution of Median Student Debt at R1s", 
+       subtitle = "", 
+       x = "Median Debt (in American dollars)", 
+       y = "Frequency") 
+debt_hist1
+
 summary(finR2$grad_debt_mdn)
-hist(finR2$grad_debt_mdn)
+debt_hist1 <- ggplot(finR2, aes(x = grad_debt_mdn)) + 
+  geom_histogram(bins = 40, color = "black", fill = "cadetblue3") +
+  labs(title = "Distribution of Median Student Debt at R2s", 
+       subtitle = "", 
+       x = "Median Debt (in American dollars)", 
+       y = "Frequency") 
+debt_hist1
 
 # Unemployment
 print('Unemployment Rate')
 summary(finR1$unemp_rate)
-hist(finR1$unemp_rate)
+unemp_hist1 <- ggplot(finR1, aes(x = unemp_rate)) + 
+  geom_histogram(bins = 40, color = "black", fill = "darkseagreen4") +
+  labs(title = "Distribution of Post-Graduation Unemployment rates at R1s", 
+       subtitle = "", 
+       x = "Unemployment Rate", 
+       y = "Frequency") 
+unemp_hist1
+
 summary(finR2$unemp_rate)
-hist(finR2$unemp_rate)
+unemp_hist2 <- ggplot(finR2, aes(x = unemp_rate)) + 
+  geom_histogram(bins = 40, color = "black", fill = "darkseagreen3") +
+  labs(title = "Distribution of Post-Graduation Unemployment rates at R2s", 
+       subtitle = "", 
+       x = "Unemployment Rate", 
+       y = "Frequency") 
+unemp_hist2
 ```
 
 ## Wilcox for skewed bois
 ```{r}
 # R1 associated with student outcomes
 # debt, skewed to all hell so non parametric t-test.  
-wilcox.test(formula=finR$grad_debt_mdn~finR$ccbasic)
+wilcox.test(formula=finR$grad_debt_mdn~finR$r_status)
 # debt for R2 unis significantly differed from R1 students.
 
 # non-working
-t.test(finR$unemp_rate~finR$ccbasic)
+t.test(finR$unemp_rate~finR$r_status)
 ```
 
 ```{r}
 # cost differences between R1, R2.
 
-# t.test(finR$costt4_a~finR$ccbasic)
+# t.test(finR$costt4_a~finR$r_status)
 
 # Cant do a t-test cause of the bimodal abomination
 
@@ -89,20 +136,21 @@ t.test(finR$unemp_rate~finR$ccbasic)
 ```{r}
 # white people proportion and unemployment
 
-cor(demR$ugds_white, finR$unemp_rate, use = 'complete.obs')
+cor(demR$white, finR$unemp_rate, use = 'complete.obs')
 
 # results: White proportion is negatively associated with unemployment (r = -0.49)
 ```
 
 ## Main model
 ```{r}
-ggplot(finR, aes(unemp_rate, demR$ugds_white,colour=ccbasic)) + geom_point() + geom_smooth(method = "lm")
+ggplot(finR, aes(unemp_rate, demR$white,colour=r_status)) + geom_point() + geom_smooth(method = "lm")
 ```
 
+## Main model
 ```{r}
 # 3 White proportion moderates unemployment outcomes. 
-predictor <- finR$ccbasic
-moderator <- demR$ugds_white
+predictor <- as.integer(finR$r_status)
+moderator <- demR$white
 interaction <- predictor * moderator
 outcome <- finR$unemp_rate
 
@@ -114,7 +162,7 @@ summary(wlm)
 
 #### Simple model
 ```{r}
-predictor <- finR$ccbasic
+predictor <- finR$r_status
 outcome <- finR$unemp_rate
 simplelm <- lm(formula = outcome ~ predictor)
 summary(simplelm)
@@ -122,7 +170,7 @@ summary(simplelm)
 
 #### Moderator direct effect
 ```{r}
-predictor <- demR$ugds_white
+predictor <- demR$white
 outcome <- finR$unemp_rate
 moderatorlm <- lm(formula = outcome ~ predictor)
 summary(moderatorlm)
@@ -130,47 +178,11 @@ summary(moderatorlm)
 
 #### Interaction Effect
 ```{r}
-predictor <- finR$ccbasic
-moderator <- demR$ugds_white
+predictor <- as.integer(finR$r_status)
+moderator <- demR$white
 interaction <- predictor * moderator
 outcome <- finR$unemp_rate
 
 interactionlm <- lm(formula = outcome ~ interaction)
 summary(moderatorlm)
-```
-
-```{r}
-# cost differences between R1, R2.
-
-# t.test(finR$costt4_a~finR$ccbasic)
-
-# Cant do a t-test cause of the bimodal abomination
-
-# Average annual R1 tuition cost: 41,571.97
-# Average annual R2 tuition cost: 33,958.16
-```
-
-```{r}
-# white people proportion and unemployment
-
-cor(demR$ugds_white, finR$unemp_rate, use = 'complete.obs')
-
-# results: White proportion is negatively associated with unemployment (r = -0.49)
-```
-
-```{r}
-# 3 White proportion moderates unemployment outcomes. 
-predictor <- finR$ccbasic
-moderator <- demR$ugds_white
-interaction <- predictor * moderator
-outcome <- finR$unemp_rate
-
-wlm <- lm(formula = outcome ~ predictor + moderator + interaction)
-wlm
-plot(predictor, outcome, type="n")
-abline(-6.5218, 0.67)
-#abline(y, x, lty=2, col="red")
-
-#points(predictor[finR$ccbasic==15], outcome[finR$ccbasic==16])
-# points(predictor[race==1], outcome[race==1], col="red")
 ```

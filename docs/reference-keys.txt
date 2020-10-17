@@ -10,12 +10,12 @@ finances
 demographics
 death
 clean
-analysis
-import-1
+import-packages
 transform-datasets
-descriptive-time
+descriptives
 wilcox-for-skewed-bois
 main-model
+main-model-1
 decomposition
 simple-model
 moderator-direct-effect
