@@ -1,4 +1,4 @@
-# Final Words
+# Discussion {#discussion}
 
 ```{r}
 library(plotly)
@@ -24,7 +24,6 @@ plot_geo() %>%
 ```
 
 ```{r}
-
 avgDM <- distinct(debtMedian)
 
 plot_geo() %>%
@@ -40,3 +39,161 @@ plot_geo() %>%
 ```
 
 
+
+```{r}
+
+library(tidyverse)
+library(purrr)
+library(RColorBrewer)
+library(tmap)
+```
+
+```{r}
+cdem <- read.csv("Proj1Data/cleanDemographics1519.csv") 
+cdem <- cdem[,-1]
+```
+
+
+```{r, fig.height = 10}
+
+dem_pal <- c("darkolivegreen", "darkolivegreen3", "dodgerblue4", "deepskyblue", "lavenderblush4", "lavenderblush2", "palevioletred1", "rosybrown1",  "tomato2",  "sienna 1", "slateblue3", "thistle1", "orange", "navajowhite2", "lightskyblue3", "lightsteelblue1")
+  
+race_demographics <- cdem %>%
+  select(university, r_status, white, black, hispanic, asian, indigenous, nhpi, nra, unknown) %>%
+  gather("race", "percentage", 3:10, -university)
+
+race_demographics %>%
+  ggplot(aes(x = factor(r_status), y = percentage, fill = interaction(r_status, race))) +
+  geom_violin() + 
+  stat_summary(fun=mean, geom="crossbar", linetype = 1, size=.2, color = "red") + 
+  stat_summary(fun=median, geom="crossbar", linetype = 1, size=.2, color = "black") +
+  labs(title = "Racial Demographics by Carnegie Classification", 
+       subtitle = "Red line = mean | Black line = median\n",
+       x = " ", 
+       y = "% of Student Body") + 
+  facet_wrap(~as.factor(race), nrow = 5) + 
+  scale_fill_manual(values = dem_pal) + 
+  theme_gray() + 
+  theme(axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)), 
+        plot.title = element_text(hjust = .5), 
+        legend.position = "none")
+
+```
+
+```{r, fig.height = 10, fig.width = 6}
+
+#Demographics for sparse columns 
+
+other_demographics <- cdem %>%
+  select(university, r_status, female, first_gen, veteran) %>%
+  gather("demographic", "percentage", 3:5, -university)
+
+other_demographics %>%
+  ggplot(aes(x = factor(r_status), y = percentage, fill = interaction(r_status, demographic))) +
+  geom_violin() + 
+  stat_summary(fun=mean, geom="crossbar", linetype = 2, size=.1, color = "red") + 
+  labs(title = "Other Demographic Factors by Carnegie Classification", 
+       subtitle = "",
+       x = " ", 
+       y = "% of Student Body") + 
+  facet_wrap(~as.factor(demographic), nrow = 5) + 
+  scale_fill_brewer("Paired") + 
+  theme_gray() + 
+  theme(axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)), 
+        plot.title = element_text(hjust = .5), 
+        legend.position = "none")
+
+```
+
+
+
+```{r}
+
+#FUN FACTS 
+
+#Universities with the highest female/male ratio, the top 10 are mostly R2's for both categories
+
+cdem %>%
+  arrange(desc(female)) %>%
+  filter(female > .50) %>%
+  distinct(university, .keep_all = TRUE) %>%
+  head(10)
+
+cdem %>%
+  arrange(female) %>%
+  filter(female < .50) %>%
+  distinct(university, .keep_all = TRUE) %>%
+  head(10)
+
+R1s <- cdem %>%
+  filter(r_status == "R1")
+
+ggplot(cdem, aes(x = female)) + 
+  geom_histogram(bins = 40, color = "black", fill = "pink") + 
+  labs(title = "Distribution of Female/Male Gender ratio at R1s")
+
+R2s <- cdem %>%
+  filter(r_status == "R2")
+
+ggplot(R2s, aes(x = female)) + 
+  geom_histogram(bins = 40, color = "black", fill = "skyblue") + 
+  labs(title = "Distribution of Female/Male Gender ratio at R2s")
+
+```
+
+
+
+```{r}
+
+r1_state <- cdem %>%
+  filter(r_status == "R1") %>%
+  group_by(state) %>%
+  distinct(university) %>%
+  count()
+
+r2_state <- cdem %>%
+  filter(r_status == "R2") %>%
+  group_by(state) %>%
+  distinct(university) %>%
+  count()
+
+```
+
+```{r}
+g <- list(
+  scope = 'usa',
+  projection = list(type = 'albers usa'),
+  lakecolor = toRGB('white')
+)
+
+r1_map <- plot_geo() %>%
+  add_trace(
+    z = ~r1_state$n,
+    span = I(1),
+    colorscale = 'Portland',
+    zauto = F,
+    zmax = 10,
+    zmin = 1,
+    locations = r1_state$state, 
+    locationmode = 'USA-states'
+  ) %>%
+  colorbar(title = "# of Schools") %>%
+  layout(geo = g, title = "Number of R1 Schools per State")
+
+r2_map <- plot_geo() %>%
+  add_trace(
+    z = ~r2_state$n,
+    span = I(1),
+    colorscale = 'Portland',
+    zauto = F,
+    zmax = 10,
+    zmin = 1,
+    locations = r2_state$state, 
+    locationmode = 'USA-states'
+  ) %>%
+  colorbar(title = "# of Schools") %>%
+  layout(geo = g, title = "Number of R2 Schools per State")
+
+r1_map
+r2_map
+```

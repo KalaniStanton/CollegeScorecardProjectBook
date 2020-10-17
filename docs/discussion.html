@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Section 6 Discussion | A Minimal Book Example</title>
+  <meta name="description" content="An analysis of data from the College Scorecard API, which focuses on differences identified between institutions with R1 and R2 carnegie classifications." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Section 6 Discussion | A Minimal Book Example" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="An analysis of data from the College Scorecard API, which focuses on differences identified between institutions with R1 and R2 carnegie classifications." />
+  <meta name="github-repo" content="KalaniStanton/CollegeScorecardProjectBook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Section 6 Discussion | A Minimal Book Example" />
+  
+  <meta name="twitter:description" content="An analysis of data from the College Scorecard API, which focuses on differences identified between institutions with R1 and R2 carnegie classifications." />
+  
+
+<meta name="author" content="Sara Haman, Adam Lashley, Reilly Stanton, Benjamin Weisman" />
+
+
+<meta name="date" content="2020-10-17" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="wilcox-for-skewed-bois.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="import.html"><a href="import.html"><i class="fa fa-check"></i><b>2</b> Data Acquisition</a><ul>
+<li class="chapter" data-level="2.1" data-path="import.html"><a href="import.html#set-up-and-api-exploration"><i class="fa fa-check"></i><b>2.1</b> Set-up and API Exploration</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="import.html"><a href="import.html#project-directory-management"><i class="fa fa-check"></i><b>2.1.1</b> Project Directory Management</a></li>
+<li class="chapter" data-level="2.1.2" data-path="import.html"><a href="import.html#api-exploration"><i class="fa fa-check"></i><b>2.1.2</b> API Exploration</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="import.html"><a href="import.html#the-rscorecard-and-tidyverse-approach"><i class="fa fa-check"></i><b>2.2</b> The <code>rscorecard</code> and <code>tidyverse</code> approach</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="import.html"><a href="import.html#finances"><i class="fa fa-check"></i><b>2.2.1</b> Finances</a></li>
+<li class="chapter" data-level="2.2.2" data-path="import.html"><a href="import.html#demographics"><i class="fa fa-check"></i><b>2.2.2</b> Demographics</a></li>
+<li class="chapter" data-level="2.2.3" data-path="import.html"><a href="import.html#death"><i class="fa fa-check"></i><b>2.2.3</b> Death</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="clean.html"><a href="clean.html"><i class="fa fa-check"></i><b>3</b> Data Clean</a></li>
+<li class="chapter" data-level="4" data-path="analysis.html"><a href="analysis.html"><i class="fa fa-check"></i><b>4</b> Analysis</a><ul>
+<li class="chapter" data-level="4.1" data-path="analysis.html"><a href="analysis.html#import-1"><i class="fa fa-check"></i><b>4.1</b> Import</a></li>
+<li class="chapter" data-level="4.2" data-path="analysis.html"><a href="analysis.html#transform-datasets"><i class="fa fa-check"></i><b>4.2</b> Transform Datasets</a></li>
+<li class="chapter" data-level="4.3" data-path="analysis.html"><a href="analysis.html#descriptive-time"><i class="fa fa-check"></i><b>4.3</b> Descriptive time!</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="wilcox-for-skewed-bois.html"><a href="wilcox-for-skewed-bois.html"><i class="fa fa-check"></i><b>5</b> Wilcox for skewed bois</a><ul>
+<li class="chapter" data-level="5.1" data-path="wilcox-for-skewed-bois.html"><a href="wilcox-for-skewed-bois.html#main-model"><i class="fa fa-check"></i><b>5.1</b> Main model</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="wilcox-for-skewed-bois.html"><a href="wilcox-for-skewed-bois.html#decomposition"><i class="fa fa-check"></i><b>5.1.1</b> Decomposition</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>6</b> Discussion</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Minimal Book Example</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="discussion" class="section level1">
+<h1><span class="header-section-number">Section 6</span> Discussion</h1>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="discussion.html#cb220-1"></a><span class="kw">library</span>(plotly)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;plotly&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:httr&#39;:
+## 
+##     config</code></pre>
+<pre><code>## The following object is masked from &#39;package:Hmisc&#39;:
+## 
+##     subplot</code></pre>
+<pre><code>## The following object is masked from &#39;package:ggplot2&#39;:
+## 
+##     last_plot</code></pre>
+<pre><code>## The following objects are masked from &#39;package:plyr&#39;:
+## 
+##     arrange, mutate, rename, summarise</code></pre>
+<pre><code>## The following object is masked from &#39;package:stats&#39;:
+## 
+##     filter</code></pre>
+<pre><code>## The following object is masked from &#39;package:graphics&#39;:
+## 
+##     layout</code></pre>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="discussion.html#cb228-1"></a>g &lt;-<span class="st"> </span><span class="kw">list</span>(</span>
+<span id="cb228-2"><a href="discussion.html#cb228-2"></a>  <span class="dt">scope =</span> <span class="st">&#39;usa&#39;</span>,</span>
+<span id="cb228-3"><a href="discussion.html#cb228-3"></a>  <span class="dt">projection =</span> <span class="kw">list</span>(<span class="dt">type =</span> <span class="st">&#39;albers usa&#39;</span>),</span>
+<span id="cb228-4"><a href="discussion.html#cb228-4"></a>  <span class="dt">lakecolor =</span> <span class="kw">toRGB</span>(<span class="st">&#39;white&#39;</span>)</span>
+<span id="cb228-5"><a href="discussion.html#cb228-5"></a>)</span>
+<span id="cb228-6"><a href="discussion.html#cb228-6"></a></span>
+<span id="cb228-7"><a href="discussion.html#cb228-7"></a>avgs &lt;-<span class="st"> </span><span class="kw">distinct</span>(FacSalary)</span>
+<span id="cb228-8"><a href="discussion.html#cb228-8"></a></span>
+<span id="cb228-9"><a href="discussion.html#cb228-9"></a><span class="kw">plot_geo</span>() <span class="op">%&gt;%</span></span>
+<span id="cb228-10"><a href="discussion.html#cb228-10"></a><span class="st">  </span><span class="kw">add_trace</span>(</span>
+<span id="cb228-11"><a href="discussion.html#cb228-11"></a>    <span class="dt">z =</span> <span class="op">~</span>avgs<span class="op">$</span>avgSal,</span>
+<span id="cb228-12"><a href="discussion.html#cb228-12"></a>    <span class="dt">span =</span> <span class="kw">I</span>(<span class="dv">0</span>),</span>
+<span id="cb228-13"><a href="discussion.html#cb228-13"></a>    <span class="dt">colorscale =</span> <span class="st">&#39;matter&#39;</span>,</span>
+<span id="cb228-14"><a href="discussion.html#cb228-14"></a>    <span class="dt">locations =</span> avgs<span class="op">$</span>stabbr, </span>
+<span id="cb228-15"><a href="discussion.html#cb228-15"></a>    <span class="dt">locationmode =</span> <span class="st">&#39;USA-states&#39;</span></span>
+<span id="cb228-16"><a href="discussion.html#cb228-16"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb228-17"><a href="discussion.html#cb228-17"></a><span class="st">  </span><span class="kw">colorbar</span>(<span class="dt">title =</span> <span class="ot">NULL</span>) <span class="op">%&gt;%</span></span>
+<span id="cb228-18"><a href="discussion.html#cb228-18"></a><span class="st">  </span><span class="kw">layout</span>(<span class="dt">geo =</span> g, <span class="dt">title =</span> <span class="st">&quot;Avg. Faculty Salary by State (in USD)&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning: `arrange_()` is deprecated as of dplyr 0.7.0.
+## Please use `arrange()` instead.
+## See vignette(&#39;programming&#39;) for more help
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_warnings()` to see where this warning was generated.</code></pre>
+<div id="htmlwidget-f4018ca439df4c9ec2dc" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f4018ca439df4c9ec2dc">{"x":{"visdat":{"586462d07d7b":["function () ","plotlyVisDat"]},"cur_data":"586462d07d7b","attrs":{"586462d07d7b":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"z":{},"span":[0],"colorscale":"matter","locationmode":"USA-states","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"mapType":"geo","scene":{"zaxis":{"title":"avgs$avgSal"}},"geo":{"domain":{"x":[0,1],"y":[0,1]},"scope":"usa","projection":{"type":"albers usa"},"lakecolor":"rgba(255,255,255,1)"},"hovermode":"closest","showlegend":false,"legend":{"yanchor":"top","y":0.5},"title":"Avg. Faculty Salary by State (in USD)"},"source":"A","config":{"showSendToCloud":false},"data":[{"colorbar":{"ticklen":2,"len":0.5,"lenmode":"fraction","y":1,"yanchor":"top"},"colorscale":"matter","showscale":true,"z":[10653.2,9045,13563.3846153846,10363.5,8244.25,10554.1666666667,8346,9656.5,10485.5,10591,14542.5555555556,15483.5,10588,10338.4,12163,9640.875,9981.66666666667,9455.16666666667,10246.7222222222,11750.6,9236.8,10421.7142857143,11487,8887,9610.2,9584,8130.33333333333,10481,10305,10276,9187,12870.8,10645.8888888889,9816.66666666667,8742,13585.5,9784.2,12389.7777777778,9810,11648.2,9706,8882,8276,10638,10666.5,10205,9846,12533.5,8075,11927],"locationmode":"USA-states","type":"choropleth","marker":{"line":{"color":"rgba(31,119,180,1)","width":0}},"geo":"geo","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="discussion.html#cb230-1"></a>avgDM &lt;-<span class="st"> </span><span class="kw">distinct</span>(debtMedian)</span>
+<span id="cb230-2"><a href="discussion.html#cb230-2"></a></span>
+<span id="cb230-3"><a href="discussion.html#cb230-3"></a><span class="kw">plot_geo</span>() <span class="op">%&gt;%</span></span>
+<span id="cb230-4"><a href="discussion.html#cb230-4"></a><span class="st">  </span><span class="kw">add_trace</span>(</span>
+<span id="cb230-5"><a href="discussion.html#cb230-5"></a>    <span class="dt">z =</span> <span class="op">~</span>avgDM<span class="op">$</span>avgDebt,</span>
+<span id="cb230-6"><a href="discussion.html#cb230-6"></a>    <span class="dt">span =</span> <span class="kw">I</span>(<span class="dv">0</span>),</span>
+<span id="cb230-7"><a href="discussion.html#cb230-7"></a>    <span class="dt">colorscale =</span> <span class="st">&#39;viridis&#39;</span>,</span>
+<span id="cb230-8"><a href="discussion.html#cb230-8"></a>    <span class="dt">locations =</span> avgDM<span class="op">$</span>state, </span>
+<span id="cb230-9"><a href="discussion.html#cb230-9"></a>    <span class="dt">locationmode =</span> <span class="st">&#39;USA-states&#39;</span></span>
+<span id="cb230-10"><a href="discussion.html#cb230-10"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb230-11"><a href="discussion.html#cb230-11"></a><span class="st">  </span><span class="kw">colorbar</span>(<span class="dt">title =</span> <span class="ot">NULL</span>) <span class="op">%&gt;%</span></span>
+<span id="cb230-12"><a href="discussion.html#cb230-12"></a><span class="st">  </span><span class="kw">layout</span>(<span class="dt">geo =</span> g, <span class="dt">title =</span> <span class="st">&quot;Avg. Faculty Salary by State (in USD)&quot;</span>)</span></code></pre></div>
+<div id="htmlwidget-f2e54b1a5d911811cb04" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f2e54b1a5d911811cb04">{"x":{"visdat":{"586411046c24":["function () ","plotlyVisDat"]},"cur_data":"586411046c24","attrs":{"586411046c24":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"z":{},"span":[0],"colorscale":"viridis","locations":["IN","KS","MA","MI","MS","MO","MT","NE","NV","CO","CA","CT","DE","FL","HI","GA","OR","TN","TX","IL","LA","VA","WA","WV","AL","AK","AR","SC","UT","WI","ME","NY","NC","OH","ND","NH","AZ","NJ","OK","PA","KY","NM","ID","MD","IA","VT","WY","RI","SD","MN"],"locationmode":"USA-states","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"mapType":"geo","scene":{"zaxis":{"title":"avgDM$avgDebt"}},"geo":{"domain":{"x":[0,1],"y":[0,1]},"scope":"usa","projection":{"type":"albers usa"},"lakecolor":"rgba(255,255,255,1)"},"hovermode":"closest","showlegend":false,"legend":{"yanchor":"top","y":0.5},"title":"Avg. Faculty Salary by State (in USD)"},"source":"A","config":{"showSendToCloud":false},"data":[{"colorbar":{"ticklen":2,"len":0.5,"lenmode":"fraction","y":1,"yanchor":"top"},"colorscale":"viridis","showscale":true,"z":[21724.875,21409.5,22178.8653846154,24442.671875,24065.625,21746.3541666667,23333.125,20544.0625,18816.25,21607.9583333333,17486.9558823529,17187.5,25987.625,20459.5625,19162.5,22893.234375,21795.7083333333,20866.25,19966.5277777778,21076.0125,20568.75,22003.9821428571,17596.9375,23468.25,22740.875,17391,20663,22181,13772.5416666667,23948.125,26122.25,20849.0208333333,20775.5138888889,23537.2604166667,23472.25,20143.25,19944.675,21463.9444444444,22016.8333333333,23592.775,21503.375,18288.75,23095.6666666667,22667.25,22494.5,21939.5,18328.5,19421.875,24812.5,19750],"locations":["IN","KS","MA","MI","MS","MO","MT","NE","NV","CO","CA","CT","DE","FL","HI","GA","OR","TN","TX","IL","LA","VA","WA","WV","AL","AK","AR","SC","UT","WI","ME","NY","NC","OH","ND","NH","AZ","NJ","OK","PA","KY","NM","ID","MD","IA","VT","WY","RI","SD","MN"],"locationmode":"USA-states","type":"choropleth","marker":{"line":{"color":"rgba(31,119,180,1)","width":0}},"geo":"geo","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="discussion.html#cb231-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb231-2"><a href="discussion.html#cb231-2"></a><span class="kw">library</span>(purrr)</span>
+<span id="cb231-3"><a href="discussion.html#cb231-3"></a><span class="kw">library</span>(RColorBrewer)</span>
+<span id="cb231-4"><a href="discussion.html#cb231-4"></a><span class="kw">library</span>(tmap)</span></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="discussion.html#cb232-1"></a>cdem &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;Proj1Data/cleanDemographics1519.csv&quot;</span>) </span>
+<span id="cb232-2"><a href="discussion.html#cb232-2"></a>cdem &lt;-<span class="st"> </span>cdem[,<span class="op">-</span><span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="discussion.html#cb233-1"></a>dem_pal &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;darkolivegreen&quot;</span>, <span class="st">&quot;darkolivegreen3&quot;</span>, <span class="st">&quot;dodgerblue4&quot;</span>, <span class="st">&quot;deepskyblue&quot;</span>, <span class="st">&quot;lavenderblush4&quot;</span>, <span class="st">&quot;lavenderblush2&quot;</span>, <span class="st">&quot;palevioletred1&quot;</span>, <span class="st">&quot;rosybrown1&quot;</span>,  <span class="st">&quot;tomato2&quot;</span>,  <span class="st">&quot;sienna 1&quot;</span>, <span class="st">&quot;slateblue3&quot;</span>, <span class="st">&quot;thistle1&quot;</span>, <span class="st">&quot;orange&quot;</span>, <span class="st">&quot;navajowhite2&quot;</span>, <span class="st">&quot;lightskyblue3&quot;</span>, <span class="st">&quot;lightsteelblue1&quot;</span>)</span>
+<span id="cb233-2"><a href="discussion.html#cb233-2"></a>  </span>
+<span id="cb233-3"><a href="discussion.html#cb233-3"></a>race_demographics &lt;-<span class="st"> </span>cdem <span class="op">%&gt;%</span></span>
+<span id="cb233-4"><a href="discussion.html#cb233-4"></a><span class="st">  </span><span class="kw">select</span>(university, r_status, white, black, hispanic, asian, indigenous, nhpi, nra, unknown) <span class="op">%&gt;%</span></span>
+<span id="cb233-5"><a href="discussion.html#cb233-5"></a><span class="st">  </span><span class="kw">gather</span>(<span class="st">&quot;race&quot;</span>, <span class="st">&quot;percentage&quot;</span>, <span class="dv">3</span><span class="op">:</span><span class="dv">10</span>, <span class="op">-</span>university)</span>
+<span id="cb233-6"><a href="discussion.html#cb233-6"></a></span>
+<span id="cb233-7"><a href="discussion.html#cb233-7"></a>race_demographics <span class="op">%&gt;%</span></span>
+<span id="cb233-8"><a href="discussion.html#cb233-8"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(r_status), <span class="dt">y =</span> percentage, <span class="dt">fill =</span> <span class="kw">interaction</span>(r_status, race))) <span class="op">+</span></span>
+<span id="cb233-9"><a href="discussion.html#cb233-9"></a><span class="st">  </span><span class="kw">geom_violin</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb233-10"><a href="discussion.html#cb233-10"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun=</span>mean, <span class="dt">geom=</span><span class="st">&quot;crossbar&quot;</span>, <span class="dt">linetype =</span> <span class="dv">1</span>, <span class="dt">size=</span>.<span class="dv">2</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb233-11"><a href="discussion.html#cb233-11"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun=</span>median, <span class="dt">geom=</span><span class="st">&quot;crossbar&quot;</span>, <span class="dt">linetype =</span> <span class="dv">1</span>, <span class="dt">size=</span>.<span class="dv">2</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></span>
+<span id="cb233-12"><a href="discussion.html#cb233-12"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Racial Demographics by Carnegie Classification&quot;</span>, </span>
+<span id="cb233-13"><a href="discussion.html#cb233-13"></a>       <span class="dt">subtitle =</span> <span class="st">&quot;Red line = mean | Black line = median</span><span class="ch">\n</span><span class="st">&quot;</span>,</span>
+<span id="cb233-14"><a href="discussion.html#cb233-14"></a>       <span class="dt">x =</span> <span class="st">&quot; &quot;</span>, </span>
+<span id="cb233-15"><a href="discussion.html#cb233-15"></a>       <span class="dt">y =</span> <span class="st">&quot;% of Student Body&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb233-16"><a href="discussion.html#cb233-16"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="kw">as.factor</span>(race), <span class="dt">nrow =</span> <span class="dv">5</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb233-17"><a href="discussion.html#cb233-17"></a><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> dem_pal) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb233-18"><a href="discussion.html#cb233-18"></a><span class="st">  </span><span class="kw">theme_gray</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb233-19"><a href="discussion.html#cb233-19"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.title.y =</span> <span class="kw">element_text</span>(<span class="dt">margin =</span> <span class="kw">margin</span>(<span class="dt">t =</span> <span class="dv">0</span>, <span class="dt">r =</span> <span class="dv">20</span>, <span class="dt">b =</span> <span class="dv">0</span>, <span class="dt">l =</span> <span class="dv">0</span>)), </span>
+<span id="cb233-20"><a href="discussion.html#cb233-20"></a>        <span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">hjust =</span> <span class="fl">.5</span>), </span>
+<span id="cb233-21"><a href="discussion.html#cb233-21"></a>        <span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="discussion.html#cb234-1"></a><span class="co">#Demographics for sparse columns </span></span>
+<span id="cb234-2"><a href="discussion.html#cb234-2"></a></span>
+<span id="cb234-3"><a href="discussion.html#cb234-3"></a>other_demographics &lt;-<span class="st"> </span>cdem <span class="op">%&gt;%</span></span>
+<span id="cb234-4"><a href="discussion.html#cb234-4"></a><span class="st">  </span><span class="kw">select</span>(university, r_status, female, first_gen, veteran) <span class="op">%&gt;%</span></span>
+<span id="cb234-5"><a href="discussion.html#cb234-5"></a><span class="st">  </span><span class="kw">gather</span>(<span class="st">&quot;demographic&quot;</span>, <span class="st">&quot;percentage&quot;</span>, <span class="dv">3</span><span class="op">:</span><span class="dv">5</span>, <span class="op">-</span>university)</span>
+<span id="cb234-6"><a href="discussion.html#cb234-6"></a></span>
+<span id="cb234-7"><a href="discussion.html#cb234-7"></a>other_demographics <span class="op">%&gt;%</span></span>
+<span id="cb234-8"><a href="discussion.html#cb234-8"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(r_status), <span class="dt">y =</span> percentage, <span class="dt">fill =</span> <span class="kw">interaction</span>(r_status, demographic))) <span class="op">+</span></span>
+<span id="cb234-9"><a href="discussion.html#cb234-9"></a><span class="st">  </span><span class="kw">geom_violin</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb234-10"><a href="discussion.html#cb234-10"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun=</span>mean, <span class="dt">geom=</span><span class="st">&quot;crossbar&quot;</span>, <span class="dt">linetype =</span> <span class="dv">2</span>, <span class="dt">size=</span>.<span class="dv">1</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb234-11"><a href="discussion.html#cb234-11"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Other Demographic Factors by Carnegie Classification&quot;</span>, </span>
+<span id="cb234-12"><a href="discussion.html#cb234-12"></a>       <span class="dt">subtitle =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb234-13"><a href="discussion.html#cb234-13"></a>       <span class="dt">x =</span> <span class="st">&quot; &quot;</span>, </span>
+<span id="cb234-14"><a href="discussion.html#cb234-14"></a>       <span class="dt">y =</span> <span class="st">&quot;% of Student Body&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb234-15"><a href="discussion.html#cb234-15"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="kw">as.factor</span>(demographic), <span class="dt">nrow =</span> <span class="dv">5</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb234-16"><a href="discussion.html#cb234-16"></a><span class="st">  </span><span class="kw">scale_fill_brewer</span>(<span class="st">&quot;Paired&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb234-17"><a href="discussion.html#cb234-17"></a><span class="st">  </span><span class="kw">theme_gray</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb234-18"><a href="discussion.html#cb234-18"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.title.y =</span> <span class="kw">element_text</span>(<span class="dt">margin =</span> <span class="kw">margin</span>(<span class="dt">t =</span> <span class="dv">0</span>, <span class="dt">r =</span> <span class="dv">20</span>, <span class="dt">b =</span> <span class="dv">0</span>, <span class="dt">l =</span> <span class="dv">0</span>)), </span>
+<span id="cb234-19"><a href="discussion.html#cb234-19"></a>        <span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">hjust =</span> <span class="fl">.5</span>), </span>
+<span id="cb234-20"><a href="discussion.html#cb234-20"></a>        <span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-44-1.png" width="576" /></p>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="discussion.html#cb235-1"></a><span class="co">#FUN FACTS </span></span>
+<span id="cb235-2"><a href="discussion.html#cb235-2"></a></span>
+<span id="cb235-3"><a href="discussion.html#cb235-3"></a><span class="co">#Universities with the highest female/male ratio, the top 10 are mostly R2&#39;s for both categories</span></span>
+<span id="cb235-4"><a href="discussion.html#cb235-4"></a></span>
+<span id="cb235-5"><a href="discussion.html#cb235-5"></a>cdem <span class="op">%&gt;%</span></span>
+<span id="cb235-6"><a href="discussion.html#cb235-6"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(female)) <span class="op">%&gt;%</span></span>
+<span id="cb235-7"><a href="discussion.html#cb235-7"></a><span class="st">  </span><span class="kw">filter</span>(female <span class="op">&gt;</span><span class="st"> </span><span class="fl">.50</span>) <span class="op">%&gt;%</span></span>
+<span id="cb235-8"><a href="discussion.html#cb235-8"></a><span class="st">  </span><span class="kw">distinct</span>(university, <span class="dt">.keep_all =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
+<span id="cb235-9"><a href="discussion.html#cb235-9"></a><span class="st">  </span><span class="kw">head</span>(<span class="dv">10</span>)</span></code></pre></div>
+<pre><code>##    control                                 university r_status state    female
+## 1        2                Thomas Jefferson University       R2    PA 0.7743842
+## 2        1 CUNY Graduate School and University Center       R1    NY 0.7729469
+## 3        2                   Clark Atlanta University       R2    GA 0.7631579
+## 4        2                             The New School       R2    NY 0.7536302
+## 5        2               Nova Southeastern University       R2    FL 0.7459016
+## 6        2                  University of New England       R2    ME 0.7390681
+## 7        2                   Azusa Pacific University       R2    CA 0.7258883
+## 8        2                          Howard University       R2    DC 0.7177579
+## 9        2                         Hampton University       R2    VA 0.6915352
+## 10       2                  Loyola University Chicago       R2    IL 0.6876623
+##    first_gen poverty_rate     veteran unemp_rate  white  black hispanic  asian
+## 1  0.3293737     8.770079 0.004961565   3.535827 0.7195 0.0705   0.0136 0.0935
+## 2  0.4395604    14.690000 0.015700483   4.900000 0.2200 0.2893   0.3135 0.1183
+## 3  0.3158522     8.770079 0.004961565   3.535827 0.0004 0.8366   0.0040 0.0018
+## 4  0.1944012     8.770079 0.004961565   3.535827 0.3297 0.0548   0.1195 0.0926
+## 5  0.3733401     8.770079 0.007741348   3.535827 0.3296 0.1617   0.2988 0.0972
+## 6  0.2207308     8.770079 0.004961565   3.535827 0.8274 0.0127   0.0013 0.0354
+## 7  0.3798260     7.950000 0.005801305   3.830000 0.3726 0.0611   0.3322 0.0950
+## 8  0.2363936    10.550000 0.004961565   4.430000 0.0222 0.8863   0.0092 0.0141
+## 9  0.1975117     9.570000 0.004961565   4.010000 0.0142 0.9593   0.0131 0.0014
+## 10 0.2651357     8.770079 0.004545454   3.535827 0.5814 0.0444   0.1425 0.1156
+##    indigenous   nhpi    nra unknown   year
+## 1      0.0000 0.0000 0.0081  0.0664   2015
+## 2      0.0024 0.0048 0.0228  0.0000 latest
+## 3      0.0011 0.0000 0.0241  0.1321   2015
+## 4      0.0011 0.0016 0.3234  0.0400   2016
+## 5      0.0026 0.0009 0.0572  0.0319   2016
+## 6      0.0042 0.0000 0.0034  0.1021   2016
+## 7      0.0029 0.0106 0.0310  0.0233 latest
+## 8      0.0013 0.0052 0.0616  0.0000 latest
+## 9      0.0025 0.0003 0.0082  0.0008 latest
+## 10     0.0006 0.0028 0.0490  0.0139   2015</code></pre>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="discussion.html#cb237-1"></a>cdem <span class="op">%&gt;%</span></span>
+<span id="cb237-2"><a href="discussion.html#cb237-2"></a><span class="st">  </span><span class="kw">arrange</span>(female) <span class="op">%&gt;%</span></span>
+<span id="cb237-3"><a href="discussion.html#cb237-3"></a><span class="st">  </span><span class="kw">filter</span>(female <span class="op">&lt;</span><span class="st"> </span><span class="fl">.50</span>) <span class="op">%&gt;%</span></span>
+<span id="cb237-4"><a href="discussion.html#cb237-4"></a><span class="st">  </span><span class="kw">distinct</span>(university, <span class="dt">.keep_all =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
+<span id="cb237-5"><a href="discussion.html#cb237-5"></a><span class="st">  </span><span class="kw">head</span>(<span class="dv">10</span>)</span></code></pre></div>
+<pre><code>##    control                                    university r_status state
+## 1        1            New Jersey Institute of Technology       R1    NJ
+## 2        1 Missouri University of Science and Technology       R2    MO
+## 3        1                      Colorado School of Mines       R2    CO
+## 4        1             Michigan Technological University       R2    MI
+## 5        2              Illinois Institute of Technology       R2    IL
+## 6        2               Stevens Institute of Technology       R2    NJ
+## 7        2                           Clarkson University       R2    NY
+## 8        2              Rensselaer Polytechnic Institute       R1    NY
+## 9        2             Rochester Institute of Technology       R2    NY
+## 10       2               Worcester Polytechnic Institute       R2    MA
+##       female first_gen poverty_rate     veteran unemp_rate  white  black
+## 1  0.1898865 0.3375479     7.624656 0.003439973   3.292901 0.3348 0.0857
+## 2  0.2278168 0.2257366     8.770079 0.004961565   3.535827 0.7815 0.0351
+## 3  0.2631579 0.1719745     8.770079 0.004961565   3.535827 0.7471 0.0104
+## 4  0.2765753 0.1732010     8.770079 0.004961565   3.535827 0.8609 0.0108
+## 5  0.2832370 0.3137255     8.770079 0.004961565   3.535827 0.3257 0.0585
+## 6  0.2847358 0.1549439     5.680000 0.004961565   3.140000 0.6433 0.0219
+## 7  0.2998555 0.1528710     7.160000 0.004961565   3.590000 0.8113 0.0245
+## 8  0.3294118 0.1306505     7.624656 0.003724733   3.292901 0.5907 0.0308
+## 9  0.3355602 0.2022427     8.770079 0.004961565   3.535827 0.6580 0.0495
+## 10 0.3477952 0.1429619     8.770079 0.004961565   3.535827 0.6294 0.0232
+##    hispanic  asian indigenous   nhpi    nra unknown   year
+## 1    0.2210 0.2214     0.0006 0.0006 0.0443  0.0604   2015
+## 2    0.0311 0.0299     0.0037 0.0007 0.0566  0.0348   2015
+## 3    0.0693 0.0488     0.0013 0.0007 0.0589  0.0088   2015
+## 4    0.0185 0.0105     0.0037 0.0005 0.0421  0.0254   2015
+## 5    0.1553 0.1300     0.0034 0.0014 0.2648  0.0428   2015
+## 6    0.1137 0.1459     0.0009 0.0000 0.0351  0.0392 latest
+## 7    0.0473 0.0369     0.0030 0.0000 0.0228  0.0188 latest
+## 8    0.0813 0.1012     0.0014 0.0002 0.1062  0.0187   2015
+## 9    0.0711 0.0756     0.0018 0.0002 0.0585  0.0542   2015
+## 10   0.0843 0.0457     0.0024 0.0000 0.1226  0.0625   2015</code></pre>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="discussion.html#cb239-1"></a>R1s &lt;-<span class="st"> </span>cdem <span class="op">%&gt;%</span></span>
+<span id="cb239-2"><a href="discussion.html#cb239-2"></a><span class="st">  </span><span class="kw">filter</span>(r_status <span class="op">==</span><span class="st"> &quot;R1&quot;</span>)</span>
+<span id="cb239-3"><a href="discussion.html#cb239-3"></a></span>
+<span id="cb239-4"><a href="discussion.html#cb239-4"></a><span class="kw">ggplot</span>(cdem, <span class="kw">aes</span>(<span class="dt">x =</span> female)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb239-5"><a href="discussion.html#cb239-5"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">40</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;pink&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb239-6"><a href="discussion.html#cb239-6"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Distribution of Female/Male Gender ratio at R1s&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="discussion.html#cb240-1"></a>R2s &lt;-<span class="st"> </span>cdem <span class="op">%&gt;%</span></span>
+<span id="cb240-2"><a href="discussion.html#cb240-2"></a><span class="st">  </span><span class="kw">filter</span>(r_status <span class="op">==</span><span class="st"> &quot;R2&quot;</span>)</span>
+<span id="cb240-3"><a href="discussion.html#cb240-3"></a></span>
+<span id="cb240-4"><a href="discussion.html#cb240-4"></a><span class="kw">ggplot</span>(R2s, <span class="kw">aes</span>(<span class="dt">x =</span> female)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb240-5"><a href="discussion.html#cb240-5"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">40</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;skyblue&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb240-6"><a href="discussion.html#cb240-6"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Distribution of Female/Male Gender ratio at R2s&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-45-2.png" width="672" /></p>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="discussion.html#cb241-1"></a>r1_state &lt;-<span class="st"> </span>cdem <span class="op">%&gt;%</span></span>
+<span id="cb241-2"><a href="discussion.html#cb241-2"></a><span class="st">  </span><span class="kw">filter</span>(r_status <span class="op">==</span><span class="st"> &quot;R1&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb241-3"><a href="discussion.html#cb241-3"></a><span class="st">  </span><span class="kw">group_by</span>(state) <span class="op">%&gt;%</span></span>
+<span id="cb241-4"><a href="discussion.html#cb241-4"></a><span class="st">  </span><span class="kw">distinct</span>(university) <span class="op">%&gt;%</span></span>
+<span id="cb241-5"><a href="discussion.html#cb241-5"></a><span class="st">  </span><span class="kw">count</span>()</span>
+<span id="cb241-6"><a href="discussion.html#cb241-6"></a></span>
+<span id="cb241-7"><a href="discussion.html#cb241-7"></a>r2_state &lt;-<span class="st"> </span>cdem <span class="op">%&gt;%</span></span>
+<span id="cb241-8"><a href="discussion.html#cb241-8"></a><span class="st">  </span><span class="kw">filter</span>(r_status <span class="op">==</span><span class="st"> &quot;R2&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb241-9"><a href="discussion.html#cb241-9"></a><span class="st">  </span><span class="kw">group_by</span>(state) <span class="op">%&gt;%</span></span>
+<span id="cb241-10"><a href="discussion.html#cb241-10"></a><span class="st">  </span><span class="kw">distinct</span>(university) <span class="op">%&gt;%</span></span>
+<span id="cb241-11"><a href="discussion.html#cb241-11"></a><span class="st">  </span><span class="kw">count</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="discussion.html#cb242-1"></a>g &lt;-<span class="st"> </span><span class="kw">list</span>(</span>
+<span id="cb242-2"><a href="discussion.html#cb242-2"></a>  <span class="dt">scope =</span> <span class="st">&#39;usa&#39;</span>,</span>
+<span id="cb242-3"><a href="discussion.html#cb242-3"></a>  <span class="dt">projection =</span> <span class="kw">list</span>(<span class="dt">type =</span> <span class="st">&#39;albers usa&#39;</span>),</span>
+<span id="cb242-4"><a href="discussion.html#cb242-4"></a>  <span class="dt">lakecolor =</span> <span class="kw">toRGB</span>(<span class="st">&#39;white&#39;</span>)</span>
+<span id="cb242-5"><a href="discussion.html#cb242-5"></a>)</span>
+<span id="cb242-6"><a href="discussion.html#cb242-6"></a></span>
+<span id="cb242-7"><a href="discussion.html#cb242-7"></a>r1_map &lt;-<span class="st"> </span><span class="kw">plot_geo</span>() <span class="op">%&gt;%</span></span>
+<span id="cb242-8"><a href="discussion.html#cb242-8"></a><span class="st">  </span><span class="kw">add_trace</span>(</span>
+<span id="cb242-9"><a href="discussion.html#cb242-9"></a>    <span class="dt">z =</span> <span class="op">~</span>r1_state<span class="op">$</span>n,</span>
+<span id="cb242-10"><a href="discussion.html#cb242-10"></a>    <span class="dt">span =</span> <span class="kw">I</span>(<span class="dv">1</span>),</span>
+<span id="cb242-11"><a href="discussion.html#cb242-11"></a>    <span class="dt">colorscale =</span> <span class="st">&#39;Portland&#39;</span>,</span>
+<span id="cb242-12"><a href="discussion.html#cb242-12"></a>    <span class="dt">zauto =</span> F,</span>
+<span id="cb242-13"><a href="discussion.html#cb242-13"></a>    <span class="dt">zmax =</span> <span class="dv">10</span>,</span>
+<span id="cb242-14"><a href="discussion.html#cb242-14"></a>    <span class="dt">zmin =</span> <span class="dv">1</span>,</span>
+<span id="cb242-15"><a href="discussion.html#cb242-15"></a>    <span class="dt">locations =</span> r1_state<span class="op">$</span>state, </span>
+<span id="cb242-16"><a href="discussion.html#cb242-16"></a>    <span class="dt">locationmode =</span> <span class="st">&#39;USA-states&#39;</span></span>
+<span id="cb242-17"><a href="discussion.html#cb242-17"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb242-18"><a href="discussion.html#cb242-18"></a><span class="st">  </span><span class="kw">colorbar</span>(<span class="dt">title =</span> <span class="st">&quot;# of Schools&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb242-19"><a href="discussion.html#cb242-19"></a><span class="st">  </span><span class="kw">layout</span>(<span class="dt">geo =</span> g, <span class="dt">title =</span> <span class="st">&quot;Number of R1 Schools per State&quot;</span>)</span>
+<span id="cb242-20"><a href="discussion.html#cb242-20"></a></span>
+<span id="cb242-21"><a href="discussion.html#cb242-21"></a>r2_map &lt;-<span class="st"> </span><span class="kw">plot_geo</span>() <span class="op">%&gt;%</span></span>
+<span id="cb242-22"><a href="discussion.html#cb242-22"></a><span class="st">  </span><span class="kw">add_trace</span>(</span>
+<span id="cb242-23"><a href="discussion.html#cb242-23"></a>    <span class="dt">z =</span> <span class="op">~</span>r2_state<span class="op">$</span>n,</span>
+<span id="cb242-24"><a href="discussion.html#cb242-24"></a>    <span class="dt">span =</span> <span class="kw">I</span>(<span class="dv">1</span>),</span>
+<span id="cb242-25"><a href="discussion.html#cb242-25"></a>    <span class="dt">colorscale =</span> <span class="st">&#39;Portland&#39;</span>,</span>
+<span id="cb242-26"><a href="discussion.html#cb242-26"></a>    <span class="dt">zauto =</span> F,</span>
+<span id="cb242-27"><a href="discussion.html#cb242-27"></a>    <span class="dt">zmax =</span> <span class="dv">10</span>,</span>
+<span id="cb242-28"><a href="discussion.html#cb242-28"></a>    <span class="dt">zmin =</span> <span class="dv">1</span>,</span>
+<span id="cb242-29"><a href="discussion.html#cb242-29"></a>    <span class="dt">locations =</span> r2_state<span class="op">$</span>state, </span>
+<span id="cb242-30"><a href="discussion.html#cb242-30"></a>    <span class="dt">locationmode =</span> <span class="st">&#39;USA-states&#39;</span></span>
+<span id="cb242-31"><a href="discussion.html#cb242-31"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb242-32"><a href="discussion.html#cb242-32"></a><span class="st">  </span><span class="kw">colorbar</span>(<span class="dt">title =</span> <span class="st">&quot;# of Schools&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb242-33"><a href="discussion.html#cb242-33"></a><span class="st">  </span><span class="kw">layout</span>(<span class="dt">geo =</span> g, <span class="dt">title =</span> <span class="st">&quot;Number of R2 Schools per State&quot;</span>)</span>
+<span id="cb242-34"><a href="discussion.html#cb242-34"></a></span>
+<span id="cb242-35"><a href="discussion.html#cb242-35"></a>r1_map</span></code></pre></div>
+<div id="htmlwidget-b3b94d5ae401fa9ced08" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b3b94d5ae401fa9ced08">{"x":{"visdat":{"5864676e357":["function () ","plotlyVisDat"]},"cur_data":"5864676e357","attrs":{"5864676e357":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"z":{},"span":[1],"colorscale":"Portland","zauto":false,"zmax":10,"zmin":1,"locations":["AL","AR","AZ","CA","CO","CT","DC","DE","FL","GA","HI","IA","IL","IN","KS","KY","LA","MA","MD","MI","MN","MO","MS","MT","NC","NE","NH","NJ","NM","NV","NY","OH","OK","OR","PA","RI","SC","TN","TX","UT","VA","WA","WI","WV"],"locationmode":"USA-states","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"mapType":"geo","scene":{"zaxis":{"title":"r1_state$n"}},"geo":{"domain":{"x":[0,1],"y":[0,1]},"scope":"usa","projection":{"type":"albers usa"},"lakecolor":"rgba(255,255,255,1)"},"hovermode":"closest","showlegend":false,"legend":{"yanchor":"top","y":0.5},"title":"Number of R1 Schools per State"},"source":"A","config":{"showSendToCloud":false},"data":[{"colorbar":{"title":"# of Schools","ticklen":2,"len":0.5,"lenmode":"fraction","y":1,"yanchor":"top"},"colorscale":"Portland","showscale":true,"z":[3,1,2,11,3,2,2,1,6,4,1,2,4,3,2,2,2,8,2,3,1,2,3,1,3,1,2,3,1,2,11,3,2,2,6,1,2,2,9,1,4,2,2,1],"zauto":false,"zmax":10,"zmin":1,"locations":["AL","AR","AZ","CA","CO","CT","DC","DE","FL","GA","HI","IA","IL","IN","KS","KY","LA","MA","MD","MI","MN","MO","MS","MT","NC","NE","NH","NJ","NM","NV","NY","OH","OK","OR","PA","RI","SC","TN","TX","UT","VA","WA","WI","WV"],"locationmode":"USA-states","type":"choropleth","marker":{"line":{"color":"rgba(31,119,180,1)","width":1}},"geo":"geo","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="discussion.html#cb243-1"></a>r2_map</span></code></pre></div>
+<div id="htmlwidget-b9823d6e4590dbadddef" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b9823d6e4590dbadddef">{"x":{"visdat":{"5864347b4c58":["function () ","plotlyVisDat"]},"cur_data":"5864347b4c58","attrs":{"5864347b4c58":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"z":{},"span":[1],"colorscale":"Portland","zauto":false,"zmax":10,"zmin":1,"locations":["AK","AL","AR","AZ","CA","CO","DC","DE","FL","GA","ID","IL","IN","KS","LA","MA","MD","ME","MI","MO","MS","MT","NC","ND","NE","NJ","NM","NY","OH","OK","OR","PA","PR","RI","SD","TN","TX","UT","VA","VT","WI","WV","WY"],"locationmode":"USA-states","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"mapType":"geo","scene":{"zaxis":{"title":"r2_state$n"}},"geo":{"domain":{"x":[0,1],"y":[0,1]},"scope":"usa","projection":{"type":"albers usa"},"lakecolor":"rgba(255,255,255,1)"},"hovermode":"closest","showlegend":false,"legend":{"yanchor":"top","y":0.5},"title":"Number of R2 Schools per State"},"source":"A","config":{"showSendToCloud":false},"data":[{"colorbar":{"title":"# of Schools","ticklen":2,"len":0.5,"lenmode":"fraction","y":1,"yanchor":"top"},"colorscale":"Portland","showscale":true,"z":[1,2,2,3,6,3,4,1,4,4,3,6,2,1,3,5,3,2,5,4,1,1,6,2,1,6,1,7,9,1,1,4,2,1,2,4,9,2,3,1,1,1,1],"zauto":false,"zmax":10,"zmin":1,"locations":["AK","AL","AR","AZ","CA","CO","DC","DE","FL","GA","ID","IL","IN","KS","LA","MA","MD","ME","MI","MO","MS","MT","NC","ND","NE","NJ","NM","NY","OH","OK","OR","PA","PR","RI","SD","TN","TX","UT","VA","VT","WI","WV","WY"],"locationmode":"USA-states","type":"choropleth","marker":{"line":{"color":"rgba(31,119,180,1)","width":1}},"geo":"geo","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="wilcox-for-skewed-bois.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/05-Visualizations.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

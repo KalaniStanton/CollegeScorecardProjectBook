@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Section 3 Data Clean | A Minimal Book Example</title>
+  <meta name="description" content="An analysis of data from the College Scorecard API, which focuses on differences identified between institutions with R1 and R2 carnegie classifications." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Section 3 Data Clean | A Minimal Book Example" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="An analysis of data from the College Scorecard API, which focuses on differences identified between institutions with R1 and R2 carnegie classifications." />
+  <meta name="github-repo" content="KalaniStanton/CollegeScorecardProjectBook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Section 3 Data Clean | A Minimal Book Example" />
+  
+  <meta name="twitter:description" content="An analysis of data from the College Scorecard API, which focuses on differences identified between institutions with R1 and R2 carnegie classifications." />
+  
+
+<meta name="author" content="Sara Haman, Adam Lashley, Reilly Stanton, Benjamin Weisman" />
+
+
+<meta name="date" content="2020-10-17" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="import.html"/>
+<link rel="next" href="analysis.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="import.html"><a href="import.html"><i class="fa fa-check"></i><b>2</b> Data Acquisition</a><ul>
+<li class="chapter" data-level="2.1" data-path="import.html"><a href="import.html#set-up-and-api-exploration"><i class="fa fa-check"></i><b>2.1</b> Set-up and API Exploration</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="import.html"><a href="import.html#project-directory-management"><i class="fa fa-check"></i><b>2.1.1</b> Project Directory Management</a></li>
+<li class="chapter" data-level="2.1.2" data-path="import.html"><a href="import.html#api-exploration"><i class="fa fa-check"></i><b>2.1.2</b> API Exploration</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="import.html"><a href="import.html#the-rscorecard-and-tidyverse-approach"><i class="fa fa-check"></i><b>2.2</b> The <code>rscorecard</code> and <code>tidyverse</code> approach</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="import.html"><a href="import.html#finances"><i class="fa fa-check"></i><b>2.2.1</b> Finances</a></li>
+<li class="chapter" data-level="2.2.2" data-path="import.html"><a href="import.html#demographics"><i class="fa fa-check"></i><b>2.2.2</b> Demographics</a></li>
+<li class="chapter" data-level="2.2.3" data-path="import.html"><a href="import.html#death"><i class="fa fa-check"></i><b>2.2.3</b> Death</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="clean.html"><a href="clean.html"><i class="fa fa-check"></i><b>3</b> Data Clean</a></li>
+<li class="chapter" data-level="4" data-path="analysis.html"><a href="analysis.html"><i class="fa fa-check"></i><b>4</b> Analysis</a><ul>
+<li class="chapter" data-level="4.1" data-path="analysis.html"><a href="analysis.html#import-1"><i class="fa fa-check"></i><b>4.1</b> Import</a></li>
+<li class="chapter" data-level="4.2" data-path="analysis.html"><a href="analysis.html#transform-datasets"><i class="fa fa-check"></i><b>4.2</b> Transform Datasets</a></li>
+<li class="chapter" data-level="4.3" data-path="analysis.html"><a href="analysis.html#descriptive-time"><i class="fa fa-check"></i><b>4.3</b> Descriptive time!</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="wilcox-for-skewed-bois.html"><a href="wilcox-for-skewed-bois.html"><i class="fa fa-check"></i><b>5</b> Wilcox for skewed bois</a><ul>
+<li class="chapter" data-level="5.1" data-path="wilcox-for-skewed-bois.html"><a href="wilcox-for-skewed-bois.html#main-model"><i class="fa fa-check"></i><b>5.1</b> Main model</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="wilcox-for-skewed-bois.html"><a href="wilcox-for-skewed-bois.html#decomposition"><i class="fa fa-check"></i><b>5.1.1</b> Decomposition</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>6</b> Discussion</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Minimal Book Example</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="clean" class="section level1">
+<h1><span class="header-section-number">Section 3</span> Data Clean</h1>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="clean.html#cb146-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<dl>
+<dt>Accessibility</dt>
+<dd>The data was easily retrievable, the only difficulty was using the API key to retrieve everything into R so we could clean, manipulate, and analyze the data.
+</dd>
+<dt>Appropriate Amount of Data</dt>
+<dd>The data had mostly what we were looking for. However, it would have been nice if the data included records of type of school (State vs Liberal Arts vs Ivy League) or average class sizes. This would allow us to look for other correlations or lurking variables between the financial data. Overall, the data was appropriate for our analysis.
+</dd>
+<dt>Believability</dt>
+<dd>There is no reason for us to assume the data would be intentionally falsified as it was collected by the U.S. Government to simply compare costs and values of higher education institutions. There have been claims from some colleges (such as Boston University) that there are inaccuracies in the data, however.
+</dd>
+<dt>Concise Representation</dt>
+<dd>The data is difficult to navigate through without frequent cross-checking of the documentation. There are many columns that look quite similar but are entirely different measures and statistics.
+</dd>
+</dl>
+<p>Consistent Representation
+:The data is presented in the same format consistently throughout the dataset.</p>
+<dl>
+<dt>Ease of Manipulation</dt>
+<dd>The data had to be cleaned before any manipulation took place but once that was completed, the data was easy to manipulate.
+</dd>
+<dt>Free-of-Error</dt>
+<dd>The data is correct and reliable except for the N/A values that were present before cleaning.
+</dd>
+<dt>Interpretability</dt>
+<dd>The data is difficult to interpret without referencing to the documentation continuously. Without the documentation, this dataset would have been very difficult to interpret as a stand-alone.
+</dd>
+<dt>Objectivity</dt>
+<dd>The data could be biased as we are looking at institutions which are typically attended to by upper class people. Depending on how the data is interpreted, it could lead to incorrect inferences as there could be many lurking variables unaccounted for.
+</dd>
+<dt>Relevancy</dt>
+<dd>The data is well tailored to what we were looking for. Many of the questions we asked were answerable by the data.
+</dd>
+<dt>Reputation</dt>
+<dd>The data is well regarded as it has been used for other studies and was introduced by Obama in 2015. It highlighted the Pell grant problem and other financial issues being faced by college students across the country.
+</dd>
+<dt>Security</dt>
+<dd>The data is highly secured as it was contained and dispersed by the United States Government. We have no doubts that the security of the data was ever compromised.
+</dd>
+<dt>Timeliness</dt>
+<dd>The data is mostly up to date, but it would have been nice to have more recent statistics being recorded as financial data can change quickly as a product of circumstances; like a pandemic.
+</dd>
+<dt>Understandability</dt>
+<dd>The data set in-and-of itself was rather complicated, and the documentation did little to assist in approaching the analysis in R. That being said, the data may be more suited for analysts familiar with JSON
+</dd>
+</dl>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="clean.html#cb147-1"></a>dem &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;Proj1Data/Demographics15to19.csv&quot;</span>)</span>
+<span id="cb147-2"><a href="clean.html#cb147-2"></a></span>
+<span id="cb147-3"><a href="clean.html#cb147-3"></a>dem_clean &lt;-<span class="st"> </span>dem[,<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">17</span>, <span class="dv">20</span><span class="op">:</span><span class="dv">24</span>)] <span class="op">%&gt;%</span></span>
+<span id="cb147-4"><a href="clean.html#cb147-4"></a><span class="st">  </span><span class="kw">rename</span>(<span class="st">&quot;university&quot;</span> =<span class="st"> </span>instnm,</span>
+<span id="cb147-5"><a href="clean.html#cb147-5"></a>  <span class="st">&quot;r_status&quot;</span> =<span class="st"> </span>ccbasic, </span>
+<span id="cb147-6"><a href="clean.html#cb147-6"></a>  <span class="st">&quot;state&quot;</span> =<span class="st"> </span>stabbr, </span>
+<span id="cb147-7"><a href="clean.html#cb147-7"></a>  <span class="st">&quot;white&quot;</span> =<span class="st"> </span>ugds_white, </span>
+<span id="cb147-8"><a href="clean.html#cb147-8"></a>  <span class="st">&quot;black&quot;</span> =<span class="st"> </span>ugds_black, </span>
+<span id="cb147-9"><a href="clean.html#cb147-9"></a>  <span class="st">&quot;hispanic&quot;</span> =<span class="st"> </span>ugds_hisp, </span>
+<span id="cb147-10"><a href="clean.html#cb147-10"></a>  <span class="st">&quot;asian&quot;</span> =<span class="st"> </span>ugds_asian, </span>
+<span id="cb147-11"><a href="clean.html#cb147-11"></a>  <span class="st">&quot;indigenous&quot;</span> =<span class="st"> </span>ugds_aian, </span>
+<span id="cb147-12"><a href="clean.html#cb147-12"></a>  <span class="st">&quot;nhpi&quot;</span> =<span class="st"> </span>ugds_nhpi, </span>
+<span id="cb147-13"><a href="clean.html#cb147-13"></a>  <span class="st">&quot;nra&quot;</span> =<span class="st"> </span>ugds_nra, </span>
+<span id="cb147-14"><a href="clean.html#cb147-14"></a>  <span class="st">&quot;unknown&quot;</span> =<span class="st"> </span>ugds_unkn) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb147-15"><a href="clean.html#cb147-15"></a><span class="st">  </span><span class="kw">drop_na</span>(black)</span>
+<span id="cb147-16"><a href="clean.html#cb147-16"></a></span>
+<span id="cb147-17"><a href="clean.html#cb147-17"></a>dem_clean<span class="op">$</span>r_status &lt;-<span class="st"> </span><span class="kw">recode</span>(dem_clean<span class="op">$</span>r_status, <span class="st">`</span><span class="dt">15</span><span class="st">`</span> =<span class="st"> &#39;R1&#39;</span>, <span class="st">`</span><span class="dt">16</span><span class="st">`</span> =<span class="st"> &quot;R2&quot;</span>)</span>
+<span id="cb147-18"><a href="clean.html#cb147-18"></a></span>
+<span id="cb147-19"><a href="clean.html#cb147-19"></a>dem_clean &lt;-<span class="st"> </span>dem_clean <span class="op">%&gt;%</span><span class="st">  </span></span>
+<span id="cb147-20"><a href="clean.html#cb147-20"></a><span class="st">  </span><span class="kw">group_by</span>(r_status) <span class="op">%&gt;%</span></span>
+<span id="cb147-21"><a href="clean.html#cb147-21"></a><span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">c</span>(<span class="st">&quot;female&quot;</span>, <span class="st">&quot;first_gen&quot;</span>, <span class="st">&quot;poverty_rate&quot;</span>, <span class="st">&quot;veteran&quot;</span>, <span class="st">&quot;unemp_rate&quot;</span>), <span class="kw">funs</span>(<span class="kw">ifelse</span>(<span class="kw">is.na</span>(.), <span class="kw">mean</span>(., <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),.)))</span></code></pre></div>
+<pre><code>## Warning: `funs()` is deprecated as of dplyr 0.8.0.
+## Please use a list of either functions or lambdas: 
+## 
+##   # Simple named list: 
+##   list(mean = mean, median = median)
+## 
+##   # Auto named with `tibble::lst()`: 
+##   tibble::lst(mean, median)
+## 
+##   # Using lambdas
+##   list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_warnings()` to see where this warning was generated.</code></pre>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="clean.html#cb149-1"></a><span class="kw">write.csv</span>(dem_clean, <span class="st">&quot;Proj1Data/cleanDemographics1519.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="clean.html#cb150-1"></a>fin &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;Proj1Data/Financials15to19.csv&#39;</span>)</span>
+<span id="cb150-2"><a href="clean.html#cb150-2"></a></span>
+<span id="cb150-3"><a href="clean.html#cb150-3"></a>fin_clean &lt;-<span class="st"> </span>fin[,<span class="op">-</span><span class="kw">c</span>(<span class="dv">2</span>)] <span class="op">%&gt;%</span></span>
+<span id="cb150-4"><a href="clean.html#cb150-4"></a><span class="st">  </span><span class="kw">rename</span>(<span class="st">&quot;university&quot;</span> =<span class="st"> </span>instnm,</span>
+<span id="cb150-5"><a href="clean.html#cb150-5"></a>  <span class="st">&quot;r_status&quot;</span> =<span class="st"> </span>ccbasic, </span>
+<span id="cb150-6"><a href="clean.html#cb150-6"></a>  <span class="st">&quot;state&quot;</span> =<span class="st"> </span>stabbr)</span>
+<span id="cb150-7"><a href="clean.html#cb150-7"></a></span>
+<span id="cb150-8"><a href="clean.html#cb150-8"></a>fin_clean<span class="op">$</span>r_status &lt;-<span class="st"> </span><span class="kw">recode</span>(fin_clean<span class="op">$</span>r_status, <span class="st">`</span><span class="dt">15</span><span class="st">`</span> =<span class="st"> &#39;R1&#39;</span>, <span class="st">`</span><span class="dt">16</span><span class="st">`</span> =<span class="st"> &quot;R2&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="clean.html#cb151-1"></a><span class="kw">head</span>(fin_clean) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">MakePretty</span>()</span></code></pre></div>
+<table class=" lightable-material" style='font-family: "Source Sans Pro", helvetica, sans-serif; margin-left: auto; margin-right: auto;'>
+<thead>
+<tr>
+<th style="text-align:center;">
+X
+</th>
+<th style="text-align:center;">
+university
+</th>
+<th style="text-align:center;">
+r_status
+</th>
+<th style="text-align:center;">
+state
+</th>
+<th style="text-align:center;">
+npt4_pub
+</th>
+<th style="text-align:center;">
+npt4_priv
+</th>
+<th style="text-align:center;">
+costt4_a
+</th>
+<th style="text-align:center;">
+grad_debt_mdn
+</th>
+<th style="text-align:center;">
+avgfacsal
+</th>
+<th style="text-align:center;">
+unemp_rate
+</th>
+<th style="text-align:center;">
+year
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+Indiana University-Purdue University-Indianapolis
+</td>
+<td style="text-align:center;">
+R2
+</td>
+<td style="text-align:center;">
+IN
+</td>
+<td style="text-align:center;">
+10987
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+20704
+</td>
+<td style="text-align:center;">
+22343
+</td>
+<td style="text-align:center;">
+8512
+</td>
+<td style="text-align:center;">
+2.90
+</td>
+<td style="text-align:center;">
+latest
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+University of Kansas
+</td>
+<td style="text-align:center;">
+R1
+</td>
+<td style="text-align:center;">
+KS
+</td>
+<td style="text-align:center;">
+18571
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+24996
+</td>
+<td style="text-align:center;">
+21105
+</td>
+<td style="text-align:center;">
+10156
+</td>
+<td style="text-align:center;">
+2.50
+</td>
+<td style="text-align:center;">
+latest
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+Boston College
+</td>
+<td style="text-align:center;">
+R1
+</td>
+<td style="text-align:center;">
+MA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+33562
+</td>
+<td style="text-align:center;">
+70588
+</td>
+<td style="text-align:center;">
+16939
+</td>
+<td style="text-align:center;">
+15323
+</td>
+<td style="text-align:center;">
+2.88
+</td>
+<td style="text-align:center;">
+latest
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+Oakland University
+</td>
+<td style="text-align:center;">
+R2
+</td>
+<td style="text-align:center;">
+MI
+</td>
+<td style="text-align:center;">
+11560
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+21231
+</td>
+<td style="text-align:center;">
+25000
+</td>
+<td style="text-align:center;">
+9452
+</td>
+<td style="text-align:center;">
+3.21
+</td>
+<td style="text-align:center;">
+latest
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+University of Mississippi
+</td>
+<td style="text-align:center;">
+R1
+</td>
+<td style="text-align:center;">
+MS
+</td>
+<td style="text-align:center;">
+13857
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+24822
+</td>
+<td style="text-align:center;">
+19500
+</td>
+<td style="text-align:center;">
+9217
+</td>
+<td style="text-align:center;">
+3.64
+</td>
+<td style="text-align:center;">
+latest
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:center;">
+Missouri University of Science and Technology
+</td>
+<td style="text-align:center;">
+R2
+</td>
+<td style="text-align:center;">
+MO
+</td>
+<td style="text-align:center;">
+14205
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+22012
+</td>
+<td style="text-align:center;">
+24750
+</td>
+<td style="text-align:center;">
+10628
+</td>
+<td style="text-align:center;">
+3.05
+</td>
+<td style="text-align:center;">
+latest
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="clean.html#cb152-1"></a><span class="kw">write.csv</span>(fin_clean, <span class="st">&quot;Proj1Data/cleanFinancials1519.csv&quot;</span>)</span></code></pre></div>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="import.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/03-cleanDemographics.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="" xml:lang="">
 <head>
@@ -6,26 +5,26 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Section 5 Wilcox for skewed bois | A Minimal Book Example</title>
-  <meta name="description" content="An analysis of data from the College Scorecard API, which focuses on differences identified between institutions with R1 and R2 carnegie classifications. This project was completed to satisfy the requirements of a project assigned to students in the Fall 2020 Data Munging and Exploratory Data Analysis at New College of Florida." />
+  <meta name="description" content="An analysis of data from the College Scorecard API, which focuses on differences identified between institutions with R1 and R2 carnegie classifications." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Section 5 Wilcox for skewed bois | A Minimal Book Example" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="An analysis of data from the College Scorecard API, which focuses on differences identified between institutions with R1 and R2 carnegie classifications. This project was completed to satisfy the requirements of a project assigned to students in the Fall 2020 Data Munging and Exploratory Data Analysis at New College of Florida." />
-  <meta name="github-repo" content="benjaminweisman/Data-Munging" />
+  <meta property="og:description" content="An analysis of data from the College Scorecard API, which focuses on differences identified between institutions with R1 and R2 carnegie classifications." />
+  <meta name="github-repo" content="KalaniStanton/CollegeScorecardProjectBook" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Section 5 Wilcox for skewed bois | A Minimal Book Example" />
   
-  <meta name="twitter:description" content="An analysis of data from the College Scorecard API, which focuses on differences identified between institutions with R1 and R2 carnegie classifications. This project was completed to satisfy the requirements of a project assigned to students in the Fall 2020 Data Munging and Exploratory Data Analysis at New College of Florida." />
+  <meta name="twitter:description" content="An analysis of data from the College Scorecard API, which focuses on differences identified between institutions with R1 and R2 carnegie classifications." />
   
 
 <meta name="author" content="Sara Haman, Adam Lashley, Reilly Stanton, Benjamin Weisman" />
 
 
-<meta name="date" content="2020-10-16" />
+<meta name="date" content="2020-10-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,7 @@
   
   
 <link rel="prev" href="analysis.html"/>
-<link rel="next" href="final-words.html"/>
+<link rel="next" href="discussion.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -52,6 +51,10 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 <script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
@@ -144,18 +147,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<li class="chapter" data-level="2" data-path="data-acquisition.html"><a href="data-acquisition.html"><i class="fa fa-check"></i><b>2</b> Data Acquisition</a><ul>
-<li class="chapter" data-level="2.1" data-path="data-acquisition.html"><a href="data-acquisition.html#set-up-and-api-exploration"><i class="fa fa-check"></i><b>2.1</b> Set-up and API Exploration</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="data-acquisition.html"><a href="data-acquisition.html#project-directory-management"><i class="fa fa-check"></i><b>2.1.1</b> Project Directory Management</a></li>
-<li class="chapter" data-level="2.1.2" data-path="data-acquisition.html"><a href="data-acquisition.html#api-exploration"><i class="fa fa-check"></i><b>2.1.2</b> API Exploration</a></li>
+<li class="chapter" data-level="2" data-path="import.html"><a href="import.html"><i class="fa fa-check"></i><b>2</b> Data Acquisition</a><ul>
+<li class="chapter" data-level="2.1" data-path="import.html"><a href="import.html#set-up-and-api-exploration"><i class="fa fa-check"></i><b>2.1</b> Set-up and API Exploration</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="import.html"><a href="import.html#project-directory-management"><i class="fa fa-check"></i><b>2.1.1</b> Project Directory Management</a></li>
+<li class="chapter" data-level="2.1.2" data-path="import.html"><a href="import.html#api-exploration"><i class="fa fa-check"></i><b>2.1.2</b> API Exploration</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="data-acquisition.html"><a href="data-acquisition.html#the-rscorecard-and-tidyverse-approach"><i class="fa fa-check"></i><b>2.2</b> The <code>rscorecard</code> and <code>tidyverse</code> approach</a></li>
-<li class="chapter" data-level="2.3" data-path="data-acquisition.html"><a href="data-acquisition.html#finances"><i class="fa fa-check"></i><b>2.3</b> Finances</a></li>
-<li class="chapter" data-level="2.4" data-path="data-acquisition.html"><a href="data-acquisition.html#demographics"><i class="fa fa-check"></i><b>2.4</b> Demographics</a></li>
+<li class="chapter" data-level="2.2" data-path="import.html"><a href="import.html#the-rscorecard-and-tidyverse-approach"><i class="fa fa-check"></i><b>2.2</b> The <code>rscorecard</code> and <code>tidyverse</code> approach</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="import.html"><a href="import.html#finances"><i class="fa fa-check"></i><b>2.2.1</b> Finances</a></li>
+<li class="chapter" data-level="2.2.2" data-path="import.html"><a href="import.html#demographics"><i class="fa fa-check"></i><b>2.2.2</b> Demographics</a></li>
+<li class="chapter" data-level="2.2.3" data-path="import.html"><a href="import.html#death"><i class="fa fa-check"></i><b>2.2.3</b> Death</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="data-clean.html"><a href="data-clean.html"><i class="fa fa-check"></i><b>3</b> Data Clean</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="clean.html"><a href="clean.html"><i class="fa fa-check"></i><b>3</b> Data Clean</a></li>
 <li class="chapter" data-level="4" data-path="analysis.html"><a href="analysis.html"><i class="fa fa-check"></i><b>4</b> Analysis</a><ul>
-<li class="chapter" data-level="4.1" data-path="analysis.html"><a href="analysis.html#import"><i class="fa fa-check"></i><b>4.1</b> Import</a></li>
+<li class="chapter" data-level="4.1" data-path="analysis.html"><a href="analysis.html#import-1"><i class="fa fa-check"></i><b>4.1</b> Import</a></li>
 <li class="chapter" data-level="4.2" data-path="analysis.html"><a href="analysis.html#transform-datasets"><i class="fa fa-check"></i><b>4.2</b> Transform Datasets</a></li>
 <li class="chapter" data-level="4.3" data-path="analysis.html"><a href="analysis.html#descriptive-time"><i class="fa fa-check"></i><b>4.3</b> Descriptive time!</a></li>
 </ul></li>
@@ -164,7 +169,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.1.1" data-path="wilcox-for-skewed-bois.html"><a href="wilcox-for-skewed-bois.html#decomposition"><i class="fa fa-check"></i><b>5.1.1</b> Decomposition</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>6</b> Final Words</a></li>
+<li class="chapter" data-level="6" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>6</b> Discussion</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -188,19 +193,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="wilcox-for-skewed-bois" class="section level1">
 <h1><span class="header-section-number">Section 5</span> Wilcox for skewed bois</h1>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="wilcox-for-skewed-bois.html#cb189-1"></a><span class="co"># R1 associated with student outcomes</span></span>
-<span id="cb189-2"><a href="wilcox-for-skewed-bois.html#cb189-2"></a><span class="co"># debt, skewed to all hell so non parametric t-test.  </span></span>
-<span id="cb189-3"><a href="wilcox-for-skewed-bois.html#cb189-3"></a><span class="kw">wilcox.test</span>(<span class="dt">formula=</span>finR<span class="op">$</span>grad_debt_mdn<span class="op">~</span>finR<span class="op">$</span>ccbasic)</span></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="wilcox-for-skewed-bois.html#cb192-1"></a><span class="co"># R1 associated with student outcomes</span></span>
+<span id="cb192-2"><a href="wilcox-for-skewed-bois.html#cb192-2"></a><span class="co"># debt, skewed to all hell so non parametric t-test.  </span></span>
+<span id="cb192-3"><a href="wilcox-for-skewed-bois.html#cb192-3"></a><span class="kw">wilcox.test</span>(<span class="dt">formula=</span>finR<span class="op">$</span>grad_debt_mdn<span class="op">~</span>finR<span class="op">$</span>ccbasic)</span></code></pre></div>
 <pre><code>## 
 ##  Wilcoxon rank sum test with continuity correction
 ## 
 ## data:  finR$grad_debt_mdn by finR$ccbasic
 ## W = 982, p-value = 1.636e-06
 ## alternative hypothesis: true location shift is not equal to 0</code></pre>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="wilcox-for-skewed-bois.html#cb191-1"></a><span class="co"># debt for R2 unis significantly differed from R1 students.</span></span>
-<span id="cb191-2"><a href="wilcox-for-skewed-bois.html#cb191-2"></a></span>
-<span id="cb191-3"><a href="wilcox-for-skewed-bois.html#cb191-3"></a><span class="co"># non-working</span></span>
-<span id="cb191-4"><a href="wilcox-for-skewed-bois.html#cb191-4"></a><span class="kw">t.test</span>(finR<span class="op">$</span>unemp_rate<span class="op">~</span>finR<span class="op">$</span>ccbasic)</span></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="wilcox-for-skewed-bois.html#cb194-1"></a><span class="co"># debt for R2 unis significantly differed from R1 students.</span></span>
+<span id="cb194-2"><a href="wilcox-for-skewed-bois.html#cb194-2"></a></span>
+<span id="cb194-3"><a href="wilcox-for-skewed-bois.html#cb194-3"></a><span class="co"># non-working</span></span>
+<span id="cb194-4"><a href="wilcox-for-skewed-bois.html#cb194-4"></a><span class="kw">t.test</span>(finR<span class="op">$</span>unemp_rate<span class="op">~</span>finR<span class="op">$</span>ccbasic)</span></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
@@ -212,34 +217,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## sample estimates:
 ## mean in group 15 mean in group 16 
 ##         3.229683         3.480000</code></pre>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="wilcox-for-skewed-bois.html#cb193-1"></a><span class="co"># cost differences between R1, R2.</span></span>
-<span id="cb193-2"><a href="wilcox-for-skewed-bois.html#cb193-2"></a></span>
-<span id="cb193-3"><a href="wilcox-for-skewed-bois.html#cb193-3"></a><span class="co"># t.test(finR$costt4_a~finR$ccbasic)</span></span>
-<span id="cb193-4"><a href="wilcox-for-skewed-bois.html#cb193-4"></a></span>
-<span id="cb193-5"><a href="wilcox-for-skewed-bois.html#cb193-5"></a><span class="co"># Cant do a t-test cause of the bimodal abomination</span></span>
-<span id="cb193-6"><a href="wilcox-for-skewed-bois.html#cb193-6"></a></span>
-<span id="cb193-7"><a href="wilcox-for-skewed-bois.html#cb193-7"></a><span class="co"># Average annual R1 tuition cost: 41,571.97</span></span>
-<span id="cb193-8"><a href="wilcox-for-skewed-bois.html#cb193-8"></a><span class="co"># Average annual R2 tuition cost: 33,958.16</span></span></code></pre></div>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="wilcox-for-skewed-bois.html#cb194-1"></a><span class="co"># white people proportion and unemployment</span></span>
-<span id="cb194-2"><a href="wilcox-for-skewed-bois.html#cb194-2"></a></span>
-<span id="cb194-3"><a href="wilcox-for-skewed-bois.html#cb194-3"></a><span class="kw">cor</span>(demR<span class="op">$</span>ugds_white, finR<span class="op">$</span>unemp_rate, <span class="dt">use =</span> <span class="st">&#39;complete.obs&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="wilcox-for-skewed-bois.html#cb196-1"></a><span class="co"># cost differences between R1, R2.</span></span>
+<span id="cb196-2"><a href="wilcox-for-skewed-bois.html#cb196-2"></a></span>
+<span id="cb196-3"><a href="wilcox-for-skewed-bois.html#cb196-3"></a><span class="co"># t.test(finR$costt4_a~finR$ccbasic)</span></span>
+<span id="cb196-4"><a href="wilcox-for-skewed-bois.html#cb196-4"></a></span>
+<span id="cb196-5"><a href="wilcox-for-skewed-bois.html#cb196-5"></a><span class="co"># Cant do a t-test cause of the bimodal abomination</span></span>
+<span id="cb196-6"><a href="wilcox-for-skewed-bois.html#cb196-6"></a></span>
+<span id="cb196-7"><a href="wilcox-for-skewed-bois.html#cb196-7"></a><span class="co"># Average annual R1 tuition cost: 41,571.97</span></span>
+<span id="cb196-8"><a href="wilcox-for-skewed-bois.html#cb196-8"></a><span class="co"># Average annual R2 tuition cost: 33,958.16</span></span></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="wilcox-for-skewed-bois.html#cb197-1"></a><span class="co"># white people proportion and unemployment</span></span>
+<span id="cb197-2"><a href="wilcox-for-skewed-bois.html#cb197-2"></a></span>
+<span id="cb197-3"><a href="wilcox-for-skewed-bois.html#cb197-3"></a><span class="kw">cor</span>(demR<span class="op">$</span>ugds_white, finR<span class="op">$</span>unemp_rate, <span class="dt">use =</span> <span class="st">&#39;complete.obs&#39;</span>)</span></code></pre></div>
 <pre><code>## [1] -0.4912212</code></pre>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="wilcox-for-skewed-bois.html#cb196-1"></a><span class="co"># results: White proportion is negatively associated with unemployment (r = -0.49)</span></span></code></pre></div>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="wilcox-for-skewed-bois.html#cb199-1"></a><span class="co"># results: White proportion is negatively associated with unemployment (r = -0.49)</span></span></code></pre></div>
 <div id="main-model" class="section level2">
 <h2><span class="header-section-number">5.1</span> Main model</h2>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="wilcox-for-skewed-bois.html#cb197-1"></a><span class="kw">ggplot</span>(finR, <span class="kw">aes</span>(unemp_rate, demR<span class="op">$</span>ugds_white,<span class="dt">colour=</span>ccbasic)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="wilcox-for-skewed-bois.html#cb200-1"></a><span class="kw">ggplot</span>(finR, <span class="kw">aes</span>(unemp_rate, demR<span class="op">$</span>ugds_white,<span class="dt">colour=</span>ccbasic)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <pre><code>## Warning: Removed 4 rows containing non-finite values (stat_smooth).</code></pre>
 <pre><code>## Warning: Removed 4 rows containing missing values (geom_point).</code></pre>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="wilcox-for-skewed-bois.html#cb201-1"></a><span class="co"># 3 White proportion moderates unemployment outcomes. </span></span>
-<span id="cb201-2"><a href="wilcox-for-skewed-bois.html#cb201-2"></a>predictor &lt;-<span class="st"> </span>finR<span class="op">$</span>ccbasic</span>
-<span id="cb201-3"><a href="wilcox-for-skewed-bois.html#cb201-3"></a>moderator &lt;-<span class="st"> </span>demR<span class="op">$</span>ugds_white</span>
-<span id="cb201-4"><a href="wilcox-for-skewed-bois.html#cb201-4"></a>interaction &lt;-<span class="st"> </span>predictor <span class="op">*</span><span class="st"> </span>moderator</span>
-<span id="cb201-5"><a href="wilcox-for-skewed-bois.html#cb201-5"></a>outcome &lt;-<span class="st"> </span>finR<span class="op">$</span>unemp_rate</span>
-<span id="cb201-6"><a href="wilcox-for-skewed-bois.html#cb201-6"></a></span>
-<span id="cb201-7"><a href="wilcox-for-skewed-bois.html#cb201-7"></a>wlm &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">formula =</span> outcome <span class="op">~</span><span class="st"> </span>predictor <span class="op">+</span><span class="st"> </span>moderator <span class="op">+</span><span class="st"> </span>interaction)</span>
-<span id="cb201-8"><a href="wilcox-for-skewed-bois.html#cb201-8"></a><span class="kw">summary</span>(wlm)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="wilcox-for-skewed-bois.html#cb204-1"></a><span class="co"># 3 White proportion moderates unemployment outcomes. </span></span>
+<span id="cb204-2"><a href="wilcox-for-skewed-bois.html#cb204-2"></a>predictor &lt;-<span class="st"> </span>finR<span class="op">$</span>ccbasic</span>
+<span id="cb204-3"><a href="wilcox-for-skewed-bois.html#cb204-3"></a>moderator &lt;-<span class="st"> </span>demR<span class="op">$</span>ugds_white</span>
+<span id="cb204-4"><a href="wilcox-for-skewed-bois.html#cb204-4"></a>interaction &lt;-<span class="st"> </span>predictor <span class="op">*</span><span class="st"> </span>moderator</span>
+<span id="cb204-5"><a href="wilcox-for-skewed-bois.html#cb204-5"></a>outcome &lt;-<span class="st"> </span>finR<span class="op">$</span>unemp_rate</span>
+<span id="cb204-6"><a href="wilcox-for-skewed-bois.html#cb204-6"></a></span>
+<span id="cb204-7"><a href="wilcox-for-skewed-bois.html#cb204-7"></a>wlm &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">formula =</span> outcome <span class="op">~</span><span class="st"> </span>predictor <span class="op">+</span><span class="st"> </span>moderator <span class="op">+</span><span class="st"> </span>interaction)</span>
+<span id="cb204-8"><a href="wilcox-for-skewed-bois.html#cb204-8"></a><span class="kw">summary</span>(wlm)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = outcome ~ predictor + moderator + interaction)
@@ -265,10 +270,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">5.1.1</span> Decomposition</h3>
 <div id="simple-model" class="section level4">
 <h4><span class="header-section-number">5.1.1.1</span> Simple model</h4>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="wilcox-for-skewed-bois.html#cb203-1"></a>predictor &lt;-<span class="st"> </span>finR<span class="op">$</span>ccbasic</span>
-<span id="cb203-2"><a href="wilcox-for-skewed-bois.html#cb203-2"></a>outcome &lt;-<span class="st"> </span>finR<span class="op">$</span>unemp_rate</span>
-<span id="cb203-3"><a href="wilcox-for-skewed-bois.html#cb203-3"></a>simplelm &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">formula =</span> outcome <span class="op">~</span><span class="st"> </span>predictor)</span>
-<span id="cb203-4"><a href="wilcox-for-skewed-bois.html#cb203-4"></a><span class="kw">summary</span>(simplelm)</span></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="wilcox-for-skewed-bois.html#cb206-1"></a>predictor &lt;-<span class="st"> </span>finR<span class="op">$</span>ccbasic</span>
+<span id="cb206-2"><a href="wilcox-for-skewed-bois.html#cb206-2"></a>outcome &lt;-<span class="st"> </span>finR<span class="op">$</span>unemp_rate</span>
+<span id="cb206-3"><a href="wilcox-for-skewed-bois.html#cb206-3"></a>simplelm &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">formula =</span> outcome <span class="op">~</span><span class="st"> </span>predictor)</span>
+<span id="cb206-4"><a href="wilcox-for-skewed-bois.html#cb206-4"></a><span class="kw">summary</span>(simplelm)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = outcome ~ predictor)
@@ -291,10 +296,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="moderator-direct-effect" class="section level4">
 <h4><span class="header-section-number">5.1.1.2</span> Moderator direct effect</h4>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="wilcox-for-skewed-bois.html#cb205-1"></a>predictor &lt;-<span class="st"> </span>demR<span class="op">$</span>ugds_white</span>
-<span id="cb205-2"><a href="wilcox-for-skewed-bois.html#cb205-2"></a>outcome &lt;-<span class="st"> </span>finR<span class="op">$</span>unemp_rate</span>
-<span id="cb205-3"><a href="wilcox-for-skewed-bois.html#cb205-3"></a>moderatorlm &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">formula =</span> outcome <span class="op">~</span><span class="st"> </span>predictor)</span>
-<span id="cb205-4"><a href="wilcox-for-skewed-bois.html#cb205-4"></a><span class="kw">summary</span>(moderatorlm)</span></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="wilcox-for-skewed-bois.html#cb208-1"></a>predictor &lt;-<span class="st"> </span>demR<span class="op">$</span>ugds_white</span>
+<span id="cb208-2"><a href="wilcox-for-skewed-bois.html#cb208-2"></a>outcome &lt;-<span class="st"> </span>finR<span class="op">$</span>unemp_rate</span>
+<span id="cb208-3"><a href="wilcox-for-skewed-bois.html#cb208-3"></a>moderatorlm &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">formula =</span> outcome <span class="op">~</span><span class="st"> </span>predictor)</span>
+<span id="cb208-4"><a href="wilcox-for-skewed-bois.html#cb208-4"></a><span class="kw">summary</span>(moderatorlm)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = outcome ~ predictor)
@@ -317,13 +322,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="interaction-effect" class="section level4">
 <h4><span class="header-section-number">5.1.1.3</span> Interaction Effect</h4>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="wilcox-for-skewed-bois.html#cb207-1"></a>predictor &lt;-<span class="st"> </span>finR<span class="op">$</span>ccbasic</span>
-<span id="cb207-2"><a href="wilcox-for-skewed-bois.html#cb207-2"></a>moderator &lt;-<span class="st"> </span>demR<span class="op">$</span>ugds_white</span>
-<span id="cb207-3"><a href="wilcox-for-skewed-bois.html#cb207-3"></a>interaction &lt;-<span class="st"> </span>predictor <span class="op">*</span><span class="st"> </span>moderator</span>
-<span id="cb207-4"><a href="wilcox-for-skewed-bois.html#cb207-4"></a>outcome &lt;-<span class="st"> </span>finR<span class="op">$</span>unemp_rate</span>
-<span id="cb207-5"><a href="wilcox-for-skewed-bois.html#cb207-5"></a></span>
-<span id="cb207-6"><a href="wilcox-for-skewed-bois.html#cb207-6"></a>interactionlm &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">formula =</span> outcome <span class="op">~</span><span class="st"> </span>interaction)</span>
-<span id="cb207-7"><a href="wilcox-for-skewed-bois.html#cb207-7"></a><span class="kw">summary</span>(moderatorlm)</span></code></pre></div>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="wilcox-for-skewed-bois.html#cb210-1"></a>predictor &lt;-<span class="st"> </span>finR<span class="op">$</span>ccbasic</span>
+<span id="cb210-2"><a href="wilcox-for-skewed-bois.html#cb210-2"></a>moderator &lt;-<span class="st"> </span>demR<span class="op">$</span>ugds_white</span>
+<span id="cb210-3"><a href="wilcox-for-skewed-bois.html#cb210-3"></a>interaction &lt;-<span class="st"> </span>predictor <span class="op">*</span><span class="st"> </span>moderator</span>
+<span id="cb210-4"><a href="wilcox-for-skewed-bois.html#cb210-4"></a>outcome &lt;-<span class="st"> </span>finR<span class="op">$</span>unemp_rate</span>
+<span id="cb210-5"><a href="wilcox-for-skewed-bois.html#cb210-5"></a></span>
+<span id="cb210-6"><a href="wilcox-for-skewed-bois.html#cb210-6"></a>interactionlm &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">formula =</span> outcome <span class="op">~</span><span class="st"> </span>interaction)</span>
+<span id="cb210-7"><a href="wilcox-for-skewed-bois.html#cb210-7"></a><span class="kw">summary</span>(moderatorlm)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = outcome ~ predictor)
@@ -343,27 +348,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   (4 observations deleted due to missingness)
 ## Multiple R-squared:  0.2413, Adjusted R-squared:  0.2351 
 ## F-statistic:  38.8 on 1 and 122 DF,  p-value: 6.927e-09</code></pre>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="wilcox-for-skewed-bois.html#cb209-1"></a><span class="co"># cost differences between R1, R2.</span></span>
-<span id="cb209-2"><a href="wilcox-for-skewed-bois.html#cb209-2"></a></span>
-<span id="cb209-3"><a href="wilcox-for-skewed-bois.html#cb209-3"></a><span class="co"># t.test(finR$costt4_a~finR$ccbasic)</span></span>
-<span id="cb209-4"><a href="wilcox-for-skewed-bois.html#cb209-4"></a></span>
-<span id="cb209-5"><a href="wilcox-for-skewed-bois.html#cb209-5"></a><span class="co"># Cant do a t-test cause of the bimodal abomination</span></span>
-<span id="cb209-6"><a href="wilcox-for-skewed-bois.html#cb209-6"></a></span>
-<span id="cb209-7"><a href="wilcox-for-skewed-bois.html#cb209-7"></a><span class="co"># Average annual R1 tuition cost: 41,571.97</span></span>
-<span id="cb209-8"><a href="wilcox-for-skewed-bois.html#cb209-8"></a><span class="co"># Average annual R2 tuition cost: 33,958.16</span></span></code></pre></div>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="wilcox-for-skewed-bois.html#cb210-1"></a><span class="co"># white people proportion and unemployment</span></span>
-<span id="cb210-2"><a href="wilcox-for-skewed-bois.html#cb210-2"></a></span>
-<span id="cb210-3"><a href="wilcox-for-skewed-bois.html#cb210-3"></a><span class="kw">cor</span>(demR<span class="op">$</span>ugds_white, finR<span class="op">$</span>unemp_rate, <span class="dt">use =</span> <span class="st">&#39;complete.obs&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="wilcox-for-skewed-bois.html#cb212-1"></a><span class="co"># cost differences between R1, R2.</span></span>
+<span id="cb212-2"><a href="wilcox-for-skewed-bois.html#cb212-2"></a></span>
+<span id="cb212-3"><a href="wilcox-for-skewed-bois.html#cb212-3"></a><span class="co"># t.test(finR$costt4_a~finR$ccbasic)</span></span>
+<span id="cb212-4"><a href="wilcox-for-skewed-bois.html#cb212-4"></a></span>
+<span id="cb212-5"><a href="wilcox-for-skewed-bois.html#cb212-5"></a><span class="co"># Cant do a t-test cause of the bimodal abomination</span></span>
+<span id="cb212-6"><a href="wilcox-for-skewed-bois.html#cb212-6"></a></span>
+<span id="cb212-7"><a href="wilcox-for-skewed-bois.html#cb212-7"></a><span class="co"># Average annual R1 tuition cost: 41,571.97</span></span>
+<span id="cb212-8"><a href="wilcox-for-skewed-bois.html#cb212-8"></a><span class="co"># Average annual R2 tuition cost: 33,958.16</span></span></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="wilcox-for-skewed-bois.html#cb213-1"></a><span class="co"># white people proportion and unemployment</span></span>
+<span id="cb213-2"><a href="wilcox-for-skewed-bois.html#cb213-2"></a></span>
+<span id="cb213-3"><a href="wilcox-for-skewed-bois.html#cb213-3"></a><span class="kw">cor</span>(demR<span class="op">$</span>ugds_white, finR<span class="op">$</span>unemp_rate, <span class="dt">use =</span> <span class="st">&#39;complete.obs&#39;</span>)</span></code></pre></div>
 <pre><code>## [1] -0.4912212</code></pre>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="wilcox-for-skewed-bois.html#cb212-1"></a><span class="co"># results: White proportion is negatively associated with unemployment (r = -0.49)</span></span></code></pre></div>
-<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="wilcox-for-skewed-bois.html#cb213-1"></a><span class="co"># 3 White proportion moderates unemployment outcomes. </span></span>
-<span id="cb213-2"><a href="wilcox-for-skewed-bois.html#cb213-2"></a>predictor &lt;-<span class="st"> </span>finR<span class="op">$</span>ccbasic</span>
-<span id="cb213-3"><a href="wilcox-for-skewed-bois.html#cb213-3"></a>moderator &lt;-<span class="st"> </span>demR<span class="op">$</span>ugds_white</span>
-<span id="cb213-4"><a href="wilcox-for-skewed-bois.html#cb213-4"></a>interaction &lt;-<span class="st"> </span>predictor <span class="op">*</span><span class="st"> </span>moderator</span>
-<span id="cb213-5"><a href="wilcox-for-skewed-bois.html#cb213-5"></a>outcome &lt;-<span class="st"> </span>finR<span class="op">$</span>unemp_rate</span>
-<span id="cb213-6"><a href="wilcox-for-skewed-bois.html#cb213-6"></a></span>
-<span id="cb213-7"><a href="wilcox-for-skewed-bois.html#cb213-7"></a>wlm &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">formula =</span> outcome <span class="op">~</span><span class="st"> </span>predictor <span class="op">+</span><span class="st"> </span>moderator <span class="op">+</span><span class="st"> </span>interaction)</span>
-<span id="cb213-8"><a href="wilcox-for-skewed-bois.html#cb213-8"></a>wlm</span></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="wilcox-for-skewed-bois.html#cb215-1"></a><span class="co"># results: White proportion is negatively associated with unemployment (r = -0.49)</span></span></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="wilcox-for-skewed-bois.html#cb216-1"></a><span class="co"># 3 White proportion moderates unemployment outcomes. </span></span>
+<span id="cb216-2"><a href="wilcox-for-skewed-bois.html#cb216-2"></a>predictor &lt;-<span class="st"> </span>finR<span class="op">$</span>ccbasic</span>
+<span id="cb216-3"><a href="wilcox-for-skewed-bois.html#cb216-3"></a>moderator &lt;-<span class="st"> </span>demR<span class="op">$</span>ugds_white</span>
+<span id="cb216-4"><a href="wilcox-for-skewed-bois.html#cb216-4"></a>interaction &lt;-<span class="st"> </span>predictor <span class="op">*</span><span class="st"> </span>moderator</span>
+<span id="cb216-5"><a href="wilcox-for-skewed-bois.html#cb216-5"></a>outcome &lt;-<span class="st"> </span>finR<span class="op">$</span>unemp_rate</span>
+<span id="cb216-6"><a href="wilcox-for-skewed-bois.html#cb216-6"></a></span>
+<span id="cb216-7"><a href="wilcox-for-skewed-bois.html#cb216-7"></a>wlm &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">formula =</span> outcome <span class="op">~</span><span class="st"> </span>predictor <span class="op">+</span><span class="st"> </span>moderator <span class="op">+</span><span class="st"> </span>interaction)</span>
+<span id="cb216-8"><a href="wilcox-for-skewed-bois.html#cb216-8"></a>wlm</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = outcome ~ predictor + moderator + interaction)
@@ -371,13 +376,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Coefficients:
 ## (Intercept)    predictor    moderator  interaction  
 ##     -6.5218       0.6783      10.8193      -0.7733</code></pre>
-<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="wilcox-for-skewed-bois.html#cb215-1"></a><span class="kw">plot</span>(predictor, outcome, <span class="dt">type=</span><span class="st">&quot;n&quot;</span>)</span>
-<span id="cb215-2"><a href="wilcox-for-skewed-bois.html#cb215-2"></a><span class="kw">abline</span>(<span class="op">-</span><span class="fl">6.5218</span>, <span class="fl">0.67</span>)</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="wilcox-for-skewed-bois.html#cb216-1"></a><span class="co">#abline(y, x, lty=2, col=&quot;red&quot;)</span></span>
-<span id="cb216-2"><a href="wilcox-for-skewed-bois.html#cb216-2"></a></span>
-<span id="cb216-3"><a href="wilcox-for-skewed-bois.html#cb216-3"></a><span class="co">#points(predictor[finR$ccbasic==15], outcome[finR$ccbasic==16])</span></span>
-<span id="cb216-4"><a href="wilcox-for-skewed-bois.html#cb216-4"></a><span class="co"># points(predictor[race==1], outcome[race==1], col=&quot;red&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="wilcox-for-skewed-bois.html#cb218-1"></a><span class="kw">plot</span>(predictor, outcome, <span class="dt">type=</span><span class="st">&quot;n&quot;</span>)</span>
+<span id="cb218-2"><a href="wilcox-for-skewed-bois.html#cb218-2"></a><span class="kw">abline</span>(<span class="op">-</span><span class="fl">6.5218</span>, <span class="fl">0.67</span>)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="wilcox-for-skewed-bois.html#cb219-1"></a><span class="co">#abline(y, x, lty=2, col=&quot;red&quot;)</span></span>
+<span id="cb219-2"><a href="wilcox-for-skewed-bois.html#cb219-2"></a></span>
+<span id="cb219-3"><a href="wilcox-for-skewed-bois.html#cb219-3"></a><span class="co">#points(predictor[finR$ccbasic==15], outcome[finR$ccbasic==16])</span></span>
+<span id="cb219-4"><a href="wilcox-for-skewed-bois.html#cb219-4"></a><span class="co"># points(predictor[race==1], outcome[race==1], col=&quot;red&quot;)</span></span></code></pre></div>
 
 </div>
 </div>
@@ -389,7 +394,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="final-words.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="discussion.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -442,448 +447,3 @@ gitbook.start({
 </body>
 
 </html>
-=======
-<!DOCTYPE html>
-<html lang="" xml:lang="">
-<head>
-
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Section 5 Wilcox for skewed bois | A Minimal Book Example</title>
-  <meta name="description" content="An analysis of data from the College Scorecard API, which focuses on differences identified between institutions with R1 and R2 carnegie classifications. This project was completed to satisfy the requirements of a project assigned to students in the Fall 2020 Data Munging and Exploratory Data Analysis at New College of Florida." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
-
-  <meta property="og:title" content="Section 5 Wilcox for skewed bois | A Minimal Book Example" />
-  <meta property="og:type" content="book" />
-  
-  
-  <meta property="og:description" content="An analysis of data from the College Scorecard API, which focuses on differences identified between institutions with R1 and R2 carnegie classifications. This project was completed to satisfy the requirements of a project assigned to students in the Fall 2020 Data Munging and Exploratory Data Analysis at New College of Florida." />
-  <meta name="github-repo" content="benjaminweisman/Data-Munging" />
-
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Section 5 Wilcox for skewed bois | A Minimal Book Example" />
-  
-  <meta name="twitter:description" content="An analysis of data from the College Scorecard API, which focuses on differences identified between institutions with R1 and R2 carnegie classifications. This project was completed to satisfy the requirements of a project assigned to students in the Fall 2020 Data Munging and Exploratory Data Analysis at New College of Florida." />
-  
-
-<meta name="author" content="Sara Haman, Adam Lashley, Reilly Stanton, Benjamin Weisman" />
-
-
-<meta name="date" content="2020-10-16" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-  
-  
-<link rel="prev" href="analysis.html"/>
-<link rel="next" href="final-words.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
-<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
-
-
-
-
-
-
-
-
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
-<script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
-
-
-<style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
-
-<link rel="stylesheet" href="style.css" type="text/css" />
-</head>
-
-<body>
-
-
-
-  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
-
-    <div class="book-summary">
-      <nav role="navigation">
-
-<ul class="summary">
-<li><a href="./">A Minimal Book Example</a></li>
-
-<li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<li class="chapter" data-level="2" data-path="data-acquisition.html"><a href="data-acquisition.html"><i class="fa fa-check"></i><b>2</b> Data Acquisition</a><ul>
-<li class="chapter" data-level="2.1" data-path="data-acquisition.html"><a href="data-acquisition.html#set-up-and-api-exploration"><i class="fa fa-check"></i><b>2.1</b> Set-up and API Exploration</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="data-acquisition.html"><a href="data-acquisition.html#project-directory-management"><i class="fa fa-check"></i><b>2.1.1</b> Project Directory Management</a></li>
-<li class="chapter" data-level="2.1.2" data-path="data-acquisition.html"><a href="data-acquisition.html#api-exploration"><i class="fa fa-check"></i><b>2.1.2</b> API Exploration</a></li>
-</ul></li>
-<li class="chapter" data-level="2.2" data-path="data-acquisition.html"><a href="data-acquisition.html#the-rscorecard-and-tidyverse-approach"><i class="fa fa-check"></i><b>2.2</b> The <code>rscorecard</code> and <code>tidyverse</code> approach</a></li>
-<li class="chapter" data-level="2.3" data-path="data-acquisition.html"><a href="data-acquisition.html#finances"><i class="fa fa-check"></i><b>2.3</b> Finances</a></li>
-<li class="chapter" data-level="2.4" data-path="data-acquisition.html"><a href="data-acquisition.html#demographics"><i class="fa fa-check"></i><b>2.4</b> Demographics</a></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="data-clean.html"><a href="data-clean.html"><i class="fa fa-check"></i><b>3</b> Data Clean</a></li>
-<li class="chapter" data-level="4" data-path="analysis.html"><a href="analysis.html"><i class="fa fa-check"></i><b>4</b> Analysis</a><ul>
-<li class="chapter" data-level="4.1" data-path="analysis.html"><a href="analysis.html#import"><i class="fa fa-check"></i><b>4.1</b> Import</a></li>
-<li class="chapter" data-level="4.2" data-path="analysis.html"><a href="analysis.html#transform-datasets"><i class="fa fa-check"></i><b>4.2</b> Transform Datasets</a></li>
-<li class="chapter" data-level="4.3" data-path="analysis.html"><a href="analysis.html#descriptive-time"><i class="fa fa-check"></i><b>4.3</b> Descriptive time!</a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="wilcox-for-skewed-bois.html"><a href="wilcox-for-skewed-bois.html"><i class="fa fa-check"></i><b>5</b> Wilcox for skewed bois</a><ul>
-<li class="chapter" data-level="5.1" data-path="wilcox-for-skewed-bois.html"><a href="wilcox-for-skewed-bois.html#main-model"><i class="fa fa-check"></i><b>5.1</b> Main model</a><ul>
-<li class="chapter" data-level="5.1.1" data-path="wilcox-for-skewed-bois.html"><a href="wilcox-for-skewed-bois.html#decomposition"><i class="fa fa-check"></i><b>5.1.1</b> Decomposition</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>6</b> Final Words</a></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
-<li class="divider"></li>
-<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-
-</ul>
-
-      </nav>
-    </div>
-
-    <div class="book-body">
-      <div class="body-inner">
-        <div class="book-header" role="navigation">
-          <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Minimal Book Example</a>
-          </h1>
-        </div>
-
-        <div class="page-wrapper" tabindex="-1" role="main">
-          <div class="page-inner">
-
-            <section class="normal" id="section-">
-<div id="wilcox-for-skewed-bois" class="section level1">
-<h1><span class="header-section-number">Section 5</span> Wilcox for skewed bois</h1>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="wilcox-for-skewed-bois.html#cb189-1"></a><span class="co"># R1 associated with student outcomes</span></span>
-<span id="cb189-2"><a href="wilcox-for-skewed-bois.html#cb189-2"></a><span class="co"># debt, skewed to all hell so non parametric t-test.  </span></span>
-<span id="cb189-3"><a href="wilcox-for-skewed-bois.html#cb189-3"></a><span class="kw">wilcox.test</span>(<span class="dt">formula=</span>finR<span class="op">$</span>grad_debt_mdn<span class="op">~</span>finR<span class="op">$</span>ccbasic)</span></code></pre></div>
-<pre><code>## 
-##  Wilcoxon rank sum test with continuity correction
-## 
-## data:  finR$grad_debt_mdn by finR$ccbasic
-## W = 982, p-value = 1.636e-06
-## alternative hypothesis: true location shift is not equal to 0</code></pre>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="wilcox-for-skewed-bois.html#cb191-1"></a><span class="co"># debt for R2 unis significantly differed from R1 students.</span></span>
-<span id="cb191-2"><a href="wilcox-for-skewed-bois.html#cb191-2"></a></span>
-<span id="cb191-3"><a href="wilcox-for-skewed-bois.html#cb191-3"></a><span class="co"># non-working</span></span>
-<span id="cb191-4"><a href="wilcox-for-skewed-bois.html#cb191-4"></a><span class="kw">t.test</span>(finR<span class="op">$</span>unemp_rate<span class="op">~</span>finR<span class="op">$</span>ccbasic)</span></code></pre></div>
-<pre><code>## 
-##  Welch Two Sample t-test
-## 
-## data:  finR$unemp_rate by finR$ccbasic
-## t = -2.6055, df = 118.36, p-value = 0.01035
-## alternative hypothesis: true difference in means is not equal to 0
-## 95 percent confidence interval:
-##  -0.44056117 -0.06007378
-## sample estimates:
-## mean in group 15 mean in group 16 
-##         3.229683         3.480000</code></pre>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="wilcox-for-skewed-bois.html#cb193-1"></a><span class="co"># cost differences between R1, R2.</span></span>
-<span id="cb193-2"><a href="wilcox-for-skewed-bois.html#cb193-2"></a></span>
-<span id="cb193-3"><a href="wilcox-for-skewed-bois.html#cb193-3"></a><span class="co"># t.test(finR$costt4_a~finR$ccbasic)</span></span>
-<span id="cb193-4"><a href="wilcox-for-skewed-bois.html#cb193-4"></a></span>
-<span id="cb193-5"><a href="wilcox-for-skewed-bois.html#cb193-5"></a><span class="co"># Cant do a t-test cause of the bimodal abomination</span></span>
-<span id="cb193-6"><a href="wilcox-for-skewed-bois.html#cb193-6"></a></span>
-<span id="cb193-7"><a href="wilcox-for-skewed-bois.html#cb193-7"></a><span class="co"># Average annual R1 tuition cost: 41,571.97</span></span>
-<span id="cb193-8"><a href="wilcox-for-skewed-bois.html#cb193-8"></a><span class="co"># Average annual R2 tuition cost: 33,958.16</span></span></code></pre></div>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="wilcox-for-skewed-bois.html#cb194-1"></a><span class="co"># white people proportion and unemployment</span></span>
-<span id="cb194-2"><a href="wilcox-for-skewed-bois.html#cb194-2"></a></span>
-<span id="cb194-3"><a href="wilcox-for-skewed-bois.html#cb194-3"></a><span class="kw">cor</span>(demR<span class="op">$</span>ugds_white, finR<span class="op">$</span>unemp_rate, <span class="dt">use =</span> <span class="st">&#39;complete.obs&#39;</span>)</span></code></pre></div>
-<pre><code>## [1] -0.4912212</code></pre>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="wilcox-for-skewed-bois.html#cb196-1"></a><span class="co"># results: White proportion is negatively associated with unemployment (r = -0.49)</span></span></code></pre></div>
-<div id="main-model" class="section level2">
-<h2><span class="header-section-number">5.1</span> Main model</h2>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="wilcox-for-skewed-bois.html#cb197-1"></a><span class="kw">ggplot</span>(finR, <span class="kw">aes</span>(unemp_rate, demR<span class="op">$</span>ugds_white,<span class="dt">colour=</span>ccbasic)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>)</span></code></pre></div>
-<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<pre><code>## Warning: Removed 4 rows containing non-finite values (stat_smooth).</code></pre>
-<pre><code>## Warning: Removed 4 rows containing missing values (geom_point).</code></pre>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="wilcox-for-skewed-bois.html#cb201-1"></a><span class="co"># 3 White proportion moderates unemployment outcomes. </span></span>
-<span id="cb201-2"><a href="wilcox-for-skewed-bois.html#cb201-2"></a>predictor &lt;-<span class="st"> </span>finR<span class="op">$</span>ccbasic</span>
-<span id="cb201-3"><a href="wilcox-for-skewed-bois.html#cb201-3"></a>moderator &lt;-<span class="st"> </span>demR<span class="op">$</span>ugds_white</span>
-<span id="cb201-4"><a href="wilcox-for-skewed-bois.html#cb201-4"></a>interaction &lt;-<span class="st"> </span>predictor <span class="op">*</span><span class="st"> </span>moderator</span>
-<span id="cb201-5"><a href="wilcox-for-skewed-bois.html#cb201-5"></a>outcome &lt;-<span class="st"> </span>finR<span class="op">$</span>unemp_rate</span>
-<span id="cb201-6"><a href="wilcox-for-skewed-bois.html#cb201-6"></a></span>
-<span id="cb201-7"><a href="wilcox-for-skewed-bois.html#cb201-7"></a>wlm &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">formula =</span> outcome <span class="op">~</span><span class="st"> </span>predictor <span class="op">+</span><span class="st"> </span>moderator <span class="op">+</span><span class="st"> </span>interaction)</span>
-<span id="cb201-8"><a href="wilcox-for-skewed-bois.html#cb201-8"></a><span class="kw">summary</span>(wlm)</span></code></pre></div>
-<pre><code>## 
-## Call:
-## lm(formula = outcome ~ predictor + moderator + interaction)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -1.15537 -0.30223 -0.02668  0.21300  1.58625 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)   
-## (Intercept)  -6.5218     3.7522  -1.738   0.0848 . 
-## predictor     0.6783     0.2399   2.828   0.0055 **
-## moderator    10.8193     6.4847   1.668   0.0978 . 
-## interaction  -0.7733     0.4140  -1.868   0.0642 . 
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 0.4569 on 120 degrees of freedom
-##   (4 observations deleted due to missingness)
-## Multiple R-squared:  0.3171, Adjusted R-squared:    0.3 
-## F-statistic: 18.57 on 3 and 120 DF,  p-value: 5.819e-10</code></pre>
-<div id="decomposition" class="section level3">
-<h3><span class="header-section-number">5.1.1</span> Decomposition</h3>
-<div id="simple-model" class="section level4">
-<h4><span class="header-section-number">5.1.1.1</span> Simple model</h4>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="wilcox-for-skewed-bois.html#cb203-1"></a>predictor &lt;-<span class="st"> </span>finR<span class="op">$</span>ccbasic</span>
-<span id="cb203-2"><a href="wilcox-for-skewed-bois.html#cb203-2"></a>outcome &lt;-<span class="st"> </span>finR<span class="op">$</span>unemp_rate</span>
-<span id="cb203-3"><a href="wilcox-for-skewed-bois.html#cb203-3"></a>simplelm &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">formula =</span> outcome <span class="op">~</span><span class="st"> </span>predictor)</span>
-<span id="cb203-4"><a href="wilcox-for-skewed-bois.html#cb203-4"></a><span class="kw">summary</span>(simplelm)</span></code></pre></div>
-<pre><code>## 
-## Call:
-## lm(formula = outcome ~ predictor)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -1.03968 -0.34242 -0.08968  0.22008  1.85000 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)  
-## (Intercept) -0.52508    1.48566  -0.353   0.7244  
-## predictor    0.25032    0.09585   2.612   0.0101 *
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 0.5336 on 122 degrees of freedom
-##   (4 observations deleted due to missingness)
-## Multiple R-squared:  0.05294,    Adjusted R-squared:  0.04518 
-## F-statistic:  6.82 on 1 and 122 DF,  p-value: 0.01014</code></pre>
-</div>
-<div id="moderator-direct-effect" class="section level4">
-<h4><span class="header-section-number">5.1.1.2</span> Moderator direct effect</h4>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="wilcox-for-skewed-bois.html#cb205-1"></a>predictor &lt;-<span class="st"> </span>demR<span class="op">$</span>ugds_white</span>
-<span id="cb205-2"><a href="wilcox-for-skewed-bois.html#cb205-2"></a>outcome &lt;-<span class="st"> </span>finR<span class="op">$</span>unemp_rate</span>
-<span id="cb205-3"><a href="wilcox-for-skewed-bois.html#cb205-3"></a>moderatorlm &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">formula =</span> outcome <span class="op">~</span><span class="st"> </span>predictor)</span>
-<span id="cb205-4"><a href="wilcox-for-skewed-bois.html#cb205-4"></a><span class="kw">summary</span>(moderatorlm)</span></code></pre></div>
-<pre><code>## 
-## Call:
-## lm(formula = outcome ~ predictor)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -1.35598 -0.35460 -0.04082  0.21356  1.34890 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)   4.0509     0.1200  33.761  &lt; 2e-16 ***
-## predictor    -1.2801     0.2055  -6.229 6.93e-09 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 0.4776 on 122 degrees of freedom
-##   (4 observations deleted due to missingness)
-## Multiple R-squared:  0.2413, Adjusted R-squared:  0.2351 
-## F-statistic:  38.8 on 1 and 122 DF,  p-value: 6.927e-09</code></pre>
-</div>
-<div id="interaction-effect" class="section level4">
-<h4><span class="header-section-number">5.1.1.3</span> Interaction Effect</h4>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="wilcox-for-skewed-bois.html#cb207-1"></a>predictor &lt;-<span class="st"> </span>finR<span class="op">$</span>ccbasic</span>
-<span id="cb207-2"><a href="wilcox-for-skewed-bois.html#cb207-2"></a>moderator &lt;-<span class="st"> </span>demR<span class="op">$</span>ugds_white</span>
-<span id="cb207-3"><a href="wilcox-for-skewed-bois.html#cb207-3"></a>interaction &lt;-<span class="st"> </span>predictor <span class="op">*</span><span class="st"> </span>moderator</span>
-<span id="cb207-4"><a href="wilcox-for-skewed-bois.html#cb207-4"></a>outcome &lt;-<span class="st"> </span>finR<span class="op">$</span>unemp_rate</span>
-<span id="cb207-5"><a href="wilcox-for-skewed-bois.html#cb207-5"></a></span>
-<span id="cb207-6"><a href="wilcox-for-skewed-bois.html#cb207-6"></a>interactionlm &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">formula =</span> outcome <span class="op">~</span><span class="st"> </span>interaction)</span>
-<span id="cb207-7"><a href="wilcox-for-skewed-bois.html#cb207-7"></a><span class="kw">summary</span>(moderatorlm)</span></code></pre></div>
-<pre><code>## 
-## Call:
-## lm(formula = outcome ~ predictor)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -1.35598 -0.35460 -0.04082  0.21356  1.34890 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)   4.0509     0.1200  33.761  &lt; 2e-16 ***
-## predictor    -1.2801     0.2055  -6.229 6.93e-09 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 0.4776 on 122 degrees of freedom
-##   (4 observations deleted due to missingness)
-## Multiple R-squared:  0.2413, Adjusted R-squared:  0.2351 
-## F-statistic:  38.8 on 1 and 122 DF,  p-value: 6.927e-09</code></pre>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="wilcox-for-skewed-bois.html#cb209-1"></a><span class="co"># cost differences between R1, R2.</span></span>
-<span id="cb209-2"><a href="wilcox-for-skewed-bois.html#cb209-2"></a></span>
-<span id="cb209-3"><a href="wilcox-for-skewed-bois.html#cb209-3"></a><span class="co"># t.test(finR$costt4_a~finR$ccbasic)</span></span>
-<span id="cb209-4"><a href="wilcox-for-skewed-bois.html#cb209-4"></a></span>
-<span id="cb209-5"><a href="wilcox-for-skewed-bois.html#cb209-5"></a><span class="co"># Cant do a t-test cause of the bimodal abomination</span></span>
-<span id="cb209-6"><a href="wilcox-for-skewed-bois.html#cb209-6"></a></span>
-<span id="cb209-7"><a href="wilcox-for-skewed-bois.html#cb209-7"></a><span class="co"># Average annual R1 tuition cost: 41,571.97</span></span>
-<span id="cb209-8"><a href="wilcox-for-skewed-bois.html#cb209-8"></a><span class="co"># Average annual R2 tuition cost: 33,958.16</span></span></code></pre></div>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="wilcox-for-skewed-bois.html#cb210-1"></a><span class="co"># white people proportion and unemployment</span></span>
-<span id="cb210-2"><a href="wilcox-for-skewed-bois.html#cb210-2"></a></span>
-<span id="cb210-3"><a href="wilcox-for-skewed-bois.html#cb210-3"></a><span class="kw">cor</span>(demR<span class="op">$</span>ugds_white, finR<span class="op">$</span>unemp_rate, <span class="dt">use =</span> <span class="st">&#39;complete.obs&#39;</span>)</span></code></pre></div>
-<pre><code>## [1] -0.4912212</code></pre>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="wilcox-for-skewed-bois.html#cb212-1"></a><span class="co"># results: White proportion is negatively associated with unemployment (r = -0.49)</span></span></code></pre></div>
-<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="wilcox-for-skewed-bois.html#cb213-1"></a><span class="co"># 3 White proportion moderates unemployment outcomes. </span></span>
-<span id="cb213-2"><a href="wilcox-for-skewed-bois.html#cb213-2"></a>predictor &lt;-<span class="st"> </span>finR<span class="op">$</span>ccbasic</span>
-<span id="cb213-3"><a href="wilcox-for-skewed-bois.html#cb213-3"></a>moderator &lt;-<span class="st"> </span>demR<span class="op">$</span>ugds_white</span>
-<span id="cb213-4"><a href="wilcox-for-skewed-bois.html#cb213-4"></a>interaction &lt;-<span class="st"> </span>predictor <span class="op">*</span><span class="st"> </span>moderator</span>
-<span id="cb213-5"><a href="wilcox-for-skewed-bois.html#cb213-5"></a>outcome &lt;-<span class="st"> </span>finR<span class="op">$</span>unemp_rate</span>
-<span id="cb213-6"><a href="wilcox-for-skewed-bois.html#cb213-6"></a></span>
-<span id="cb213-7"><a href="wilcox-for-skewed-bois.html#cb213-7"></a>wlm &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">formula =</span> outcome <span class="op">~</span><span class="st"> </span>predictor <span class="op">+</span><span class="st"> </span>moderator <span class="op">+</span><span class="st"> </span>interaction)</span>
-<span id="cb213-8"><a href="wilcox-for-skewed-bois.html#cb213-8"></a>wlm</span></code></pre></div>
-<pre><code>## 
-## Call:
-## lm(formula = outcome ~ predictor + moderator + interaction)
-## 
-## Coefficients:
-## (Intercept)    predictor    moderator  interaction  
-##     -6.5218       0.6783      10.8193      -0.7733</code></pre>
-<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="wilcox-for-skewed-bois.html#cb215-1"></a><span class="kw">plot</span>(predictor, outcome, <span class="dt">type=</span><span class="st">&quot;n&quot;</span>)</span>
-<span id="cb215-2"><a href="wilcox-for-skewed-bois.html#cb215-2"></a><span class="kw">abline</span>(<span class="op">-</span><span class="fl">6.5218</span>, <span class="fl">0.67</span>)</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="wilcox-for-skewed-bois.html#cb216-1"></a><span class="co">#abline(y, x, lty=2, col=&quot;red&quot;)</span></span>
-<span id="cb216-2"><a href="wilcox-for-skewed-bois.html#cb216-2"></a></span>
-<span id="cb216-3"><a href="wilcox-for-skewed-bois.html#cb216-3"></a><span class="co">#points(predictor[finR$ccbasic==15], outcome[finR$ccbasic==16])</span></span>
-<span id="cb216-4"><a href="wilcox-for-skewed-bois.html#cb216-4"></a><span class="co"># points(predictor[race==1], outcome[race==1], col=&quot;red&quot;)</span></span></code></pre></div>
-
-</div>
-</div>
-</div>
-</div>
-            </section>
-
-          </div>
-        </div>
-      </div>
-<a href="analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="final-words.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
-    </div>
-  </div>
-<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
-<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
-<script>
-gitbook.require(["gitbook"], function(gitbook) {
-gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/04-Analysis.Rmd",
-"text": "Edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
-"toc": {
-"collapse": "subsection"
-}
-});
-});
-</script>
-
-</body>
-
-</html>
->>>>>>> 04d6e2aa84177beab3ade9b06dff08b7d1f3fd81

@@ -106,7 +106,7 @@ As the message above states, once the API key is accessed, the user can append q
 
 These functions are mentioned and explained here because they what we use to extract data on **Finances**, **Demographics**, and **Death Rates** from schools that classify as **R1** and **R2** research institutions.
 
-## Finances
+### Finances
 
 
 
@@ -156,7 +156,7 @@ Finance <- rbind(F_latest, F_2018, F_2017, F_2016, F_2015)
 write.csv(Finance, "Proj1Data/Financials15to19.csv")
 ```
 
-## Demographics
+### Demographics
 
 ```{r}
 D_latest <- sc_init() %>%
@@ -204,7 +204,7 @@ Demographics <- rbind(D_latest, D_2018, D_2017, D_2016, D_2015)
 write.csv(Demographics, "Proj1Data/Demographics15to19.csv")
 ```
 
-## Death
+### Death
 
 ```{r}
 Dth_latest <- sc_init() %>%
