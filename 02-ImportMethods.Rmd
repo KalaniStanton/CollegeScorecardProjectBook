@@ -1,4 +1,4 @@
-# Data Acquisition
+# Data Acquisition {#import}
 
 ```{r, message = FALSE}
 library(plyr)
@@ -203,6 +203,8 @@ Demographics <- rbind(D_latest, D_2018, D_2017, D_2016, D_2015)
 ```{r}
 write.csv(Demographics, "Proj1Data/Demographics15to19.csv")
 ```
+
+## Death
 
 ```{r}
 Dth_latest <- sc_init() %>%
