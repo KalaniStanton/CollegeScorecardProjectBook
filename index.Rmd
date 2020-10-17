@@ -20,7 +20,7 @@ This project was completed to satisfy the requirements of a project assigned to 
 This document is broken down into sections pertaining to the discrete steps in the process of exploratory data analysis. 
 
 In section \@ref(intro) we give an overview of this project, followed by an explanation of our process for selecting variables.
-Next, in section \@ref(import)  we demonstrate our initial ~~failed~~ attempts at pulling the data directly from the API, and explain why we chose to pivot to using the `{rscorecard}` package for querying our data from the API. 
+Next, we demonstrate our initial ~~failed~~ attempts at pulling the data directly from the API, and explain why we chose to pivot to using the `{rscorecard}` package for querying our data from the API in section \@ref(import). 
 Once the data is imported, we assess the quality of the data in section \@ref(clean) and rename some of the variables to make the data set, and our later analysis, easier to interpret. 
 Following this, section \@ref(analysis) contains the statistical analysis of the data, wherein we investigate the relationship between R1 and R2 Carnegie classification status and unemployment rates. This model is the modified by adding the proportion of white students as a moderator, which reveals interesting results. 
 Lastly, in section \@ref(discussion), we present visualizations made using the data from the College Scorecard API and elaborate on the statistical analyses performed in the previous section.
