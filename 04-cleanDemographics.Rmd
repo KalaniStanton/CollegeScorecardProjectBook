@@ -1,9 +1,7 @@
 # Data Clean {#clean}
 
 ```{r}
-
 library(tidyverse)
-
 ```
 
 Accessibility

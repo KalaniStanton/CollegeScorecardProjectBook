@@ -1,21 +1,6 @@
 # Introduction {#intro}
 
-You can label chapter and section titles using `{#label}` after them, e.g., we can reference Chapter \@ref(intro). If you do not manually label them, there will be automatic labels anyway, e.g., Chapter \@ref(methods).
+The Carnegie Classification system classifies American universities by their type and their research productivity. Type is determined by the range of degrees a university awards. Institutions which award at least 20 research-focused doctoral degrees a year are categorized as doctoral universities. Within doctoral universities, schools are given secondary ratings commensurate with the extent of their research expenditures. These ratings, which include R1, R2, and D/PU,  are colloquially referenced as a measure of prestige. R1 schools, or schools with “very high research activity”, are prototypically represented by old and infamous universities, such as Harvard, and flagship state institutions. However, an R1 designation is not indicative of the quality of research produced, nor the caliber of education one receives at the school. The two factors which influence a school’s “R” status are the ratio of doctoral degrees awarded over faculty count, and the monetary amount the school invests into research. This is to say, an institution could conduct horrible, hackneyed research that never gets published except in predatory journals and still earn an R1 designation if they spend at least 5 million dollars on research expenditures (The Carnegie Classification of Institutes of Higher Education, 2018). Of course, this situation is not realistically feasible. Donors would abandon a school producing blatantly unproductive research. Yet, the reputation of a school is, at some level, intertwined with their “R” designation. When Dartmouth’s designation was decremented in 2016, media outlets reported on it as if it were shameful (Anderson, 2016). 
 
-Figures and tables with captions will be placed in `figure` and `table` environments, respectively.
+Without context for how Carnegie Classifications are assigned, the R1 designation may seem “superior” to R2. Our group chose to investigate the influence of the Carnegie Classification of an institution on student outcomes; essentially, if attending an R1 school provides a tangible benefit over attending an R2. Furthermore, we explore features of R1 and R2 universities to determine which variables they significantly differ on.
 
-```{r nice-fig, fig.cap='Here is a nice figure!', out.width='80%', fig.asp=.75, fig.align='center'}
-par(mar = c(4, 4, .1, .1))
-plot(pressure, type = 'b', pch = 19)
-```
-
-Reference a figure by its code chunk label with the `fig:` prefix, e.g., see Figure \@ref(fig:nice-fig). Similarly, you can reference tables generated from `knitr::kable()`, e.g., see Table \@ref(tab:nice-tab).
-
-```{r nice-tab, tidy=FALSE}
-knitr::kable(
-  head(iris, 20), caption = 'Here is a nice table!',
-  booktabs = TRUE
-)
-```
-
-You can write citations, too. For example, we are using the **bookdown** package [@R-bookdown] in this sample book, which was built on top of R Markdown and **knitr** [@xie2015].

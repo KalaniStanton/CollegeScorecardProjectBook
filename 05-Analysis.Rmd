@@ -20,7 +20,6 @@ dem$r_status <- factor(dem$r_status, levels = c("R1", "R2"), labels = c(1,2))
 
 ```
 
- Hello world
 ## Transform Datasets
 ```{r}
 
@@ -42,11 +41,15 @@ finR <- subset(finR, university %in% demR$university)
 summary(demR1$white)
 skewness(demR1$white)
 kurtosis(demR1$white)
+```
 
+```{r}
 summary(demR2$white)
 skewness(demR2$white)
 kurtosis(demR2$white)
+```
 
+```{r}
 # Cost
 print('Tuition cost')
 
@@ -59,8 +62,10 @@ cost_hist1 <- ggplot(finR1, aes(x =costt4_a)) +
        y = "Frequency") 
 cost_hist1
 
+```
 
-summary(finR2$costt4_a)
+```{r}
+summary(finR2$costt4_a) %>% 
 cost_hist2 <- ggplot(finR2, aes(x =costt4_a)) + 
   geom_histogram(bins = 40, color = "black", fill = "pink") +
   labs(title = "Distribution of Tuition Costs at R2s", 
@@ -68,7 +73,9 @@ cost_hist2 <- ggplot(finR2, aes(x =costt4_a)) +
        x = "Cost (in American dollars)", 
        y = "Frequency") 
 cost_hist2
+```
 
+```{r}
 # Students debt
 print('Student debt')
 summary(finR1$grad_debt_mdn)
@@ -79,7 +86,9 @@ debt_hist1 <- ggplot(finR1, aes(x = grad_debt_mdn)) +
        x = "Median Debt (in American dollars)", 
        y = "Frequency") 
 debt_hist1
+```
 
+```{r}
 summary(finR2$grad_debt_mdn)
 debt_hist1 <- ggplot(finR2, aes(x = grad_debt_mdn)) + 
   geom_histogram(bins = 40, color = "black", fill = "cadetblue3") +
@@ -88,7 +97,9 @@ debt_hist1 <- ggplot(finR2, aes(x = grad_debt_mdn)) +
        x = "Median Debt (in American dollars)", 
        y = "Frequency") 
 debt_hist1
+```
 
+```{r}
 # Unemployment
 print('Unemployment Rate')
 summary(finR1$unemp_rate)
@@ -99,7 +110,9 @@ unemp_hist1 <- ggplot(finR1, aes(x = unemp_rate)) +
        x = "Unemployment Rate", 
        y = "Frequency") 
 unemp_hist1
+```
 
+```{r}
 summary(finR2$unemp_rate)
 unemp_hist2 <- ggplot(finR2, aes(x = unemp_rate)) + 
   geom_histogram(bins = 40, color = "black", fill = "darkseagreen3") +
@@ -145,7 +158,6 @@ cor(demR$white, finR$unemp_rate, use = 'complete.obs')
 ggplot(finR, aes(unemp_rate, demR$white,colour=r_status)) + geom_point() + geom_smooth(method = "lm")
 ```
 
-## Main model
 ```{r}
 # 3 White proportion moderates unemployment outcomes. 
 predictor <- as.integer(finR$r_status)
