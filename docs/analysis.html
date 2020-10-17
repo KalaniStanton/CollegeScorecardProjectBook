@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Section 4 Analysis | An Exploratory Analysis of Data in the U.S. College Scorecard</title>
+  <title>Section 5 Analysis | An Exploratory Analysis of Data in the U.S. College Scorecard</title>
   <meta name="description" content="An analysis of data from the College Scorecard API, which focuses on differences identified between institutions with R1 and R2 carnegie classifications." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Section 4 Analysis | An Exploratory Analysis of Data in the U.S. College Scorecard" />
+  <meta property="og:title" content="Section 5 Analysis | An Exploratory Analysis of Data in the U.S. College Scorecard" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="KalaniStanton/CollegeScorecardProjectBook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Section 4 Analysis | An Exploratory Analysis of Data in the U.S. College Scorecard" />
+  <meta name="twitter:title" content="Section 5 Analysis | An Exploratory Analysis of Data in the U.S. College Scorecard" />
   
   <meta name="twitter:description" content="An analysis of data from the College Scorecard API, which focuses on differences identified between institutions with R1 and R2 carnegie classifications." />
   
@@ -158,18 +158,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2.3" data-path="import.html"><a href="import.html#death"><i class="fa fa-check"></i><b>2.2.3</b> Death</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="clean.html"><a href="clean.html"><i class="fa fa-check"></i><b>3</b> Data Clean</a></li>
-<li class="chapter" data-level="4" data-path="analysis.html"><a href="analysis.html"><i class="fa fa-check"></i><b>4</b> Analysis</a><ul>
-<li class="chapter" data-level="4.1" data-path="analysis.html"><a href="analysis.html#import-packages"><i class="fa fa-check"></i><b>4.1</b> Import Packages</a></li>
-<li class="chapter" data-level="4.2" data-path="analysis.html"><a href="analysis.html#transform-datasets"><i class="fa fa-check"></i><b>4.2</b> Transform Datasets</a></li>
-<li class="chapter" data-level="4.3" data-path="analysis.html"><a href="analysis.html#descriptives"><i class="fa fa-check"></i><b>4.3</b> Descriptives</a></li>
-<li class="chapter" data-level="4.4" data-path="analysis.html"><a href="analysis.html#wilcox-for-skewed-bois"><i class="fa fa-check"></i><b>4.4</b> Wilcox for skewed bois</a></li>
-<li class="chapter" data-level="4.5" data-path="analysis.html"><a href="analysis.html#main-model"><i class="fa fa-check"></i><b>4.5</b> Main model</a></li>
-<li class="chapter" data-level="4.6" data-path="analysis.html"><a href="analysis.html#main-model-1"><i class="fa fa-check"></i><b>4.6</b> Main model</a><ul>
-<li class="chapter" data-level="4.6.1" data-path="analysis.html"><a href="analysis.html#decomposition"><i class="fa fa-check"></i><b>4.6.1</b> Decomposition</a></li>
+<li class="chapter" data-level="3" data-path="quality.html"><a href="quality.html"><i class="fa fa-check"></i><b>3</b> Data Quality</a><ul>
+<li class="chapter" data-level="3.1" data-path="quality.html"><a href="quality.html#a-section"><i class="fa fa-check"></i><b>3.1</b> A section</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="clean.html"><a href="clean.html"><i class="fa fa-check"></i><b>4</b> Data Clean</a></li>
+<li class="chapter" data-level="5" data-path="analysis.html"><a href="analysis.html"><i class="fa fa-check"></i><b>5</b> Analysis</a><ul>
+<li class="chapter" data-level="5.1" data-path="analysis.html"><a href="analysis.html#import-packages"><i class="fa fa-check"></i><b>5.1</b> Import Packages</a></li>
+<li class="chapter" data-level="5.2" data-path="analysis.html"><a href="analysis.html#descriptives"><i class="fa fa-check"></i><b>5.2</b> Descriptives</a></li>
+<li class="chapter" data-level="5.3" data-path="analysis.html"><a href="analysis.html#wilcox-for-skewed-bois"><i class="fa fa-check"></i><b>5.3</b> Wilcox for skewed bois</a></li>
+<li class="chapter" data-level="5.4" data-path="analysis.html"><a href="analysis.html#main-model"><i class="fa fa-check"></i><b>5.4</b> Main model</a></li>
+<li class="chapter" data-level="5.5" data-path="analysis.html"><a href="analysis.html#main-model-1"><i class="fa fa-check"></i><b>5.5</b> Main model</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="analysis.html"><a href="analysis.html#decomposition"><i class="fa fa-check"></i><b>5.5.1</b> Decomposition</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>5</b> Discussion</a></li>
+<li class="chapter" data-level="6" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>6</b> Discussion</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -192,9 +194,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="analysis" class="section level1">
-<h1><span class="header-section-number">Section 4</span> Analysis</h1>
+<h1><span class="header-section-number">Section 5</span> Analysis</h1>
 <div id="import-packages" class="section level2">
-<h2><span class="header-section-number">4.1</span> Import Packages</h2>
+<h2><span class="header-section-number">5.1</span> Import Packages</h2>
 <div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="analysis.html#cb65-1"></a><span class="kw">library</span>(moments)</span>
 <span id="cb65-2"><a href="analysis.html#cb65-2"></a><span class="kw">library</span>(dplyr)</span>
 <span id="cb65-3"><a href="analysis.html#cb65-3"></a><span class="kw">library</span>(tidyr)</span>
@@ -206,9 +208,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb66-3"><a href="analysis.html#cb66-3"></a></span>
 <span id="cb66-4"><a href="analysis.html#cb66-4"></a>fin<span class="op">$</span>r_status &lt;-<span class="st"> </span><span class="kw">factor</span>(fin<span class="op">$</span>r_status, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;R1&quot;</span>, <span class="st">&quot;R2&quot;</span>), <span class="dt">labels =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
 <span id="cb66-5"><a href="analysis.html#cb66-5"></a>dem<span class="op">$</span>r_status &lt;-<span class="st"> </span><span class="kw">factor</span>(dem<span class="op">$</span>r_status, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;R1&quot;</span>, <span class="st">&quot;R2&quot;</span>), <span class="dt">labels =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span></code></pre></div>
-</div>
-<div id="transform-datasets" class="section level2">
-<h2><span class="header-section-number">4.2</span> Transform Datasets</h2>
+<p>Hello world
+## Transform Datasets</p>
 <div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="analysis.html#cb67-1"></a>finR &lt;-<span class="st"> </span>fin[fin<span class="op">$</span>year <span class="op">==</span><span class="st"> &quot;latest&quot;</span>,]</span>
 <span id="cb67-2"><a href="analysis.html#cb67-2"></a>finR1 &lt;-<span class="st"> </span>fin[fin<span class="op">$</span>r_status <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>fin<span class="op">$</span>year <span class="op">==</span><span class="st"> &quot;latest&quot;</span>,]</span>
 <span id="cb67-3"><a href="analysis.html#cb67-3"></a>finR2 &lt;-<span class="st"> </span>fin[fin<span class="op">$</span>r_status <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">&amp;</span><span class="st"> </span>fin<span class="op">$</span>year <span class="op">==</span><span class="st"> &quot;latest&quot;</span>,]</span>
@@ -219,7 +220,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb67-8"><a href="analysis.html#cb67-8"></a>finR &lt;-<span class="st"> </span><span class="kw">subset</span>(finR, university <span class="op">%in%</span><span class="st"> </span>demR<span class="op">$</span>university)</span></code></pre></div>
 </div>
 <div id="descriptives" class="section level2">
-<h2><span class="header-section-number">4.3</span> Descriptives</h2>
+<h2><span class="header-section-number">5.2</span> Descriptives</h2>
 <div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="analysis.html#cb68-1"></a><span class="co"># Demographics</span></span>
 <span id="cb68-2"><a href="analysis.html#cb68-2"></a><span class="kw">summary</span>(demR1<span class="op">$</span>white)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
@@ -312,7 +313,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="CollegeScorecardEDA_files/figure-html/unnamed-chunk-27-6.png" width="672" /></p>
 </div>
 <div id="wilcox-for-skewed-bois" class="section level2">
-<h2><span class="header-section-number">4.4</span> Wilcox for skewed bois</h2>
+<h2><span class="header-section-number">5.3</span> Wilcox for skewed bois</h2>
 <div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="analysis.html#cb104-1"></a><span class="co"># R1 associated with student outcomes</span></span>
 <span id="cb104-2"><a href="analysis.html#cb104-2"></a><span class="co"># debt, skewed to all hell so non parametric t-test.  </span></span>
 <span id="cb104-3"><a href="analysis.html#cb104-3"></a><span class="kw">wilcox.test</span>(<span class="dt">formula=</span>finR<span class="op">$</span>grad_debt_mdn<span class="op">~</span>finR<span class="op">$</span>r_status)</span></code></pre></div>
@@ -352,12 +353,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="analysis.html#cb111-1"></a><span class="co"># results: White proportion is negatively associated with unemployment (r = -0.49)</span></span></code></pre></div>
 </div>
 <div id="main-model" class="section level2">
-<h2><span class="header-section-number">4.5</span> Main model</h2>
+<h2><span class="header-section-number">5.4</span> Main model</h2>
 <div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="analysis.html#cb112-1"></a><span class="kw">ggplot</span>(finR, <span class="kw">aes</span>(unemp_rate, demR<span class="op">$</span>white,<span class="dt">colour=</span>r_status)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>)</span></code></pre></div>
 <p><img src="CollegeScorecardEDA_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
 </div>
 <div id="main-model-1" class="section level2">
-<h2><span class="header-section-number">4.6</span> Main model</h2>
+<h2><span class="header-section-number">5.5</span> Main model</h2>
 <div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="analysis.html#cb113-1"></a><span class="co"># 3 White proportion moderates unemployment outcomes. </span></span>
 <span id="cb113-2"><a href="analysis.html#cb113-2"></a>predictor &lt;-<span class="st"> </span><span class="kw">as.integer</span>(finR<span class="op">$</span>r_status)</span>
 <span id="cb113-3"><a href="analysis.html#cb113-3"></a>moderator &lt;-<span class="st"> </span>demR<span class="op">$</span>white</span>
@@ -388,9 +389,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Multiple R-squared:  0.358,  Adjusted R-squared:  0.3504 
 ## F-statistic: 47.21 on 3 and 254 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div id="decomposition" class="section level3">
-<h3><span class="header-section-number">4.6.1</span> Decomposition</h3>
+<h3><span class="header-section-number">5.5.1</span> Decomposition</h3>
 <div id="simple-model" class="section level4">
-<h4><span class="header-section-number">4.6.1.1</span> Simple model</h4>
+<h4><span class="header-section-number">5.5.1.1</span> Simple model</h4>
 <div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="analysis.html#cb115-1"></a>predictor &lt;-<span class="st"> </span>finR<span class="op">$</span>r_status</span>
 <span id="cb115-2"><a href="analysis.html#cb115-2"></a>outcome &lt;-<span class="st"> </span>finR<span class="op">$</span>unemp_rate</span>
 <span id="cb115-3"><a href="analysis.html#cb115-3"></a>simplelm &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">formula =</span> outcome <span class="op">~</span><span class="st"> </span>predictor)</span>
@@ -416,7 +417,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## F-statistic: 7.904 on 1 and 256 DF,  p-value: 0.005315</code></pre>
 </div>
 <div id="moderator-direct-effect" class="section level4">
-<h4><span class="header-section-number">4.6.1.2</span> Moderator direct effect</h4>
+<h4><span class="header-section-number">5.5.1.2</span> Moderator direct effect</h4>
 <div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="analysis.html#cb117-1"></a>predictor &lt;-<span class="st"> </span>demR<span class="op">$</span>white</span>
 <span id="cb117-2"><a href="analysis.html#cb117-2"></a>outcome &lt;-<span class="st"> </span>finR<span class="op">$</span>unemp_rate</span>
 <span id="cb117-3"><a href="analysis.html#cb117-3"></a>moderatorlm &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">formula =</span> outcome <span class="op">~</span><span class="st"> </span>predictor)</span>
@@ -442,7 +443,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## F-statistic: 103.9 on 1 and 256 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <div id="interaction-effect" class="section level4">
-<h4><span class="header-section-number">4.6.1.3</span> Interaction Effect</h4>
+<h4><span class="header-section-number">5.5.1.3</span> Interaction Effect</h4>
 <div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="analysis.html#cb119-1"></a>predictor &lt;-<span class="st"> </span><span class="kw">as.integer</span>(finR<span class="op">$</span>r_status)</span>
 <span id="cb119-2"><a href="analysis.html#cb119-2"></a>moderator &lt;-<span class="st"> </span>demR<span class="op">$</span>white</span>
 <span id="cb119-3"><a href="analysis.html#cb119-3"></a>interaction &lt;-<span class="st"> </span>predictor <span class="op">*</span><span class="st"> </span>moderator</span>
@@ -511,7 +512,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/04-Analysis.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/05-Analysis.Rmd",
 "text": "Edit"
 },
 "history": {
