@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 fig:nice-fig
 tab:nice-tab
 intro
@@ -20,3 +21,27 @@ simple-model
 moderator-direct-effect
 interaction-effect
 final-words
+=======
+fig:nice-fig
+tab:nice-tab
+intro
+data-acquisition
+set-up-and-api-exploration
+project-directory-management
+api-exploration
+the-rscorecard-and-tidyverse-approach
+finances
+demographics
+data-clean
+analysis
+import
+transform-datasets
+descriptive-time
+wilcox-for-skewed-bois
+main-model
+decomposition
+simple-model
+moderator-direct-effect
+interaction-effect
+final-words
+>>>>>>> 04d6e2aa84177beab3ade9b06dff08b7d1f3fd81
