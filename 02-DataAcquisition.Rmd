@@ -189,7 +189,7 @@ D_2015 <- sc_init() %>%
     sc_get()
 ```
 
-```{r}
+```{r, results = 'hide'}
 D_latest %>% mutate(year = "latest")
 D_2018 %>% mutate(year = 2018)
 D_2017 %>% mutate(year = 2017)
@@ -237,7 +237,7 @@ Dth_2015 <- sc_init() %>%
     sc_get()
 ```
 
-```{r}
+```{r, results = 'hide'}
 Dth_latest %>% mutate(year = "latest")
 Dth_2018 %>% mutate(year = 2018)
 Dth_2017 %>% mutate(year = 2017)
