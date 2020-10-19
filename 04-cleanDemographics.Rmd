@@ -1,54 +1,28 @@
-# Data Clean {#clean}
+# Data Cleaning {#clean}
 
-```{r}
+After the initial parsing of the data in the acquisition phase, there was not a significant amount of cleaning to be done. The cleaning stage primarily consisted of organizing the variables in a way that was intuitive to work with. We chose to handle NA's by replacing them with the group mean determined by their Carnegie classification.
+For the demographics data set, we first dropped extraneous columns. These were columns which consisted of more than 90% NA values. Then, we renamed the variables so that they would be more intuitive to a general audience (and so that we could remember them better). There were four schools within the data that did not report any demographic variables for every year that they were in the data set. These schools were removed using drop_na(black), because the 'black' column did not possess any NAs other than for these four schools.
+
+For both data sets, we chose to recode the Carnegie Classification variable (called r_status) as R1 and R2 to increase the interpretability of the data. These are converted to factors in the analysis section so that they can be input into the models.
+
+## Demographics
+
+```{r, message=FALSE}
+
+#IMPORTING PACKAGES
+
 library(tidyverse)
+
 ```
 
-Accessibility
-: The data was easily retrievable, the only difficulty was using the API key to retrieve everything into R so we could clean, manipulate, and analyze the data.
 
-Appropriate Amount of Data
-: The data had mostly what we were looking for. However, it would have been nice if the data included records of type of school (State vs Liberal Arts vs Ivy League) or average class sizes. This would allow us to look for other correlations or lurking variables between the financial data. Overall, the data was appropriate for our analysis.
+```{r, message = FALSE}
 
-Believability
-: There is no reason for us to assume the data would be intentionally falsified as it was collected by the U.S. Government to simply compare costs and values of higher education institutions. There have been claims from some colleges (such as Boston University) that there are inaccuracies in the data, however.
+# READING IN THE CSV
 
-Concise Representation
-: The data is difficult to navigate through without frequent cross-checking of the documentation. There are many columns that look quite similar but are entirely different measures and statistics.
-
-Consistent Representation
-:The data is presented in the same format consistently throughout the dataset.
-
-Ease of Manipulation 
-: The data had to be cleaned before any manipulation took place but once that was completed, the data was easy to manipulate.
-
-Free-of-Error 
-: The data is correct and reliable except for the N/A values that were present before cleaning.
-
-Interpretability 
-: The data is difficult to interpret without referencing to the documentation continuously. Without the documentation, this dataset would have been very difficult to interpret as a stand-alone.
-
-Objectivity 
-: The data could be biased as we are looking at institutions which are typically attended to by upper class people. Depending on how the data is interpreted, it could lead to incorrect inferences as there could be many lurking variables unaccounted for.
-
-Relevancy 
-: The data is well tailored to what we were looking for. Many of the questions we asked were answerable by the data.
-
-Reputation 
-: The data is well regarded as it has been used for other studies and was introduced by Obama in 2015. It highlighted the Pell grant problem and other financial issues being faced by college students across the country. 
-
-Security 
-: The data is highly secured as it was contained and dispersed by the United States Government. We have no doubts that the security of the data was ever compromised.
-
-Timeliness 
-: The data is mostly up to date, but it would have been nice to have more recent statistics being recorded as financial data can change quickly as a product of circumstances; like a pandemic.
-
-Understandability
-: The data set in-and-of itself was rather complicated, and the documentation did little to assist in approaching the analysis in R. That being said, the data may be more suited for analysts familiar with JSON
-
-
-```{r}
 dem <- read.csv("Proj1Data/Demographics15to19.csv")
+
+# CLEANING THE DATA FRAME
 
 dem_clean <- dem[,-c(1, 17, 20:24)] %>%
   rename("university" = instnm,
@@ -64,32 +38,54 @@ dem_clean <- dem[,-c(1, 17, 20:24)] %>%
   "unknown" = ugds_unkn) %>% 
   drop_na(black)
 
+# RECODING THE CARNEGIE CLASSIFICATION (R_STATUS) VARIABLE
+
 dem_clean$r_status <- recode(dem_clean$r_status, `15` = 'R1', `16` = "R2")
+
+# NA HANDLING
 
 dem_clean <- dem_clean %>%  
   group_by(r_status) %>%
   mutate_at(c("female", "first_gen", "poverty_rate", "veteran", "unemp_rate"), funs(ifelse(is.na(.), mean(., na.rm = TRUE),.)))
 
+# WRITING TO A NEW CSV
 
 write.csv(dem_clean, "Proj1Data/cleanDemographics1519.csv")
+
 ```
 
-```{r}
+##Financials 
+
+The Financials data set was easier to work with; as such, we simply renamed the common variables that we had renamed with demographics and re-coded the Carnegie Classification.
+
+```{r, message= FALSE}
+
+# READING IN THE CSV
+
 fin <- read.csv('Proj1Data/Financials15to19.csv')
+
+# RENAMING VARIABLES SO THAT THEY MATCH THE DEMOGRAPHIC DATA FRAME
 
 fin_clean <- fin[,-c(2)] %>%
   rename("university" = instnm,
   "r_status" = ccbasic, 
   "state" = stabbr)
 
+# RECODING THE CARNEGIE CLASSIFICATION (R_STATUS) VARIABLE
+
 fin_clean$r_status <- recode(fin_clean$r_status, `15` = 'R1', `16` = "R2")
 
-```
+# WRITING TO A NEW CSV
 
-```{r}
-head(fin_clean) %>% MakePretty()
-```
-
-```{r}
 write.csv(fin_clean, "Proj1Data/cleanFinancials1519.csv")
+
 ```
+
+```{r}
+
+#DISPLAY OF THE NEW CSV
+
+head(dem_clean) %>% MakePretty()
+
+```
+
