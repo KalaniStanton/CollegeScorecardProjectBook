@@ -22,3 +22,5 @@ model-step-2
 model-step-3
 complete-model
 discussion
+interactive-chloropleths
+distribution

@@ -1,26 +1,21 @@
 # Discussion {#discussion}
 
+## Interactive Chloropleths
+
 ```{r}
 library(plotly)
+library(tidyverse)
+library(purrr)
+library(RColorBrewer)
+library(tmap)
+```
 
+```{r}
 g <- list(
   scope = 'usa',
   projection = list(type = 'albers usa'),
   lakecolor = toRGB('white')
 )
-
-avgs <- distinct(FacSalary)
-
-plot_geo() %>%
-  add_trace(
-    z = ~avgs$avgSal,
-    span = I(0),
-    colorscale = 'matter',
-    locations = avgs$stabbr, 
-    locationmode = 'USA-states'
-  ) %>%
-  colorbar(title = NULL) %>%
-  layout(geo = g, title = "Avg. Faculty Salary by State (in USD)")
 ```
 
 ```{r}
@@ -38,21 +33,62 @@ plot_geo() %>%
   layout(geo = g, title = "Avg. Faculty Salary by State (in USD)")
 ```
 
-
-
 ```{r}
 
-library(tidyverse)
-library(purrr)
-library(RColorBrewer)
-library(tmap)
+r1_state <- cdem %>%
+  filter(r_status == "R1") %>%
+  group_by(state) %>%
+  distinct(university) %>%
+  count()
+
+r2_state <- cdem %>%
+  filter(r_status == "R2") %>%
+  group_by(state) %>%
+  distinct(university) %>%
+  count()
+
 ```
 
 ```{r}
-cdem <- read.csv("Proj1Data/cleanDemographics1519.csv") 
-cdem <- cdem[,-1]
+g <- list(
+  scope = 'usa',
+  projection = list(type = 'albers usa'),
+  lakecolor = toRGB('white')
+)
+
+r1_map <- plot_geo() %>%
+  add_trace(
+    z = ~r1_state$n,
+    span = I(1),
+    colorscale = 'Portland',
+    zauto = F,
+    zmax = 10,
+    zmin = 1,
+    locations = r1_state$state, 
+    locationmode = 'USA-states'
+  ) %>%
+  colorbar(title = "# of Schools") %>%
+  layout(geo = g, title = "Number of R1 Schools per State")
+
+r2_map <- plot_geo() %>%
+  add_trace(
+    z = ~r2_state$n,
+    span = I(1),
+    colorscale = 'Portland',
+    zauto = F,
+    zmax = 10,
+    zmin = 1,
+    locations = r2_state$state, 
+    locationmode = 'USA-states'
+  ) %>%
+  colorbar(title = "# of Schools") %>%
+  layout(geo = g, title = "Number of R2 Schools per State")
+
+r1_map
+r2_map
 ```
 
+## Distribution
 
 ```{r, fig.height = 10}
 
@@ -139,61 +175,4 @@ ggplot(R2s, aes(x = female)) +
   geom_histogram(bins = 40, color = "black", fill = "skyblue") + 
   labs(title = "Distribution of Female/Male Gender ratio at R2s")
 
-```
-
-
-
-```{r}
-
-r1_state <- cdem %>%
-  filter(r_status == "R1") %>%
-  group_by(state) %>%
-  distinct(university) %>%
-  count()
-
-r2_state <- cdem %>%
-  filter(r_status == "R2") %>%
-  group_by(state) %>%
-  distinct(university) %>%
-  count()
-
-```
-
-```{r}
-g <- list(
-  scope = 'usa',
-  projection = list(type = 'albers usa'),
-  lakecolor = toRGB('white')
-)
-
-r1_map <- plot_geo() %>%
-  add_trace(
-    z = ~r1_state$n,
-    span = I(1),
-    colorscale = 'Portland',
-    zauto = F,
-    zmax = 10,
-    zmin = 1,
-    locations = r1_state$state, 
-    locationmode = 'USA-states'
-  ) %>%
-  colorbar(title = "# of Schools") %>%
-  layout(geo = g, title = "Number of R1 Schools per State")
-
-r2_map <- plot_geo() %>%
-  add_trace(
-    z = ~r2_state$n,
-    span = I(1),
-    colorscale = 'Portland',
-    zauto = F,
-    zmax = 10,
-    zmin = 1,
-    locations = r2_state$state, 
-    locationmode = 'USA-states'
-  ) %>%
-  colorbar(title = "# of Schools") %>%
-  layout(geo = g, title = "Number of R2 Schools per State")
-
-r1_map
-r2_map
 ```

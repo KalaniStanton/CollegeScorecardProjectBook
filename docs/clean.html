@@ -24,7 +24,7 @@
 <meta name="author" content="Sara Haman, Adam Lashley, Reilly Stanton, Benjamin Weisman" />
 
 
-<meta name="date" content="2020-10-17" />
+<meta name="date" content="2020-10-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -174,7 +174,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.9" data-path="analysis.html"><a href="analysis.html#model-step-3"><i class="fa fa-check"></i><b>5.9</b> Model step 3</a></li>
 <li class="chapter" data-level="5.10" data-path="analysis.html"><a href="analysis.html#complete-model"><i class="fa fa-check"></i><b>5.10</b> Complete model</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>6</b> Discussion</a></li>
+<li class="chapter" data-level="6" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>6</b> Discussion</a><ul>
+<li class="chapter" data-level="6.1" data-path="discussion.html"><a href="discussion.html#interactive-chloropleths"><i class="fa fa-check"></i><b>6.1</b> Interactive Chloropleths</a></li>
+<li class="chapter" data-level="6.2" data-path="discussion.html"><a href="discussion.html#distribution"><i class="fa fa-check"></i><b>6.2</b> Distribution</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -198,7 +201,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="clean" class="section level1">
 <h1><span class="header-section-number">Section 4</span> Data Clean</h1>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="clean.html#cb58-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="clean.html#cb52-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
 <dl>
 <dt>Accessibility</dt>
 <dd>The data was easily retrievable, the only difficulty was using the API key to retrieve everything into R so we could clean, manipulate, and analyze the data.
@@ -244,39 +247,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <dd>The data set in-and-of itself was rather complicated, and the documentation did little to assist in approaching the analysis in R. That being said, the data may be more suited for analysts familiar with JSON
 </dd>
 </dl>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="clean.html#cb59-1"></a>dem &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;Proj1Data/Demographics15to19.csv&quot;</span>)</span>
-<span id="cb59-2"><a href="clean.html#cb59-2"></a></span>
-<span id="cb59-3"><a href="clean.html#cb59-3"></a>dem_clean &lt;-<span class="st"> </span>dem[,<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">17</span>, <span class="dv">20</span><span class="op">:</span><span class="dv">24</span>)] <span class="op">%&gt;%</span></span>
-<span id="cb59-4"><a href="clean.html#cb59-4"></a><span class="st">  </span><span class="kw">rename</span>(<span class="st">&quot;university&quot;</span> =<span class="st"> </span>instnm,</span>
-<span id="cb59-5"><a href="clean.html#cb59-5"></a>  <span class="st">&quot;r_status&quot;</span> =<span class="st"> </span>ccbasic, </span>
-<span id="cb59-6"><a href="clean.html#cb59-6"></a>  <span class="st">&quot;state&quot;</span> =<span class="st"> </span>stabbr, </span>
-<span id="cb59-7"><a href="clean.html#cb59-7"></a>  <span class="st">&quot;white&quot;</span> =<span class="st"> </span>ugds_white, </span>
-<span id="cb59-8"><a href="clean.html#cb59-8"></a>  <span class="st">&quot;black&quot;</span> =<span class="st"> </span>ugds_black, </span>
-<span id="cb59-9"><a href="clean.html#cb59-9"></a>  <span class="st">&quot;hispanic&quot;</span> =<span class="st"> </span>ugds_hisp, </span>
-<span id="cb59-10"><a href="clean.html#cb59-10"></a>  <span class="st">&quot;asian&quot;</span> =<span class="st"> </span>ugds_asian, </span>
-<span id="cb59-11"><a href="clean.html#cb59-11"></a>  <span class="st">&quot;indigenous&quot;</span> =<span class="st"> </span>ugds_aian, </span>
-<span id="cb59-12"><a href="clean.html#cb59-12"></a>  <span class="st">&quot;nhpi&quot;</span> =<span class="st"> </span>ugds_nhpi, </span>
-<span id="cb59-13"><a href="clean.html#cb59-13"></a>  <span class="st">&quot;nra&quot;</span> =<span class="st"> </span>ugds_nra, </span>
-<span id="cb59-14"><a href="clean.html#cb59-14"></a>  <span class="st">&quot;unknown&quot;</span> =<span class="st"> </span>ugds_unkn) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb59-15"><a href="clean.html#cb59-15"></a><span class="st">  </span><span class="kw">drop_na</span>(black)</span>
-<span id="cb59-16"><a href="clean.html#cb59-16"></a></span>
-<span id="cb59-17"><a href="clean.html#cb59-17"></a>dem_clean<span class="op">$</span>r_status &lt;-<span class="st"> </span><span class="kw">recode</span>(dem_clean<span class="op">$</span>r_status, <span class="st">`</span><span class="dt">15</span><span class="st">`</span> =<span class="st"> &#39;R1&#39;</span>, <span class="st">`</span><span class="dt">16</span><span class="st">`</span> =<span class="st"> &quot;R2&quot;</span>)</span>
-<span id="cb59-18"><a href="clean.html#cb59-18"></a></span>
-<span id="cb59-19"><a href="clean.html#cb59-19"></a>dem_clean &lt;-<span class="st"> </span>dem_clean <span class="op">%&gt;%</span><span class="st">  </span></span>
-<span id="cb59-20"><a href="clean.html#cb59-20"></a><span class="st">  </span><span class="kw">group_by</span>(r_status) <span class="op">%&gt;%</span></span>
-<span id="cb59-21"><a href="clean.html#cb59-21"></a><span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">c</span>(<span class="st">&quot;female&quot;</span>, <span class="st">&quot;first_gen&quot;</span>, <span class="st">&quot;poverty_rate&quot;</span>, <span class="st">&quot;veteran&quot;</span>, <span class="st">&quot;unemp_rate&quot;</span>), <span class="kw">funs</span>(<span class="kw">ifelse</span>(<span class="kw">is.na</span>(.), <span class="kw">mean</span>(., <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),.)))</span>
-<span id="cb59-22"><a href="clean.html#cb59-22"></a></span>
-<span id="cb59-23"><a href="clean.html#cb59-23"></a></span>
-<span id="cb59-24"><a href="clean.html#cb59-24"></a><span class="kw">write.csv</span>(dem_clean, <span class="st">&quot;Proj1Data/cleanDemographics1519.csv&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="clean.html#cb60-1"></a>fin &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;Proj1Data/Financials15to19.csv&#39;</span>)</span>
-<span id="cb60-2"><a href="clean.html#cb60-2"></a></span>
-<span id="cb60-3"><a href="clean.html#cb60-3"></a>fin_clean &lt;-<span class="st"> </span>fin[,<span class="op">-</span><span class="kw">c</span>(<span class="dv">2</span>)] <span class="op">%&gt;%</span></span>
-<span id="cb60-4"><a href="clean.html#cb60-4"></a><span class="st">  </span><span class="kw">rename</span>(<span class="st">&quot;university&quot;</span> =<span class="st"> </span>instnm,</span>
-<span id="cb60-5"><a href="clean.html#cb60-5"></a>  <span class="st">&quot;r_status&quot;</span> =<span class="st"> </span>ccbasic, </span>
-<span id="cb60-6"><a href="clean.html#cb60-6"></a>  <span class="st">&quot;state&quot;</span> =<span class="st"> </span>stabbr)</span>
-<span id="cb60-7"><a href="clean.html#cb60-7"></a></span>
-<span id="cb60-8"><a href="clean.html#cb60-8"></a>fin_clean<span class="op">$</span>r_status &lt;-<span class="st"> </span><span class="kw">recode</span>(fin_clean<span class="op">$</span>r_status, <span class="st">`</span><span class="dt">15</span><span class="st">`</span> =<span class="st"> &#39;R1&#39;</span>, <span class="st">`</span><span class="dt">16</span><span class="st">`</span> =<span class="st"> &quot;R2&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="clean.html#cb61-1"></a><span class="kw">head</span>(fin_clean) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">MakePretty</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="clean.html#cb53-1"></a>dem &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;Proj1Data/Demographics15to19.csv&quot;</span>)</span>
+<span id="cb53-2"><a href="clean.html#cb53-2"></a></span>
+<span id="cb53-3"><a href="clean.html#cb53-3"></a>dem_clean &lt;-<span class="st"> </span>dem[,<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">17</span>, <span class="dv">20</span><span class="op">:</span><span class="dv">24</span>)] <span class="op">%&gt;%</span></span>
+<span id="cb53-4"><a href="clean.html#cb53-4"></a><span class="st">  </span><span class="kw">rename</span>(<span class="st">&quot;university&quot;</span> =<span class="st"> </span>instnm,</span>
+<span id="cb53-5"><a href="clean.html#cb53-5"></a>  <span class="st">&quot;r_status&quot;</span> =<span class="st"> </span>ccbasic, </span>
+<span id="cb53-6"><a href="clean.html#cb53-6"></a>  <span class="st">&quot;state&quot;</span> =<span class="st"> </span>stabbr, </span>
+<span id="cb53-7"><a href="clean.html#cb53-7"></a>  <span class="st">&quot;white&quot;</span> =<span class="st"> </span>ugds_white, </span>
+<span id="cb53-8"><a href="clean.html#cb53-8"></a>  <span class="st">&quot;black&quot;</span> =<span class="st"> </span>ugds_black, </span>
+<span id="cb53-9"><a href="clean.html#cb53-9"></a>  <span class="st">&quot;hispanic&quot;</span> =<span class="st"> </span>ugds_hisp, </span>
+<span id="cb53-10"><a href="clean.html#cb53-10"></a>  <span class="st">&quot;asian&quot;</span> =<span class="st"> </span>ugds_asian, </span>
+<span id="cb53-11"><a href="clean.html#cb53-11"></a>  <span class="st">&quot;indigenous&quot;</span> =<span class="st"> </span>ugds_aian, </span>
+<span id="cb53-12"><a href="clean.html#cb53-12"></a>  <span class="st">&quot;nhpi&quot;</span> =<span class="st"> </span>ugds_nhpi, </span>
+<span id="cb53-13"><a href="clean.html#cb53-13"></a>  <span class="st">&quot;nra&quot;</span> =<span class="st"> </span>ugds_nra, </span>
+<span id="cb53-14"><a href="clean.html#cb53-14"></a>  <span class="st">&quot;unknown&quot;</span> =<span class="st"> </span>ugds_unkn) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb53-15"><a href="clean.html#cb53-15"></a><span class="st">  </span><span class="kw">drop_na</span>(black)</span>
+<span id="cb53-16"><a href="clean.html#cb53-16"></a></span>
+<span id="cb53-17"><a href="clean.html#cb53-17"></a>dem_clean<span class="op">$</span>r_status &lt;-<span class="st"> </span><span class="kw">recode</span>(dem_clean<span class="op">$</span>r_status, <span class="st">`</span><span class="dt">15</span><span class="st">`</span> =<span class="st"> &#39;R1&#39;</span>, <span class="st">`</span><span class="dt">16</span><span class="st">`</span> =<span class="st"> &quot;R2&quot;</span>)</span>
+<span id="cb53-18"><a href="clean.html#cb53-18"></a></span>
+<span id="cb53-19"><a href="clean.html#cb53-19"></a>dem_clean &lt;-<span class="st"> </span>dem_clean <span class="op">%&gt;%</span><span class="st">  </span></span>
+<span id="cb53-20"><a href="clean.html#cb53-20"></a><span class="st">  </span><span class="kw">group_by</span>(r_status) <span class="op">%&gt;%</span></span>
+<span id="cb53-21"><a href="clean.html#cb53-21"></a><span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">c</span>(<span class="st">&quot;female&quot;</span>, <span class="st">&quot;first_gen&quot;</span>, <span class="st">&quot;poverty_rate&quot;</span>, <span class="st">&quot;veteran&quot;</span>, <span class="st">&quot;unemp_rate&quot;</span>), <span class="kw">funs</span>(<span class="kw">ifelse</span>(<span class="kw">is.na</span>(.), <span class="kw">mean</span>(., <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),.)))</span>
+<span id="cb53-22"><a href="clean.html#cb53-22"></a></span>
+<span id="cb53-23"><a href="clean.html#cb53-23"></a></span>
+<span id="cb53-24"><a href="clean.html#cb53-24"></a><span class="kw">write.csv</span>(dem_clean, <span class="st">&quot;Proj1Data/cleanDemographics1519.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="clean.html#cb54-1"></a>fin &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;Proj1Data/Financials15to19.csv&#39;</span>)</span>
+<span id="cb54-2"><a href="clean.html#cb54-2"></a></span>
+<span id="cb54-3"><a href="clean.html#cb54-3"></a>fin_clean &lt;-<span class="st"> </span>fin[,<span class="op">-</span><span class="kw">c</span>(<span class="dv">2</span>)] <span class="op">%&gt;%</span></span>
+<span id="cb54-4"><a href="clean.html#cb54-4"></a><span class="st">  </span><span class="kw">rename</span>(<span class="st">&quot;university&quot;</span> =<span class="st"> </span>instnm,</span>
+<span id="cb54-5"><a href="clean.html#cb54-5"></a>  <span class="st">&quot;r_status&quot;</span> =<span class="st"> </span>ccbasic, </span>
+<span id="cb54-6"><a href="clean.html#cb54-6"></a>  <span class="st">&quot;state&quot;</span> =<span class="st"> </span>stabbr)</span>
+<span id="cb54-7"><a href="clean.html#cb54-7"></a></span>
+<span id="cb54-8"><a href="clean.html#cb54-8"></a>fin_clean<span class="op">$</span>r_status &lt;-<span class="st"> </span><span class="kw">recode</span>(fin_clean<span class="op">$</span>r_status, <span class="st">`</span><span class="dt">15</span><span class="st">`</span> =<span class="st"> &#39;R1&#39;</span>, <span class="st">`</span><span class="dt">16</span><span class="st">`</span> =<span class="st"> &quot;R2&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="clean.html#cb55-1"></a><span class="kw">head</span>(fin_clean) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">MakePretty</span>()</span></code></pre></div>
 <table class=" lightable-material" style='font-family: "Source Sans Pro", helvetica, sans-serif; margin-left: auto; margin-right: auto;'>
 <thead>
 <tr>
@@ -528,7 +531,7 @@ latest
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="clean.html#cb62-1"></a><span class="kw">write.csv</span>(fin_clean, <span class="st">&quot;Proj1Data/cleanFinancials1519.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="clean.html#cb56-1"></a><span class="kw">write.csv</span>(fin_clean, <span class="st">&quot;Proj1Data/cleanFinancials1519.csv&quot;</span>)</span></code></pre></div>
 
 </div>
             </section>
