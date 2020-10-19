@@ -51,10 +51,6 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
-<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 <script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
@@ -165,19 +161,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4" data-path="clean.html"><a href="clean.html"><i class="fa fa-check"></i><b>4</b> Data Cleaning</a><ul>
 <li class="chapter" data-level="4.1" data-path="clean.html"><a href="clean.html#demographics-1"><i class="fa fa-check"></i><b>4.1</b> Demographics</a></li>
+<li class="chapter" data-level="4.2" data-path="clean.html"><a href="clean.html#financials"><i class="fa fa-check"></i><b>4.2</b> Financials</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="analysis.html"><a href="analysis.html"><i class="fa fa-check"></i><b>5</b> Methods and Results</a><ul>
 <li class="chapter" data-level="5.1" data-path="analysis.html"><a href="analysis.html#methods"><i class="fa fa-check"></i><b>5.1</b> Methods</a></li>
 <li class="chapter" data-level="5.2" data-path="analysis.html"><a href="analysis.html#results"><i class="fa fa-check"></i><b>5.2</b> Results</a><ul>
 <li class="chapter" data-level="5.2.1" data-path="analysis.html"><a href="analysis.html#demographic-descriptive-statistics"><i class="fa fa-check"></i><b>5.2.1</b> Demographic Descriptive Statistics</a></li>
-</ul></li>
-<li class="chapter" data-level="5.3" data-path="analysis.html"><a href="analysis.html#financial-descriptive-statistics"><i class="fa fa-check"></i><b>5.3</b> Financial Descriptive Statistics</a><ul>
-<li class="chapter" data-level="5.3.1" data-path="analysis.html"><a href="analysis.html#r1s-vs.-r2s"><i class="fa fa-check"></i><b>5.3.1</b> R1s vs. R2s</a></li>
-<li class="chapter" data-level="5.3.2" data-path="analysis.html"><a href="analysis.html#regression-model"><i class="fa fa-check"></i><b>5.3.2</b> Regression model</a></li>
+<li class="chapter" data-level="5.2.2" data-path="analysis.html"><a href="analysis.html#financial-descriptive-statistics"><i class="fa fa-check"></i><b>5.2.2</b> Financial Descriptive Statistics</a></li>
+<li class="chapter" data-level="5.2.3" data-path="analysis.html"><a href="analysis.html#significance-testing"><i class="fa fa-check"></i><b>5.2.3</b> Significance Testing</a></li>
+<li class="chapter" data-level="5.2.4" data-path="analysis.html"><a href="analysis.html#regression-model"><i class="fa fa-check"></i><b>5.2.4</b> Regression model</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>6</b> Discussion</a><ul>
-<li class="chapter" data-level="6.1" data-path="discussion.html"><a href="discussion.html#other-fun-things---interactive-chloropleths"><i class="fa fa-check"></i><b>6.1</b> Other fun things - Interactive Chloropleths</a></li>
+<li class="chapter" data-level="6.1" data-path="discussion.html"><a href="discussion.html#other-fun-things"><i class="fa fa-check"></i><b>6.1</b> Other fun things</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="discussion.html"><a href="discussion.html#interactive-chloropleths"><i class="fa fa-check"></i><b>6.1.1</b> Interactive Chloropleths</a></li>
+<li class="chapter" data-level="6.1.2" data-path="discussion.html"><a href="discussion.html#gender"><i class="fa fa-check"></i><b>6.1.2</b> Gender</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -202,7 +201,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="intro" class="section level1">
 <h1><span class="header-section-number">Section 1</span> Introduction</h1>
-<p>The Carnegie Classification system classifies American universities by their type and their research productivity. Type is determined by the range of degrees a university awards. Institutions which award at least 20 research-focused doctoral degrees a year are categorized as doctoral universities. Within doctoral universities, schools are given secondary ratings commensurate with the extent of their research expenditures. These ratings, which include R1, R2, and D/PU, are colloquially referenced as a measure of prestige. R1 schools, or schools with “very high research activity”, are prototypically represented by old and infamous universities, such as Harvard, and flagship state institutions. However, an R1 designation is not indicative of the quality of research produced, nor the caliber of education one receives at the school. The two factors which influence a school’s “R” status are the ratio of doctoral degrees awarded over faculty count, and the monetary amount the school invests into research. This is to say, an institution could conduct horrible, hackneyed research that never gets published except in predatory journals and still earn an R1 designation if they spend at least 5 million dollars on research expenditures (The Carnegie Classification of Institutes of Higher Education, 2018). Of course, this situation is not realistically feasible. Donors would abandon a school producing blatantly unproductive research. Yet, the reputation of a school is, at some level, intertwined with their “R” designation. When Dartmouth’s designation was decremented in 2016, media outlets reported on it as if it were shameful (Anderson, 2016).</p>
+<p>The Carnegie Classification system classifies American universities by their type and their research productivity. Type is determined by the range of degrees a university awards. Institutions which award at least 20 research-focused doctoral degrees a year are categorized as doctoral universities. Within doctoral universities, schools are given secondary ratings commensurate with the extent of their research expenditures. These ratings, which include R1, R2, and D/PU, are colloquially referenced as a measure of prestige. R1 schools, or schools with “very high research activity”, are typically represented by old and infamous universities, such as Harvard, and flagship state institutions. However, an R1 designation is not indicative of the quality of research produced, nor the caliber of education one receives at the school. The two factors which influence a school’s “R” status are the ratio of doctoral degrees awarded over faculty count, and the monetary amount the school invests into research. This is to say, an institution could conduct horrible, hackneyed research that never gets published except in predatory journals and still earn an R1 designation if they spend at least 5 million dollars on research expenditures (The Carnegie Classification of Institutes of Higher Education, 2018). Of course, this situation is not realistically feasible. Donors would abandon a school producing blatantly unproductive research. Yet, the reputation of a school is, at some level, intertwined with their “R” designation. When Dartmouth’s designation was decremented in 2016, media outlets reported on it as if it were shameful (Anderson, 2016).</p>
 <p>Without context for how Carnegie Classifications are assigned, the R1 designation may seem “superior” to R2. Our group chose to investigate the influence of the Carnegie Classification of an institution on student outcomes; essentially, if attending an R1 school provides a tangible benefit over attending an R2. Furthermore, we explore features of R1 and R2 universities to determine which variables they significantly differ on.</p>
 
 </div>

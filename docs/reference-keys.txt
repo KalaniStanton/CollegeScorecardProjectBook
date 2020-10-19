@@ -13,12 +13,15 @@ the-functions
 the-evaluations
 clean
 demographics-1
+financials
 analysis
 methods
 results
 demographic-descriptive-statistics
 financial-descriptive-statistics
-r1s-vs.-r2s
+significance-testing
 regression-model
 discussion
-other-fun-things---interactive-chloropleths
+other-fun-things
+interactive-chloropleths
+gender

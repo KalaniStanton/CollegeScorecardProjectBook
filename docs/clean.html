@@ -51,10 +51,6 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
-<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 <script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
@@ -165,19 +161,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4" data-path="clean.html"><a href="clean.html"><i class="fa fa-check"></i><b>4</b> Data Cleaning</a><ul>
 <li class="chapter" data-level="4.1" data-path="clean.html"><a href="clean.html#demographics-1"><i class="fa fa-check"></i><b>4.1</b> Demographics</a></li>
+<li class="chapter" data-level="4.2" data-path="clean.html"><a href="clean.html#financials"><i class="fa fa-check"></i><b>4.2</b> Financials</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="analysis.html"><a href="analysis.html"><i class="fa fa-check"></i><b>5</b> Methods and Results</a><ul>
 <li class="chapter" data-level="5.1" data-path="analysis.html"><a href="analysis.html#methods"><i class="fa fa-check"></i><b>5.1</b> Methods</a></li>
 <li class="chapter" data-level="5.2" data-path="analysis.html"><a href="analysis.html#results"><i class="fa fa-check"></i><b>5.2</b> Results</a><ul>
 <li class="chapter" data-level="5.2.1" data-path="analysis.html"><a href="analysis.html#demographic-descriptive-statistics"><i class="fa fa-check"></i><b>5.2.1</b> Demographic Descriptive Statistics</a></li>
-</ul></li>
-<li class="chapter" data-level="5.3" data-path="analysis.html"><a href="analysis.html#financial-descriptive-statistics"><i class="fa fa-check"></i><b>5.3</b> Financial Descriptive Statistics</a><ul>
-<li class="chapter" data-level="5.3.1" data-path="analysis.html"><a href="analysis.html#r1s-vs.-r2s"><i class="fa fa-check"></i><b>5.3.1</b> R1s vs. R2s</a></li>
-<li class="chapter" data-level="5.3.2" data-path="analysis.html"><a href="analysis.html#regression-model"><i class="fa fa-check"></i><b>5.3.2</b> Regression model</a></li>
+<li class="chapter" data-level="5.2.2" data-path="analysis.html"><a href="analysis.html#financial-descriptive-statistics"><i class="fa fa-check"></i><b>5.2.2</b> Financial Descriptive Statistics</a></li>
+<li class="chapter" data-level="5.2.3" data-path="analysis.html"><a href="analysis.html#significance-testing"><i class="fa fa-check"></i><b>5.2.3</b> Significance Testing</a></li>
+<li class="chapter" data-level="5.2.4" data-path="analysis.html"><a href="analysis.html#regression-model"><i class="fa fa-check"></i><b>5.2.4</b> Regression model</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>6</b> Discussion</a><ul>
-<li class="chapter" data-level="6.1" data-path="discussion.html"><a href="discussion.html#other-fun-things---interactive-chloropleths"><i class="fa fa-check"></i><b>6.1</b> Other fun things - Interactive Chloropleths</a></li>
+<li class="chapter" data-level="6.1" data-path="discussion.html"><a href="discussion.html#other-fun-things"><i class="fa fa-check"></i><b>6.1</b> Other fun things</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="discussion.html"><a href="discussion.html#interactive-chloropleths"><i class="fa fa-check"></i><b>6.1.1</b> Interactive Chloropleths</a></li>
+<li class="chapter" data-level="6.1.2" data-path="discussion.html"><a href="discussion.html#gender"><i class="fa fa-check"></i><b>6.1.2</b> Gender</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -207,463 +206,79 @@ For the demographics data set, we first dropped extraneous columns. These were c
 <p>For both data sets, we chose to recode the Carnegie Classification variable (called r_status) as R1 and R2 to increase the interpretability of the data. These are converted to factors in the analysis section so that they can be input into the models.</p>
 <div id="demographics-1" class="section level2">
 <h2><span class="header-section-number">4.1</span> Demographics</h2>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="clean.html#cb64-1"></a><span class="co">#IMPORTING PACKAGES</span></span>
-<span id="cb64-2"><a href="clean.html#cb64-2"></a></span>
-<span id="cb64-3"><a href="clean.html#cb64-3"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="clean.html#cb65-1"></a><span class="co"># READING IN THE CSV</span></span>
-<span id="cb65-2"><a href="clean.html#cb65-2"></a></span>
-<span id="cb65-3"><a href="clean.html#cb65-3"></a>dem &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;Proj1Data/Demographics15to19.csv&quot;</span>)</span>
-<span id="cb65-4"><a href="clean.html#cb65-4"></a></span>
-<span id="cb65-5"><a href="clean.html#cb65-5"></a><span class="co"># CLEANING THE DATA FRAME</span></span>
-<span id="cb65-6"><a href="clean.html#cb65-6"></a></span>
-<span id="cb65-7"><a href="clean.html#cb65-7"></a>dem_clean &lt;-<span class="st"> </span>dem[,<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">17</span>, <span class="dv">20</span><span class="op">:</span><span class="dv">24</span>)] <span class="op">%&gt;%</span></span>
-<span id="cb65-8"><a href="clean.html#cb65-8"></a><span class="st">  </span><span class="kw">rename</span>(<span class="st">&quot;university&quot;</span> =<span class="st"> </span>instnm,</span>
-<span id="cb65-9"><a href="clean.html#cb65-9"></a>  <span class="st">&quot;r_status&quot;</span> =<span class="st"> </span>ccbasic, </span>
-<span id="cb65-10"><a href="clean.html#cb65-10"></a>  <span class="st">&quot;state&quot;</span> =<span class="st"> </span>stabbr, </span>
-<span id="cb65-11"><a href="clean.html#cb65-11"></a>  <span class="st">&quot;white&quot;</span> =<span class="st"> </span>ugds_white, </span>
-<span id="cb65-12"><a href="clean.html#cb65-12"></a>  <span class="st">&quot;black&quot;</span> =<span class="st"> </span>ugds_black, </span>
-<span id="cb65-13"><a href="clean.html#cb65-13"></a>  <span class="st">&quot;hispanic&quot;</span> =<span class="st"> </span>ugds_hisp, </span>
-<span id="cb65-14"><a href="clean.html#cb65-14"></a>  <span class="st">&quot;asian&quot;</span> =<span class="st"> </span>ugds_asian, </span>
-<span id="cb65-15"><a href="clean.html#cb65-15"></a>  <span class="st">&quot;indigenous&quot;</span> =<span class="st"> </span>ugds_aian, </span>
-<span id="cb65-16"><a href="clean.html#cb65-16"></a>  <span class="st">&quot;nhpi&quot;</span> =<span class="st"> </span>ugds_nhpi, </span>
-<span id="cb65-17"><a href="clean.html#cb65-17"></a>  <span class="st">&quot;nra&quot;</span> =<span class="st"> </span>ugds_nra, </span>
-<span id="cb65-18"><a href="clean.html#cb65-18"></a>  <span class="st">&quot;unknown&quot;</span> =<span class="st"> </span>ugds_unkn) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb65-19"><a href="clean.html#cb65-19"></a><span class="st">  </span><span class="kw">drop_na</span>(black)</span>
-<span id="cb65-20"><a href="clean.html#cb65-20"></a></span>
-<span id="cb65-21"><a href="clean.html#cb65-21"></a><span class="co"># RECODING THE CARNEGIE CLASSIFICATION (R_STATUS) VARIABLE</span></span>
-<span id="cb65-22"><a href="clean.html#cb65-22"></a></span>
-<span id="cb65-23"><a href="clean.html#cb65-23"></a>dem_clean<span class="op">$</span>r_status &lt;-<span class="st"> </span><span class="kw">recode</span>(dem_clean<span class="op">$</span>r_status, <span class="st">`</span><span class="dt">15</span><span class="st">`</span> =<span class="st"> &#39;R1&#39;</span>, <span class="st">`</span><span class="dt">16</span><span class="st">`</span> =<span class="st"> &quot;R2&quot;</span>)</span>
-<span id="cb65-24"><a href="clean.html#cb65-24"></a></span>
-<span id="cb65-25"><a href="clean.html#cb65-25"></a><span class="co"># NA HANDLING</span></span>
-<span id="cb65-26"><a href="clean.html#cb65-26"></a></span>
-<span id="cb65-27"><a href="clean.html#cb65-27"></a>dem_clean &lt;-<span class="st"> </span>dem_clean <span class="op">%&gt;%</span><span class="st">  </span></span>
-<span id="cb65-28"><a href="clean.html#cb65-28"></a><span class="st">  </span><span class="kw">group_by</span>(r_status) <span class="op">%&gt;%</span></span>
-<span id="cb65-29"><a href="clean.html#cb65-29"></a><span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">c</span>(<span class="st">&quot;female&quot;</span>, <span class="st">&quot;first_gen&quot;</span>, <span class="st">&quot;poverty_rate&quot;</span>, <span class="st">&quot;veteran&quot;</span>, <span class="st">&quot;unemp_rate&quot;</span>), <span class="kw">funs</span>(<span class="kw">ifelse</span>(<span class="kw">is.na</span>(.), <span class="kw">mean</span>(., <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),.)))</span>
-<span id="cb65-30"><a href="clean.html#cb65-30"></a></span>
-<span id="cb65-31"><a href="clean.html#cb65-31"></a><span class="co"># WRITING TO A NEW CSV</span></span>
-<span id="cb65-32"><a href="clean.html#cb65-32"></a></span>
-<span id="cb65-33"><a href="clean.html#cb65-33"></a><span class="kw">write.csv</span>(dem_clean, <span class="st">&quot;Proj1Data/cleanDemographics1519.csv&quot;</span>)</span></code></pre></div>
-<p>##Financials</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="clean.html#cb54-1"></a><span class="co">#IMPORTING PACKAGES</span></span>
+<span id="cb54-2"><a href="clean.html#cb54-2"></a></span>
+<span id="cb54-3"><a href="clean.html#cb54-3"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="clean.html#cb55-1"></a><span class="co"># READING IN THE CSV</span></span>
+<span id="cb55-2"><a href="clean.html#cb55-2"></a></span>
+<span id="cb55-3"><a href="clean.html#cb55-3"></a>dem &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;Proj1Data/Demographics15to19.csv&quot;</span>)</span>
+<span id="cb55-4"><a href="clean.html#cb55-4"></a></span>
+<span id="cb55-5"><a href="clean.html#cb55-5"></a><span class="co"># CLEANING THE DATA FRAME</span></span>
+<span id="cb55-6"><a href="clean.html#cb55-6"></a></span>
+<span id="cb55-7"><a href="clean.html#cb55-7"></a>dem_clean &lt;-<span class="st"> </span>dem[,<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">17</span>, <span class="dv">20</span><span class="op">:</span><span class="dv">24</span>)] <span class="op">%&gt;%</span></span>
+<span id="cb55-8"><a href="clean.html#cb55-8"></a><span class="st">  </span><span class="kw">rename</span>(<span class="st">&quot;university&quot;</span> =<span class="st"> </span>instnm,</span>
+<span id="cb55-9"><a href="clean.html#cb55-9"></a>  <span class="st">&quot;r_status&quot;</span> =<span class="st"> </span>ccbasic, </span>
+<span id="cb55-10"><a href="clean.html#cb55-10"></a>  <span class="st">&quot;state&quot;</span> =<span class="st"> </span>stabbr, </span>
+<span id="cb55-11"><a href="clean.html#cb55-11"></a>  <span class="st">&quot;white&quot;</span> =<span class="st"> </span>ugds_white, </span>
+<span id="cb55-12"><a href="clean.html#cb55-12"></a>  <span class="st">&quot;black&quot;</span> =<span class="st"> </span>ugds_black, </span>
+<span id="cb55-13"><a href="clean.html#cb55-13"></a>  <span class="st">&quot;hispanic&quot;</span> =<span class="st"> </span>ugds_hisp, </span>
+<span id="cb55-14"><a href="clean.html#cb55-14"></a>  <span class="st">&quot;asian&quot;</span> =<span class="st"> </span>ugds_asian, </span>
+<span id="cb55-15"><a href="clean.html#cb55-15"></a>  <span class="st">&quot;indigenous&quot;</span> =<span class="st"> </span>ugds_aian, </span>
+<span id="cb55-16"><a href="clean.html#cb55-16"></a>  <span class="st">&quot;nhpi&quot;</span> =<span class="st"> </span>ugds_nhpi, </span>
+<span id="cb55-17"><a href="clean.html#cb55-17"></a>  <span class="st">&quot;nra&quot;</span> =<span class="st"> </span>ugds_nra, </span>
+<span id="cb55-18"><a href="clean.html#cb55-18"></a>  <span class="st">&quot;unknown&quot;</span> =<span class="st"> </span>ugds_unkn) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb55-19"><a href="clean.html#cb55-19"></a><span class="st">  </span><span class="kw">drop_na</span>(black)</span>
+<span id="cb55-20"><a href="clean.html#cb55-20"></a></span>
+<span id="cb55-21"><a href="clean.html#cb55-21"></a><span class="co"># RECODING THE CARNEGIE CLASSIFICATION (R_STATUS) VARIABLE</span></span>
+<span id="cb55-22"><a href="clean.html#cb55-22"></a></span>
+<span id="cb55-23"><a href="clean.html#cb55-23"></a>dem_clean<span class="op">$</span>r_status &lt;-<span class="st"> </span><span class="kw">recode</span>(dem_clean<span class="op">$</span>r_status, <span class="st">`</span><span class="dt">15</span><span class="st">`</span> =<span class="st"> &#39;R1&#39;</span>, <span class="st">`</span><span class="dt">16</span><span class="st">`</span> =<span class="st"> &quot;R2&quot;</span>)</span>
+<span id="cb55-24"><a href="clean.html#cb55-24"></a></span>
+<span id="cb55-25"><a href="clean.html#cb55-25"></a><span class="co"># NA HANDLING</span></span>
+<span id="cb55-26"><a href="clean.html#cb55-26"></a></span>
+<span id="cb55-27"><a href="clean.html#cb55-27"></a>dem_clean &lt;-<span class="st"> </span>dem_clean <span class="op">%&gt;%</span><span class="st">  </span></span>
+<span id="cb55-28"><a href="clean.html#cb55-28"></a><span class="st">  </span><span class="kw">group_by</span>(r_status) <span class="op">%&gt;%</span></span>
+<span id="cb55-29"><a href="clean.html#cb55-29"></a><span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">c</span>(<span class="st">&quot;female&quot;</span>, <span class="st">&quot;first_gen&quot;</span>, <span class="st">&quot;poverty_rate&quot;</span>, <span class="st">&quot;veteran&quot;</span>, <span class="st">&quot;unemp_rate&quot;</span>), <span class="kw">funs</span>(<span class="kw">ifelse</span>(<span class="kw">is.na</span>(.), <span class="kw">mean</span>(., <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),.)))</span>
+<span id="cb55-30"><a href="clean.html#cb55-30"></a></span>
+<span id="cb55-31"><a href="clean.html#cb55-31"></a><span class="co"># WRITING TO A NEW CSV</span></span>
+<span id="cb55-32"><a href="clean.html#cb55-32"></a></span>
+<span id="cb55-33"><a href="clean.html#cb55-33"></a><span class="kw">write.csv</span>(dem_clean, <span class="st">&quot;Proj1Data/cleanDemographics1519.csv&quot;</span>)</span></code></pre></div>
+</div>
+<div id="financials" class="section level2">
+<h2><span class="header-section-number">4.2</span> Financials</h2>
 <p>The Financials data set was easier to work with; as such, we simply renamed the common variables that we had renamed with demographics and re-coded the Carnegie Classification.</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="clean.html#cb66-1"></a><span class="co"># READING IN THE CSV</span></span>
-<span id="cb66-2"><a href="clean.html#cb66-2"></a></span>
-<span id="cb66-3"><a href="clean.html#cb66-3"></a>fin &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;Proj1Data/Financials15to19.csv&#39;</span>)</span>
-<span id="cb66-4"><a href="clean.html#cb66-4"></a></span>
-<span id="cb66-5"><a href="clean.html#cb66-5"></a><span class="co"># RENAMING VARIABLES SO THAT THEY MATCH THE DEMOGRAPHIC DATA FRAME</span></span>
-<span id="cb66-6"><a href="clean.html#cb66-6"></a></span>
-<span id="cb66-7"><a href="clean.html#cb66-7"></a>fin_clean &lt;-<span class="st"> </span>fin[,<span class="op">-</span><span class="kw">c</span>(<span class="dv">2</span>)] <span class="op">%&gt;%</span></span>
-<span id="cb66-8"><a href="clean.html#cb66-8"></a><span class="st">  </span><span class="kw">rename</span>(<span class="st">&quot;university&quot;</span> =<span class="st"> </span>instnm,</span>
-<span id="cb66-9"><a href="clean.html#cb66-9"></a>  <span class="st">&quot;r_status&quot;</span> =<span class="st"> </span>ccbasic, </span>
-<span id="cb66-10"><a href="clean.html#cb66-10"></a>  <span class="st">&quot;state&quot;</span> =<span class="st"> </span>stabbr)</span>
-<span id="cb66-11"><a href="clean.html#cb66-11"></a></span>
-<span id="cb66-12"><a href="clean.html#cb66-12"></a><span class="co"># RECODING THE CARNEGIE CLASSIFICATION (R_STATUS) VARIABLE</span></span>
-<span id="cb66-13"><a href="clean.html#cb66-13"></a></span>
-<span id="cb66-14"><a href="clean.html#cb66-14"></a>fin_clean<span class="op">$</span>r_status &lt;-<span class="st"> </span><span class="kw">recode</span>(fin_clean<span class="op">$</span>r_status, <span class="st">`</span><span class="dt">15</span><span class="st">`</span> =<span class="st"> &#39;R1&#39;</span>, <span class="st">`</span><span class="dt">16</span><span class="st">`</span> =<span class="st"> &quot;R2&quot;</span>)</span>
-<span id="cb66-15"><a href="clean.html#cb66-15"></a></span>
-<span id="cb66-16"><a href="clean.html#cb66-16"></a><span class="co"># WRITING TO A NEW CSV</span></span>
-<span id="cb66-17"><a href="clean.html#cb66-17"></a></span>
-<span id="cb66-18"><a href="clean.html#cb66-18"></a><span class="kw">write.csv</span>(fin_clean, <span class="st">&quot;Proj1Data/cleanFinancials1519.csv&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="clean.html#cb67-1"></a><span class="co">#DISPLAY OF THE NEW CSV</span></span>
-<span id="cb67-2"><a href="clean.html#cb67-2"></a></span>
-<span id="cb67-3"><a href="clean.html#cb67-3"></a><span class="kw">head</span>(dem_clean) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">MakePretty</span>()</span></code></pre></div>
-<table class=" lightable-material" style='font-family: "Source Sans Pro", helvetica, sans-serif; margin-left: auto; margin-right: auto;'>
-<thead>
-<tr>
-<th style="text-align:center;">
-control
-</th>
-<th style="text-align:center;">
-university
-</th>
-<th style="text-align:center;">
-r_status
-</th>
-<th style="text-align:center;">
-state
-</th>
-<th style="text-align:center;">
-female
-</th>
-<th style="text-align:center;">
-first_gen
-</th>
-<th style="text-align:center;">
-poverty_rate
-</th>
-<th style="text-align:center;">
-veteran
-</th>
-<th style="text-align:center;">
-unemp_rate
-</th>
-<th style="text-align:center;">
-white
-</th>
-<th style="text-align:center;">
-black
-</th>
-<th style="text-align:center;">
-hispanic
-</th>
-<th style="text-align:center;">
-asian
-</th>
-<th style="text-align:center;">
-indigenous
-</th>
-<th style="text-align:center;">
-nhpi
-</th>
-<th style="text-align:center;">
-nra
-</th>
-<th style="text-align:center;">
-unknown
-</th>
-<th style="text-align:center;">
-year
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-Indiana University-Purdue University-Indianapolis
-</td>
-<td style="text-align:center;">
-R2
-</td>
-<td style="text-align:center;">
-IN
-</td>
-<td style="text-align:center;">
-0.6099409
-</td>
-<td style="text-align:center;">
-0.3508615
-</td>
-<td style="text-align:center;">
-6.20
-</td>
-<td style="text-align:center;">
-0.0039431
-</td>
-<td style="text-align:center;">
-2.90
-</td>
-<td style="text-align:center;">
-0.6842
-</td>
-<td style="text-align:center;">
-0.0911
-</td>
-<td style="text-align:center;">
-0.0823
-</td>
-<td style="text-align:center;">
-0.0496
-</td>
-<td style="text-align:center;">
-0.0008
-</td>
-<td style="text-align:center;">
-4e-04
-</td>
-<td style="text-align:center;">
-0.0396
-</td>
-<td style="text-align:center;">
-0.0050
-</td>
-<td style="text-align:center;">
-latest
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-University of Kansas
-</td>
-<td style="text-align:center;">
-R1
-</td>
-<td style="text-align:center;">
-KS
-</td>
-<td style="text-align:center;">
-0.5475972
-</td>
-<td style="text-align:center;">
-0.2222402
-</td>
-<td style="text-align:center;">
-5.24
-</td>
-<td style="text-align:center;">
-0.0042853
-</td>
-<td style="text-align:center;">
-2.50
-</td>
-<td style="text-align:center;">
-0.7078
-</td>
-<td style="text-align:center;">
-0.0425
-</td>
-<td style="text-align:center;">
-0.0847
-</td>
-<td style="text-align:center;">
-0.0480
-</td>
-<td style="text-align:center;">
-0.0031
-</td>
-<td style="text-align:center;">
-9e-04
-</td>
-<td style="text-align:center;">
-0.0570
-</td>
-<td style="text-align:center;">
-0.0042
-</td>
-<td style="text-align:center;">
-latest
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-2
-</td>
-<td style="text-align:center;">
-Boston College
-</td>
-<td style="text-align:center;">
-R1
-</td>
-<td style="text-align:center;">
-MA
-</td>
-<td style="text-align:center;">
-0.5189448
-</td>
-<td style="text-align:center;">
-0.1318957
-</td>
-<td style="text-align:center;">
-5.93
-</td>
-<td style="text-align:center;">
-0.0037247
-</td>
-<td style="text-align:center;">
-2.88
-</td>
-<td style="text-align:center;">
-0.5888
-</td>
-<td style="text-align:center;">
-0.0408
-</td>
-<td style="text-align:center;">
-0.1097
-</td>
-<td style="text-align:center;">
-0.1008
-</td>
-<td style="text-align:center;">
-0.0002
-</td>
-<td style="text-align:center;">
-3e-04
-</td>
-<td style="text-align:center;">
-0.0779
-</td>
-<td style="text-align:center;">
-0.0472
-</td>
-<td style="text-align:center;">
-latest
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-Oakland University
-</td>
-<td style="text-align:center;">
-R2
-</td>
-<td style="text-align:center;">
-MI
-</td>
-<td style="text-align:center;">
-0.6078042
-</td>
-<td style="text-align:center;">
-0.3242526
-</td>
-<td style="text-align:center;">
-5.74
-</td>
-<td style="text-align:center;">
-0.0023148
-</td>
-<td style="text-align:center;">
-3.21
-</td>
-<td style="text-align:center;">
-0.7388
-</td>
-<td style="text-align:center;">
-0.0770
-</td>
-<td style="text-align:center;">
-0.0389
-</td>
-<td style="text-align:center;">
-0.0478
-</td>
-<td style="text-align:center;">
-0.0030
-</td>
-<td style="text-align:center;">
-1e-03
-</td>
-<td style="text-align:center;">
-0.0218
-</td>
-<td style="text-align:center;">
-0.0392
-</td>
-<td style="text-align:center;">
-latest
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-University of Mississippi
-</td>
-<td style="text-align:center;">
-R1
-</td>
-<td style="text-align:center;">
-MS
-</td>
-<td style="text-align:center;">
-0.6080563
-</td>
-<td style="text-align:center;">
-0.2350269
-</td>
-<td style="text-align:center;">
-12.17
-</td>
-<td style="text-align:center;">
-0.0017583
-</td>
-<td style="text-align:center;">
-3.64
-</td>
-<td style="text-align:center;">
-0.7784
-</td>
-<td style="text-align:center;">
-0.1233
-</td>
-<td style="text-align:center;">
-0.0355
-</td>
-<td style="text-align:center;">
-0.0188
-</td>
-<td style="text-align:center;">
-0.0029
-</td>
-<td style="text-align:center;">
-1e-03
-</td>
-<td style="text-align:center;">
-0.0160
-</td>
-<td style="text-align:center;">
-0.0001
-</td>
-<td style="text-align:center;">
-latest
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-Missouri University of Science and Technology
-</td>
-<td style="text-align:center;">
-R2
-</td>
-<td style="text-align:center;">
-MO
-</td>
-<td style="text-align:center;">
-0.2413202
-</td>
-<td style="text-align:center;">
-0.2249213
-</td>
-<td style="text-align:center;">
-7.31
-</td>
-<td style="text-align:center;">
-0.0049616
-</td>
-<td style="text-align:center;">
-3.05
-</td>
-<td style="text-align:center;">
-0.8149
-</td>
-<td style="text-align:center;">
-0.0302
-</td>
-<td style="text-align:center;">
-0.0383
-</td>
-<td style="text-align:center;">
-0.0371
-</td>
-<td style="text-align:center;">
-0.0029
-</td>
-<td style="text-align:center;">
-0e+00
-</td>
-<td style="text-align:center;">
-0.0273
-</td>
-<td style="text-align:center;">
-0.0162
-</td>
-<td style="text-align:center;">
-latest
-</td>
-</tr>
-</tbody>
-</table>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="clean.html#cb56-1"></a><span class="co"># READING IN THE CSV</span></span>
+<span id="cb56-2"><a href="clean.html#cb56-2"></a></span>
+<span id="cb56-3"><a href="clean.html#cb56-3"></a>fin &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;Proj1Data/Financials15to19.csv&#39;</span>)</span>
+<span id="cb56-4"><a href="clean.html#cb56-4"></a></span>
+<span id="cb56-5"><a href="clean.html#cb56-5"></a><span class="co"># RENAMING VARIABLES SO THAT THEY MATCH THE DEMOGRAPHIC DATA FRAME</span></span>
+<span id="cb56-6"><a href="clean.html#cb56-6"></a></span>
+<span id="cb56-7"><a href="clean.html#cb56-7"></a>fin_clean &lt;-<span class="st"> </span>fin[,<span class="op">-</span><span class="kw">c</span>(<span class="dv">2</span>)] <span class="op">%&gt;%</span></span>
+<span id="cb56-8"><a href="clean.html#cb56-8"></a><span class="st">  </span><span class="kw">rename</span>(<span class="st">&quot;university&quot;</span> =<span class="st"> </span>instnm,</span>
+<span id="cb56-9"><a href="clean.html#cb56-9"></a>  <span class="st">&quot;r_status&quot;</span> =<span class="st"> </span>ccbasic, </span>
+<span id="cb56-10"><a href="clean.html#cb56-10"></a>  <span class="st">&quot;state&quot;</span> =<span class="st"> </span>stabbr)</span>
+<span id="cb56-11"><a href="clean.html#cb56-11"></a></span>
+<span id="cb56-12"><a href="clean.html#cb56-12"></a><span class="co"># RECODING THE CARNEGIE CLASSIFICATION (R_STATUS) VARIABLE</span></span>
+<span id="cb56-13"><a href="clean.html#cb56-13"></a></span>
+<span id="cb56-14"><a href="clean.html#cb56-14"></a>fin_clean<span class="op">$</span>r_status &lt;-<span class="st"> </span><span class="kw">recode</span>(fin_clean<span class="op">$</span>r_status, <span class="st">`</span><span class="dt">15</span><span class="st">`</span> =<span class="st"> &#39;R1&#39;</span>, <span class="st">`</span><span class="dt">16</span><span class="st">`</span> =<span class="st"> &quot;R2&quot;</span>)</span>
+<span id="cb56-15"><a href="clean.html#cb56-15"></a></span>
+<span id="cb56-16"><a href="clean.html#cb56-16"></a><span class="co"># WRITING TO A NEW CSV</span></span>
+<span id="cb56-17"><a href="clean.html#cb56-17"></a></span>
+<span id="cb56-18"><a href="clean.html#cb56-18"></a><span class="kw">write.csv</span>(fin_clean, <span class="st">&quot;Proj1Data/cleanFinancials1519.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="clean.html#cb57-1"></a><span class="co">#DISPLAYING THE NEW CSV</span></span>
+<span id="cb57-2"><a href="clean.html#cb57-2"></a></span>
+<span id="cb57-3"><a href="clean.html#cb57-3"></a><span class="kw">head</span>(dem_clean, <span class="dv">5</span>) </span></code></pre></div>
+<pre><code>## # A tibble: 5 x 18
+## # Groups:   r_status [2]
+##   control university r_status state female first_gen poverty_rate veteran
+##     &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;  &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;   &lt;dbl&gt;
+## 1       1 Indiana U~ R2       IN     0.610     0.351         6.20 0.00394
+## 2       1 Universit~ R1       KS     0.548     0.222         5.24 0.00429
+## 3       2 Boston Co~ R1       MA     0.519     0.132         5.93 0.00372
+## 4       1 Oakland U~ R2       MI     0.608     0.324         5.74 0.00231
+## 5       1 Universit~ R1       MS     0.608     0.235        12.2  0.00176
+## # ... with 10 more variables: unemp_rate &lt;dbl&gt;, white &lt;dbl&gt;, black &lt;dbl&gt;,
+## #   hispanic &lt;dbl&gt;, asian &lt;dbl&gt;, indigenous &lt;dbl&gt;, nhpi &lt;dbl&gt;, nra &lt;dbl&gt;,
+## #   unknown &lt;dbl&gt;, year &lt;chr&gt;</code></pre>
 
 </div>
 </div>

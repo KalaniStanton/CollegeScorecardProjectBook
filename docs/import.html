@@ -51,10 +51,6 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
-<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 <script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
@@ -165,19 +161,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4" data-path="clean.html"><a href="clean.html"><i class="fa fa-check"></i><b>4</b> Data Cleaning</a><ul>
 <li class="chapter" data-level="4.1" data-path="clean.html"><a href="clean.html#demographics-1"><i class="fa fa-check"></i><b>4.1</b> Demographics</a></li>
+<li class="chapter" data-level="4.2" data-path="clean.html"><a href="clean.html#financials"><i class="fa fa-check"></i><b>4.2</b> Financials</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="analysis.html"><a href="analysis.html"><i class="fa fa-check"></i><b>5</b> Methods and Results</a><ul>
 <li class="chapter" data-level="5.1" data-path="analysis.html"><a href="analysis.html#methods"><i class="fa fa-check"></i><b>5.1</b> Methods</a></li>
 <li class="chapter" data-level="5.2" data-path="analysis.html"><a href="analysis.html#results"><i class="fa fa-check"></i><b>5.2</b> Results</a><ul>
 <li class="chapter" data-level="5.2.1" data-path="analysis.html"><a href="analysis.html#demographic-descriptive-statistics"><i class="fa fa-check"></i><b>5.2.1</b> Demographic Descriptive Statistics</a></li>
-</ul></li>
-<li class="chapter" data-level="5.3" data-path="analysis.html"><a href="analysis.html#financial-descriptive-statistics"><i class="fa fa-check"></i><b>5.3</b> Financial Descriptive Statistics</a><ul>
-<li class="chapter" data-level="5.3.1" data-path="analysis.html"><a href="analysis.html#r1s-vs.-r2s"><i class="fa fa-check"></i><b>5.3.1</b> R1s vs. R2s</a></li>
-<li class="chapter" data-level="5.3.2" data-path="analysis.html"><a href="analysis.html#regression-model"><i class="fa fa-check"></i><b>5.3.2</b> Regression model</a></li>
+<li class="chapter" data-level="5.2.2" data-path="analysis.html"><a href="analysis.html#financial-descriptive-statistics"><i class="fa fa-check"></i><b>5.2.2</b> Financial Descriptive Statistics</a></li>
+<li class="chapter" data-level="5.2.3" data-path="analysis.html"><a href="analysis.html#significance-testing"><i class="fa fa-check"></i><b>5.2.3</b> Significance Testing</a></li>
+<li class="chapter" data-level="5.2.4" data-path="analysis.html"><a href="analysis.html#regression-model"><i class="fa fa-check"></i><b>5.2.4</b> Regression model</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>6</b> Discussion</a><ul>
-<li class="chapter" data-level="6.1" data-path="discussion.html"><a href="discussion.html#other-fun-things---interactive-chloropleths"><i class="fa fa-check"></i><b>6.1</b> Other fun things - Interactive Chloropleths</a></li>
+<li class="chapter" data-level="6.1" data-path="discussion.html"><a href="discussion.html#other-fun-things"><i class="fa fa-check"></i><b>6.1</b> Other fun things</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="discussion.html"><a href="discussion.html#interactive-chloropleths"><i class="fa fa-check"></i><b>6.1.1</b> Interactive Chloropleths</a></li>
+<li class="chapter" data-level="6.1.2" data-path="discussion.html"><a href="discussion.html#gender"><i class="fa fa-check"></i><b>6.1.2</b> Gender</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -308,121 +307,47 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb12-27"><a href="import.html#cb12-27"></a><span class="st">    </span><span class="kw">sc_select</span>(control, instnm, ccbasic, stabbr, npt4_pub, npt4_priv, costt4_a, grad_debt_mdn, avgfacsal, unemp_rate) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb12-28"><a href="import.html#cb12-28"></a><span class="st">    </span><span class="kw">sc_year</span>(<span class="dv">2015</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb12-29"><a href="import.html#cb12-29"></a><span class="st">    </span><span class="kw">sc_get</span>()</span></code></pre></div>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="import.html#cb13-1"></a>F_latest <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="st">&quot;latest&quot;</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 266 x 11
-##    control instnm ccbasic stabbr npt4_pub npt4_priv costt4_a grad_debt_mdn
-##      &lt;int&gt; &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;     &lt;int&gt;     &lt;int&gt;    &lt;int&gt;         &lt;dbl&gt;
-##  1       1 India~      16 IN        10987        NA    20704         22343
-##  2       1 Unive~      15 KS        18571        NA    24996         21105
-##  3       2 Bosto~      15 MA           NA     33562    70588         16939
-##  4       1 Oakla~      16 MI        11560        NA    21231         25000
-##  5       1 Unive~      15 MS        13857        NA    24822         19500
-##  6       1 Misso~      16 MO        14205        NA    22012         24750
-##  7       2 Washi~      15 MO           NA     27427    71975         16075
-##  8       1 Monta~      15 MT        18036        NA    20464         23500
-##  9       1 Unive~      16 NE        13511        NA    18849         20250
-## 10       1 Unive~      15 NV        10551        NA    17582         18750
-## # ... with 256 more rows, and 3 more variables: avgfacsal &lt;int&gt;,
-## #   unemp_rate &lt;dbl&gt;, year &lt;chr&gt;</code></pre>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="import.html#cb15-1"></a>F_<span class="dv">2018</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="dv">2018</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 266 x 11
-##    control instnm ccbasic stabbr npt4_pub npt4_priv costt4_a grad_debt_mdn
-##      &lt;int&gt; &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;     &lt;int&gt;     &lt;int&gt;    &lt;int&gt; &lt;lgl&gt;        
-##  1       1 India~      16 IN        10987        NA    20704 NA           
-##  2       1 Unive~      15 KS        18571        NA    24996 NA           
-##  3       2 Bosto~      15 MA           NA     33562    70588 NA           
-##  4       1 Oakla~      16 MI        11560        NA    21231 NA           
-##  5       1 Unive~      15 MS        13857        NA    24822 NA           
-##  6       1 Misso~      16 MO        14205        NA    22012 NA           
-##  7       2 Washi~      15 MO           NA     27427    71975 NA           
-##  8       1 Monta~      15 MT        18036        NA    20464 NA           
-##  9       1 Unive~      16 NE        13511        NA    18849 NA           
-## 10       1 Unive~      15 NV        10551        NA    17582 NA           
-## # ... with 256 more rows, and 3 more variables: avgfacsal &lt;int&gt;,
-## #   unemp_rate &lt;lgl&gt;, year &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="import.html#cb17-1"></a>F_<span class="dv">2017</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="dv">2017</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 266 x 11
-##    control instnm ccbasic stabbr npt4_pub npt4_priv costt4_a grad_debt_mdn
-##      &lt;int&gt; &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;     &lt;int&gt;     &lt;int&gt;    &lt;int&gt;         &lt;dbl&gt;
-##  1       1 India~      16 IN        12021        NA    20352         22343
-##  2       1 Unive~      15 KS        18814        NA    24824         21105
-##  3       2 Bosto~      15 MA           NA     34550    68039         16939
-##  4       1 Oakla~      16 MI        12779        NA    21262         25000
-##  5       1 Unive~      15 MS        13929        NA    23606         19500
-##  6       1 Misso~      16 MO        14473        NA    22045         24750
-##  7       2 Washi~      15 MO           NA     28540    69754         16075
-##  8       1 Monta~      15 MT        17754        NA    19980         23500
-##  9       1 Unive~      16 NE        13173        NA    17935         20250
-## 10       1 Unive~      15 NV        10555        NA    16964         18750
-## # ... with 256 more rows, and 3 more variables: avgfacsal &lt;int&gt;,
-## #   unemp_rate &lt;lgl&gt;, year &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="import.html#cb19-1"></a>F_<span class="dv">2016</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="dv">2016</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 266 x 11
-##    control instnm ccbasic stabbr npt4_pub npt4_priv costt4_a grad_debt_mdn
-##      &lt;int&gt; &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;     &lt;int&gt;     &lt;int&gt;    &lt;int&gt;         &lt;dbl&gt;
-##  1       1 India~      16 IN        12417        NA    20451        22668.
-##  2       1 Unive~      15 KS        18234        NA    23687        20500 
-##  3       2 Bosto~      15 MA           NA     34356    65595        19000 
-##  4       1 Oakla~      16 MI        12415        NA    20502        25000 
-##  5       1 Unive~      15 MS        14494        NA    23372        19500 
-##  6       1 Misso~      16 MO        14303        NA    21698        24250 
-##  7       2 Washi~      15 MO           NA     29957    67751        19500 
-##  8       1 Monta~      15 MT        17050        NA    19441        23505 
-##  9       1 Unive~      16 NE        12899        NA    17712        19500 
-## 10       1 Unive~      15 NV        10726        NA    17131        18500 
-## # ... with 256 more rows, and 3 more variables: avgfacsal &lt;int&gt;,
-## #   unemp_rate &lt;lgl&gt;, year &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="import.html#cb21-1"></a>F_<span class="dv">2015</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="dv">2015</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 266 x 11
-##    control instnm ccbasic stabbr npt4_pub npt4_priv costt4_a grad_debt_mdn
-##      &lt;int&gt; &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;     &lt;int&gt;     &lt;int&gt;    &lt;int&gt;         &lt;dbl&gt;
-##  1       1 India~      16 IN        12861        NA    20257        23000 
-##  2       1 Unive~      15 KS        18755        NA    23733        20454 
-##  3       2 Bosto~      15 MA           NA     33661    62968        19000 
-##  4       1 Oakla~      16 MI        11929        NA    19475        25000 
-##  5       1 Unive~      15 MS        14284        NA    22704        19500 
-##  6       1 Misso~      16 MO        14096        NA    21793        24266.
-##  7       2 Washi~      15 MO           NA     32873    65887        19500 
-##  8       1 Monta~      15 MT        16809        NA    18961        23683 
-##  9       1 Unive~      16 NE        12505        NA    17148        19032 
-## 10       1 Unive~      15 NV        10915        NA    16791        18750 
-## # ... with 256 more rows, and 3 more variables: avgfacsal &lt;int&gt;,
-## #   unemp_rate &lt;lgl&gt;, year &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="import.html#cb23-1"></a>Finance &lt;-<span class="st"> </span><span class="kw">rbind</span>(F_latest, F_<span class="dv">2018</span>, F_<span class="dv">2017</span>, F_<span class="dv">2016</span>, F_<span class="dv">2015</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="import.html#cb24-1"></a><span class="kw">write.csv</span>(Finance, <span class="st">&quot;Proj1Data/Financials15to19.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="import.html#cb13-1"></a>F_latest <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="st">&quot;latest&quot;</span>)</span>
+<span id="cb13-2"><a href="import.html#cb13-2"></a>F_<span class="dv">2018</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="dv">2018</span>)</span>
+<span id="cb13-3"><a href="import.html#cb13-3"></a>F_<span class="dv">2017</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="dv">2017</span>)</span>
+<span id="cb13-4"><a href="import.html#cb13-4"></a>F_<span class="dv">2016</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="dv">2016</span>)</span>
+<span id="cb13-5"><a href="import.html#cb13-5"></a>F_<span class="dv">2015</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="dv">2015</span>)</span>
+<span id="cb13-6"><a href="import.html#cb13-6"></a></span>
+<span id="cb13-7"><a href="import.html#cb13-7"></a>Finance &lt;-<span class="st"> </span><span class="kw">rbind</span>(F_latest, F_<span class="dv">2018</span>, F_<span class="dv">2017</span>, F_<span class="dv">2016</span>, F_<span class="dv">2015</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="import.html#cb14-1"></a><span class="kw">write.csv</span>(Finance, <span class="st">&quot;Proj1Data/Financials15to19.csv&quot;</span>)</span></code></pre></div>
 </div>
 <div id="demographics" class="section level3">
 <h3><span class="header-section-number">2.2.2</span> Demographics</h3>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="import.html#cb25-1"></a>D_latest &lt;-<span class="st"> </span><span class="kw">sc_init</span>() <span class="op">%&gt;%</span></span>
-<span id="cb25-2"><a href="import.html#cb25-2"></a><span class="st">    </span><span class="kw">sc_filter</span>(distanceonly <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, ccbasic <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">15</span>, <span class="dv">16</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb25-3"><a href="import.html#cb25-3"></a><span class="st">    </span><span class="kw">sc_select</span>(control, instnm, ccbasic, stabbr,female, first_gen, poverty_rate, veteran, unemp_rate, ugds_white, ugds_black, ugds_hisp, ugds_asian, ugds_aian, ugds_nhpi, ugds_2mor, ugds_nra, ugds_unkn, ugds_whitenh, ugds_blacknh, ugds_api, ugds_aianold, ugds_hispold) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb25-4"><a href="import.html#cb25-4"></a><span class="st">    </span><span class="kw">sc_year</span>(<span class="st">&quot;latest&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb25-5"><a href="import.html#cb25-5"></a><span class="st">    </span><span class="kw">sc_get</span>()</span>
-<span id="cb25-6"><a href="import.html#cb25-6"></a></span>
-<span id="cb25-7"><a href="import.html#cb25-7"></a>D_<span class="dv">2018</span> &lt;-<span class="st"> </span><span class="kw">sc_init</span>() <span class="op">%&gt;%</span></span>
-<span id="cb25-8"><a href="import.html#cb25-8"></a><span class="st">    </span><span class="kw">sc_filter</span>(distanceonly <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, ccbasic <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">15</span>, <span class="dv">16</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb25-9"><a href="import.html#cb25-9"></a><span class="st">    </span><span class="kw">sc_select</span>(control, instnm, ccbasic, stabbr, female, first_gen, poverty_rate, veteran, unemp_rate, ugds_white, ugds_black, ugds_hisp, ugds_asian, ugds_aian, ugds_nhpi, ugds_2mor, ugds_nra, ugds_unkn, ugds_whitenh, ugds_blacknh, ugds_api, ugds_aianold, ugds_hispold) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb25-10"><a href="import.html#cb25-10"></a><span class="st">    </span><span class="kw">sc_year</span>(<span class="dv">2018</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb25-11"><a href="import.html#cb25-11"></a><span class="st">    </span><span class="kw">sc_get</span>()</span>
-<span id="cb25-12"><a href="import.html#cb25-12"></a></span>
-<span id="cb25-13"><a href="import.html#cb25-13"></a>D_<span class="dv">2017</span> &lt;-<span class="st"> </span><span class="kw">sc_init</span>() <span class="op">%&gt;%</span></span>
-<span id="cb25-14"><a href="import.html#cb25-14"></a><span class="st">    </span><span class="kw">sc_filter</span>(distanceonly <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, ccbasic <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">15</span>, <span class="dv">16</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb25-15"><a href="import.html#cb25-15"></a><span class="st">    </span><span class="kw">sc_select</span>(control, instnm, ccbasic, stabbr, female, first_gen, poverty_rate, veteran, unemp_rate, ugds_white, ugds_black, ugds_hisp, ugds_asian, ugds_aian, ugds_nhpi, ugds_2mor, ugds_nra, ugds_unkn, ugds_whitenh, ugds_blacknh, ugds_api, ugds_aianold, ugds_hispold) <span class="op">%&gt;%</span></span>
-<span id="cb25-16"><a href="import.html#cb25-16"></a><span class="st">    </span><span class="kw">sc_year</span>(<span class="dv">2017</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb25-17"><a href="import.html#cb25-17"></a><span class="st">    </span><span class="kw">sc_get</span>()</span>
-<span id="cb25-18"><a href="import.html#cb25-18"></a></span>
-<span id="cb25-19"><a href="import.html#cb25-19"></a>D_<span class="dv">2016</span> &lt;-<span class="st"> </span><span class="kw">sc_init</span>() <span class="op">%&gt;%</span></span>
-<span id="cb25-20"><a href="import.html#cb25-20"></a><span class="st">    </span><span class="kw">sc_filter</span>(distanceonly <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, ccbasic <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">15</span>, <span class="dv">16</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb25-21"><a href="import.html#cb25-21"></a><span class="st">    </span><span class="kw">sc_select</span>(control, instnm, ccbasic, stabbr, female, first_gen, poverty_rate, veteran, unemp_rate, ugds_white, ugds_black, ugds_hisp, ugds_asian, ugds_aian, ugds_nhpi, ugds_2mor, ugds_nra, ugds_unkn, ugds_whitenh, ugds_blacknh, ugds_api, ugds_aianold, ugds_hispold) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb25-22"><a href="import.html#cb25-22"></a><span class="st">    </span><span class="kw">sc_year</span>(<span class="dv">2016</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb25-23"><a href="import.html#cb25-23"></a><span class="st">    </span><span class="kw">sc_get</span>()</span>
-<span id="cb25-24"><a href="import.html#cb25-24"></a></span>
-<span id="cb25-25"><a href="import.html#cb25-25"></a>D_<span class="dv">2015</span> &lt;-<span class="st"> </span><span class="kw">sc_init</span>() <span class="op">%&gt;%</span></span>
-<span id="cb25-26"><a href="import.html#cb25-26"></a><span class="st">    </span><span class="kw">sc_filter</span>(distanceonly <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, ccbasic <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">15</span>, <span class="dv">16</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb25-27"><a href="import.html#cb25-27"></a><span class="st">    </span><span class="kw">sc_select</span>(control, instnm, ccbasic, stabbr, female, first_gen, poverty_rate, veteran, unemp_rate, ugds_white, ugds_black, ugds_hisp, ugds_asian, ugds_aian, ugds_nhpi, ugds_2mor, ugds_nra, ugds_unkn, ugds_whitenh, ugds_blacknh, ugds_api, ugds_aianold, ugds_hispold) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb25-28"><a href="import.html#cb25-28"></a><span class="st">    </span><span class="kw">sc_year</span>(<span class="dv">2015</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb25-29"><a href="import.html#cb25-29"></a><span class="st">    </span><span class="kw">sc_get</span>()</span></code></pre></div>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="import.html#cb26-1"></a>D_latest <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="st">&quot;latest&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="import.html#cb15-1"></a>D_latest &lt;-<span class="st"> </span><span class="kw">sc_init</span>() <span class="op">%&gt;%</span></span>
+<span id="cb15-2"><a href="import.html#cb15-2"></a><span class="st">    </span><span class="kw">sc_filter</span>(distanceonly <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, ccbasic <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">15</span>, <span class="dv">16</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb15-3"><a href="import.html#cb15-3"></a><span class="st">    </span><span class="kw">sc_select</span>(control, instnm, ccbasic, stabbr,female, first_gen, poverty_rate, veteran, unemp_rate, ugds_white, ugds_black, ugds_hisp, ugds_asian, ugds_aian, ugds_nhpi, ugds_2mor, ugds_nra, ugds_unkn, ugds_whitenh, ugds_blacknh, ugds_api, ugds_aianold, ugds_hispold) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb15-4"><a href="import.html#cb15-4"></a><span class="st">    </span><span class="kw">sc_year</span>(<span class="st">&quot;latest&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb15-5"><a href="import.html#cb15-5"></a><span class="st">    </span><span class="kw">sc_get</span>()</span>
+<span id="cb15-6"><a href="import.html#cb15-6"></a></span>
+<span id="cb15-7"><a href="import.html#cb15-7"></a>D_<span class="dv">2018</span> &lt;-<span class="st"> </span><span class="kw">sc_init</span>() <span class="op">%&gt;%</span></span>
+<span id="cb15-8"><a href="import.html#cb15-8"></a><span class="st">    </span><span class="kw">sc_filter</span>(distanceonly <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, ccbasic <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">15</span>, <span class="dv">16</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb15-9"><a href="import.html#cb15-9"></a><span class="st">    </span><span class="kw">sc_select</span>(control, instnm, ccbasic, stabbr, female, first_gen, poverty_rate, veteran, unemp_rate, ugds_white, ugds_black, ugds_hisp, ugds_asian, ugds_aian, ugds_nhpi, ugds_2mor, ugds_nra, ugds_unkn, ugds_whitenh, ugds_blacknh, ugds_api, ugds_aianold, ugds_hispold) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb15-10"><a href="import.html#cb15-10"></a><span class="st">    </span><span class="kw">sc_year</span>(<span class="dv">2018</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb15-11"><a href="import.html#cb15-11"></a><span class="st">    </span><span class="kw">sc_get</span>()</span>
+<span id="cb15-12"><a href="import.html#cb15-12"></a></span>
+<span id="cb15-13"><a href="import.html#cb15-13"></a>D_<span class="dv">2017</span> &lt;-<span class="st"> </span><span class="kw">sc_init</span>() <span class="op">%&gt;%</span></span>
+<span id="cb15-14"><a href="import.html#cb15-14"></a><span class="st">    </span><span class="kw">sc_filter</span>(distanceonly <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, ccbasic <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">15</span>, <span class="dv">16</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb15-15"><a href="import.html#cb15-15"></a><span class="st">    </span><span class="kw">sc_select</span>(control, instnm, ccbasic, stabbr, female, first_gen, poverty_rate, veteran, unemp_rate, ugds_white, ugds_black, ugds_hisp, ugds_asian, ugds_aian, ugds_nhpi, ugds_2mor, ugds_nra, ugds_unkn, ugds_whitenh, ugds_blacknh, ugds_api, ugds_aianold, ugds_hispold) <span class="op">%&gt;%</span></span>
+<span id="cb15-16"><a href="import.html#cb15-16"></a><span class="st">    </span><span class="kw">sc_year</span>(<span class="dv">2017</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb15-17"><a href="import.html#cb15-17"></a><span class="st">    </span><span class="kw">sc_get</span>()</span>
+<span id="cb15-18"><a href="import.html#cb15-18"></a></span>
+<span id="cb15-19"><a href="import.html#cb15-19"></a>D_<span class="dv">2016</span> &lt;-<span class="st"> </span><span class="kw">sc_init</span>() <span class="op">%&gt;%</span></span>
+<span id="cb15-20"><a href="import.html#cb15-20"></a><span class="st">    </span><span class="kw">sc_filter</span>(distanceonly <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, ccbasic <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">15</span>, <span class="dv">16</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb15-21"><a href="import.html#cb15-21"></a><span class="st">    </span><span class="kw">sc_select</span>(control, instnm, ccbasic, stabbr, female, first_gen, poverty_rate, veteran, unemp_rate, ugds_white, ugds_black, ugds_hisp, ugds_asian, ugds_aian, ugds_nhpi, ugds_2mor, ugds_nra, ugds_unkn, ugds_whitenh, ugds_blacknh, ugds_api, ugds_aianold, ugds_hispold) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb15-22"><a href="import.html#cb15-22"></a><span class="st">    </span><span class="kw">sc_year</span>(<span class="dv">2016</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb15-23"><a href="import.html#cb15-23"></a><span class="st">    </span><span class="kw">sc_get</span>()</span>
+<span id="cb15-24"><a href="import.html#cb15-24"></a></span>
+<span id="cb15-25"><a href="import.html#cb15-25"></a>D_<span class="dv">2015</span> &lt;-<span class="st"> </span><span class="kw">sc_init</span>() <span class="op">%&gt;%</span></span>
+<span id="cb15-26"><a href="import.html#cb15-26"></a><span class="st">    </span><span class="kw">sc_filter</span>(distanceonly <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, ccbasic <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">15</span>, <span class="dv">16</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb15-27"><a href="import.html#cb15-27"></a><span class="st">    </span><span class="kw">sc_select</span>(control, instnm, ccbasic, stabbr, female, first_gen, poverty_rate, veteran, unemp_rate, ugds_white, ugds_black, ugds_hisp, ugds_asian, ugds_aian, ugds_nhpi, ugds_2mor, ugds_nra, ugds_unkn, ugds_whitenh, ugds_blacknh, ugds_api, ugds_aianold, ugds_hispold) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb15-28"><a href="import.html#cb15-28"></a><span class="st">    </span><span class="kw">sc_year</span>(<span class="dv">2015</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb15-29"><a href="import.html#cb15-29"></a><span class="st">    </span><span class="kw">sc_get</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="import.html#cb16-1"></a>D_latest <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="st">&quot;latest&quot;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 266 x 24
 ##    control instnm ccbasic stabbr female first_gen poverty_rate  veteran
 ##      &lt;int&gt; &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;   &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;    &lt;dbl&gt;
@@ -441,7 +366,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## #   ugds_aian &lt;dbl&gt;, ugds_nhpi &lt;dbl&gt;, ugds_2mor &lt;dbl&gt;, ugds_nra &lt;dbl&gt;,
 ## #   ugds_unkn &lt;dbl&gt;, ugds_whitenh &lt;lgl&gt;, ugds_blacknh &lt;lgl&gt;, ugds_api &lt;lgl&gt;,
 ## #   ugds_aianold &lt;lgl&gt;, ugds_hispold &lt;lgl&gt;, year &lt;chr&gt;</code></pre>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="import.html#cb28-1"></a>D_<span class="dv">2018</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="dv">2018</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="import.html#cb18-1"></a>D_<span class="dv">2018</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="dv">2018</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 266 x 24
 ##    control instnm ccbasic stabbr female first_gen poverty_rate veteran
 ##      &lt;int&gt; &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;  &lt;lgl&gt;  &lt;lgl&gt;     &lt;lgl&gt;        &lt;lgl&gt;  
@@ -460,7 +385,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## #   ugds_aian &lt;dbl&gt;, ugds_nhpi &lt;dbl&gt;, ugds_2mor &lt;dbl&gt;, ugds_nra &lt;dbl&gt;,
 ## #   ugds_unkn &lt;dbl&gt;, ugds_whitenh &lt;lgl&gt;, ugds_blacknh &lt;lgl&gt;, ugds_api &lt;lgl&gt;,
 ## #   ugds_aianold &lt;lgl&gt;, ugds_hispold &lt;lgl&gt;, year &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="import.html#cb30-1"></a>D_<span class="dv">2017</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="dv">2017</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="import.html#cb20-1"></a>D_<span class="dv">2017</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="dv">2017</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 266 x 24
 ##    control instnm ccbasic stabbr female first_gen poverty_rate veteran
 ##      &lt;int&gt; &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;  &lt;lgl&gt;  &lt;lgl&gt;     &lt;lgl&gt;        &lt;lgl&gt;  
@@ -479,7 +404,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## #   ugds_aian &lt;dbl&gt;, ugds_nhpi &lt;dbl&gt;, ugds_2mor &lt;dbl&gt;, ugds_nra &lt;dbl&gt;,
 ## #   ugds_unkn &lt;dbl&gt;, ugds_whitenh &lt;lgl&gt;, ugds_blacknh &lt;lgl&gt;, ugds_api &lt;lgl&gt;,
 ## #   ugds_aianold &lt;lgl&gt;, ugds_hispold &lt;lgl&gt;, year &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="import.html#cb32-1"></a>D_<span class="dv">2016</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="dv">2016</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="import.html#cb22-1"></a>D_<span class="dv">2016</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="dv">2016</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 266 x 24
 ##    control instnm ccbasic stabbr female first_gen poverty_rate  veteran
 ##      &lt;int&gt; &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;lgl&gt;           &lt;dbl&gt;
@@ -498,7 +423,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## #   ugds_aian &lt;dbl&gt;, ugds_nhpi &lt;dbl&gt;, ugds_2mor &lt;dbl&gt;, ugds_nra &lt;dbl&gt;,
 ## #   ugds_unkn &lt;dbl&gt;, ugds_whitenh &lt;lgl&gt;, ugds_blacknh &lt;lgl&gt;, ugds_api &lt;lgl&gt;,
 ## #   ugds_aianold &lt;lgl&gt;, ugds_hispold &lt;lgl&gt;, year &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="import.html#cb34-1"></a>D_<span class="dv">2015</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="dv">2015</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="import.html#cb24-1"></a>D_<span class="dv">2015</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="dv">2015</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 266 x 24
 ##    control instnm ccbasic stabbr female first_gen poverty_rate  veteran
 ##      &lt;int&gt; &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;lgl&gt;           &lt;dbl&gt;
@@ -517,41 +442,41 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## #   ugds_aian &lt;dbl&gt;, ugds_nhpi &lt;dbl&gt;, ugds_2mor &lt;dbl&gt;, ugds_nra &lt;dbl&gt;,
 ## #   ugds_unkn &lt;dbl&gt;, ugds_whitenh &lt;lgl&gt;, ugds_blacknh &lt;lgl&gt;, ugds_api &lt;lgl&gt;,
 ## #   ugds_aianold &lt;lgl&gt;, ugds_hispold &lt;lgl&gt;, year &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="import.html#cb36-1"></a>Demographics &lt;-<span class="st"> </span><span class="kw">rbind</span>(D_latest, D_<span class="dv">2018</span>, D_<span class="dv">2017</span>, D_<span class="dv">2016</span>, D_<span class="dv">2015</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="import.html#cb37-1"></a><span class="kw">write.csv</span>(Demographics, <span class="st">&quot;Proj1Data/Demographics15to19.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="import.html#cb26-1"></a>Demographics &lt;-<span class="st"> </span><span class="kw">rbind</span>(D_latest, D_<span class="dv">2018</span>, D_<span class="dv">2017</span>, D_<span class="dv">2016</span>, D_<span class="dv">2015</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="import.html#cb27-1"></a><span class="kw">write.csv</span>(Demographics, <span class="st">&quot;Proj1Data/Demographics15to19.csv&quot;</span>)</span></code></pre></div>
 </div>
 <div id="death" class="section level3">
 <h3><span class="header-section-number">2.2.3</span> Death</h3>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="import.html#cb38-1"></a>Dth_latest &lt;-<span class="st"> </span><span class="kw">sc_init</span>() <span class="op">%&gt;%</span></span>
-<span id="cb38-2"><a href="import.html#cb38-2"></a><span class="st">    </span><span class="kw">sc_filter</span>(distanceonly <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, ccbasic <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">15</span>, <span class="dv">16</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb38-3"><a href="import.html#cb38-3"></a><span class="st">    </span><span class="kw">sc_select</span>(control, instnm, ccbasic, stabbr, death_yr2_rt, lo_inc_death_yr2_rt, md_inc_death_yr2_rt,  hi_inc_death_yr2_rt, death_yr3_rt, lo_inc_death_yr3_rt, md_inc_death_yr3_rt, hi_inc_death_yr3_rt, death_yr4_rt, lo_inc_death_yr4_rt, md_inc_death_yr4_rt, hi_inc_death_yr4_rt, death_yr6_rt, lo_inc_death_yr6_rt, md_inc_death_yr6_rt, hi_inc_death_yr6_rt, death_yr8_rt, lo_inc_death_yr8_rt, md_inc_death_yr8_rt, hi_inc_death_yr8_rt) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb38-4"><a href="import.html#cb38-4"></a><span class="st">    </span><span class="kw">sc_year</span>(<span class="st">&quot;latest&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb38-5"><a href="import.html#cb38-5"></a><span class="st">    </span><span class="kw">sc_get</span>()</span>
-<span id="cb38-6"><a href="import.html#cb38-6"></a></span>
-<span id="cb38-7"><a href="import.html#cb38-7"></a>Dth_<span class="dv">2018</span> &lt;-<span class="st"> </span><span class="kw">sc_init</span>() <span class="op">%&gt;%</span></span>
-<span id="cb38-8"><a href="import.html#cb38-8"></a><span class="st">    </span><span class="kw">sc_filter</span>(distanceonly <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, ccbasic <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">15</span>, <span class="dv">16</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb38-9"><a href="import.html#cb38-9"></a><span class="st">    </span><span class="kw">sc_select</span>(control, instnm, ccbasic, stabbr,death_yr2_rt, lo_inc_death_yr2_rt, md_inc_death_yr2_rt,  hi_inc_death_yr2_rt, death_yr3_rt, lo_inc_death_yr3_rt, md_inc_death_yr3_rt, hi_inc_death_yr3_rt, death_yr4_rt, lo_inc_death_yr4_rt, md_inc_death_yr4_rt, hi_inc_death_yr4_rt, death_yr6_rt, lo_inc_death_yr6_rt, md_inc_death_yr6_rt, hi_inc_death_yr6_rt, death_yr8_rt, lo_inc_death_yr8_rt, md_inc_death_yr8_rt, hi_inc_death_yr8_rt) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb38-10"><a href="import.html#cb38-10"></a><span class="st">    </span><span class="kw">sc_year</span>(<span class="dv">2018</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb38-11"><a href="import.html#cb38-11"></a><span class="st">    </span><span class="kw">sc_get</span>()</span>
-<span id="cb38-12"><a href="import.html#cb38-12"></a></span>
-<span id="cb38-13"><a href="import.html#cb38-13"></a>Dth_<span class="dv">2017</span> &lt;-<span class="st"> </span><span class="kw">sc_init</span>() <span class="op">%&gt;%</span></span>
-<span id="cb38-14"><a href="import.html#cb38-14"></a><span class="st">    </span><span class="kw">sc_filter</span>(distanceonly <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, ccbasic <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">15</span>, <span class="dv">16</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb38-15"><a href="import.html#cb38-15"></a><span class="st">    </span><span class="kw">sc_select</span>(control, instnm, ccbasic, stabbr, death_yr2_rt, lo_inc_death_yr2_rt, md_inc_death_yr2_rt,  hi_inc_death_yr2_rt, death_yr3_rt, lo_inc_death_yr3_rt, md_inc_death_yr3_rt, hi_inc_death_yr3_rt, death_yr4_rt, lo_inc_death_yr4_rt, md_inc_death_yr4_rt, hi_inc_death_yr4_rt, death_yr6_rt, lo_inc_death_yr6_rt, md_inc_death_yr6_rt, hi_inc_death_yr6_rt, death_yr8_rt, lo_inc_death_yr8_rt, md_inc_death_yr8_rt, hi_inc_death_yr8_rt) <span class="op">%&gt;%</span></span>
-<span id="cb38-16"><a href="import.html#cb38-16"></a><span class="st">    </span><span class="kw">sc_year</span>(<span class="dv">2017</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb38-17"><a href="import.html#cb38-17"></a><span class="st">    </span><span class="kw">sc_get</span>()</span>
-<span id="cb38-18"><a href="import.html#cb38-18"></a></span>
-<span id="cb38-19"><a href="import.html#cb38-19"></a>Dth_<span class="dv">2016</span> &lt;-<span class="st"> </span><span class="kw">sc_init</span>() <span class="op">%&gt;%</span></span>
-<span id="cb38-20"><a href="import.html#cb38-20"></a><span class="st">    </span><span class="kw">sc_filter</span>(distanceonly <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, ccbasic <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">15</span>, <span class="dv">16</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb38-21"><a href="import.html#cb38-21"></a><span class="st">    </span><span class="kw">sc_select</span>(control, instnm, ccbasic, stabbr, death_yr2_rt, lo_inc_death_yr2_rt, md_inc_death_yr2_rt,  hi_inc_death_yr2_rt, death_yr3_rt, lo_inc_death_yr3_rt, md_inc_death_yr3_rt, hi_inc_death_yr3_rt, death_yr4_rt, lo_inc_death_yr4_rt, md_inc_death_yr4_rt, hi_inc_death_yr4_rt, death_yr6_rt, lo_inc_death_yr6_rt, md_inc_death_yr6_rt, hi_inc_death_yr6_rt, death_yr8_rt, lo_inc_death_yr8_rt, md_inc_death_yr8_rt, hi_inc_death_yr8_rt) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb38-22"><a href="import.html#cb38-22"></a><span class="st">    </span><span class="kw">sc_year</span>(<span class="dv">2016</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb38-23"><a href="import.html#cb38-23"></a><span class="st">    </span><span class="kw">sc_get</span>()</span>
-<span id="cb38-24"><a href="import.html#cb38-24"></a></span>
-<span id="cb38-25"><a href="import.html#cb38-25"></a>Dth_<span class="dv">2015</span> &lt;-<span class="st"> </span><span class="kw">sc_init</span>() <span class="op">%&gt;%</span></span>
-<span id="cb38-26"><a href="import.html#cb38-26"></a><span class="st">    </span><span class="kw">sc_filter</span>(distanceonly <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, ccbasic <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">15</span>, <span class="dv">16</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb38-27"><a href="import.html#cb38-27"></a><span class="st">    </span><span class="kw">sc_select</span>(control, instnm, ccbasic, stabbr, death_yr2_rt, lo_inc_death_yr2_rt, md_inc_death_yr2_rt,  hi_inc_death_yr2_rt, death_yr3_rt, lo_inc_death_yr3_rt, md_inc_death_yr3_rt, hi_inc_death_yr3_rt, death_yr4_rt, lo_inc_death_yr4_rt, md_inc_death_yr4_rt, hi_inc_death_yr4_rt, death_yr6_rt, lo_inc_death_yr6_rt, md_inc_death_yr6_rt, hi_inc_death_yr6_rt, death_yr8_rt, lo_inc_death_yr8_rt, md_inc_death_yr8_rt, hi_inc_death_yr8_rt) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb38-28"><a href="import.html#cb38-28"></a><span class="st">    </span><span class="kw">sc_year</span>(<span class="dv">2015</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb38-29"><a href="import.html#cb38-29"></a><span class="st">    </span><span class="kw">sc_get</span>()</span></code></pre></div>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="import.html#cb39-1"></a>Dth_latest <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="st">&quot;latest&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="import.html#cb28-1"></a>Dth_latest &lt;-<span class="st"> </span><span class="kw">sc_init</span>() <span class="op">%&gt;%</span></span>
+<span id="cb28-2"><a href="import.html#cb28-2"></a><span class="st">    </span><span class="kw">sc_filter</span>(distanceonly <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, ccbasic <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">15</span>, <span class="dv">16</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb28-3"><a href="import.html#cb28-3"></a><span class="st">    </span><span class="kw">sc_select</span>(control, instnm, ccbasic, stabbr, death_yr2_rt, lo_inc_death_yr2_rt, md_inc_death_yr2_rt,  hi_inc_death_yr2_rt, death_yr3_rt, lo_inc_death_yr3_rt, md_inc_death_yr3_rt, hi_inc_death_yr3_rt, death_yr4_rt, lo_inc_death_yr4_rt, md_inc_death_yr4_rt, hi_inc_death_yr4_rt, death_yr6_rt, lo_inc_death_yr6_rt, md_inc_death_yr6_rt, hi_inc_death_yr6_rt, death_yr8_rt, lo_inc_death_yr8_rt, md_inc_death_yr8_rt, hi_inc_death_yr8_rt) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb28-4"><a href="import.html#cb28-4"></a><span class="st">    </span><span class="kw">sc_year</span>(<span class="st">&quot;latest&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb28-5"><a href="import.html#cb28-5"></a><span class="st">    </span><span class="kw">sc_get</span>()</span>
+<span id="cb28-6"><a href="import.html#cb28-6"></a></span>
+<span id="cb28-7"><a href="import.html#cb28-7"></a>Dth_<span class="dv">2018</span> &lt;-<span class="st"> </span><span class="kw">sc_init</span>() <span class="op">%&gt;%</span></span>
+<span id="cb28-8"><a href="import.html#cb28-8"></a><span class="st">    </span><span class="kw">sc_filter</span>(distanceonly <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, ccbasic <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">15</span>, <span class="dv">16</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb28-9"><a href="import.html#cb28-9"></a><span class="st">    </span><span class="kw">sc_select</span>(control, instnm, ccbasic, stabbr,death_yr2_rt, lo_inc_death_yr2_rt, md_inc_death_yr2_rt,  hi_inc_death_yr2_rt, death_yr3_rt, lo_inc_death_yr3_rt, md_inc_death_yr3_rt, hi_inc_death_yr3_rt, death_yr4_rt, lo_inc_death_yr4_rt, md_inc_death_yr4_rt, hi_inc_death_yr4_rt, death_yr6_rt, lo_inc_death_yr6_rt, md_inc_death_yr6_rt, hi_inc_death_yr6_rt, death_yr8_rt, lo_inc_death_yr8_rt, md_inc_death_yr8_rt, hi_inc_death_yr8_rt) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb28-10"><a href="import.html#cb28-10"></a><span class="st">    </span><span class="kw">sc_year</span>(<span class="dv">2018</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb28-11"><a href="import.html#cb28-11"></a><span class="st">    </span><span class="kw">sc_get</span>()</span>
+<span id="cb28-12"><a href="import.html#cb28-12"></a></span>
+<span id="cb28-13"><a href="import.html#cb28-13"></a>Dth_<span class="dv">2017</span> &lt;-<span class="st"> </span><span class="kw">sc_init</span>() <span class="op">%&gt;%</span></span>
+<span id="cb28-14"><a href="import.html#cb28-14"></a><span class="st">    </span><span class="kw">sc_filter</span>(distanceonly <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, ccbasic <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">15</span>, <span class="dv">16</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb28-15"><a href="import.html#cb28-15"></a><span class="st">    </span><span class="kw">sc_select</span>(control, instnm, ccbasic, stabbr, death_yr2_rt, lo_inc_death_yr2_rt, md_inc_death_yr2_rt,  hi_inc_death_yr2_rt, death_yr3_rt, lo_inc_death_yr3_rt, md_inc_death_yr3_rt, hi_inc_death_yr3_rt, death_yr4_rt, lo_inc_death_yr4_rt, md_inc_death_yr4_rt, hi_inc_death_yr4_rt, death_yr6_rt, lo_inc_death_yr6_rt, md_inc_death_yr6_rt, hi_inc_death_yr6_rt, death_yr8_rt, lo_inc_death_yr8_rt, md_inc_death_yr8_rt, hi_inc_death_yr8_rt) <span class="op">%&gt;%</span></span>
+<span id="cb28-16"><a href="import.html#cb28-16"></a><span class="st">    </span><span class="kw">sc_year</span>(<span class="dv">2017</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb28-17"><a href="import.html#cb28-17"></a><span class="st">    </span><span class="kw">sc_get</span>()</span>
+<span id="cb28-18"><a href="import.html#cb28-18"></a></span>
+<span id="cb28-19"><a href="import.html#cb28-19"></a>Dth_<span class="dv">2016</span> &lt;-<span class="st"> </span><span class="kw">sc_init</span>() <span class="op">%&gt;%</span></span>
+<span id="cb28-20"><a href="import.html#cb28-20"></a><span class="st">    </span><span class="kw">sc_filter</span>(distanceonly <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, ccbasic <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">15</span>, <span class="dv">16</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb28-21"><a href="import.html#cb28-21"></a><span class="st">    </span><span class="kw">sc_select</span>(control, instnm, ccbasic, stabbr, death_yr2_rt, lo_inc_death_yr2_rt, md_inc_death_yr2_rt,  hi_inc_death_yr2_rt, death_yr3_rt, lo_inc_death_yr3_rt, md_inc_death_yr3_rt, hi_inc_death_yr3_rt, death_yr4_rt, lo_inc_death_yr4_rt, md_inc_death_yr4_rt, hi_inc_death_yr4_rt, death_yr6_rt, lo_inc_death_yr6_rt, md_inc_death_yr6_rt, hi_inc_death_yr6_rt, death_yr8_rt, lo_inc_death_yr8_rt, md_inc_death_yr8_rt, hi_inc_death_yr8_rt) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb28-22"><a href="import.html#cb28-22"></a><span class="st">    </span><span class="kw">sc_year</span>(<span class="dv">2016</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb28-23"><a href="import.html#cb28-23"></a><span class="st">    </span><span class="kw">sc_get</span>()</span>
+<span id="cb28-24"><a href="import.html#cb28-24"></a></span>
+<span id="cb28-25"><a href="import.html#cb28-25"></a>Dth_<span class="dv">2015</span> &lt;-<span class="st"> </span><span class="kw">sc_init</span>() <span class="op">%&gt;%</span></span>
+<span id="cb28-26"><a href="import.html#cb28-26"></a><span class="st">    </span><span class="kw">sc_filter</span>(distanceonly <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, ccbasic <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">15</span>, <span class="dv">16</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb28-27"><a href="import.html#cb28-27"></a><span class="st">    </span><span class="kw">sc_select</span>(control, instnm, ccbasic, stabbr, death_yr2_rt, lo_inc_death_yr2_rt, md_inc_death_yr2_rt,  hi_inc_death_yr2_rt, death_yr3_rt, lo_inc_death_yr3_rt, md_inc_death_yr3_rt, hi_inc_death_yr3_rt, death_yr4_rt, lo_inc_death_yr4_rt, md_inc_death_yr4_rt, hi_inc_death_yr4_rt, death_yr6_rt, lo_inc_death_yr6_rt, md_inc_death_yr6_rt, hi_inc_death_yr6_rt, death_yr8_rt, lo_inc_death_yr8_rt, md_inc_death_yr8_rt, hi_inc_death_yr8_rt) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb28-28"><a href="import.html#cb28-28"></a><span class="st">    </span><span class="kw">sc_year</span>(<span class="dv">2015</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb28-29"><a href="import.html#cb28-29"></a><span class="st">    </span><span class="kw">sc_get</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="import.html#cb29-1"></a>Dth_latest <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="st">&quot;latest&quot;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 266 x 25
 ##    control instnm ccbasic stabbr death_yr2_rt lo_inc_death_yr~ md_inc_death_yr~
 ##      &lt;int&gt; &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;         &lt;dbl&gt; &lt;lgl&gt;            &lt;lgl&gt;           
@@ -572,7 +497,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## #   lo_inc_death_yr6_rt &lt;dbl&gt;, md_inc_death_yr6_rt &lt;dbl&gt;,
 ## #   hi_inc_death_yr6_rt &lt;lgl&gt;, death_yr8_rt &lt;dbl&gt;, lo_inc_death_yr8_rt &lt;dbl&gt;,
 ## #   md_inc_death_yr8_rt &lt;dbl&gt;, hi_inc_death_yr8_rt &lt;lgl&gt;, year &lt;chr&gt;</code></pre>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="import.html#cb41-1"></a>Dth_<span class="dv">2018</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="dv">2018</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="import.html#cb31-1"></a>Dth_<span class="dv">2018</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="dv">2018</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 266 x 25
 ##    control instnm ccbasic stabbr death_yr2_rt lo_inc_death_yr~ md_inc_death_yr~
 ##      &lt;int&gt; &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;  &lt;lgl&gt;        &lt;lgl&gt;            &lt;lgl&gt;           
@@ -593,7 +518,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## #   lo_inc_death_yr6_rt &lt;lgl&gt;, md_inc_death_yr6_rt &lt;lgl&gt;,
 ## #   hi_inc_death_yr6_rt &lt;lgl&gt;, death_yr8_rt &lt;lgl&gt;, lo_inc_death_yr8_rt &lt;lgl&gt;,
 ## #   md_inc_death_yr8_rt &lt;lgl&gt;, hi_inc_death_yr8_rt &lt;lgl&gt;, year &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="import.html#cb43-1"></a>Dth_<span class="dv">2017</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="dv">2017</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="import.html#cb33-1"></a>Dth_<span class="dv">2017</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="dv">2017</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 266 x 25
 ##    control instnm ccbasic stabbr death_yr2_rt lo_inc_death_yr~ md_inc_death_yr~
 ##      &lt;int&gt; &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;  &lt;lgl&gt;        &lt;lgl&gt;            &lt;lgl&gt;           
@@ -614,7 +539,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## #   lo_inc_death_yr6_rt &lt;lgl&gt;, md_inc_death_yr6_rt &lt;lgl&gt;,
 ## #   hi_inc_death_yr6_rt &lt;lgl&gt;, death_yr8_rt &lt;lgl&gt;, lo_inc_death_yr8_rt &lt;lgl&gt;,
 ## #   md_inc_death_yr8_rt &lt;lgl&gt;, hi_inc_death_yr8_rt &lt;lgl&gt;, year &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="import.html#cb45-1"></a>Dth_<span class="dv">2016</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="dv">2016</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="import.html#cb35-1"></a>Dth_<span class="dv">2016</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="dv">2016</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 266 x 25
 ##    control instnm ccbasic stabbr death_yr2_rt lo_inc_death_yr~ md_inc_death_yr~
 ##      &lt;int&gt; &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;         &lt;dbl&gt; &lt;lgl&gt;            &lt;lgl&gt;           
@@ -635,7 +560,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## #   lo_inc_death_yr6_rt &lt;dbl&gt;, md_inc_death_yr6_rt &lt;dbl&gt;,
 ## #   hi_inc_death_yr6_rt &lt;lgl&gt;, death_yr8_rt &lt;dbl&gt;, lo_inc_death_yr8_rt &lt;dbl&gt;,
 ## #   md_inc_death_yr8_rt &lt;dbl&gt;, hi_inc_death_yr8_rt &lt;lgl&gt;, year &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="import.html#cb47-1"></a>Dth_<span class="dv">2015</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="dv">2015</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="import.html#cb37-1"></a>Dth_<span class="dv">2015</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="dv">2015</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 266 x 25
 ##    control instnm ccbasic stabbr death_yr2_rt lo_inc_death_yr~ md_inc_death_yr~
 ##      &lt;int&gt; &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;         &lt;dbl&gt; &lt;lgl&gt;            &lt;lgl&gt;           
@@ -656,13 +581,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## #   lo_inc_death_yr6_rt &lt;dbl&gt;, md_inc_death_yr6_rt &lt;lgl&gt;,
 ## #   hi_inc_death_yr6_rt &lt;lgl&gt;, death_yr8_rt &lt;dbl&gt;, lo_inc_death_yr8_rt &lt;dbl&gt;,
 ## #   md_inc_death_yr8_rt &lt;lgl&gt;, hi_inc_death_yr8_rt &lt;lgl&gt;, year &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="import.html#cb49-1"></a>Death &lt;-<span class="st"> </span><span class="kw">rbind</span>(Dth_latest, Dth_<span class="dv">2018</span>, Dth_<span class="dv">2017</span>, Dth_<span class="dv">2016</span>, Dth_<span class="dv">2015</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="import.html#cb50-1"></a><span class="kw">write.csv</span>(Death, <span class="st">&quot;Proj1Data/Death15to19.csv&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="import.html#cb51-1"></a>R1Schools &lt;-<span class="st"> </span><span class="kw">sc_init</span>() <span class="op">%&gt;%</span></span>
-<span id="cb51-2"><a href="import.html#cb51-2"></a><span class="st">    </span><span class="kw">sc_filter</span>(ccbasic <span class="op">==</span><span class="st"> </span><span class="dv">15</span>) <span class="op">%&gt;%</span></span>
-<span id="cb51-3"><a href="import.html#cb51-3"></a><span class="st">    </span><span class="kw">sc_select</span>(control, instnm, stabbr) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb51-4"><a href="import.html#cb51-4"></a><span class="st">    </span><span class="kw">sc_year</span>(<span class="st">&quot;latest&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb51-5"><a href="import.html#cb51-5"></a><span class="st">    </span><span class="kw">sc_get</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="import.html#cb39-1"></a>Death &lt;-<span class="st"> </span><span class="kw">rbind</span>(Dth_latest, Dth_<span class="dv">2018</span>, Dth_<span class="dv">2017</span>, Dth_<span class="dv">2016</span>, Dth_<span class="dv">2015</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="import.html#cb40-1"></a><span class="kw">write.csv</span>(Death, <span class="st">&quot;Proj1Data/Death15to19.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="import.html#cb41-1"></a>R1Schools &lt;-<span class="st"> </span><span class="kw">sc_init</span>() <span class="op">%&gt;%</span></span>
+<span id="cb41-2"><a href="import.html#cb41-2"></a><span class="st">    </span><span class="kw">sc_filter</span>(ccbasic <span class="op">==</span><span class="st"> </span><span class="dv">15</span>) <span class="op">%&gt;%</span></span>
+<span id="cb41-3"><a href="import.html#cb41-3"></a><span class="st">    </span><span class="kw">sc_select</span>(control, instnm, stabbr) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb41-4"><a href="import.html#cb41-4"></a><span class="st">    </span><span class="kw">sc_year</span>(<span class="st">&quot;latest&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb41-5"><a href="import.html#cb41-5"></a><span class="st">    </span><span class="kw">sc_get</span>()</span></code></pre></div>
 
 </div>
 </div>
