@@ -54,7 +54,7 @@ write.csv(dem_clean, "Proj1Data/cleanDemographics1519.csv")
 
 ```
 
-##Financials 
+## Financials 
 
 The Financials data set was easier to work with; as such, we simply renamed the common variables that we had renamed with demographics and re-coded the Carnegie Classification.
 
@@ -83,9 +83,9 @@ write.csv(fin_clean, "Proj1Data/cleanFinancials1519.csv")
 
 ```{r}
 
-#DISPLAY OF THE NEW CSV
+#DISPLAYING THE NEW CSV
 
-head(dem_clean) %>% MakePretty()
+head(dem_clean, 5) 
 
 ```
 
