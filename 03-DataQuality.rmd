@@ -169,6 +169,8 @@ Ease of manipulation was quantified using the rules of coercion in R (as outline
 
 The ease of manipulation scores for both data sets are included below. The average ease of manipulation score for the Financials data set was 0.8, which indicates good ease of manipulation. The average ease of manipulation score for the Demographics data set was 0.825, which also indicates good ease of manipulation.
 
+**FINANCIALS METRICS**
+
 ```{r, echo= FALSE}
 
 fin_qual <- data_quality(fin)
@@ -180,6 +182,7 @@ fin_qual
 ```{r, echo = FALSE}
 paste("Mean over columns:", mean(fin_qual$Ease_of_Manipulation))
 ```
+**DEMOGRAPHICS METRICS**
 
 ```{r, echo = FALSE}
 
