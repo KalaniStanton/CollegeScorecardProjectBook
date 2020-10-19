@@ -21,15 +21,13 @@ knitr::opts_chunk$set(echo = TRUE,
 
 # Preface {-}
 
+
 This project was completed to satisfy the requirements of a project assigned to students in the Fall 2020 Data Munging and Exploratory Data Analysis at New College of Florida.
 
 This document is broken down into sections pertaining to the discrete steps in the process of exploratory data analysis. 
 
-In section \@ref(intro) we give an overview of this project, followed by an explanation of our process for selecting variables.
-Next, we demonstrate our initial ~~failed~~ attempts at pulling the data directly from the API, and explain why we chose to pivot to using the `{rscorecard}` package for querying our data from the API in section \@ref(import). 
-Once the data is imported, we assess the quality of the data in section \@ref(clean) and rename some of the variables to make the data set, and our later analysis, easier to interpret. 
-Following this, section \@ref(analysis) contains the statistical analysis of the data, wherein we investigate the relationship between R1 and R2 Carnegie classification status and unemployment rates. This model is the modified by adding the proportion of white students as a moderator, which reveals interesting results. 
-Lastly, in section \@ref(discussion), we present visualizations made using the data from the College Scorecard API and elaborate on the statistical analyses performed in the previous section.
+In the first chapter (\@ref(intro)), we present an overview of this project. In the second chapter (\@ref(import)), we outline how we accessed and cleaned the data. We demonstrate our initial attempts at pulling the data directly from the API, and explain why we chose to pivot to using the {rscorecard} package for querying our data from the API. In the third (\@ref(quality)), we compute scores on each of the data quality metrics described in Pipino, Lee, and Wang (2002). Although we handle NA’s while cleaning the data, the data quality metrics are performed on the initial data pulls as to be generalizable to the original dataset. The fourth chapter (\@ref(clean)) provides the code used to clean the data. Then, we begin the analysis of the data (\@ref(analysis)). This is done in two steps: first, by exploring the descriptive variables in order to glean the composition of the data set, and second by investigating our theory that the proportion of White students at a school will positively influence student outcomes (possibly due to implicit favor given to White individuals). We examine features that R1 and R2 schools differ on, and provide a model for the relationship between demographics and student outcomes. The results of these tests are reported (\@ref(analysis)). In this discussion (\@ref(discussion)), we summarize the key findings from the analysis. 
+
 
 ```{r include=FALSE}
 # automatically create a bib database for R packages
