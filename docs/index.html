@@ -159,9 +159,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="quality.html"><a href="quality.html"><i class="fa fa-check"></i><b>3</b> Data Quality</a><ul>
-<li class="chapter" data-level="3.1" data-path="quality.html"><a href="quality.html#a-section"><i class="fa fa-check"></i><b>3.1</b> A section</a></li>
+<li class="chapter" data-level="3.1" data-path="quality.html"><a href="quality.html#set-up"><i class="fa fa-check"></i><b>3.1</b> Set-up</a></li>
+<li class="chapter" data-level="3.2" data-path="quality.html"><a href="quality.html#the-functions"><i class="fa fa-check"></i><b>3.2</b> The Functions</a></li>
+<li class="chapter" data-level="3.3" data-path="quality.html"><a href="quality.html#the-evaluations"><i class="fa fa-check"></i><b>3.3</b> The Evaluations</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="clean.html"><a href="clean.html"><i class="fa fa-check"></i><b>4</b> Data Clean</a></li>
+<li class="chapter" data-level="4" data-path="clean.html"><a href="clean.html"><i class="fa fa-check"></i><b>4</b> Data Cleaning</a><ul>
+<li class="chapter" data-level="4.1" data-path="clean.html"><a href="clean.html#demographics-1"><i class="fa fa-check"></i><b>4.1</b> Demographics</a></li>
+</ul></li>
 <li class="chapter" data-level="5" data-path="analysis.html"><a href="analysis.html"><i class="fa fa-check"></i><b>5</b> Analysis</a><ul>
 <li class="chapter" data-level="5.1" data-path="analysis.html"><a href="analysis.html#import-packages"><i class="fa fa-check"></i><b>5.1</b> Import Packages</a></li>
 <li class="chapter" data-level="5.2" data-path="analysis.html"><a href="analysis.html#transform-datasets"><i class="fa fa-check"></i><b>5.2</b> Transform Datasets</a></li>
@@ -208,11 +212,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>Preface</h1>
 <p>This project was completed to satisfy the requirements of a project assigned to students in the Fall 2020 Data Munging and Exploratory Data Analysis at New College of Florida.</p>
 <p>This document is broken down into sections pertaining to the discrete steps in the process of exploratory data analysis.</p>
-<p>In section <a href="intro.html#intro">1</a> we give an overview of this project, followed by an explanation of our process for selecting variables.
-Next, we demonstrate our initial <del>failed</del> attempts at pulling the data directly from the API, and explain why we chose to pivot to using the <code>{rscorecard}</code> package for querying our data from the API in section <a href="import.html#import">2</a>.
-Once the data is imported, we assess the quality of the data in section <a href="clean.html#clean">4</a> and rename some of the variables to make the data set, and our later analysis, easier to interpret.
-Following this, section <a href="analysis.html#analysis">5</a> contains the statistical analysis of the data, wherein we investigate the relationship between R1 and R2 Carnegie classification status and unemployment rates. This model is the modified by adding the proportion of white students as a moderator, which reveals interesting results.
-Lastly, in section <a href="discussion.html#discussion">6</a>, we present visualizations made using the data from the College Scorecard API and elaborate on the statistical analyses performed in the previous section.</p>
+<p>In the first chapter (<a href="intro.html#intro">1</a>), we present an overview of this project. In the second chapter (<a href="import.html#import">2</a>), we outline how we accessed and cleaned the data. We demonstrate our initial attempts at pulling the data directly from the API, and explain why we chose to pivot to using the {rscorecard} package for querying our data from the API. In the third (<a href="quality.html#quality">3</a>), we compute scores on each of the data quality metrics described in Pipino, Lee, and Wang (2002). Although we handle NA’s while cleaning the data, the data quality metrics are performed on the initial data pulls, so that our assessment procedure is generally reproducible. The fourth chapter (<a href="clean.html#clean">4</a>) provides the code used to clean the data. Then, we begin the analysis of the data (<a href="analysis.html#analysis">5</a>). This is done in two steps: first, by exploring the descriptive variables in order to glean the composition of the data set, and second by investigating our theory that the proportion of White students at a school will positively influence student outcomes (possibly due to implicit favor given to White individuals). We examine features that R1 and R2 schools differ on, and provide a model for the relationship between demographics and student outcomes. The results of these tests are reported (<a href="analysis.html#analysis">5</a>). In this discussion (<a href="discussion.html#discussion">6</a>), we summarize the key findings from the analysis.</p>
 
 </div>
             </section>

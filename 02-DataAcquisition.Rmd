@@ -89,27 +89,25 @@ At this point, the challenge of collecting data directly from the API seemed ins
 
 ## The `rscorecard` and `tidyverse` approach
 
-As expected, we found out savior in the annals of algorithmic wisdom when we stumbled upon a package called {rscorecard}.
+As expected, we found out savior in the annals of algorithmic wisdom when we stumbled upon a package called [{rscorecard}](https://www.btskinner.io/rscorecard/index.html).
 
-The {rscorecard} package is a wrapper for the College Scorecard API that takes full advantage of the complexity in this relational data structure by employing useful tools from the tidyverse eco-system. Using {dplyr} functions, specified to this data set, and pipe operators `%>%` from {magrittr}, the {rscorecard} package provides an astonishingly simple solution for querying data directly from the API.
+The [{rscorecard}](https://www.btskinner.io/rscorecard/index.html) package is a wrapper for the College Scorecard API that takes full advantage of the complexity in this relational data structure by employing useful tools from the [tidyverse](https://www.tidyverse.org/) eco-system. Using [{dplyr}](https://dplyr.tidyverse.org/) like functions, specified to this data set, and pipe operators `%>%` from [{magrittr}](https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html), the rscorecard package provides an astonishingly simple solution for querying data directly from the API.
 
 ```{r}
 #install.packages("rscorecard")
 library(rscorecard)
 ```
 
-The package works by accessing the API directly using the users API key as an argument in the `sc_key()` function.
+To access the API in this package we pass the object holding our API Key [as a string] into the `sc_key()` function.
 
 ```{r}
 sc_key(APIKey)
 ```
-As the message above states, once the API key is accessed, the user can append querying functions like `sc_filter()`, to collect observations that satisfy booleans, `sc_select()`, to subset the data by columns, and `sc_year()`, to select the data from a specified year.
+As the message above states, once the API key is set, the user can append conditions to the query function `sc_get()` to extract the data they desire. These conditions are applied using functions in the package, which are appended to the query function using the aforementioned pipes. The primary functions for conditioning the queries are `sc_filter()`, to collect observations that satisfy boolean expressions, `sc_select()`, to subset the data by columns, and `sc_year()`, to select the data from a specified year.
 
-These functions are mentioned and explained here because they what we use to extract data on **Finances**, **Demographics**, and **Death Rates** from schools that classify as **R1** and **R2** research institutions.
+These functions are what we use below to extract data on **Finances**, **Demographics**, and **Death Rates** from schools that classify as **R1** and **R2** research institutions.
 
 ### Finances
-
-
 
 ```{r}
 F_latest <- sc_init() %>%
@@ -143,7 +141,7 @@ F_2015 <- sc_init() %>%
     sc_get()
 ```
 
-```{r}
+```{r, message = FALSE}
 F_latest %>% mutate(year = "latest")
 F_2018 %>% mutate(year = 2018)
 F_2017 %>% mutate(year = 2017)

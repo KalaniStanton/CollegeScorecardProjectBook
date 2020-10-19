@@ -8,8 +8,11 @@ finances
 demographics
 death
 quality
-a-section
+set-up
+the-functions
+the-evaluations
 clean
+demographics-1
 analysis
 import-packages
 transform-datasets

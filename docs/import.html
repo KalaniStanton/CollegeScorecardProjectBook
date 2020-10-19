@@ -159,9 +159,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="quality.html"><a href="quality.html"><i class="fa fa-check"></i><b>3</b> Data Quality</a><ul>
-<li class="chapter" data-level="3.1" data-path="quality.html"><a href="quality.html#a-section"><i class="fa fa-check"></i><b>3.1</b> A section</a></li>
+<li class="chapter" data-level="3.1" data-path="quality.html"><a href="quality.html#set-up"><i class="fa fa-check"></i><b>3.1</b> Set-up</a></li>
+<li class="chapter" data-level="3.2" data-path="quality.html"><a href="quality.html#the-functions"><i class="fa fa-check"></i><b>3.2</b> The Functions</a></li>
+<li class="chapter" data-level="3.3" data-path="quality.html"><a href="quality.html#the-evaluations"><i class="fa fa-check"></i><b>3.3</b> The Evaluations</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="clean.html"><a href="clean.html"><i class="fa fa-check"></i><b>4</b> Data Clean</a></li>
+<li class="chapter" data-level="4" data-path="clean.html"><a href="clean.html"><i class="fa fa-check"></i><b>4</b> Data Cleaning</a><ul>
+<li class="chapter" data-level="4.1" data-path="clean.html"><a href="clean.html#demographics-1"><i class="fa fa-check"></i><b>4.1</b> Demographics</a></li>
+</ul></li>
 <li class="chapter" data-level="5" data-path="analysis.html"><a href="analysis.html"><i class="fa fa-check"></i><b>5</b> Analysis</a><ul>
 <li class="chapter" data-level="5.1" data-path="analysis.html"><a href="analysis.html#import-packages"><i class="fa fa-check"></i><b>5.1</b> Import Packages</a></li>
 <li class="chapter" data-level="5.2" data-path="analysis.html"><a href="analysis.html#transform-datasets"><i class="fa fa-check"></i><b>5.2</b> Transform Datasets</a></li>
@@ -268,14 +272,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="the-rscorecard-and-tidyverse-approach" class="section level2">
 <h2><span class="header-section-number">2.2</span> The <code>rscorecard</code> and <code>tidyverse</code> approach</h2>
-<p>As expected, we found out savior in the annals of algorithmic wisdom when we stumbled upon a package called {rscorecard}.</p>
-<p>The {rscorecard} package is a wrapper for the College Scorecard API that takes full advantage of the complexity in this relational data structure by employing useful tools from the tidyverse eco-system. Using {dplyr} functions, specified to this data set, and pipe operators <code>%&gt;%</code> from {magrittr}, the {rscorecard} package provides an astonishingly simple solution for querying data directly from the API.</p>
+<p>As expected, we found out savior in the annals of algorithmic wisdom when we stumbled upon a package called <a href="https://www.btskinner.io/rscorecard/index.html">{rscorecard}</a>.</p>
+<p>The <a href="https://www.btskinner.io/rscorecard/index.html">{rscorecard}</a> package is a wrapper for the College Scorecard API that takes full advantage of the complexity in this relational data structure by employing useful tools from the <a href="https://www.tidyverse.org/">tidyverse</a> eco-system. Using <a href="https://dplyr.tidyverse.org/">{dplyr}</a> like functions, specified to this data set, and pipe operators <code>%&gt;%</code> from <a href="https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html">{magrittr}</a>, the rscorecard package provides an astonishingly simple solution for querying data directly from the API.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="import.html#cb10-1"></a><span class="co">#install.packages(&quot;rscorecard&quot;)</span></span>
 <span id="cb10-2"><a href="import.html#cb10-2"></a><span class="kw">library</span>(rscorecard)</span></code></pre></div>
-<p>The package works by accessing the API directly using the users API key as an argument in the <code>sc_key()</code> function.</p>
+<p>To access the API in this package we pass the object holding our API Key [as a string] into the <code>sc_key()</code> function.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="import.html#cb11-1"></a><span class="kw">sc_key</span>(APIKey)</span></code></pre></div>
-<p>As the message above states, once the API key is accessed, the user can append querying functions like <code>sc_filter()</code>, to collect observations that satisfy booleans, <code>sc_select()</code>, to subset the data by columns, and <code>sc_year()</code>, to select the data from a specified year.</p>
-<p>These functions are mentioned and explained here because they what we use to extract data on <strong>Finances</strong>, <strong>Demographics</strong>, and <strong>Death Rates</strong> from schools that classify as <strong>R1</strong> and <strong>R2</strong> research institutions.</p>
+<p>As the message above states, once the API key is set, the user can append conditions to the query function <code>sc_get()</code> to extract the data they desire. These conditions are applied using functions in the package, which are appended to the query function using the aforementioned pipes. The primary functions for conditioning the queries are <code>sc_filter()</code>, to collect observations that satisfy boolean expressions, <code>sc_select()</code>, to subset the data by columns, and <code>sc_year()</code>, to select the data from a specified year.</p>
+<p>These functions are what we use below to extract data on <strong>Finances</strong>, <strong>Demographics</strong>, and <strong>Death Rates</strong> from schools that classify as <strong>R1</strong> and <strong>R2</strong> research institutions.</p>
 <div id="finances" class="section level3">
 <h3><span class="header-section-number">2.2.1</span> Finances</h3>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="import.html#cb12-1"></a>F_latest &lt;-<span class="st"> </span><span class="kw">sc_init</span>() <span class="op">%&gt;%</span></span>

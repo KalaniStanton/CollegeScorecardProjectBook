@@ -159,9 +159,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="quality.html"><a href="quality.html"><i class="fa fa-check"></i><b>3</b> Data Quality</a><ul>
-<li class="chapter" data-level="3.1" data-path="quality.html"><a href="quality.html#a-section"><i class="fa fa-check"></i><b>3.1</b> A section</a></li>
+<li class="chapter" data-level="3.1" data-path="quality.html"><a href="quality.html#set-up"><i class="fa fa-check"></i><b>3.1</b> Set-up</a></li>
+<li class="chapter" data-level="3.2" data-path="quality.html"><a href="quality.html#the-functions"><i class="fa fa-check"></i><b>3.2</b> The Functions</a></li>
+<li class="chapter" data-level="3.3" data-path="quality.html"><a href="quality.html#the-evaluations"><i class="fa fa-check"></i><b>3.3</b> The Evaluations</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="clean.html"><a href="clean.html"><i class="fa fa-check"></i><b>4</b> Data Clean</a></li>
+<li class="chapter" data-level="4" data-path="clean.html"><a href="clean.html"><i class="fa fa-check"></i><b>4</b> Data Cleaning</a><ul>
+<li class="chapter" data-level="4.1" data-path="clean.html"><a href="clean.html#demographics-1"><i class="fa fa-check"></i><b>4.1</b> Demographics</a></li>
+</ul></li>
 <li class="chapter" data-level="5" data-path="analysis.html"><a href="analysis.html"><i class="fa fa-check"></i><b>5</b> Analysis</a><ul>
 <li class="chapter" data-level="5.1" data-path="analysis.html"><a href="analysis.html#import-packages"><i class="fa fa-check"></i><b>5.1</b> Import Packages</a></li>
 <li class="chapter" data-level="5.2" data-path="analysis.html"><a href="analysis.html#transform-datasets"><i class="fa fa-check"></i><b>5.2</b> Transform Datasets</a></li>
@@ -201,9 +205,182 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="quality" class="section level1">
 <h1><span class="header-section-number">Section 3</span> Data Quality</h1>
-<div id="a-section" class="section level2">
-<h2><span class="header-section-number">3.1</span> A section</h2>
-<p>a;ksjhf;asjhdflasdga</p>
+<div id="set-up" class="section level2">
+<h2><span class="header-section-number">3.1</span> Set-up</h2>
+<p>First, I import the packages that I use in this section and read in the uncleaned data.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="quality.html#cb52-1"></a><span class="co">#LIBRARIES </span></span>
+<span id="cb52-2"><a href="quality.html#cb52-2"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="quality.html#cb53-1"></a><span class="co">#Reading in the data</span></span>
+<span id="cb53-2"><a href="quality.html#cb53-2"></a>fin &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;Proj1Data/Financials15to19.csv&#39;</span>)</span>
+<span id="cb53-3"><a href="quality.html#cb53-3"></a>fin &lt;-<span class="st"> </span>fin[,<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb53-4"><a href="quality.html#cb53-4"></a></span>
+<span id="cb53-5"><a href="quality.html#cb53-5"></a>dem &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;Proj1Data/Demographics15to19.csv&quot;</span>)</span>
+<span id="cb53-6"><a href="quality.html#cb53-6"></a>dem &lt;-<span class="st"> </span>dem[,<span class="op">-</span><span class="dv">1</span>]</span></code></pre></div>
+</div>
+<div id="the-functions" class="section level2">
+<h2><span class="header-section-number">3.2</span> The Functions</h2>
+<p><strong>CONSISTANT REPRESENTATION</strong></p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="quality.html#cb54-1"></a>con_rep &lt;-<span class="st"> </span><span class="cf">function</span>(df){</span>
+<span id="cb54-2"><a href="quality.html#cb54-2"></a>  <span class="st">&quot;</span></span>
+<span id="cb54-3"><a href="quality.html#cb54-3"></a><span class="st">  A function that quantitatively scores an input data frame on the consistancy of representation data quality metric.</span></span>
+<span id="cb54-4"><a href="quality.html#cb54-4"></a><span class="st">  </span></span>
+<span id="cb54-5"><a href="quality.html#cb54-5"></a><span class="st">  Input: </span></span>
+<span id="cb54-6"><a href="quality.html#cb54-6"></a><span class="st">    df: a data frame</span></span>
+<span id="cb54-7"><a href="quality.html#cb54-7"></a><span class="st">  Output: </span></span>
+<span id="cb54-8"><a href="quality.html#cb54-8"></a><span class="st">    con_rep_score: A numeric score on consistency of representation ranging from 1 to 0, where 1 is perfectly consistent representation and 0 is inconsistent representation.</span></span>
+<span id="cb54-9"><a href="quality.html#cb54-9"></a><span class="st">  &quot;</span></span>
+<span id="cb54-10"><a href="quality.html#cb54-10"></a>  </span>
+<span id="cb54-11"><a href="quality.html#cb54-11"></a>  type =<span class="st"> </span><span class="kw">vector</span>()</span>
+<span id="cb54-12"><a href="quality.html#cb54-12"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(df)){</span>
+<span id="cb54-13"><a href="quality.html#cb54-13"></a>    col_type &lt;-<span class="st"> </span><span class="kw">typeof</span>(df[<span class="dv">1</span>,i])</span>
+<span id="cb54-14"><a href="quality.html#cb54-14"></a>    type[i] &lt;-<span class="st"> </span>col_type</span>
+<span id="cb54-15"><a href="quality.html#cb54-15"></a>  }</span>
+<span id="cb54-16"><a href="quality.html#cb54-16"></a>  </span>
+<span id="cb54-17"><a href="quality.html#cb54-17"></a>  con_rep_score &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span>((<span class="kw">length</span>(<span class="kw">unique</span>(type)) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)<span class="op">/</span><span class="dv">6</span>)</span>
+<span id="cb54-18"><a href="quality.html#cb54-18"></a>  <span class="kw">return</span>(con_rep_score)</span>
+<span id="cb54-19"><a href="quality.html#cb54-19"></a>}</span></code></pre></div>
+<p><strong>COMPLETENESS AND EASE OF MANIPULATION</strong></p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="quality.html#cb55-1"></a>data_quality &lt;-<span class="st"> </span><span class="cf">function</span>(df){</span>
+<span id="cb55-2"><a href="quality.html#cb55-2"></a>  </span>
+<span id="cb55-3"><a href="quality.html#cb55-3"></a>  <span class="st">&quot;</span></span>
+<span id="cb55-4"><a href="quality.html#cb55-4"></a><span class="st">  A function to quantitatively compute scores for a dataframe on the completeness and ease of manipulation data quality metrics. </span></span>
+<span id="cb55-5"><a href="quality.html#cb55-5"></a><span class="st">  </span></span>
+<span id="cb55-6"><a href="quality.html#cb55-6"></a><span class="st">  Input: </span></span>
+<span id="cb55-7"><a href="quality.html#cb55-7"></a><span class="st">    df: A data frame</span></span>
+<span id="cb55-8"><a href="quality.html#cb55-8"></a><span class="st">    </span></span>
+<span id="cb55-9"><a href="quality.html#cb55-9"></a><span class="st">  Output: </span></span>
+<span id="cb55-10"><a href="quality.html#cb55-10"></a><span class="st">    qualityTable: A table reporting the scores on completeness and ease of manipulation for each column in the input data frame. </span></span>
+<span id="cb55-11"><a href="quality.html#cb55-11"></a><span class="st">  &quot;</span></span>
+<span id="cb55-12"><a href="quality.html#cb55-12"></a>  </span>
+<span id="cb55-13"><a href="quality.html#cb55-13"></a>  <span class="co"># Setting the index value, which will be used to index the column name </span></span>
+<span id="cb55-14"><a href="quality.html#cb55-14"></a></span>
+<span id="cb55-15"><a href="quality.html#cb55-15"></a>  index &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb55-16"><a href="quality.html#cb55-16"></a>  </span>
+<span id="cb55-17"><a href="quality.html#cb55-17"></a>  <span class="co"># Instantiating empty data frames for each of the queries</span></span>
+<span id="cb55-18"><a href="quality.html#cb55-18"></a>  </span>
+<span id="cb55-19"><a href="quality.html#cb55-19"></a>  completeness &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Completeness=</span><span class="kw">double</span>())</span>
+<span id="cb55-20"><a href="quality.html#cb55-20"></a>  eom &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Ease_of_Manipulation=</span><span class="kw">double</span>())</span>
+<span id="cb55-21"><a href="quality.html#cb55-21"></a>  names &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">ColumnName=</span><span class="kw">character</span>())</span>
+<span id="cb55-22"><a href="quality.html#cb55-22"></a>  </span>
+<span id="cb55-23"><a href="quality.html#cb55-23"></a>  <span class="co"># Populating the data frames using a for-loop</span></span>
+<span id="cb55-24"><a href="quality.html#cb55-24"></a>  </span>
+<span id="cb55-25"><a href="quality.html#cb55-25"></a>  <span class="cf">for</span> (i <span class="cf">in</span> df){</span>
+<span id="cb55-26"><a href="quality.html#cb55-26"></a>    </span>
+<span id="cb55-27"><a href="quality.html#cb55-27"></a>    <span class="co"># COLLECTING THE NAMES OF EACH COLUMN PASSED</span></span>
+<span id="cb55-28"><a href="quality.html#cb55-28"></a>    </span>
+<span id="cb55-29"><a href="quality.html#cb55-29"></a>    col &lt;-<span class="st"> </span><span class="kw">colnames</span>(df[index])</span>
+<span id="cb55-30"><a href="quality.html#cb55-30"></a>    </span>
+<span id="cb55-31"><a href="quality.html#cb55-31"></a>    <span class="co"># COMPLETENESS</span></span>
+<span id="cb55-32"><a href="quality.html#cb55-32"></a>    <span class="co"># Takes the sum of the total NA, NULL, and NaN values in a column</span></span>
+<span id="cb55-33"><a href="quality.html#cb55-33"></a>    <span class="co"># Divides them by the length of the column</span></span>
+<span id="cb55-34"><a href="quality.html#cb55-34"></a>    <span class="co"># Subtracts this from one, as was suggested by Pipinio, Lee, and Wang</span></span>
+<span id="cb55-35"><a href="quality.html#cb55-35"></a>    <span class="co"># And then rounds to output to the third decimal place</span></span>
+<span id="cb55-36"><a href="quality.html#cb55-36"></a>    </span>
+<span id="cb55-37"><a href="quality.html#cb55-37"></a>    c &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">-</span>(<span class="kw">sum</span>(<span class="kw">is.na</span>(i) <span class="op">+</span><span class="st"> </span><span class="kw">is.null</span>(i) <span class="op">+</span><span class="st"> </span><span class="kw">is.nan</span>(i))<span class="op">/</span><span class="kw">length</span>(i)) <span class="op">%&gt;%</span></span>
+<span id="cb55-38"><a href="quality.html#cb55-38"></a><span class="st">      </span><span class="kw">round</span>(<span class="dt">digits =</span> <span class="dv">3</span>)</span>
+<span id="cb55-39"><a href="quality.html#cb55-39"></a>    </span>
+<span id="cb55-40"><a href="quality.html#cb55-40"></a>    <span class="co"># EASE OF MANIPULATION</span></span>
+<span id="cb55-41"><a href="quality.html#cb55-41"></a>    <span class="co"># &quot;Case when&quot; vectorises a series of if/else statements</span></span>
+<span id="cb55-42"><a href="quality.html#cb55-42"></a>    <span class="co"># The function checks the type of the column and then sets the variable,</span></span>
+<span id="cb55-43"><a href="quality.html#cb55-43"></a>    <span class="co"># e, to the corresponding value. </span></span>
+<span id="cb55-44"><a href="quality.html#cb55-44"></a>    </span>
+<span id="cb55-45"><a href="quality.html#cb55-45"></a>    e &lt;-<span class="st"> </span><span class="kw">case_when</span>(</span>
+<span id="cb55-46"><a href="quality.html#cb55-46"></a>      <span class="kw">typeof</span>(i) <span class="op">==</span><span class="st"> &quot;logical&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">1</span>,</span>
+<span id="cb55-47"><a href="quality.html#cb55-47"></a>      <span class="kw">typeof</span>(i) <span class="op">==</span><span class="st"> &quot;integer&quot;</span> <span class="op">~</span><span class="st"> </span><span class="fl">.9</span>,</span>
+<span id="cb55-48"><a href="quality.html#cb55-48"></a>      <span class="kw">typeof</span>(i) <span class="op">==</span><span class="st"> &quot;numeric&quot;</span> <span class="op">~</span><span class="st"> </span><span class="fl">.8</span>,</span>
+<span id="cb55-49"><a href="quality.html#cb55-49"></a>      <span class="kw">typeof</span>(i) <span class="op">==</span><span class="st"> &quot;double&quot;</span> <span class="op">~</span><span class="st"> </span><span class="fl">.8</span>,</span>
+<span id="cb55-50"><a href="quality.html#cb55-50"></a>      <span class="kw">typeof</span>(i) <span class="op">==</span><span class="st"> &quot;complex&quot;</span> <span class="op">~</span><span class="st"> </span><span class="fl">.7</span>,</span>
+<span id="cb55-51"><a href="quality.html#cb55-51"></a>      <span class="kw">typeof</span>(i) <span class="op">==</span><span class="st"> &quot;character&quot;</span> <span class="op">~</span><span class="st"> </span><span class="fl">.6</span>,</span>
+<span id="cb55-52"><a href="quality.html#cb55-52"></a>      <span class="kw">typeof</span>(i) <span class="op">==</span><span class="st"> &quot;list&quot;</span> <span class="op">~</span><span class="st"> </span><span class="fl">.5</span>, </span>
+<span id="cb55-53"><a href="quality.html#cb55-53"></a>      <span class="kw">typeof</span>(i) <span class="op">==</span><span class="st"> &quot;raw&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">0</span>,</span>
+<span id="cb55-54"><a href="quality.html#cb55-54"></a>      <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> </span><span class="dv">0</span>)</span>
+<span id="cb55-55"><a href="quality.html#cb55-55"></a>    </span>
+<span id="cb55-56"><a href="quality.html#cb55-56"></a>    <span class="co">#The index used to collect column names is increased by one</span></span>
+<span id="cb55-57"><a href="quality.html#cb55-57"></a>    </span>
+<span id="cb55-58"><a href="quality.html#cb55-58"></a>    index =<span class="st"> </span>index <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb55-59"><a href="quality.html#cb55-59"></a>    </span>
+<span id="cb55-60"><a href="quality.html#cb55-60"></a>    <span class="co">#Appending the output for each column to their respective data frames</span></span>
+<span id="cb55-61"><a href="quality.html#cb55-61"></a>    </span>
+<span id="cb55-62"><a href="quality.html#cb55-62"></a>    completeness[<span class="kw">nrow</span>(completeness)<span class="op">+</span><span class="dv">1</span>,] &lt;-<span class="st"> </span>c</span>
+<span id="cb55-63"><a href="quality.html#cb55-63"></a>    eom[<span class="kw">nrow</span>(eom)<span class="op">+</span><span class="dv">1</span>,] &lt;-<span class="st"> </span>e</span>
+<span id="cb55-64"><a href="quality.html#cb55-64"></a>    names[<span class="kw">nrow</span>(names)<span class="op">+</span><span class="dv">1</span>,] &lt;-<span class="st"> </span>col</span>
+<span id="cb55-65"><a href="quality.html#cb55-65"></a>  }</span>
+<span id="cb55-66"><a href="quality.html#cb55-66"></a>  </span>
+<span id="cb55-67"><a href="quality.html#cb55-67"></a>  <span class="co">#Binding the columns of the three tables into an output table</span></span>
+<span id="cb55-68"><a href="quality.html#cb55-68"></a>  qualityTable &lt;-<span class="st"> </span><span class="kw">cbind</span>(names, completeness, eom)</span>
+<span id="cb55-69"><a href="quality.html#cb55-69"></a>  </span>
+<span id="cb55-70"><a href="quality.html#cb55-70"></a>  <span class="kw">return</span>(qualityTable)</span>
+<span id="cb55-71"><a href="quality.html#cb55-71"></a>}</span></code></pre></div>
+</div>
+<div id="the-evaluations" class="section level2">
+<h2><span class="header-section-number">3.3</span> The Evaluations</h2>
+<p>We assessed data quality using the metrics outlined in (paper). For each of these metrics, we provide a brief commentary on how the data fared. Several of the data quality metrics were more pertinent to our analysis, so we provide deeper insight into them.</p>
+<p><strong>Accessibility</strong>
+On its own, the data were not accessible and extraction proved to be exceedingly challenging. By using the {rscorecard} package, we were able to streamline the process. However, {rscorecard} is not built into the API and cannot be factored into the dataset’s baseline accessibility. Despite the challenge of pulling the data into an interpretable form, they can be accessed by the public. This is to say, we did not have to fight with a Facebook executive to access them. We scored the data at a 4/10 for accessibility.</p>
+<p><strong>Believability</strong>
+There is no reason for us to assume the data would be intentionally falsified as it was collected by the U.S. Government to simply compare costs and values of higher education institutions. There have been claims from some colleges (such as Boston University) that there are inaccuracies in the data, however. We decided to give the data a score of 8/10 on believability.</p>
+<p><strong>Concise Representation</strong>
+The data is difficult to navigate through without frequent cross-checking of the documentation. There are many columns that look quite similar but are entirely different measures and statistics. For example, within the demographics data there are multiple ways the racial makeup of a university are encoded. These columns appear to contain the same information drawn from perhaps different sources. However, the data is not consistent between sources and, at least within the demographics variables, contained large swaths of NA’s. Based on our subjective experience with the data, we assigned it a score of 4/10 because it could, theoretically, be worse.</p>
+<p><strong>Consistent Representation</strong>
+We calculated consistent representation by creating a function that collected the type for each row of a data frame. The function counts the number of unique types that occur in the data frame minus one (for scoring purposes). This number is then divided by the total number of types possible minus one. This number is subtracted from 1. If all of the data are encoded the same way, they will receive a score of 1. This is because the function will read that there is one unique type in the data frame. One will be subtracted from this, leading the function to divide 0/6, resulting in 0. 1 - 0 is 1. 1 was set as the highest score so that it would correspond with the other measures of data quality. If the data uses all 7 different kinds of data type that can be reasonably encoded, it will receive a score of 0. The Financials data set had three unique types, and received a score of .667. The Demographics data set had four unique data types, and received a score of 0.5.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="quality.html#cb56-1"></a><span class="co">#CONSISTENCY OF REPRESENTATION FOR THE FINANCIALS DATA</span></span>
+<span id="cb56-2"><a href="quality.html#cb56-2"></a></span>
+<span id="cb56-3"><a href="quality.html#cb56-3"></a><span class="kw">paste</span>(<span class="st">&quot;Score:&quot;</span>, <span class="kw">round</span>(<span class="kw">con_rep</span>(fin),<span class="dv">3</span>)) </span></code></pre></div>
+<pre><code>## [1] &quot;Score: 0.667&quot;</code></pre>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="quality.html#cb58-1"></a><span class="co">#CONSISTENCY OF REPRESENTATION FOR THE DEMOGRAPHICS DATA</span></span>
+<span id="cb58-2"><a href="quality.html#cb58-2"></a></span>
+<span id="cb58-3"><a href="quality.html#cb58-3"></a><span class="kw">paste</span>(<span class="st">&quot;Score:&quot;</span>, <span class="kw">round</span>(<span class="kw">con_rep</span>(dem),<span class="dv">3</span>)) </span></code></pre></div>
+<pre><code>## [1] &quot;Score: 0.5&quot;</code></pre>
+<p><strong>Completeness</strong>
+Completeness was measured by summing the total number of blank data rows in each column - blank referring to rows containing either NA, NaN, or Null - and dividing this by the total number of rows. A score of 1 indicates perfect completeness. A score of 0 indicates no completeness, or a column of entirely null data. Within the Financial dataset, scores on completeness varied from 1, for the key values, to .195 for the unemployment rate. The mean completeness score over the entire dataset was 0.812, which indicates a moderate level of completeness. The Demographic dataset had a wider range of scores. Like the Financial dataset, the key values were awarded a completeness score of 1. However, response rates for the demographic variables had a wide distribution. The major races, such as White, Black, Hispanic, Asian, etc. had response rates of .983. However, response rates for ethnicities, such as White (non-hispanic) and Black (non-hispanic) had a response rate of 0. These variables were dropped during the cleaning process; however, they still skewed the mean completeness score for this variable. The mean completeness for the Demographic dataset was 0.658.</p>
+<p><strong>Ease of Manipulation</strong>
+Ease of manipulation was quantified using the rules of coercion in R (as outlined in O’Reilly, R in a Nutshell, 2nd Edition). Since certain base R operations can only be performed on specific data types, the data type integrally influences how easily the data can be used and manipulated. The easier a data type is to coerce, or manipulate, into another data type, the higher a score it obtains. The gradient of scores moves from the logical (i.e., TRUE/FALSE) data type, which can be easily coerced into every other data types, to the raw data type, which cannot be implicitly coerced into other data types and is difficult to explicitly coerce. Because the logical data type can be universally manipulated, it scores a one. Since the raw data type cannot be coerced into another data type, it obtains an ease of manipulation score of zero. Rare data types, such as time series, were not included in the base version of this function because they are rarely included in data frames. Matrices were not included because it is nearly impossible to work them into a data frame, and because typeof returns their type as the type of data that is included within them.</p>
+<p>The ease of manipulation scores for both data sets are included below. The average ease of manipulation score for the Financials data set was 0.8, which indicates good ease of manipulation. The average ease of manipulation score for the Demographics data set was 0.825, which also indicates good ease of manipulation.</p>
+<pre><code>##       ColumnName Completeness Ease_of_Manipulation
+## 1        control        1.000                  0.9
+## 2         instnm        1.000                  0.6
+## 3        ccbasic        1.000                  0.9
+## 4         stabbr        1.000                  0.6
+## 5       npt4_pub        0.688                  0.9
+## 6      npt4_priv        0.287                  0.9
+## 7       costt4_a        0.977                  0.9
+## 8  grad_debt_mdn        0.785                  0.8
+## 9      avgfacsal        0.996                  0.9
+## 10    unemp_rate        0.195                  0.8
+## 11          year        1.000                  0.6</code></pre>
+<pre><code>## [1] &quot;Mean over columns: 0.8&quot;</code></pre>
+<pre><code>##      ColumnName Completeness Ease_of_Manipulation
+## 1       control        1.000                  0.9
+## 2        instnm        1.000                  0.6
+## 3       ccbasic        1.000                  0.9
+## 4        stabbr        1.000                  0.6
+## 5        female        0.591                  0.8
+## 6     first_gen        0.586                  0.8
+## 7  poverty_rate        0.195                  0.8
+## 8       veteran        0.382                  0.8
+## 9    unemp_rate        0.195                  0.8
+## 10   ugds_white        0.983                  0.8
+## 11   ugds_black        0.983                  0.8
+## 12    ugds_hisp        0.983                  0.8
+## 13   ugds_asian        0.983                  0.8
+## 14    ugds_aian        0.983                  0.8
+## 15    ugds_nhpi        0.983                  0.8
+## 16    ugds_2mor        0.983                  0.8
+## 17     ugds_nra        0.983                  0.8
+## 18    ugds_unkn        0.983                  0.8
+## 19 ugds_whitenh        0.000                  1.0
+## 20 ugds_blacknh        0.000                  1.0
+## 21     ugds_api        0.000                  1.0
+## 22 ugds_aianold        0.000                  1.0
+## 23 ugds_hispold        0.000                  1.0
+## 24         year        1.000                  0.6</code></pre>
+<pre><code>## [1] &quot;Mean over columns: 0.825&quot;</code></pre>
+<p><strong>Reputation</strong>
+The data is well regarded as it has been used for other studies and was introduced by Obama in 2015. It highlighted the Pell grant problem and other financial issues being faced by college students across the country. Based on our subjective experience with the data, we assigned it a score of 8/10. It was not assigned a 10/10 because of some disputes about the quality of the data which have been raised by universities included in it.</p>
+<p><strong>Security</strong>
+The data is highly secured as it was contained and dispersed by the United States Government. It is publicly accessible - however, this should not compromise the security of the data. There have been no known hackings of the data. We decided to assign the data a security score of 10/10.</p>
+<p><strong>Timeliness</strong>
+The data is mostly up to date, but it would have been nice to have more recent statistics being recorded as financial data can change quickly as a product of circumstances; like a pandemic. Based on our subjective experience with the data, we assigned it a score of 9/10.</p>
 
 </div>
 </div>
