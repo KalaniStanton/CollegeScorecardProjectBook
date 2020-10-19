@@ -166,21 +166,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4" data-path="clean.html"><a href="clean.html"><i class="fa fa-check"></i><b>4</b> Data Cleaning</a><ul>
 <li class="chapter" data-level="4.1" data-path="clean.html"><a href="clean.html#demographics-1"><i class="fa fa-check"></i><b>4.1</b> Demographics</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="analysis.html"><a href="analysis.html"><i class="fa fa-check"></i><b>5</b> Analysis</a><ul>
-<li class="chapter" data-level="5.1" data-path="analysis.html"><a href="analysis.html#import-packages"><i class="fa fa-check"></i><b>5.1</b> Import Packages</a></li>
-<li class="chapter" data-level="5.2" data-path="analysis.html"><a href="analysis.html#transform-datasets"><i class="fa fa-check"></i><b>5.2</b> Transform Datasets</a></li>
-<li class="chapter" data-level="5.3" data-path="analysis.html"><a href="analysis.html#descriptives"><i class="fa fa-check"></i><b>5.3</b> Descriptives</a></li>
-<li class="chapter" data-level="5.4" data-path="analysis.html"><a href="analysis.html#wilcox-signed-rank-test"><i class="fa fa-check"></i><b>5.4</b> Wilcox signed-rank test</a></li>
-<li class="chapter" data-level="5.5" data-path="analysis.html"><a href="analysis.html#welchs-two-sample-t-test"><i class="fa fa-check"></i><b>5.5</b> Welch’s two-sample t-test</a></li>
-<li class="chapter" data-level="5.6" data-path="analysis.html"><a href="analysis.html#regression-model"><i class="fa fa-check"></i><b>5.6</b> Regression model</a></li>
-<li class="chapter" data-level="5.7" data-path="analysis.html"><a href="analysis.html#model-step-1"><i class="fa fa-check"></i><b>5.7</b> Model step 1</a></li>
-<li class="chapter" data-level="5.8" data-path="analysis.html"><a href="analysis.html#model-step-2"><i class="fa fa-check"></i><b>5.8</b> Model step 2</a></li>
-<li class="chapter" data-level="5.9" data-path="analysis.html"><a href="analysis.html#model-step-3"><i class="fa fa-check"></i><b>5.9</b> Model step 3</a></li>
-<li class="chapter" data-level="5.10" data-path="analysis.html"><a href="analysis.html#complete-model"><i class="fa fa-check"></i><b>5.10</b> Complete model</a></li>
+<li class="chapter" data-level="5" data-path="analysis.html"><a href="analysis.html"><i class="fa fa-check"></i><b>5</b> Methods and Results</a><ul>
+<li class="chapter" data-level="5.1" data-path="analysis.html"><a href="analysis.html#methods"><i class="fa fa-check"></i><b>5.1</b> Methods</a></li>
+<li class="chapter" data-level="5.2" data-path="analysis.html"><a href="analysis.html#results"><i class="fa fa-check"></i><b>5.2</b> Results</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="analysis.html"><a href="analysis.html#demographic-descriptive-statistics"><i class="fa fa-check"></i><b>5.2.1</b> Demographic Descriptive Statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="analysis.html"><a href="analysis.html#financial-descriptive-statistics"><i class="fa fa-check"></i><b>5.3</b> Financial Descriptive Statistics</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="analysis.html"><a href="analysis.html#r1s-vs.-r2s"><i class="fa fa-check"></i><b>5.3.1</b> R1s vs. R2s</a></li>
+<li class="chapter" data-level="5.3.2" data-path="analysis.html"><a href="analysis.html#regression-model"><i class="fa fa-check"></i><b>5.3.2</b> Regression model</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>6</b> Discussion</a><ul>
-<li class="chapter" data-level="6.1" data-path="discussion.html"><a href="discussion.html#interactive-chloropleths"><i class="fa fa-check"></i><b>6.1</b> Interactive Chloropleths</a></li>
-<li class="chapter" data-level="6.2" data-path="discussion.html"><a href="discussion.html#distribution"><i class="fa fa-check"></i><b>6.2</b> Distribution</a></li>
+<li class="chapter" data-level="6.1" data-path="discussion.html"><a href="discussion.html#other-fun-things---interactive-chloropleths"><i class="fa fa-check"></i><b>6.1</b> Other fun things - Interactive Chloropleths</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -205,223 +202,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="discussion" class="section level1">
 <h1><span class="header-section-number">Section 6</span> Discussion</h1>
-<div id="interactive-chloropleths" class="section level2">
-<h2><span class="header-section-number">6.1</span> Interactive Chloropleths</h2>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="discussion.html#cb113-1"></a><span class="kw">library</span>(plotly)</span>
-<span id="cb113-2"><a href="discussion.html#cb113-2"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb113-3"><a href="discussion.html#cb113-3"></a><span class="kw">library</span>(purrr)</span>
-<span id="cb113-4"><a href="discussion.html#cb113-4"></a><span class="kw">library</span>(RColorBrewer)</span>
-<span id="cb113-5"><a href="discussion.html#cb113-5"></a><span class="kw">library</span>(tmap)</span></code></pre></div>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="discussion.html#cb114-1"></a>g &lt;-<span class="st"> </span><span class="kw">list</span>(</span>
-<span id="cb114-2"><a href="discussion.html#cb114-2"></a>  <span class="dt">scope =</span> <span class="st">&#39;usa&#39;</span>,</span>
-<span id="cb114-3"><a href="discussion.html#cb114-3"></a>  <span class="dt">projection =</span> <span class="kw">list</span>(<span class="dt">type =</span> <span class="st">&#39;albers usa&#39;</span>),</span>
-<span id="cb114-4"><a href="discussion.html#cb114-4"></a>  <span class="dt">lakecolor =</span> <span class="kw">toRGB</span>(<span class="st">&#39;white&#39;</span>)</span>
-<span id="cb114-5"><a href="discussion.html#cb114-5"></a>)</span></code></pre></div>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="discussion.html#cb115-1"></a>avgDM &lt;-<span class="st"> </span><span class="kw">distinct</span>(debtMedian)</span>
-<span id="cb115-2"><a href="discussion.html#cb115-2"></a></span>
-<span id="cb115-3"><a href="discussion.html#cb115-3"></a><span class="kw">plot_geo</span>() <span class="op">%&gt;%</span></span>
-<span id="cb115-4"><a href="discussion.html#cb115-4"></a><span class="st">  </span><span class="kw">add_trace</span>(</span>
-<span id="cb115-5"><a href="discussion.html#cb115-5"></a>    <span class="dt">z =</span> <span class="op">~</span>avgDM<span class="op">$</span>avgDebt,</span>
-<span id="cb115-6"><a href="discussion.html#cb115-6"></a>    <span class="dt">span =</span> <span class="kw">I</span>(<span class="dv">0</span>),</span>
-<span id="cb115-7"><a href="discussion.html#cb115-7"></a>    <span class="dt">colorscale =</span> <span class="st">&#39;viridis&#39;</span>,</span>
-<span id="cb115-8"><a href="discussion.html#cb115-8"></a>    <span class="dt">locations =</span> avgDM<span class="op">$</span>state, </span>
-<span id="cb115-9"><a href="discussion.html#cb115-9"></a>    <span class="dt">locationmode =</span> <span class="st">&#39;USA-states&#39;</span></span>
-<span id="cb115-10"><a href="discussion.html#cb115-10"></a>  ) <span class="op">%&gt;%</span></span>
-<span id="cb115-11"><a href="discussion.html#cb115-11"></a><span class="st">  </span><span class="kw">colorbar</span>(<span class="dt">title =</span> <span class="ot">NULL</span>) <span class="op">%&gt;%</span></span>
-<span id="cb115-12"><a href="discussion.html#cb115-12"></a><span class="st">  </span><span class="kw">layout</span>(<span class="dt">geo =</span> g, <span class="dt">title =</span> <span class="st">&quot;Avg. Faculty Salary by State (in USD)&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-79756cb159548da561f5" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-79756cb159548da561f5">{"x":{"visdat":{"44d420f217e6":["function () ","plotlyVisDat"]},"cur_data":"44d420f217e6","attrs":{"44d420f217e6":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"z":{},"span":[0],"colorscale":"viridis","locations":["IN","KS","MA","MI","MS","MO","MT","NE","NV","CO","CA","CT","DE","FL","HI","GA","OR","TN","TX","IL","LA","VA","WA","WV","AL","AK","AR","SC","UT","WI","ME","NY","NC","OH","ND","NH","AZ","NJ","OK","PA","KY","NM","ID","MD","IA","VT","WY","RI","SD","MN"],"locationmode":"USA-states","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"mapType":"geo","scene":{"zaxis":{"title":"avgDM$avgDebt"}},"geo":{"domain":{"x":[0,1],"y":[0,1]},"scope":"usa","projection":{"type":"albers usa"},"lakecolor":"rgba(255,255,255,1)"},"hovermode":"closest","showlegend":false,"legend":{"yanchor":"top","y":0.5},"title":"Avg. Faculty Salary by State (in USD)"},"source":"A","config":{"showSendToCloud":false},"data":[{"colorbar":{"ticklen":2,"len":0.5,"lenmode":"fraction","y":1,"yanchor":"top"},"colorscale":"viridis","showscale":true,"z":[21724.875,21409.5,22178.8653846154,24442.671875,24065.625,21746.3541666667,23333.125,20544.0625,18816.25,21607.9583333333,17486.9558823529,17187.5,25987.625,20459.5625,19162.5,22893.234375,21795.7083333333,20866.25,19966.5277777778,21076.0125,20568.75,22003.9821428571,17596.9375,23468.25,22740.875,17391,20663,22181,13772.5416666667,23948.125,26122.25,20849.0208333333,20775.5138888889,23537.2604166667,23472.25,20143.25,19944.675,21463.9444444444,22016.8333333333,23592.775,21503.375,18288.75,23095.6666666667,22667.25,22494.5,21939.5,18328.5,19421.875,24812.5,19750],"locations":["IN","KS","MA","MI","MS","MO","MT","NE","NV","CO","CA","CT","DE","FL","HI","GA","OR","TN","TX","IL","LA","VA","WA","WV","AL","AK","AR","SC","UT","WI","ME","NY","NC","OH","ND","NH","AZ","NJ","OK","PA","KY","NM","ID","MD","IA","VT","WY","RI","SD","MN"],"locationmode":"USA-states","type":"choropleth","marker":{"line":{"color":"rgba(31,119,180,1)","width":0}},"geo":"geo","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="discussion.html#cb116-1"></a>r1_state &lt;-<span class="st"> </span>cdem <span class="op">%&gt;%</span></span>
-<span id="cb116-2"><a href="discussion.html#cb116-2"></a><span class="st">  </span><span class="kw">filter</span>(r_status <span class="op">==</span><span class="st"> &quot;R1&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb116-3"><a href="discussion.html#cb116-3"></a><span class="st">  </span><span class="kw">group_by</span>(state) <span class="op">%&gt;%</span></span>
-<span id="cb116-4"><a href="discussion.html#cb116-4"></a><span class="st">  </span><span class="kw">distinct</span>(university) <span class="op">%&gt;%</span></span>
-<span id="cb116-5"><a href="discussion.html#cb116-5"></a><span class="st">  </span><span class="kw">count</span>()</span>
-<span id="cb116-6"><a href="discussion.html#cb116-6"></a></span>
-<span id="cb116-7"><a href="discussion.html#cb116-7"></a>r2_state &lt;-<span class="st"> </span>cdem <span class="op">%&gt;%</span></span>
-<span id="cb116-8"><a href="discussion.html#cb116-8"></a><span class="st">  </span><span class="kw">filter</span>(r_status <span class="op">==</span><span class="st"> &quot;R2&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb116-9"><a href="discussion.html#cb116-9"></a><span class="st">  </span><span class="kw">group_by</span>(state) <span class="op">%&gt;%</span></span>
-<span id="cb116-10"><a href="discussion.html#cb116-10"></a><span class="st">  </span><span class="kw">distinct</span>(university) <span class="op">%&gt;%</span></span>
-<span id="cb116-11"><a href="discussion.html#cb116-11"></a><span class="st">  </span><span class="kw">count</span>()</span></code></pre></div>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="discussion.html#cb117-1"></a>g &lt;-<span class="st"> </span><span class="kw">list</span>(</span>
-<span id="cb117-2"><a href="discussion.html#cb117-2"></a>  <span class="dt">scope =</span> <span class="st">&#39;usa&#39;</span>,</span>
-<span id="cb117-3"><a href="discussion.html#cb117-3"></a>  <span class="dt">projection =</span> <span class="kw">list</span>(<span class="dt">type =</span> <span class="st">&#39;albers usa&#39;</span>),</span>
-<span id="cb117-4"><a href="discussion.html#cb117-4"></a>  <span class="dt">lakecolor =</span> <span class="kw">toRGB</span>(<span class="st">&#39;white&#39;</span>)</span>
-<span id="cb117-5"><a href="discussion.html#cb117-5"></a>)</span>
-<span id="cb117-6"><a href="discussion.html#cb117-6"></a></span>
-<span id="cb117-7"><a href="discussion.html#cb117-7"></a>r1_map &lt;-<span class="st"> </span><span class="kw">plot_geo</span>() <span class="op">%&gt;%</span></span>
-<span id="cb117-8"><a href="discussion.html#cb117-8"></a><span class="st">  </span><span class="kw">add_trace</span>(</span>
-<span id="cb117-9"><a href="discussion.html#cb117-9"></a>    <span class="dt">z =</span> <span class="op">~</span>r1_state<span class="op">$</span>n,</span>
-<span id="cb117-10"><a href="discussion.html#cb117-10"></a>    <span class="dt">span =</span> <span class="kw">I</span>(<span class="dv">1</span>),</span>
-<span id="cb117-11"><a href="discussion.html#cb117-11"></a>    <span class="dt">colorscale =</span> <span class="st">&#39;Portland&#39;</span>,</span>
-<span id="cb117-12"><a href="discussion.html#cb117-12"></a>    <span class="dt">zauto =</span> F,</span>
-<span id="cb117-13"><a href="discussion.html#cb117-13"></a>    <span class="dt">zmax =</span> <span class="dv">10</span>,</span>
-<span id="cb117-14"><a href="discussion.html#cb117-14"></a>    <span class="dt">zmin =</span> <span class="dv">1</span>,</span>
-<span id="cb117-15"><a href="discussion.html#cb117-15"></a>    <span class="dt">locations =</span> r1_state<span class="op">$</span>state, </span>
-<span id="cb117-16"><a href="discussion.html#cb117-16"></a>    <span class="dt">locationmode =</span> <span class="st">&#39;USA-states&#39;</span></span>
-<span id="cb117-17"><a href="discussion.html#cb117-17"></a>  ) <span class="op">%&gt;%</span></span>
-<span id="cb117-18"><a href="discussion.html#cb117-18"></a><span class="st">  </span><span class="kw">colorbar</span>(<span class="dt">title =</span> <span class="st">&quot;# of Schools&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb117-19"><a href="discussion.html#cb117-19"></a><span class="st">  </span><span class="kw">layout</span>(<span class="dt">geo =</span> g, <span class="dt">title =</span> <span class="st">&quot;Number of R1 Schools per State&quot;</span>)</span>
-<span id="cb117-20"><a href="discussion.html#cb117-20"></a></span>
-<span id="cb117-21"><a href="discussion.html#cb117-21"></a>r2_map &lt;-<span class="st"> </span><span class="kw">plot_geo</span>() <span class="op">%&gt;%</span></span>
-<span id="cb117-22"><a href="discussion.html#cb117-22"></a><span class="st">  </span><span class="kw">add_trace</span>(</span>
-<span id="cb117-23"><a href="discussion.html#cb117-23"></a>    <span class="dt">z =</span> <span class="op">~</span>r2_state<span class="op">$</span>n,</span>
-<span id="cb117-24"><a href="discussion.html#cb117-24"></a>    <span class="dt">span =</span> <span class="kw">I</span>(<span class="dv">1</span>),</span>
-<span id="cb117-25"><a href="discussion.html#cb117-25"></a>    <span class="dt">colorscale =</span> <span class="st">&#39;Portland&#39;</span>,</span>
-<span id="cb117-26"><a href="discussion.html#cb117-26"></a>    <span class="dt">zauto =</span> F,</span>
-<span id="cb117-27"><a href="discussion.html#cb117-27"></a>    <span class="dt">zmax =</span> <span class="dv">10</span>,</span>
-<span id="cb117-28"><a href="discussion.html#cb117-28"></a>    <span class="dt">zmin =</span> <span class="dv">1</span>,</span>
-<span id="cb117-29"><a href="discussion.html#cb117-29"></a>    <span class="dt">locations =</span> r2_state<span class="op">$</span>state, </span>
-<span id="cb117-30"><a href="discussion.html#cb117-30"></a>    <span class="dt">locationmode =</span> <span class="st">&#39;USA-states&#39;</span></span>
-<span id="cb117-31"><a href="discussion.html#cb117-31"></a>  ) <span class="op">%&gt;%</span></span>
-<span id="cb117-32"><a href="discussion.html#cb117-32"></a><span class="st">  </span><span class="kw">colorbar</span>(<span class="dt">title =</span> <span class="st">&quot;# of Schools&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb117-33"><a href="discussion.html#cb117-33"></a><span class="st">  </span><span class="kw">layout</span>(<span class="dt">geo =</span> g, <span class="dt">title =</span> <span class="st">&quot;Number of R2 Schools per State&quot;</span>)</span>
-<span id="cb117-34"><a href="discussion.html#cb117-34"></a></span>
-<span id="cb117-35"><a href="discussion.html#cb117-35"></a>r1_map</span></code></pre></div>
-<div id="htmlwidget-34ce5504a4e1408783d4" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-34ce5504a4e1408783d4">{"x":{"visdat":{"44d4bd91fcc":["function () ","plotlyVisDat"]},"cur_data":"44d4bd91fcc","attrs":{"44d4bd91fcc":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"z":{},"span":[1],"colorscale":"Portland","zauto":false,"zmax":10,"zmin":1,"locations":["AL","AR","AZ","CA","CO","CT","DC","DE","FL","GA","HI","IA","IL","IN","KS","KY","LA","MA","MD","MI","MN","MO","MS","MT","NC","NE","NH","NJ","NM","NV","NY","OH","OK","OR","PA","RI","SC","TN","TX","UT","VA","WA","WI","WV"],"locationmode":"USA-states","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"mapType":"geo","scene":{"zaxis":{"title":"r1_state$n"}},"geo":{"domain":{"x":[0,1],"y":[0,1]},"scope":"usa","projection":{"type":"albers usa"},"lakecolor":"rgba(255,255,255,1)"},"hovermode":"closest","showlegend":false,"legend":{"yanchor":"top","y":0.5},"title":"Number of R1 Schools per State"},"source":"A","config":{"showSendToCloud":false},"data":[{"colorbar":{"title":"# of Schools","ticklen":2,"len":0.5,"lenmode":"fraction","y":1,"yanchor":"top"},"colorscale":"Portland","showscale":true,"z":[3,1,2,11,3,2,2,1,6,4,1,2,4,3,2,2,2,8,2,3,1,2,3,1,3,1,2,3,1,2,11,3,2,2,6,1,2,2,9,1,4,2,2,1],"zauto":false,"zmax":10,"zmin":1,"locations":["AL","AR","AZ","CA","CO","CT","DC","DE","FL","GA","HI","IA","IL","IN","KS","KY","LA","MA","MD","MI","MN","MO","MS","MT","NC","NE","NH","NJ","NM","NV","NY","OH","OK","OR","PA","RI","SC","TN","TX","UT","VA","WA","WI","WV"],"locationmode":"USA-states","type":"choropleth","marker":{"line":{"color":"rgba(31,119,180,1)","width":1}},"geo":"geo","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="discussion.html#cb118-1"></a>r2_map</span></code></pre></div>
+<p>This is where we will write things, ahaha</p>
+<div id="other-fun-things---interactive-chloropleths" class="section level2">
+<h2><span class="header-section-number">6.1</span> Other fun things - Interactive Chloropleths</h2>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="discussion.html#cb127-1"></a><span class="kw">library</span>(plotly)</span>
+<span id="cb127-2"><a href="discussion.html#cb127-2"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb127-3"><a href="discussion.html#cb127-3"></a><span class="kw">library</span>(purrr)</span>
+<span id="cb127-4"><a href="discussion.html#cb127-4"></a><span class="kw">library</span>(RColorBrewer)</span>
+<span id="cb127-5"><a href="discussion.html#cb127-5"></a><span class="kw">library</span>(tmap)</span></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="discussion.html#cb128-1"></a>g &lt;-<span class="st"> </span><span class="kw">list</span>(</span>
+<span id="cb128-2"><a href="discussion.html#cb128-2"></a>  <span class="dt">scope =</span> <span class="st">&#39;usa&#39;</span>,</span>
+<span id="cb128-3"><a href="discussion.html#cb128-3"></a>  <span class="dt">projection =</span> <span class="kw">list</span>(<span class="dt">type =</span> <span class="st">&#39;albers usa&#39;</span>),</span>
+<span id="cb128-4"><a href="discussion.html#cb128-4"></a>  <span class="dt">lakecolor =</span> <span class="kw">toRGB</span>(<span class="st">&#39;white&#39;</span>)</span>
+<span id="cb128-5"><a href="discussion.html#cb128-5"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="discussion.html#cb129-1"></a>avgDM &lt;-<span class="st"> </span><span class="kw">distinct</span>(debtMedian)</span>
+<span id="cb129-2"><a href="discussion.html#cb129-2"></a></span>
+<span id="cb129-3"><a href="discussion.html#cb129-3"></a><span class="kw">plot_geo</span>() <span class="op">%&gt;%</span></span>
+<span id="cb129-4"><a href="discussion.html#cb129-4"></a><span class="st">  </span><span class="kw">add_trace</span>(</span>
+<span id="cb129-5"><a href="discussion.html#cb129-5"></a>    <span class="dt">z =</span> <span class="op">~</span>avgDM<span class="op">$</span>avgDebt,</span>
+<span id="cb129-6"><a href="discussion.html#cb129-6"></a>    <span class="dt">span =</span> <span class="kw">I</span>(<span class="dv">0</span>),</span>
+<span id="cb129-7"><a href="discussion.html#cb129-7"></a>    <span class="dt">colorscale =</span> <span class="st">&#39;viridis&#39;</span>,</span>
+<span id="cb129-8"><a href="discussion.html#cb129-8"></a>    <span class="dt">locations =</span> avgDM<span class="op">$</span>state, </span>
+<span id="cb129-9"><a href="discussion.html#cb129-9"></a>    <span class="dt">locationmode =</span> <span class="st">&#39;USA-states&#39;</span></span>
+<span id="cb129-10"><a href="discussion.html#cb129-10"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb129-11"><a href="discussion.html#cb129-11"></a><span class="st">  </span><span class="kw">colorbar</span>(<span class="dt">title =</span> <span class="ot">NULL</span>) <span class="op">%&gt;%</span></span>
+<span id="cb129-12"><a href="discussion.html#cb129-12"></a><span class="st">  </span><span class="kw">layout</span>(<span class="dt">geo =</span> g, <span class="dt">title =</span> <span class="st">&quot;Avg. Faculty Salary by State (in USD)&quot;</span>)</span></code></pre></div>
 <div id="htmlwidget-2f467f506420b756509e" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-2f467f506420b756509e">{"x":{"visdat":{"44d450c76303":["function () ","plotlyVisDat"]},"cur_data":"44d450c76303","attrs":{"44d450c76303":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"z":{},"span":[1],"colorscale":"Portland","zauto":false,"zmax":10,"zmin":1,"locations":["AK","AL","AR","AZ","CA","CO","DC","DE","FL","GA","ID","IL","IN","KS","LA","MA","MD","ME","MI","MO","MS","MT","NC","ND","NE","NJ","NM","NY","OH","OK","OR","PA","PR","RI","SD","TN","TX","UT","VA","VT","WI","WV","WY"],"locationmode":"USA-states","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"mapType":"geo","scene":{"zaxis":{"title":"r2_state$n"}},"geo":{"domain":{"x":[0,1],"y":[0,1]},"scope":"usa","projection":{"type":"albers usa"},"lakecolor":"rgba(255,255,255,1)"},"hovermode":"closest","showlegend":false,"legend":{"yanchor":"top","y":0.5},"title":"Number of R2 Schools per State"},"source":"A","config":{"showSendToCloud":false},"data":[{"colorbar":{"title":"# of Schools","ticklen":2,"len":0.5,"lenmode":"fraction","y":1,"yanchor":"top"},"colorscale":"Portland","showscale":true,"z":[1,2,2,3,6,3,4,1,4,4,3,6,2,1,3,5,3,2,5,4,1,1,6,2,1,6,1,7,9,1,1,4,2,1,2,4,9,2,3,1,1,1,1],"zauto":false,"zmax":10,"zmin":1,"locations":["AK","AL","AR","AZ","CA","CO","DC","DE","FL","GA","ID","IL","IN","KS","LA","MA","MD","ME","MI","MO","MS","MT","NC","ND","NE","NJ","NM","NY","OH","OK","OR","PA","PR","RI","SD","TN","TX","UT","VA","VT","WI","WV","WY"],"locationmode":"USA-states","type":"choropleth","marker":{"line":{"color":"rgba(31,119,180,1)","width":1}},"geo":"geo","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
-</div>
-<div id="distribution" class="section level2">
-<h2><span class="header-section-number">6.2</span> Distribution</h2>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="discussion.html#cb119-1"></a>dem_pal &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;darkolivegreen&quot;</span>, <span class="st">&quot;darkolivegreen3&quot;</span>, <span class="st">&quot;dodgerblue4&quot;</span>, <span class="st">&quot;deepskyblue&quot;</span>, <span class="st">&quot;lavenderblush4&quot;</span>, <span class="st">&quot;lavenderblush2&quot;</span>, <span class="st">&quot;palevioletred1&quot;</span>, <span class="st">&quot;rosybrown1&quot;</span>,  <span class="st">&quot;tomato2&quot;</span>,  <span class="st">&quot;sienna 1&quot;</span>, <span class="st">&quot;slateblue3&quot;</span>, <span class="st">&quot;thistle1&quot;</span>, <span class="st">&quot;orange&quot;</span>, <span class="st">&quot;navajowhite2&quot;</span>, <span class="st">&quot;lightskyblue3&quot;</span>, <span class="st">&quot;lightsteelblue1&quot;</span>)</span>
-<span id="cb119-2"><a href="discussion.html#cb119-2"></a>  </span>
-<span id="cb119-3"><a href="discussion.html#cb119-3"></a>race_demographics &lt;-<span class="st"> </span>cdem <span class="op">%&gt;%</span></span>
-<span id="cb119-4"><a href="discussion.html#cb119-4"></a><span class="st">  </span><span class="kw">select</span>(university, r_status, white, black, hispanic, asian, indigenous, nhpi, nra, unknown) <span class="op">%&gt;%</span></span>
-<span id="cb119-5"><a href="discussion.html#cb119-5"></a><span class="st">  </span><span class="kw">gather</span>(<span class="st">&quot;race&quot;</span>, <span class="st">&quot;percentage&quot;</span>, <span class="dv">3</span><span class="op">:</span><span class="dv">10</span>, <span class="op">-</span>university)</span>
-<span id="cb119-6"><a href="discussion.html#cb119-6"></a></span>
-<span id="cb119-7"><a href="discussion.html#cb119-7"></a>race_demographics <span class="op">%&gt;%</span></span>
-<span id="cb119-8"><a href="discussion.html#cb119-8"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(r_status), <span class="dt">y =</span> percentage, <span class="dt">fill =</span> <span class="kw">interaction</span>(r_status, race))) <span class="op">+</span></span>
-<span id="cb119-9"><a href="discussion.html#cb119-9"></a><span class="st">  </span><span class="kw">geom_violin</span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb119-10"><a href="discussion.html#cb119-10"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun=</span>mean, <span class="dt">geom=</span><span class="st">&quot;crossbar&quot;</span>, <span class="dt">linetype =</span> <span class="dv">1</span>, <span class="dt">size=</span>.<span class="dv">2</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb119-11"><a href="discussion.html#cb119-11"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun=</span>median, <span class="dt">geom=</span><span class="st">&quot;crossbar&quot;</span>, <span class="dt">linetype =</span> <span class="dv">1</span>, <span class="dt">size=</span>.<span class="dv">2</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></span>
-<span id="cb119-12"><a href="discussion.html#cb119-12"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Racial Demographics by Carnegie Classification&quot;</span>, </span>
-<span id="cb119-13"><a href="discussion.html#cb119-13"></a>       <span class="dt">subtitle =</span> <span class="st">&quot;Red line = mean | Black line = median</span><span class="ch">\n</span><span class="st">&quot;</span>,</span>
-<span id="cb119-14"><a href="discussion.html#cb119-14"></a>       <span class="dt">x =</span> <span class="st">&quot; &quot;</span>, </span>
-<span id="cb119-15"><a href="discussion.html#cb119-15"></a>       <span class="dt">y =</span> <span class="st">&quot;% of Student Body&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb119-16"><a href="discussion.html#cb119-16"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="kw">as.factor</span>(race), <span class="dt">nrow =</span> <span class="dv">5</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb119-17"><a href="discussion.html#cb119-17"></a><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> dem_pal) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb119-18"><a href="discussion.html#cb119-18"></a><span class="st">  </span><span class="kw">theme_gray</span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb119-19"><a href="discussion.html#cb119-19"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.title.y =</span> <span class="kw">element_text</span>(<span class="dt">margin =</span> <span class="kw">margin</span>(<span class="dt">t =</span> <span class="dv">0</span>, <span class="dt">r =</span> <span class="dv">20</span>, <span class="dt">b =</span> <span class="dv">0</span>, <span class="dt">l =</span> <span class="dv">0</span>)), </span>
-<span id="cb119-20"><a href="discussion.html#cb119-20"></a>        <span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">hjust =</span> <span class="fl">.5</span>), </span>
-<span id="cb119-21"><a href="discussion.html#cb119-21"></a>        <span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
-<p><img src="CollegeScorecardEDA_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="discussion.html#cb120-1"></a><span class="co">#Demographics for sparse columns </span></span>
-<span id="cb120-2"><a href="discussion.html#cb120-2"></a></span>
-<span id="cb120-3"><a href="discussion.html#cb120-3"></a>other_demographics &lt;-<span class="st"> </span>cdem <span class="op">%&gt;%</span></span>
-<span id="cb120-4"><a href="discussion.html#cb120-4"></a><span class="st">  </span><span class="kw">select</span>(university, r_status, female, first_gen, veteran) <span class="op">%&gt;%</span></span>
-<span id="cb120-5"><a href="discussion.html#cb120-5"></a><span class="st">  </span><span class="kw">gather</span>(<span class="st">&quot;demographic&quot;</span>, <span class="st">&quot;percentage&quot;</span>, <span class="dv">3</span><span class="op">:</span><span class="dv">5</span>, <span class="op">-</span>university)</span>
-<span id="cb120-6"><a href="discussion.html#cb120-6"></a></span>
-<span id="cb120-7"><a href="discussion.html#cb120-7"></a>other_demographics <span class="op">%&gt;%</span></span>
-<span id="cb120-8"><a href="discussion.html#cb120-8"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(r_status), <span class="dt">y =</span> percentage, <span class="dt">fill =</span> <span class="kw">interaction</span>(r_status, demographic))) <span class="op">+</span></span>
-<span id="cb120-9"><a href="discussion.html#cb120-9"></a><span class="st">  </span><span class="kw">geom_violin</span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb120-10"><a href="discussion.html#cb120-10"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun=</span>mean, <span class="dt">geom=</span><span class="st">&quot;crossbar&quot;</span>, <span class="dt">linetype =</span> <span class="dv">2</span>, <span class="dt">size=</span>.<span class="dv">1</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb120-11"><a href="discussion.html#cb120-11"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Other Demographic Factors by Carnegie Classification&quot;</span>, </span>
-<span id="cb120-12"><a href="discussion.html#cb120-12"></a>       <span class="dt">subtitle =</span> <span class="st">&quot;&quot;</span>,</span>
-<span id="cb120-13"><a href="discussion.html#cb120-13"></a>       <span class="dt">x =</span> <span class="st">&quot; &quot;</span>, </span>
-<span id="cb120-14"><a href="discussion.html#cb120-14"></a>       <span class="dt">y =</span> <span class="st">&quot;% of Student Body&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb120-15"><a href="discussion.html#cb120-15"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="kw">as.factor</span>(demographic), <span class="dt">nrow =</span> <span class="dv">5</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb120-16"><a href="discussion.html#cb120-16"></a><span class="st">  </span><span class="kw">scale_fill_brewer</span>(<span class="st">&quot;Paired&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb120-17"><a href="discussion.html#cb120-17"></a><span class="st">  </span><span class="kw">theme_gray</span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb120-18"><a href="discussion.html#cb120-18"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.title.y =</span> <span class="kw">element_text</span>(<span class="dt">margin =</span> <span class="kw">margin</span>(<span class="dt">t =</span> <span class="dv">0</span>, <span class="dt">r =</span> <span class="dv">20</span>, <span class="dt">b =</span> <span class="dv">0</span>, <span class="dt">l =</span> <span class="dv">0</span>)), </span>
-<span id="cb120-19"><a href="discussion.html#cb120-19"></a>        <span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">hjust =</span> <span class="fl">.5</span>), </span>
-<span id="cb120-20"><a href="discussion.html#cb120-20"></a>        <span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
-<p><img src="CollegeScorecardEDA_files/figure-html/unnamed-chunk-53-1.png" width="576" /></p>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="discussion.html#cb121-1"></a><span class="co">#FUN FACTS </span></span>
-<span id="cb121-2"><a href="discussion.html#cb121-2"></a></span>
-<span id="cb121-3"><a href="discussion.html#cb121-3"></a><span class="co">#Universities with the highest female/male ratio, the top 10 are mostly R2&#39;s for both categories</span></span>
-<span id="cb121-4"><a href="discussion.html#cb121-4"></a></span>
-<span id="cb121-5"><a href="discussion.html#cb121-5"></a>cdem <span class="op">%&gt;%</span></span>
-<span id="cb121-6"><a href="discussion.html#cb121-6"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(female)) <span class="op">%&gt;%</span></span>
-<span id="cb121-7"><a href="discussion.html#cb121-7"></a><span class="st">  </span><span class="kw">filter</span>(female <span class="op">&gt;</span><span class="st"> </span><span class="fl">.50</span>) <span class="op">%&gt;%</span></span>
-<span id="cb121-8"><a href="discussion.html#cb121-8"></a><span class="st">  </span><span class="kw">distinct</span>(university, <span class="dt">.keep_all =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
-<span id="cb121-9"><a href="discussion.html#cb121-9"></a><span class="st">  </span><span class="kw">head</span>(<span class="dv">10</span>)</span></code></pre></div>
-<pre><code>##    control                                 university r_status state    female
-## 1        2                Thomas Jefferson University       R2    PA 0.7743842
-## 2        1 CUNY Graduate School and University Center       R1    NY 0.7729469
-## 3        2                   Clark Atlanta University       R2    GA 0.7631579
-## 4        2                             The New School       R2    NY 0.7536302
-## 5        2               Nova Southeastern University       R2    FL 0.7459016
-## 6        2                  University of New England       R2    ME 0.7390681
-## 7        2                   Azusa Pacific University       R2    CA 0.7258883
-## 8        2                          Howard University       R2    DC 0.7177579
-## 9        2                         Hampton University       R2    VA 0.6915352
-## 10       2                  Loyola University Chicago       R2    IL 0.6876623
-##    first_gen poverty_rate     veteran unemp_rate  white  black hispanic  asian
-## 1  0.3293737     8.770079 0.004961565   3.535827 0.7195 0.0705   0.0136 0.0935
-## 2  0.4395604    14.690000 0.015700483   4.900000 0.2200 0.2893   0.3135 0.1183
-## 3  0.3158522     8.770079 0.004961565   3.535827 0.0004 0.8366   0.0040 0.0018
-## 4  0.1944012     8.770079 0.004961565   3.535827 0.3297 0.0548   0.1195 0.0926
-## 5  0.3733401     8.770079 0.007741348   3.535827 0.3296 0.1617   0.2988 0.0972
-## 6  0.2207308     8.770079 0.004961565   3.535827 0.8274 0.0127   0.0013 0.0354
-## 7  0.3798260     7.950000 0.005801305   3.830000 0.3726 0.0611   0.3322 0.0950
-## 8  0.2363936    10.550000 0.004961565   4.430000 0.0222 0.8863   0.0092 0.0141
-## 9  0.1975117     9.570000 0.004961565   4.010000 0.0142 0.9593   0.0131 0.0014
-## 10 0.2651357     8.770079 0.004545454   3.535827 0.5814 0.0444   0.1425 0.1156
-##    indigenous   nhpi    nra unknown   year
-## 1      0.0000 0.0000 0.0081  0.0664   2015
-## 2      0.0024 0.0048 0.0228  0.0000 latest
-## 3      0.0011 0.0000 0.0241  0.1321   2015
-## 4      0.0011 0.0016 0.3234  0.0400   2016
-## 5      0.0026 0.0009 0.0572  0.0319   2016
-## 6      0.0042 0.0000 0.0034  0.1021   2016
-## 7      0.0029 0.0106 0.0310  0.0233 latest
-## 8      0.0013 0.0052 0.0616  0.0000 latest
-## 9      0.0025 0.0003 0.0082  0.0008 latest
-## 10     0.0006 0.0028 0.0490  0.0139   2015</code></pre>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="discussion.html#cb123-1"></a>cdem <span class="op">%&gt;%</span></span>
-<span id="cb123-2"><a href="discussion.html#cb123-2"></a><span class="st">  </span><span class="kw">arrange</span>(female) <span class="op">%&gt;%</span></span>
-<span id="cb123-3"><a href="discussion.html#cb123-3"></a><span class="st">  </span><span class="kw">filter</span>(female <span class="op">&lt;</span><span class="st"> </span><span class="fl">.50</span>) <span class="op">%&gt;%</span></span>
-<span id="cb123-4"><a href="discussion.html#cb123-4"></a><span class="st">  </span><span class="kw">distinct</span>(university, <span class="dt">.keep_all =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
-<span id="cb123-5"><a href="discussion.html#cb123-5"></a><span class="st">  </span><span class="kw">head</span>(<span class="dv">10</span>)</span></code></pre></div>
-<pre><code>##    control                                    university r_status state
-## 1        1            New Jersey Institute of Technology       R1    NJ
-## 2        1 Missouri University of Science and Technology       R2    MO
-## 3        1                      Colorado School of Mines       R2    CO
-## 4        1             Michigan Technological University       R2    MI
-## 5        2              Illinois Institute of Technology       R2    IL
-## 6        2               Stevens Institute of Technology       R2    NJ
-## 7        2                           Clarkson University       R2    NY
-## 8        2              Rensselaer Polytechnic Institute       R1    NY
-## 9        2             Rochester Institute of Technology       R2    NY
-## 10       2               Worcester Polytechnic Institute       R2    MA
-##       female first_gen poverty_rate     veteran unemp_rate  white  black
-## 1  0.1898865 0.3375479     7.624656 0.003439973   3.292901 0.3348 0.0857
-## 2  0.2278168 0.2257366     8.770079 0.004961565   3.535827 0.7815 0.0351
-## 3  0.2631579 0.1719745     8.770079 0.004961565   3.535827 0.7471 0.0104
-## 4  0.2765753 0.1732010     8.770079 0.004961565   3.535827 0.8609 0.0108
-## 5  0.2832370 0.3137255     8.770079 0.004961565   3.535827 0.3257 0.0585
-## 6  0.2847358 0.1549439     5.680000 0.004961565   3.140000 0.6433 0.0219
-## 7  0.2998555 0.1528710     7.160000 0.004961565   3.590000 0.8113 0.0245
-## 8  0.3294118 0.1306505     7.624656 0.003724733   3.292901 0.5907 0.0308
-## 9  0.3355602 0.2022427     8.770079 0.004961565   3.535827 0.6580 0.0495
-## 10 0.3477952 0.1429619     8.770079 0.004961565   3.535827 0.6294 0.0232
-##    hispanic  asian indigenous   nhpi    nra unknown   year
-## 1    0.2210 0.2214     0.0006 0.0006 0.0443  0.0604   2015
-## 2    0.0311 0.0299     0.0037 0.0007 0.0566  0.0348   2015
-## 3    0.0693 0.0488     0.0013 0.0007 0.0589  0.0088   2015
-## 4    0.0185 0.0105     0.0037 0.0005 0.0421  0.0254   2015
-## 5    0.1553 0.1300     0.0034 0.0014 0.2648  0.0428   2015
-## 6    0.1137 0.1459     0.0009 0.0000 0.0351  0.0392 latest
-## 7    0.0473 0.0369     0.0030 0.0000 0.0228  0.0188 latest
-## 8    0.0813 0.1012     0.0014 0.0002 0.1062  0.0187   2015
-## 9    0.0711 0.0756     0.0018 0.0002 0.0585  0.0542   2015
-## 10   0.0843 0.0457     0.0024 0.0000 0.1226  0.0625   2015</code></pre>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="discussion.html#cb125-1"></a>R1s &lt;-<span class="st"> </span>cdem <span class="op">%&gt;%</span></span>
-<span id="cb125-2"><a href="discussion.html#cb125-2"></a><span class="st">  </span><span class="kw">filter</span>(r_status <span class="op">==</span><span class="st"> &quot;R1&quot;</span>)</span>
-<span id="cb125-3"><a href="discussion.html#cb125-3"></a></span>
-<span id="cb125-4"><a href="discussion.html#cb125-4"></a><span class="kw">ggplot</span>(cdem, <span class="kw">aes</span>(<span class="dt">x =</span> female)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb125-5"><a href="discussion.html#cb125-5"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">40</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;pink&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb125-6"><a href="discussion.html#cb125-6"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Distribution of Female/Male Gender ratio at R1s&quot;</span>)</span></code></pre></div>
-<p><img src="CollegeScorecardEDA_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="discussion.html#cb126-1"></a>R2s &lt;-<span class="st"> </span>cdem <span class="op">%&gt;%</span></span>
-<span id="cb126-2"><a href="discussion.html#cb126-2"></a><span class="st">  </span><span class="kw">filter</span>(r_status <span class="op">==</span><span class="st"> &quot;R2&quot;</span>)</span>
-<span id="cb126-3"><a href="discussion.html#cb126-3"></a></span>
-<span id="cb126-4"><a href="discussion.html#cb126-4"></a><span class="kw">ggplot</span>(R2s, <span class="kw">aes</span>(<span class="dt">x =</span> female)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb126-5"><a href="discussion.html#cb126-5"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">40</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;skyblue&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb126-6"><a href="discussion.html#cb126-6"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Distribution of Female/Male Gender ratio at R2s&quot;</span>)</span></code></pre></div>
-<p><img src="CollegeScorecardEDA_files/figure-html/unnamed-chunk-54-2.png" width="672" /></p>
+<script type="application/json" data-for="htmlwidget-2f467f506420b756509e">{"x":{"visdat":{"12f45a1a5f95":["function () ","plotlyVisDat"]},"cur_data":"12f45a1a5f95","attrs":{"12f45a1a5f95":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"z":{},"span":[0],"colorscale":"viridis","locations":["IN","KS","MA","MI","MS","MO","MT","NE","NV","CO","CA","CT","DE","FL","HI","GA","OR","TN","TX","IL","LA","VA","WA","WV","AL","AK","AR","SC","UT","WI","ME","NY","NC","OH","ND","NH","AZ","NJ","OK","PA","KY","NM","ID","MD","IA","VT","WY","RI","SD","MN"],"locationmode":"USA-states","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"mapType":"geo","scene":{"zaxis":{"title":"avgDM$avgDebt"}},"geo":{"domain":{"x":[0,1],"y":[0,1]},"scope":"usa","projection":{"type":"albers usa"},"lakecolor":"rgba(255,255,255,1)"},"hovermode":"closest","showlegend":false,"legend":{"yanchor":"top","y":0.5},"title":"Avg. Faculty Salary by State (in USD)"},"source":"A","config":{"showSendToCloud":false},"data":[{"colorbar":{"ticklen":2,"len":0.5,"lenmode":"fraction","y":1,"yanchor":"top"},"colorscale":"viridis","showscale":true,"z":[21724.875,21409.5,22178.8653846154,24442.671875,24065.625,21746.3541666667,23333.125,20544.0625,18816.25,21607.9583333333,17486.9558823529,17187.5,25987.625,20459.5625,19162.5,22893.234375,21795.7083333333,20866.25,19966.5277777778,21076.0125,20568.75,22003.9821428571,17596.9375,23468.25,22740.875,17391,20663,22181,13772.5416666667,23948.125,26122.25,20849.0208333333,20775.5138888889,23537.2604166667,23472.25,20143.25,19944.675,21463.9444444444,22016.8333333333,23592.775,21503.375,18288.75,23095.6666666667,22667.25,22494.5,21939.5,18328.5,19421.875,24812.5,19750],"locations":["IN","KS","MA","MI","MS","MO","MT","NE","NV","CO","CA","CT","DE","FL","HI","GA","OR","TN","TX","IL","LA","VA","WA","WV","AL","AK","AR","SC","UT","WI","ME","NY","NC","OH","ND","NH","AZ","NJ","OK","PA","KY","NM","ID","MD","IA","VT","WY","RI","SD","MN"],"locationmode":"USA-states","type":"choropleth","marker":{"line":{"color":"rgba(31,119,180,1)","width":0}},"geo":"geo","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 
 </div>
 </div>
