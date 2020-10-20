@@ -50,23 +50,25 @@ cdem %>%
   arrange(desc(female)) %>%
   filter(female > .50) %>%
   distinct(university, .keep_all = TRUE) %>%
-  head(10)
+  head(10) %>%
+  MakePretty()
 
 cdem %>%
   arrange(female) %>%
   filter(female < .50) %>%
   distinct(university, .keep_all = TRUE) %>%
-  head(10)
+  head(10) %>%
+  MakePretty()
 
 R1s <- cdem %>%
-  filter(r_status == "R1")
+  filter(r_status == 1)
 
 ggplot(cdem, aes(x = female)) + 
   geom_histogram(bins = 40, color = "black", fill = "pink") + 
   labs(title = "Distribution of Female/Male Gender ratio at R1s")
 
 R2s <- cdem %>%
-  filter(r_status == "R2")
+  filter(r_status == 2)
 
 ggplot(R2s, aes(x = female)) + 
   geom_histogram(bins = 40, color = "black", fill = "skyblue") + 
