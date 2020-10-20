@@ -8,8 +8,6 @@
 library(report) #Package for citing
 ```
 
-## Packages Used
-
 ```{r}
 kable(cite_packages(sessionInfo())) %>% kable_styling(full_width = F)
 ```

@@ -50,15 +50,13 @@ cdem %>%
   arrange(desc(female)) %>%
   filter(female > .50) %>%
   distinct(university, .keep_all = TRUE) %>%
-  head(10) %>%
-  MakePretty()
+  head(10)
 
 cdem %>%
   arrange(female) %>%
   filter(female < .50) %>%
   distinct(university, .keep_all = TRUE) %>%
-  head(10) %>%
-  MakePretty()
+  head(10)
 
 R1s <- cdem %>%
   filter(r_status == 1)
