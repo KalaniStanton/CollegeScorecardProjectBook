@@ -22,6 +22,11 @@ financial-descriptive-statistics
 significance-testing
 regression-model
 discussion
+discussion-1
+things-learned-skills-acquired
+adam
+kalani
+sara
+ben
 other-fun-things
-interactive-chloropleths
 gender

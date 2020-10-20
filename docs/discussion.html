@@ -24,7 +24,7 @@
 <meta name="author" content="Sara Haman, Adam Lashley, Reilly Stanton, Benjamin Weisman" />
 
 
-<meta name="date" content="2020-10-19" />
+<meta name="date" content="2020-10-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,6 +51,10 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 <script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
@@ -173,9 +177,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>6</b> Discussion</a><ul>
-<li class="chapter" data-level="6.1" data-path="discussion.html"><a href="discussion.html#other-fun-things"><i class="fa fa-check"></i><b>6.1</b> Other fun things</a><ul>
-<li class="chapter" data-level="6.1.1" data-path="discussion.html"><a href="discussion.html#interactive-chloropleths"><i class="fa fa-check"></i><b>6.1.1</b> Interactive Chloropleths</a></li>
-<li class="chapter" data-level="6.1.2" data-path="discussion.html"><a href="discussion.html#gender"><i class="fa fa-check"></i><b>6.1.2</b> Gender</a></li>
+<li class="chapter" data-level="6.1" data-path="discussion.html"><a href="discussion.html#discussion-1"><i class="fa fa-check"></i><b>6.1</b> Discussion</a></li>
+<li class="chapter" data-level="6.2" data-path="discussion.html"><a href="discussion.html#things-learned-skills-acquired"><i class="fa fa-check"></i><b>6.2</b> Things Learned &amp; Skills Acquired</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="discussion.html"><a href="discussion.html#adam"><i class="fa fa-check"></i><b>6.2.1</b> Adam</a></li>
+<li class="chapter" data-level="6.2.2" data-path="discussion.html"><a href="discussion.html#kalani"><i class="fa fa-check"></i><b>6.2.2</b> Kalani</a></li>
+<li class="chapter" data-level="6.2.3" data-path="discussion.html"><a href="discussion.html#sara"><i class="fa fa-check"></i><b>6.2.3</b> Sara</a></li>
+<li class="chapter" data-level="6.2.4" data-path="discussion.html"><a href="discussion.html#ben"><i class="fa fa-check"></i><b>6.2.4</b> Ben</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="discussion.html"><a href="discussion.html#other-fun-things"><i class="fa fa-check"></i><b>6.3</b> Other fun things</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="discussion.html"><a href="discussion.html#gender"><i class="fa fa-check"></i><b>6.3.1</b> Gender</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -201,95 +211,104 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="discussion" class="section level1">
 <h1><span class="header-section-number">Section 6</span> Discussion</h1>
-<p>This is where we will write things, ahaha</p>
-<div id="other-fun-things" class="section level2">
-<h2><span class="header-section-number">6.1</span> Other fun things</h2>
-<p>Features that we were interested in, but didn’t get a chance to follow through on or did not align with the primary goal of the project. :)</p>
-<div id="interactive-chloropleths" class="section level3">
-<h3><span class="header-section-number">6.1.1</span> Interactive Chloropleths</h3>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="discussion.html#cb103-1"></a><span class="kw">library</span>(plotly)</span>
-<span id="cb103-2"><a href="discussion.html#cb103-2"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb103-3"><a href="discussion.html#cb103-3"></a><span class="kw">library</span>(purrr)</span>
-<span id="cb103-4"><a href="discussion.html#cb103-4"></a><span class="kw">library</span>(RColorBrewer)</span>
-<span id="cb103-5"><a href="discussion.html#cb103-5"></a><span class="kw">library</span>(tmap)</span></code></pre></div>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="discussion.html#cb104-1"></a>g &lt;-<span class="st"> </span><span class="kw">list</span>(</span>
-<span id="cb104-2"><a href="discussion.html#cb104-2"></a>  <span class="dt">scope =</span> <span class="st">&#39;usa&#39;</span>,</span>
-<span id="cb104-3"><a href="discussion.html#cb104-3"></a>  <span class="dt">projection =</span> <span class="kw">list</span>(<span class="dt">type =</span> <span class="st">&#39;albers usa&#39;</span>),</span>
-<span id="cb104-4"><a href="discussion.html#cb104-4"></a>  <span class="dt">lakecolor =</span> <span class="kw">toRGB</span>(<span class="st">&#39;white&#39;</span>)</span>
-<span id="cb104-5"><a href="discussion.html#cb104-5"></a>)</span></code></pre></div>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="discussion.html#cb105-1"></a>avgDM &lt;-<span class="st"> </span><span class="kw">distinct</span>(debtMedian)</span>
-<span id="cb105-2"><a href="discussion.html#cb105-2"></a></span>
-<span id="cb105-3"><a href="discussion.html#cb105-3"></a><span class="kw">plot_geo</span>() <span class="op">%&gt;%</span></span>
-<span id="cb105-4"><a href="discussion.html#cb105-4"></a><span class="st">  </span><span class="kw">add_trace</span>(</span>
-<span id="cb105-5"><a href="discussion.html#cb105-5"></a>    <span class="dt">z =</span> <span class="op">~</span>avgDM<span class="op">$</span>avgDebt,</span>
-<span id="cb105-6"><a href="discussion.html#cb105-6"></a>    <span class="dt">span =</span> <span class="kw">I</span>(<span class="dv">0</span>),</span>
-<span id="cb105-7"><a href="discussion.html#cb105-7"></a>    <span class="dt">colorscale =</span> <span class="st">&#39;viridis&#39;</span>,</span>
-<span id="cb105-8"><a href="discussion.html#cb105-8"></a>    <span class="dt">locations =</span> avgDM<span class="op">$</span>state, </span>
-<span id="cb105-9"><a href="discussion.html#cb105-9"></a>    <span class="dt">locationmode =</span> <span class="st">&#39;USA-states&#39;</span></span>
-<span id="cb105-10"><a href="discussion.html#cb105-10"></a>  ) <span class="op">%&gt;%</span></span>
-<span id="cb105-11"><a href="discussion.html#cb105-11"></a><span class="st">  </span><span class="kw">colorbar</span>(<span class="dt">title =</span> <span class="ot">NULL</span>) <span class="op">%&gt;%</span></span>
-<span id="cb105-12"><a href="discussion.html#cb105-12"></a><span class="st">  </span><span class="kw">layout</span>(<span class="dt">geo =</span> g, <span class="dt">title =</span> <span class="st">&quot;Avg. Faculty Salary by State (in USD)&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-f372df4361b1558f8dff" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-f372df4361b1558f8dff">{"x":{"visdat":{"3e9c4c0c4856":["function () ","plotlyVisDat"]},"cur_data":"3e9c4c0c4856","attrs":{"3e9c4c0c4856":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"z":{},"span":[0],"colorscale":"viridis","locations":["IN","KS","MA","MI","MS","MO","MT","NE","NV","CO","CA","CT","DE","FL","HI","GA","OR","TN","TX","IL","LA","VA","WA","WV","AL","AK","AR","SC","UT","WI","ME","NY","NC","OH","ND","NH","AZ","NJ","OK","PA","KY","NM","ID","MD","IA","VT","WY","RI","SD","MN"],"locationmode":"USA-states","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"mapType":"geo","scene":{"zaxis":{"title":"avgDM$avgDebt"}},"geo":{"domain":{"x":[0,1],"y":[0,1]},"scope":"usa","projection":{"type":"albers usa"},"lakecolor":"rgba(255,255,255,1)"},"hovermode":"closest","showlegend":false,"legend":{"yanchor":"top","y":0.5},"title":"Avg. Faculty Salary by State (in USD)"},"source":"A","config":{"showSendToCloud":false},"data":[{"colorbar":{"ticklen":2,"len":0.5,"lenmode":"fraction","y":1,"yanchor":"top"},"colorscale":"viridis","showscale":true,"z":[21724.875,21409.5,22178.8653846154,24442.671875,24065.625,21746.3541666667,23333.125,20544.0625,18816.25,21607.9583333333,17486.9558823529,17187.5,25987.625,20459.5625,19162.5,22893.234375,21795.7083333333,20866.25,19966.5277777778,21076.0125,20568.75,22003.9821428571,17596.9375,23468.25,22740.875,17391,20663,22181,13772.5416666667,23948.125,26122.25,20849.0208333333,20775.5138888889,23537.2604166667,23472.25,20143.25,19944.675,21463.9444444444,22016.8333333333,23592.775,21503.375,18288.75,23095.6666666667,22667.25,22494.5,21939.5,18328.5,19421.875,24812.5,19750],"locations":["IN","KS","MA","MI","MS","MO","MT","NE","NV","CO","CA","CT","DE","FL","HI","GA","OR","TN","TX","IL","LA","VA","WA","WV","AL","AK","AR","SC","UT","WI","ME","NY","NC","OH","ND","NH","AZ","NJ","OK","PA","KY","NM","ID","MD","IA","VT","WY","RI","SD","MN"],"locationmode":"USA-states","type":"choropleth","marker":{"line":{"color":"rgba(31,119,180,1)","width":0}},"geo":"geo","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="discussion-1" class="section level2">
+<h2><span class="header-section-number">6.1</span> Discussion</h2>
+<p>These results are meant to serve as illustration of the data in the College Scorecard API pertaining to schools at the highest levels of Carnegie Classification. In addition to the descriptive analysis, which demonstrates the distributions of demographics and financial data, our regression analysis demonstrates that the distinction between R1 or R2 classifications has a significant, albeit small effect on unemployment rates for graduates from these universities. Interestingly, the relationship between unemployment and School type was moderated by the proportion of white people at a given university. Commentary on the social conditions surrounding this relationship is beyond the scope of this project and the researchers’ expertise; nevertheless, we hope these results serve others in discussions of systemic issues related to race and higher education.
+The Project Process</p>
+<p>We should admit that at the onset of this project our team was lost in the complexity of the data in the College Scorecard API. This was largely due to our own stubbornness, as we wanted to use the API because of the advantages this method offers in regards to reproducibility. That being said, our project scope began to grow exponentially after learning about the rscorecard package, which not only offered a highly interpretable method for extracting the data but also offered further insight into how the data from the API was structured in and of itself.<br />
+Prior to developing a plan for our analysis (or even a direction for the project) we began by setting up the repositories and collaborative documents that we planned to use throughout the project. The primary collaborative tools were GitHub, Google Docs, and Discord. We used Discord to keep in contact because of their native support for markdown as part of their messaging service, which allowed us to send code chunks directly to each other, as well as the voice-conferencing and screen sharing functionality that allowed us to meet and discuss progress. The Google Docs were primarily used for planning and drafting the written portions of our project. Lastly, we used github to share files with one another and used the gitpages feature to host the final document as a web page. The documents in the <a href="https://github.com/KalaniStanton/CollegeScorecardProjectBook">CollegeScorecardProjectBook</a> repository contain all of the code, data, and configuration files needed in order to knit the bookdown on each team member’s computer. Ultimately, this means that a cloned repository of our GitHub should run and knit, just as long as the user acquires their own API key and installs all the necessary dependencies into their RStudio environment.
+In truth, this project suffered from quite a bit of “feature creep” once we began working on the project in earnest. As we finally began to understand the data, we realized there were a lot of ways that we could take full advantage of the information at our disposal using the specialized skill sets of our team members. Consequently, we were unable to discuss all of the visualizations that we had made during this process, but have included them in case anyone would like to use our code as reference for their own exploratory projects in the future.</p>
 </div>
+<div id="things-learned-skills-acquired" class="section level2">
+<h2><span class="header-section-number">6.2</span> Things Learned &amp; Skills Acquired</h2>
+<div id="adam" class="section level3">
+<h3><span class="header-section-number">6.2.1</span> Adam</h3>
+<p>I was incredibly surprised by how much we were able to glean from only a handful of variables of interest. We definitely came into the exploratory analysis ‘laptops blazing’ to burn down the ivory R1 throne but alas the dataset managed to both defuse our animosity and reveal a much more realistic painting of R1 characteristics. I feel that we were able to learn alot about the diversity characteristics and outcomes of R1 vs R2 schools in spite of the project’s fairly narrow scope. On a different note, I really enjoyed getting to work with holistically skewed and messy data. On a longer time scale I would have loved to seek out and model some of the more obscure latent variables and their relation to student outcomes.</p>
+<blockquote>
+<p>“people use statistics the same way that a drunk uses a lamppost.
+More for support than for illumination.”
+Andrew Lang, a long ass time ago</p>
+</blockquote>
+</div>
+<div id="kalani" class="section level3">
+<h3><span class="header-section-number">6.2.2</span> Kalani</h3>
+<pre><code>Despite my previous endeavors with Bookdown (I had knit one years ago), I struggled to navigate the highly technical documentation available for this package. Nevertheless, I persisted and was able to create a clean document format that parallelled the fantastic work put in by my other team members. Through Adam’s work on statistical analysis, I became re-acquainted with some of the modeling and statistical tools I had used in my undergrad data science and psychology classes, but had also learned more about experimental design from Adam himself. I also collaborated with Sara to make the interactive chloropleth maps using plotly, which I had never done before and am happy I took the time to learn. All in all, I’m really pleased with this project and appreciated the diverse skill set across the members of this team. </code></pre>
+<blockquote>
+<p>“There is no such thing as a ‘good’ programmer;
+just a competent googler.”
+~Unknown</p>
+</blockquote>
+</div>
+<div id="sara" class="section level3">
+<h3><span class="header-section-number">6.2.3</span> Sara</h3>
+<p>Most of what I learned from this project I learned from my partners. Kalani’s Bookdown and data-wrangling ingenuity and Adam’s statistics proficiency added layers to the learning experience, and made the assignment fun to work on. I also enjoyed reading Ben’s interpretation of the subjective data quality features. I was impressed by how much we were able to do with a fairly sparse and limited data set. We managed to probe at a topic I find genuinely interesting, and scrape insights from below the surface level of the data. I also enjoyed being able to implement the data quality functions I created for the homework assignment on actual data sets. It provided meaning to the work we had completed so far.</p>
+</div>
+<div id="ben" class="section level3">
+<h3><span class="header-section-number">6.2.4</span> Ben</h3>
+<p>This group project gave us all some much-needed group work experience as well as sharpened our technical skills in R and Git. We collaborated using a Git Repository and Kalani used Bookdown for the formal writeup. It was an interesting experience, and we all were able to contribute in our own way. As for what we learned, the dataset showed us real data about the distribution and diversity of colleges across the United States. When we usually think about these institutions, we come in with our own pre -conceived biases and opinions but when we look at the actual data, we can begin to formulate real inferences and conclusions. In our other works, we haven’t had this experience yet, so it was a nice change of pace.</p>
+</div>
+</div>
+<div id="other-fun-things" class="section level2">
+<h2><span class="header-section-number">6.3</span> Other fun things</h2>
+<p>Features that we were interested in, but didn’t get a chance to follow through on or did not align with the primary goal of the project. :)</p>
 <div id="gender" class="section level3">
-<h3><span class="header-section-number">6.1.2</span> Gender</h3>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="discussion.html#cb106-1"></a><span class="co">#Universities with the highest female/male ratio, the top 10 are mostly R2&#39;s for both categories</span></span>
-<span id="cb106-2"><a href="discussion.html#cb106-2"></a></span>
-<span id="cb106-3"><a href="discussion.html#cb106-3"></a>cdem <span class="op">%&gt;%</span></span>
-<span id="cb106-4"><a href="discussion.html#cb106-4"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(female)) <span class="op">%&gt;%</span></span>
-<span id="cb106-5"><a href="discussion.html#cb106-5"></a><span class="st">  </span><span class="kw">filter</span>(female <span class="op">&gt;</span><span class="st"> </span><span class="fl">.50</span>) <span class="op">%&gt;%</span></span>
-<span id="cb106-6"><a href="discussion.html#cb106-6"></a><span class="st">  </span><span class="kw">distinct</span>(university, <span class="dt">.keep_all =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
-<span id="cb106-7"><a href="discussion.html#cb106-7"></a><span class="st">  </span><span class="kw">head</span>(<span class="dv">10</span>)</span></code></pre></div>
-<pre><code>##    control                                 university r_status state    female
-## 1        2                Thomas Jefferson University       R2    PA 0.7743842
-## 2        1 CUNY Graduate School and University Center       R1    NY 0.7729469
-## 3        2                   Clark Atlanta University       R2    GA 0.7631579
-## 4        2                             The New School       R2    NY 0.7536302
-## 5        2               Nova Southeastern University       R2    FL 0.7459016
-## 6        2                  University of New England       R2    ME 0.7390681
-## 7        2                   Azusa Pacific University       R2    CA 0.7258883
-## 8        2                          Howard University       R2    DC 0.7177579
-## 9        2                         Hampton University       R2    VA 0.6915352
-## 10       2                  Loyola University Chicago       R2    IL 0.6876623
-##    first_gen poverty_rate     veteran unemp_rate  white  black hispanic  asian
-## 1  0.3293737     8.770079 0.004961565   3.535827 0.7195 0.0705   0.0136 0.0935
-## 2  0.4395604    14.690000 0.015700483   4.900000 0.2200 0.2893   0.3135 0.1183
-## 3  0.3158522     8.770079 0.004961565   3.535827 0.0004 0.8366   0.0040 0.0018
-## 4  0.1944012     8.770079 0.004961565   3.535827 0.3297 0.0548   0.1195 0.0926
-## 5  0.3733401     8.770079 0.007741348   3.535827 0.3296 0.1617   0.2988 0.0972
-## 6  0.2207308     8.770079 0.004961565   3.535827 0.8274 0.0127   0.0013 0.0354
-## 7  0.3798260     7.950000 0.005801305   3.830000 0.3726 0.0611   0.3322 0.0950
-## 8  0.2363936    10.550000 0.004961565   4.430000 0.0222 0.8863   0.0092 0.0141
-## 9  0.1975117     9.570000 0.004961565   4.010000 0.0142 0.9593   0.0131 0.0014
-## 10 0.2651357     8.770079 0.004545454   3.535827 0.5814 0.0444   0.1425 0.1156
-##    indigenous   nhpi    nra unknown   year
-## 1      0.0000 0.0000 0.0081  0.0664   2015
-## 2      0.0024 0.0048 0.0228  0.0000 latest
-## 3      0.0011 0.0000 0.0241  0.1321   2015
-## 4      0.0011 0.0016 0.3234  0.0400   2016
-## 5      0.0026 0.0009 0.0572  0.0319   2016
-## 6      0.0042 0.0000 0.0034  0.1021   2016
-## 7      0.0029 0.0106 0.0310  0.0233 latest
-## 8      0.0013 0.0052 0.0616  0.0000 latest
-## 9      0.0025 0.0003 0.0082  0.0008 latest
-## 10     0.0006 0.0028 0.0490  0.0139   2015</code></pre>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="discussion.html#cb108-1"></a>cdem <span class="op">%&gt;%</span></span>
-<span id="cb108-2"><a href="discussion.html#cb108-2"></a><span class="st">  </span><span class="kw">arrange</span>(female) <span class="op">%&gt;%</span></span>
-<span id="cb108-3"><a href="discussion.html#cb108-3"></a><span class="st">  </span><span class="kw">filter</span>(female <span class="op">&lt;</span><span class="st"> </span><span class="fl">.50</span>) <span class="op">%&gt;%</span></span>
-<span id="cb108-4"><a href="discussion.html#cb108-4"></a><span class="st">  </span><span class="kw">distinct</span>(university, <span class="dt">.keep_all =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
-<span id="cb108-5"><a href="discussion.html#cb108-5"></a><span class="st">  </span><span class="kw">head</span>(<span class="dv">10</span>)</span></code></pre></div>
-<pre><code>##    control                                    university r_status state
-## 1        1            New Jersey Institute of Technology       R1    NJ
-## 2        1 Missouri University of Science and Technology       R2    MO
-## 3        1                      Colorado School of Mines       R2    CO
-## 4        1             Michigan Technological University       R2    MI
-## 5        2              Illinois Institute of Technology       R2    IL
-## 6        2               Stevens Institute of Technology       R2    NJ
-## 7        2                           Clarkson University       R2    NY
-## 8        2              Rensselaer Polytechnic Institute       R1    NY
-## 9        2             Rochester Institute of Technology       R2    NY
-## 10       2               Worcester Polytechnic Institute       R2    MA
+<h3><span class="header-section-number">6.3.1</span> Gender</h3>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="discussion.html#cb84-1"></a><span class="co">#Universities with the highest female/male ratio, the top 10 are mostly R2&#39;s for both categories</span></span>
+<span id="cb84-2"><a href="discussion.html#cb84-2"></a></span>
+<span id="cb84-3"><a href="discussion.html#cb84-3"></a>cdem <span class="op">%&gt;%</span></span>
+<span id="cb84-4"><a href="discussion.html#cb84-4"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(female)) <span class="op">%&gt;%</span></span>
+<span id="cb84-5"><a href="discussion.html#cb84-5"></a><span class="st">  </span><span class="kw">filter</span>(female <span class="op">&gt;</span><span class="st"> </span><span class="fl">.50</span>) <span class="op">%&gt;%</span></span>
+<span id="cb84-6"><a href="discussion.html#cb84-6"></a><span class="st">  </span><span class="kw">distinct</span>(university, <span class="dt">.keep_all =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
+<span id="cb84-7"><a href="discussion.html#cb84-7"></a><span class="st">  </span><span class="kw">head</span>(<span class="dv">10</span>)</span></code></pre></div>
+<pre><code>##       X control                                 university r_status state
+## 1  1244       2                Thomas Jefferson University        2    PA
+## 2   196       1 CUNY Graduate School and University Center        1    NY
+## 3  1077       2                   Clark Atlanta University        2    GA
+## 4   844       2                             The New School        2    NY
+## 5   880       2               Nova Southeastern University        2    FL
+## 6   839       2                  University of New England        2    ME
+## 7    85       2                   Azusa Pacific University        2    CA
+## 8   210       2                          Howard University        2    DC
+## 9    36       2                         Hampton University        2    VA
+## 10 1275       2                  Loyola University Chicago        2    IL
+##       female first_gen poverty_rate     veteran unemp_rate  white  black
+## 1  0.7743842 0.3293737     8.770079 0.004961565   3.535827 0.7195 0.0705
+## 2  0.7729469 0.4395604    14.690000 0.015700483   4.900000 0.2200 0.2893
+## 3  0.7631579 0.3158522     8.770079 0.004961565   3.535827 0.0004 0.8366
+## 4  0.7536302 0.1944012     8.770079 0.004961565   3.535827 0.3297 0.0548
+## 5  0.7459016 0.3733401     8.770079 0.007741348   3.535827 0.3296 0.1617
+## 6  0.7390681 0.2207308     8.770079 0.004961565   3.535827 0.8274 0.0127
+## 7  0.7258883 0.3798260     7.950000 0.005801305   3.830000 0.3726 0.0611
+## 8  0.7177579 0.2363936    10.550000 0.004961565   4.430000 0.0222 0.8863
+## 9  0.6915352 0.1975117     9.570000 0.004961565   4.010000 0.0142 0.9593
+## 10 0.6876623 0.2651357     8.770079 0.004545454   3.535827 0.5814 0.0444
+##    hispanic  asian indigenous   nhpi    nra unknown   year
+## 1    0.0136 0.0935     0.0000 0.0000 0.0081  0.0664   2015
+## 2    0.3135 0.1183     0.0024 0.0048 0.0228  0.0000 latest
+## 3    0.0040 0.0018     0.0011 0.0000 0.0241  0.1321   2015
+## 4    0.1195 0.0926     0.0011 0.0016 0.3234  0.0400   2016
+## 5    0.2988 0.0972     0.0026 0.0009 0.0572  0.0319   2016
+## 6    0.0013 0.0354     0.0042 0.0000 0.0034  0.1021   2016
+## 7    0.3322 0.0950     0.0029 0.0106 0.0310  0.0233 latest
+## 8    0.0092 0.0141     0.0013 0.0052 0.0616  0.0000 latest
+## 9    0.0131 0.0014     0.0025 0.0003 0.0082  0.0008 latest
+## 10   0.1425 0.1156     0.0006 0.0028 0.0490  0.0139   2015</code></pre>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="discussion.html#cb86-1"></a>cdem <span class="op">%&gt;%</span></span>
+<span id="cb86-2"><a href="discussion.html#cb86-2"></a><span class="st">  </span><span class="kw">arrange</span>(female) <span class="op">%&gt;%</span></span>
+<span id="cb86-3"><a href="discussion.html#cb86-3"></a><span class="st">  </span><span class="kw">filter</span>(female <span class="op">&lt;</span><span class="st"> </span><span class="fl">.50</span>) <span class="op">%&gt;%</span></span>
+<span id="cb86-4"><a href="discussion.html#cb86-4"></a><span class="st">  </span><span class="kw">distinct</span>(university, <span class="dt">.keep_all =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
+<span id="cb86-5"><a href="discussion.html#cb86-5"></a><span class="st">  </span><span class="kw">head</span>(<span class="dv">10</span>)</span></code></pre></div>
+<pre><code>##       X control                                    university r_status state
+## 1  1139       1            New Jersey Institute of Technology        1    NJ
+## 2  1053       1 Missouri University of Science and Technology        2    MO
+## 3  1166       1                      Colorado School of Mines        2    CO
+## 4  1138       1             Michigan Technological University        2    MI
+## 5  1149       2              Illinois Institute of Technology        2    IL
+## 6    77       2               Stevens Institute of Technology        2    NJ
+## 7    63       2                           Clarkson University        2    NY
+## 8  1113       2              Rensselaer Polytechnic Institute        1    NY
+## 9  1212       2             Rochester Institute of Technology        2    NY
+## 10 1103       2               Worcester Polytechnic Institute        2    MA
 ##       female first_gen poverty_rate     veteran unemp_rate  white  black
 ## 1  0.1898865 0.3375479     7.624656 0.003439973   3.292901 0.3348 0.0857
 ## 2  0.2278168 0.2257366     8.770079 0.004961565   3.535827 0.7815 0.0351
@@ -312,20 +331,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 8    0.0813 0.1012     0.0014 0.0002 0.1062  0.0187   2015
 ## 9    0.0711 0.0756     0.0018 0.0002 0.0585  0.0542   2015
 ## 10   0.0843 0.0457     0.0024 0.0000 0.1226  0.0625   2015</code></pre>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="discussion.html#cb110-1"></a>R1s &lt;-<span class="st"> </span>cdem <span class="op">%&gt;%</span></span>
-<span id="cb110-2"><a href="discussion.html#cb110-2"></a><span class="st">  </span><span class="kw">filter</span>(r_status <span class="op">==</span><span class="st"> &quot;R1&quot;</span>)</span>
-<span id="cb110-3"><a href="discussion.html#cb110-3"></a></span>
-<span id="cb110-4"><a href="discussion.html#cb110-4"></a><span class="kw">ggplot</span>(cdem, <span class="kw">aes</span>(<span class="dt">x =</span> female)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb110-5"><a href="discussion.html#cb110-5"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">40</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;pink&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb110-6"><a href="discussion.html#cb110-6"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Distribution of Female/Male Gender ratio at R1s&quot;</span>)</span></code></pre></div>
-<p><img src="CollegeScorecardEDA_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="discussion.html#cb111-1"></a>R2s &lt;-<span class="st"> </span>cdem <span class="op">%&gt;%</span></span>
-<span id="cb111-2"><a href="discussion.html#cb111-2"></a><span class="st">  </span><span class="kw">filter</span>(r_status <span class="op">==</span><span class="st"> &quot;R2&quot;</span>)</span>
-<span id="cb111-3"><a href="discussion.html#cb111-3"></a></span>
-<span id="cb111-4"><a href="discussion.html#cb111-4"></a><span class="kw">ggplot</span>(R2s, <span class="kw">aes</span>(<span class="dt">x =</span> female)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb111-5"><a href="discussion.html#cb111-5"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">40</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;skyblue&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb111-6"><a href="discussion.html#cb111-6"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Distribution of Female/Male Gender ratio at R2s&quot;</span>)</span></code></pre></div>
-<p><img src="CollegeScorecardEDA_files/figure-html/unnamed-chunk-53-2.png" width="672" /></p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="discussion.html#cb88-1"></a>R1s &lt;-<span class="st"> </span>cdem <span class="op">%&gt;%</span></span>
+<span id="cb88-2"><a href="discussion.html#cb88-2"></a><span class="st">  </span><span class="kw">filter</span>(r_status <span class="op">==</span><span class="st"> &quot;R1&quot;</span>)</span>
+<span id="cb88-3"><a href="discussion.html#cb88-3"></a></span>
+<span id="cb88-4"><a href="discussion.html#cb88-4"></a><span class="kw">ggplot</span>(cdem, <span class="kw">aes</span>(<span class="dt">x =</span> female)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb88-5"><a href="discussion.html#cb88-5"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">40</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;pink&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb88-6"><a href="discussion.html#cb88-6"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Distribution of Female/Male Gender ratio at R1s&quot;</span>)</span></code></pre></div>
+<p><img src="CollegeScorecardEDA_files/figure-html/unnamed-chunk-55-1.png" width="672" /></p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="discussion.html#cb89-1"></a>R2s &lt;-<span class="st"> </span>cdem <span class="op">%&gt;%</span></span>
+<span id="cb89-2"><a href="discussion.html#cb89-2"></a><span class="st">  </span><span class="kw">filter</span>(r_status <span class="op">==</span><span class="st"> &quot;R2&quot;</span>)</span>
+<span id="cb89-3"><a href="discussion.html#cb89-3"></a></span>
+<span id="cb89-4"><a href="discussion.html#cb89-4"></a><span class="kw">ggplot</span>(R2s, <span class="kw">aes</span>(<span class="dt">x =</span> female)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb89-5"><a href="discussion.html#cb89-5"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">40</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;skyblue&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb89-6"><a href="discussion.html#cb89-6"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Distribution of Female/Male Gender ratio at R2s&quot;</span>)</span></code></pre></div>
+<p><img src="CollegeScorecardEDA_files/figure-html/unnamed-chunk-55-2.png" width="672" /></p>
 
 </div>
 </div>
@@ -367,7 +386,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/06-Visualizations.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/06-Discussion.Rmd",
 "text": "Edit"
 },
 "history": {

@@ -22,7 +22,7 @@ MakePretty <- function(x) {
 
 ## Set-up and API Exploration
 
-For our project, we wanted to practice using API to pass the data into our global environment and attempt to explore and extract our desired variables using base R.
+For our project, we wanted to practice using APIs to pull the data into our global environment and extract our desired variables using base R.
 
 As you will see, our attempt failed, but was useful in helping us understand the relational structure of the College Scorecard Data and the limits of simple indexing when dealing with complicated data structures. 
 

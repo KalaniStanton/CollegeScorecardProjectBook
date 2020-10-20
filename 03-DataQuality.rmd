@@ -5,10 +5,12 @@
 First, I import the packages that I use in this section and read in the uncleaned data.
 
 ```{r, message = FALSE}
-
 #LIBRARIES 
 library(tidyverse)
-
+library(kableExtra)
+MakePretty <- function(x) {
+  x %>% kbl(align = "c") %>% kable_material()
+}
 ```
 
 ```{r, message = FALSE}
@@ -174,8 +176,9 @@ The ease of manipulation scores for both data sets are included below. The avera
 ```{r, echo= FALSE}
 
 fin_qual <- data_quality(fin)
+rownames(fin_qual) <- fin_qual$ColumnName
+fin_qual[,c(2,3)] %>% MakePretty()
 
-fin_qual
 
 ```
 
@@ -185,9 +188,9 @@ paste("Mean over columns:", mean(fin_qual$Ease_of_Manipulation))
 **DEMOGRAPHICS METRICS**
 
 ```{r, echo = FALSE}
-
 dem_qual <- data_quality(dem)
-dem_qual
+rownames(dem_qual) <- dem_qual$ColumnName
+dem_qual[,c(2,3)] %>% MakePretty()
 
 ```
 
