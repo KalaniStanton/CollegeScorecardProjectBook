@@ -23,6 +23,7 @@ significance-testing
 regression-model
 discussion
 discussion-1
+the-project-process
 things-learned-skills-acquired
 adam
 kalani
@@ -30,3 +31,4 @@ sara
 ben
 other-fun-things
 gender
+packages-used
