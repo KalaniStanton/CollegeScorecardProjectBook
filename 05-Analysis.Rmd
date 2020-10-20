@@ -43,9 +43,7 @@ library(tmap)
 ```
 
 ```{r}
-
 # READING IN THE CSVs
-
 fin <- read.csv('Proj1Data/cleanFinancials1519.csv')
 cdem <- read.csv('Proj1Data/cleanDemographics1519.csv')
 fin$r_status <- factor(fin$r_status, levels = c("R1", "R2"), labels = c(1,2))
@@ -70,7 +68,6 @@ finR <- subset(finR, university %in% demR$university)
 Before analyzing the demographic differences, we thought it was important to display how R1 and R2 schools are distributed across the United States. The demographic makeup of a school is potentially influenced by the demographics of in-state students which, at least at public institutions, are proportionally more likely to attend the school than students from any other state (see State Council of Higher Education for Virginia, 2019 for a case study of one state). Although we do not factor state and baseline state demographics into our model, it is a potential influential third variable that should be kept in mind while interpretting race and income demographics. 
 
 ```{r}
-
 r1_state <- cdem %>%
   filter(r_status == "1") %>%
   group_by(state) %>%
@@ -82,7 +79,6 @@ r2_state <- cdem %>%
   group_by(state) %>%
   distinct(university) %>%
   count()
-
 ```
 
 ```{r}
@@ -129,7 +125,6 @@ r2_map
 The prelimary examination of the demographics data revealed that all of the race values, except for the proportion of white students, had a significant right skew. While the distributions are not normal, they are symmetric and bounded, which prevents extreme outliers. Below we provide a violin plot showing the distribution for each of the race variables grouped by their Carnegie classification. The mean is marked by a red bar, and the median is marked by a black bar. 
 
 ```{r, fig.height = 10}
-
 dem_pal <- c("darkolivegreen", "darkolivegreen3", "dodgerblue4", "deepskyblue", "lavenderblush4", "lavenderblush2", "palevioletred1", "rosybrown1",  "tomato2",  "sienna 1", "slateblue3", "thistle1", "orange", "navajowhite2", "lightskyblue3", "lightsteelblue1")
   
 race_demographics <- cdem %>%
@@ -151,23 +146,19 @@ race_demographics %>%
   theme(axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)), 
         plot.title = element_text(hjust = .5), 
         legend.position = "none")
-
 ```
 
 
-The five number summary for the 'white variable', along with the skewness and kurtosis, are reported below. 
+The five number summary for the '*white variable*', along with the skewness and kurtosis:
 
+**R1's**
 ```{r}
-
-# DEMOGRAPHICS AT R1'S - WHITE STUDENTS 
-
 summary(demR1$white)
 skewness(demR1$white)
 kurtosis(demR1$white)
-
 ```
 
-
+**R2's**
 ```{r}
 # DEMOGRAPHICS AT R2'S - WHITE STUDENTS 
 summary(demR2$white)
@@ -211,10 +202,14 @@ other_plot
 
 The code for the first histogram is displayed, the rest will be hidden to avoid unnecessary repitition. 
 
+#### Tuition Cost
+
+**R1s**
 ```{r}
 # Cost
-print('Tuition cost')
 summary(finR1$costt4_a)
+```
+```{r}
 cost_hist1 <- ggplot(finR1, aes(x =costt4_a)) + 
   geom_histogram(bins = 40, color = "black", fill = "red") +
   labs(title = "Distribution of Tuition Costs at R1s", 
@@ -224,8 +219,11 @@ cost_hist1 <- ggplot(finR1, aes(x =costt4_a)) +
 cost_hist1
 ```
 
+**R2s**
 ```{r echo = FALSE}
 summary(finR2$costt4_a)
+```
+```{r}
 cost_hist2 <- ggplot(finR2, aes(x =costt4_a)) + 
   geom_histogram(bins = 40, color = "black", fill = "pink") +
   labs(title = "Distribution of Tuition Costs at R2s", 
@@ -235,10 +233,15 @@ cost_hist2 <- ggplot(finR2, aes(x =costt4_a)) +
 cost_hist2
 ```
 
+#### Student Debt
+
+**R1s**
 ```{r, echo = FALSE}
 # Students debt
-print('Student debt')
 summary(finR1$grad_debt_mdn)
+```
+
+```{r}
 debt_hist1 <- ggplot(finR1, aes(x = grad_debt_mdn)) + 
   geom_histogram(bins = 40, color = "black", fill = "cadetblue4") +
   labs(title = "Distribution of Median Student Debt at R1s", 
@@ -248,8 +251,12 @@ debt_hist1 <- ggplot(finR1, aes(x = grad_debt_mdn)) +
 debt_hist1
 ```
 
+**R2s**
 ```{r, echo = FALSE}
 summary(finR2$grad_debt_mdn)
+```
+
+```{r}
 debt_hist1 <- ggplot(finR2, aes(x = grad_debt_mdn)) + 
   geom_histogram(bins = 40, color = "black", fill = "cadetblue3") +
   labs(title = "Distribution of Median Student Debt at R2s", 
@@ -259,12 +266,14 @@ debt_hist1 <- ggplot(finR2, aes(x = grad_debt_mdn)) +
 debt_hist1
 ```
 
-**Unemployment**
+#### Unemployment
+
+**R1s**
+```{r}
+summary(finR1$unemp_rate)
+```
 
 ```{r}
-
-print('Unemployment Rate')
-summary(finR1$unemp_rate)
 unemp_hist1 <- ggplot(finR1, aes(x = unemp_rate)) + 
   geom_histogram(bins = 40, color = "black", fill = "darkseagreen4") +
   labs(title = "Distribution of Post-Graduation Unemployment rates at R1s", 
@@ -274,9 +283,12 @@ unemp_hist1 <- ggplot(finR1, aes(x = unemp_rate)) +
 unemp_hist1
 ```
 
+**R2s**
 ```{r}
-
 summary(finR2$unemp_rate)
+```
+
+```{r}
 unemp_hist2 <- ggplot(finR2, aes(x = unemp_rate)) + 
   geom_histogram(bins = 40, color = "black", fill = "darkseagreen3") +
   labs(title = "Distribution of Post-Graduation Unemployment rates at R2s", 
@@ -284,7 +296,6 @@ unemp_hist2 <- ggplot(finR2, aes(x = unemp_rate)) +
        x = "Unemployment Rate", 
        y = "Frequency") 
 unemp_hist2
-
 ```
 
 ### Significance Testing
@@ -292,17 +303,13 @@ unemp_hist2
 Preliminary normality analysis of the median graduate debt distribution revealed levels of skewness that forbade the use of parametric comparison tests. A Wilcoxon signed-rank test was conducted in order to investigate the differences in median graduate debt between R1 and R2 institutions. Results indicate that median graduate debt significantly differed between R1 and R2 institutions (W = 982, p < 0.01). While a difference in student debt was expected due to the aforementioned price of R1 institution tuition, descriptive statistics revealed graduates of R1 institutions graduated with less average debt (M = 19,652, SD = 3,750) than students from R2 institutions (M = 22,719, SD = 3,785).  
 
 ```{r}
-
 wilcox.test(formula=finR$grad_debt_mdn~finR$r_status)
-
 ```
 
 In order to further explore student outcomes, the investigators turned their attention to the graduate unemployment rate. The distribution for unemployment exhibited skewness and kurtosis values within acceptable bounds so a Welch’s two-sample t-test was conducted in order to find whether there were significant differences in unemployment rates between R1 and R2 graduates. The test revealed significant differences in rates of unemployment between R1 and R2 graduates t(118.36) = -2.6055, p = 0.01, 95%C.I. [-0.44, -0.06]. On average, the unemployment rate for R1 graduates (M = 3.293, SD = 0.51) was lower than that observed for R2 graduates (M = 3.545, SD = 0.83) 
 
 ```{r}
-
 t.test(finR$unemp_rate~finR$r_status)
-
 ```
 
 ### Regression model  

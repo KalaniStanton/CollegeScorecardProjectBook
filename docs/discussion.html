@@ -257,13 +257,13 @@ just a competent googler.”
 <p>Features that we were interested in, but didn’t get a chance to follow through on or did not align with the primary goal of the project. :)</p>
 <div id="gender" class="section level3">
 <h3><span class="header-section-number">6.4.1</span> Gender</h3>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="discussion.html#cb83-1"></a><span class="co">#Universities with the highest female/male ratio, the top 10 are mostly R2&#39;s for both categories</span></span>
-<span id="cb83-2"><a href="discussion.html#cb83-2"></a></span>
-<span id="cb83-3"><a href="discussion.html#cb83-3"></a>cdem <span class="op">%&gt;%</span></span>
-<span id="cb83-4"><a href="discussion.html#cb83-4"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(female)) <span class="op">%&gt;%</span></span>
-<span id="cb83-5"><a href="discussion.html#cb83-5"></a><span class="st">  </span><span class="kw">filter</span>(female <span class="op">&gt;</span><span class="st"> </span><span class="fl">.50</span>) <span class="op">%&gt;%</span></span>
-<span id="cb83-6"><a href="discussion.html#cb83-6"></a><span class="st">  </span><span class="kw">distinct</span>(university, <span class="dt">.keep_all =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
-<span id="cb83-7"><a href="discussion.html#cb83-7"></a><span class="st">  </span><span class="kw">head</span>(<span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="discussion.html#cb81-1"></a><span class="co">#Universities with the highest female/male ratio, the top 10 are mostly R2&#39;s for both categories</span></span>
+<span id="cb81-2"><a href="discussion.html#cb81-2"></a></span>
+<span id="cb81-3"><a href="discussion.html#cb81-3"></a>cdem <span class="op">%&gt;%</span></span>
+<span id="cb81-4"><a href="discussion.html#cb81-4"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(female)) <span class="op">%&gt;%</span></span>
+<span id="cb81-5"><a href="discussion.html#cb81-5"></a><span class="st">  </span><span class="kw">filter</span>(female <span class="op">&gt;</span><span class="st"> </span><span class="fl">.50</span>) <span class="op">%&gt;%</span></span>
+<span id="cb81-6"><a href="discussion.html#cb81-6"></a><span class="st">  </span><span class="kw">distinct</span>(university, <span class="dt">.keep_all =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
+<span id="cb81-7"><a href="discussion.html#cb81-7"></a><span class="st">  </span><span class="kw">head</span>(<span class="dv">10</span>)</span></code></pre></div>
 <pre><code>##       X control                                 university r_status state
 ## 1  1244       2                Thomas Jefferson University        2    PA
 ## 2   196       1 CUNY Graduate School and University Center        1    NY
@@ -297,11 +297,11 @@ just a competent googler.”
 ## 8    0.0092 0.0141     0.0013 0.0052 0.0616  0.0000 latest
 ## 9    0.0131 0.0014     0.0025 0.0003 0.0082  0.0008 latest
 ## 10   0.1425 0.1156     0.0006 0.0028 0.0490  0.0139   2015</code></pre>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="discussion.html#cb85-1"></a>cdem <span class="op">%&gt;%</span></span>
-<span id="cb85-2"><a href="discussion.html#cb85-2"></a><span class="st">  </span><span class="kw">arrange</span>(female) <span class="op">%&gt;%</span></span>
-<span id="cb85-3"><a href="discussion.html#cb85-3"></a><span class="st">  </span><span class="kw">filter</span>(female <span class="op">&lt;</span><span class="st"> </span><span class="fl">.50</span>) <span class="op">%&gt;%</span></span>
-<span id="cb85-4"><a href="discussion.html#cb85-4"></a><span class="st">  </span><span class="kw">distinct</span>(university, <span class="dt">.keep_all =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
-<span id="cb85-5"><a href="discussion.html#cb85-5"></a><span class="st">  </span><span class="kw">head</span>(<span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="discussion.html#cb83-1"></a>cdem <span class="op">%&gt;%</span></span>
+<span id="cb83-2"><a href="discussion.html#cb83-2"></a><span class="st">  </span><span class="kw">arrange</span>(female) <span class="op">%&gt;%</span></span>
+<span id="cb83-3"><a href="discussion.html#cb83-3"></a><span class="st">  </span><span class="kw">filter</span>(female <span class="op">&lt;</span><span class="st"> </span><span class="fl">.50</span>) <span class="op">%&gt;%</span></span>
+<span id="cb83-4"><a href="discussion.html#cb83-4"></a><span class="st">  </span><span class="kw">distinct</span>(university, <span class="dt">.keep_all =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
+<span id="cb83-5"><a href="discussion.html#cb83-5"></a><span class="st">  </span><span class="kw">head</span>(<span class="dv">10</span>)</span></code></pre></div>
 <pre><code>##       X control                                    university r_status state
 ## 1  1139       1            New Jersey Institute of Technology        1    NJ
 ## 2  1053       1 Missouri University of Science and Technology        2    MO
@@ -335,20 +335,20 @@ just a competent googler.”
 ## 8    0.0813 0.1012     0.0014 0.0002 0.1062  0.0187   2015
 ## 9    0.0711 0.0756     0.0018 0.0002 0.0585  0.0542   2015
 ## 10   0.0843 0.0457     0.0024 0.0000 0.1226  0.0625   2015</code></pre>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="discussion.html#cb87-1"></a>R1s &lt;-<span class="st"> </span>cdem <span class="op">%&gt;%</span></span>
-<span id="cb87-2"><a href="discussion.html#cb87-2"></a><span class="st">  </span><span class="kw">filter</span>(r_status <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)</span>
-<span id="cb87-3"><a href="discussion.html#cb87-3"></a></span>
-<span id="cb87-4"><a href="discussion.html#cb87-4"></a><span class="kw">ggplot</span>(cdem, <span class="kw">aes</span>(<span class="dt">x =</span> female)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb87-5"><a href="discussion.html#cb87-5"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">40</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;pink&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb87-6"><a href="discussion.html#cb87-6"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Distribution of Female/Male Gender ratio at R1s&quot;</span>)</span></code></pre></div>
-<p><img src="CollegeScorecardEDA_files/figure-html/unnamed-chunk-55-1.png" width="672" /></p>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="discussion.html#cb88-1"></a>R2s &lt;-<span class="st"> </span>cdem <span class="op">%&gt;%</span></span>
-<span id="cb88-2"><a href="discussion.html#cb88-2"></a><span class="st">  </span><span class="kw">filter</span>(r_status <span class="op">==</span><span class="st"> </span><span class="dv">2</span>)</span>
-<span id="cb88-3"><a href="discussion.html#cb88-3"></a></span>
-<span id="cb88-4"><a href="discussion.html#cb88-4"></a><span class="kw">ggplot</span>(R2s, <span class="kw">aes</span>(<span class="dt">x =</span> female)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb88-5"><a href="discussion.html#cb88-5"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">40</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;skyblue&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb88-6"><a href="discussion.html#cb88-6"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Distribution of Female/Male Gender ratio at R2s&quot;</span>)</span></code></pre></div>
-<p><img src="CollegeScorecardEDA_files/figure-html/unnamed-chunk-55-2.png" width="672" /></p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="discussion.html#cb85-1"></a>R1s &lt;-<span class="st"> </span>cdem <span class="op">%&gt;%</span></span>
+<span id="cb85-2"><a href="discussion.html#cb85-2"></a><span class="st">  </span><span class="kw">filter</span>(r_status <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)</span>
+<span id="cb85-3"><a href="discussion.html#cb85-3"></a></span>
+<span id="cb85-4"><a href="discussion.html#cb85-4"></a><span class="kw">ggplot</span>(cdem, <span class="kw">aes</span>(<span class="dt">x =</span> female)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb85-5"><a href="discussion.html#cb85-5"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">40</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;pink&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb85-6"><a href="discussion.html#cb85-6"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Distribution of Female/Male Gender ratio at R1s&quot;</span>)</span></code></pre></div>
+<p><img src="CollegeScorecardEDA_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="discussion.html#cb86-1"></a>R2s &lt;-<span class="st"> </span>cdem <span class="op">%&gt;%</span></span>
+<span id="cb86-2"><a href="discussion.html#cb86-2"></a><span class="st">  </span><span class="kw">filter</span>(r_status <span class="op">==</span><span class="st"> </span><span class="dv">2</span>)</span>
+<span id="cb86-3"><a href="discussion.html#cb86-3"></a></span>
+<span id="cb86-4"><a href="discussion.html#cb86-4"></a><span class="kw">ggplot</span>(R2s, <span class="kw">aes</span>(<span class="dt">x =</span> female)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb86-5"><a href="discussion.html#cb86-5"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">40</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;skyblue&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb86-6"><a href="discussion.html#cb86-6"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Distribution of Female/Male Gender ratio at R2s&quot;</span>)</span></code></pre></div>
+<p><img src="CollegeScorecardEDA_files/figure-html/unnamed-chunk-61-2.png" width="672" /></p>
 
 </div>
 </div>

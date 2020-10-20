@@ -19,6 +19,9 @@ methods
 results
 demographic-descriptive-statistics
 financial-descriptive-statistics
+tuition-cost
+student-debt
+unemployment
 significance-testing
 regression-model
 discussion
