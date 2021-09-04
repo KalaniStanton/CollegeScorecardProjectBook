@@ -34,3 +34,9 @@ sara
 ben
 other-fun-things
 gender
+progress
+week-1-830---94
+achievements
+aggravations
+aims
+attitude

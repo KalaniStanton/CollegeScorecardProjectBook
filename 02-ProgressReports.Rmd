@@ -1,0 +1,37 @@
+# Progress Reports {#progress}
+
+```{r, message = FALSE}
+library(plyr)
+library(tidyverse)
+library(Hmisc)
+library(httr)
+library(jsonlite)
+library(tidyverse)
+#install.packages("tmap")
+library(tmap)
+library(leaflet)
+library(treemap)
+library(kableExtra)
+
+`%notin%` <- Negate(`%in%`)
+
+MakePretty <- function(x) {
+  x %>% kbl(align = "c") %>% kable_material()
+}
+```
+
+## Week 1 (8/30 - 9/4)
+
+some stuff
+
+### Achievements
+
+### Aggravations
+
+Error from inside the model, possibly due to version incompatabilities. May have to force inputs to numpy array.
+
+![]('_bookdown_files/image_files/Error_9_4.jpg')
+
+### Aims
+
+### Attitude

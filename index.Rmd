@@ -1,6 +1,6 @@
 --- 
-title: "An Exploratory Analysis of Data in the U.S. College Scorecard"
-author: "Sara Haman, Adam Lashley, Reilly Stanton, Benjamin Weisman"
+title: "Progress Journal for CAMS Project, Team Radiant"
+author: "Sara Haman, Kalani Stanton, Vivienne Prince"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
@@ -9,8 +9,8 @@ documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes~
-github-repo:  KalaniStanton/CollegeScorecardProjectBook 
-description: "An analysis of data from the College Scorecard API, which focuses on differences identified between institutions with R1 and R2 carnegie classifications."
+github-repo:  KalaniStanton/CAMSReport
+description: "The following contains details on the project for the CAMS project, wherein our team evaluates and deploys machine learning models to identify meteors seen in footage from low-light survaillance cameras."
 ---
 
 ```{r setup, include=FALSE}
@@ -22,11 +22,7 @@ knitr::opts_chunk$set(echo = TRUE,
 # Preface {-}
 
 
-This project was completed to satisfy the requirements of a project assigned to students in the Fall 2020 Data Munging and Exploratory Data Analysis at New College of Florida.
-
-This document is broken down into sections pertaining to the discrete steps in the process of exploratory data analysis. 
-
-In the first chapter (\@ref(intro)), we present an overview of this project. In the second chapter (\@ref(import)), we outline how we accessed and cleaned the data. We demonstrate our initial attempts at pulling the data directly from the API, and explain why we chose to pivot to using the {rscorecard} package for querying our data from the API. In the third (\@ref(quality)), we compute scores on each of the data quality metrics described in Pipino, Lee, and Wang (2002). Although we handle NA’s while cleaning the data, the data quality metrics are performed on the initial data pulls, so that our assessment procedure is generally reproducible. The fourth chapter (\@ref(clean)) provides the code used to clean the data. Then, we begin the analysis of the data (\@ref(analysis)). This is done in two steps: first, by exploring the descriptive variables in order to glean the composition of the data set, and second by investigating our theory that the proportion of White students at a school will positively influence student outcomes (possibly due to implicit favor given to White individuals). We examine features that R1 and R2 schools differ on, and provide a model for the relationship between demographics and student outcomes. The results of these tests are reported (\@ref(analysis)). In this discussion (\@ref(discussion)), we summarize the key findings from the analysis. 
+This project was completed in accordance with the requirements for the Practical Data Science course in the Data Science Masters program at New College of Florida.
 
 
 ```{r include=FALSE}
